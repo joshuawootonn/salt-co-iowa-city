@@ -18,7 +18,8 @@ const IndexPage = () => (
             node {
               id,
               firstname,
-              lastname
+              lastname,
+              position
             }
           }
         }
@@ -28,13 +29,12 @@ const IndexPage = () => (
       return (
         data.allContentfulStaff.edges.map((asdf) => 
           {
-            console.log(asdf.node);
-            const {firstname,lastname} = asdf.node;
-            console.log(firstname,lastname)
+            const {firstname,lastname,position} = asdf.node;
             return(
               <div>
                 <p>{firstname}</p>
                 <p>{lastname}</p>
+                <p>{position}</p>
               </div>
             )
           }
