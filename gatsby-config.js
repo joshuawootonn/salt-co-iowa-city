@@ -2,9 +2,9 @@ const path = require('path');
 require('dotenv').config();
 module.exports = {
   siteMetadata: {
-    title: `Salt`,
-    description: ``,
-    author: `@gatsbyjs`,
+    title: `Joshua Wootonnn`,
+    description: `Cowboy Hacker`,
+    author: `@joshuawootonn`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -47,4 +47,4 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],
-}
+};

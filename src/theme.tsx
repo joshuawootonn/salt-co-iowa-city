@@ -12,7 +12,6 @@ export interface Theme {
   };
   elementSizes: ElementSizes;
   typographySizes: TypographySizes;
-  deviceSizes: DeviceSize;
 }
 
 export const theme: Theme = {
@@ -44,26 +43,19 @@ export const theme: Theme = {
     a: 12,
     li: 12,
   },
-  deviceSizes: {
-    xs: 400,
-    sm: 575,
-    md: 1100,
-    lg: 1920,
-    xl: 2560
-  }
 };
 
 export interface ThemeProp {
   theme: Theme;
 }
 
-interface DeviceSize {
-  xs: number;
-  sm: number;
-  md: number;
-  lg: number;
-  xl: number;
-}
+export const deviceSize = {
+  xs: `(min-width: 575px)`,
+  sm: `(min-width: 571px) and (max-width: 1100px)`,
+  md: `(min-width: 1101px)`,
+  lg: `(min-width: 1921px)`,
+  xl: `(min-width: 2561px)`,
+};
 
 export type ElementSizesUnion = 'na' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 export type ElementSizes = {

@@ -1,9 +1,18 @@
 {
-  "name": "salt-company-iowa-city",
-  "private": true,
-  "description": "Website for Salt Company Iowa City",
+  "name": "joshua-wootonn",
   "version": "0.1.0",
   "author": "Joshua Wootonn <joshuawootonn@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "clean": "gatsby clean",
+    "develop": "yarn clean && cross-env GATSBY_GRAPHQL_IDE=playground gatsby develop",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "type-check": "tsc",
+    "lint": "./node_modules/.bin/eslint --ignore-path .eslintignore . --ext ts --ext tsx --ext js --ext jsx",
+    "lint:fix": "yarn lint --fix"
+  },
   "dependencies": {
     "@types/node": "^12.7.8",
     "@types/react": "^16.9.3",
@@ -15,21 +24,21 @@
     "date-fns": "^2.4.1",
     "dotenv": "^8.1.0",
     "eslint": "^6.6.0",
-    "gatsby": "^2.17.6",
-    "gatsby-image": "^2.2.30",
-    "gatsby-plugin-manifest": "^2.2.25",
-    "gatsby-plugin-offline": "^3.0.17",
-    "gatsby-plugin-react-helmet": "^3.1.13",
-    "gatsby-plugin-sharp": "^2.2.34",
+    "gatsby": "^2.15.26",
+    "gatsby-image": "^2.2.21",
+    "gatsby-plugin-manifest": "^2.2.18",
+    "gatsby-plugin-offline": "^3.0.9",
+    "gatsby-plugin-react-helmet": "^3.1.8",
+    "gatsby-plugin-sharp": "^2.2.25",
     "gatsby-plugin-styled-components": "^3.1.11",
     "gatsby-plugin-typescript": "^2.1.9",
-    "gatsby-plugin-manifest": "^2.2.18",
-    "gatsby-source-filesystem": "^2.1.35",
-    "gatsby-transformer-sharp": "^2.3.1",
+    "gatsby-source-filesystem": "^2.1.26",
+    "gatsby-transformer-sharp": "^2.2.17",
     "prop-types": "^15.7.2",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
     "react-helmet": "^5.2.1",
+    "react-markdown": "^4.2.2",
     "styled-bootstrap-grid": "^3.0.5",
     "styled-components": "^4.4.0"
   },
@@ -42,17 +51,5 @@
     "gatsby-plugin-root-import": "^2.0.5",
     "prettier": "^1.18.2",
     "typescript": "^3.6.3"
-  },
-  "keywords": [
-    "gatsby"
-  ],
-  "license": "MIT",
-  "scripts": {
-    "build": "gatsby build",
-    "clean": "gatsby clean",
-    "develop": "yarn clean && cross-env GATSBY_GRAPHQL_IDE=playground gatsby develop",
-    "lint": "./node_modules/.bin/eslint --ignore-path .eslintignore . --ext ts --ext tsx --ext js --ext jsx",
-    "lint:fix": "yarn lint --fix",
-    "start": "npm run develop"
   }
 }

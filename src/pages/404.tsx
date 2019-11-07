@@ -1,13 +1,16 @@
-import React from "react"
+import React from 'react';
 
-import SEO from "../components/seo"
+import StylingProvider from '../components/stylingProvider';
+import SEO from '../components/seo';
+import Hero from '../components/hero';
+import Cursor from '../components/cursor';
 
 const NotFoundPage = () => (
-  <div>
-    <SEO title="404: Not found" />
-    <h1>NOT FOUND</h1>
-    <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-  </div>
-)
+  <StylingProvider>
+    <SEO title="404" description="the lad was not found" lang="en" meta={{}} />
+    <Hero text="404 NOT FOUND" backgroundColor="green" />
+    <Cursor />
+  </StylingProvider>
+);
 
-export default NotFoundPage
+export default NotFoundPage;

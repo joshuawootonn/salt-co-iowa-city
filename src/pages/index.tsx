@@ -1,17 +1,24 @@
-import React from "react"
-import { Link } from "gatsby"
+import React from 'react';
 
-import SEO from "../components/seo"
+import StylingProvider from 'components/stylingProvider';
+import SEO from 'components/seo';
+
+import Cursor from 'components/cursor';
+import Hero from '../components/hero';
 
 const IndexPage = () => (
-  <div>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
+  <>
+    <SEO
+      title="Home"
+      description="Joshua Wootonn home page"
+      lang="en"
+      meta={{}}
+    />
+    <StylingProvider>
+      <Hero text="WIP" backgroundColor="purple" />
+      <Cursor />
+    </StylingProvider>
+  </>
+);
 
-    <Link to="/page-2/">Go to page 2</Link>
-  </div>
-)
-
-export default IndexPage
+export default IndexPage;
