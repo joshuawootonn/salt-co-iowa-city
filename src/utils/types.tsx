@@ -24,8 +24,3 @@ export interface Image {
   description: string;
   fluid: Fluid;
 }
-
-// TODO: should this be heer???
-export interface IsHovered {
-  isHovered: boolean;
-}
