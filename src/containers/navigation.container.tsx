@@ -13,16 +13,19 @@ const NavigationRow = styled(Row)`
   margin-bottom: 0 !important;
 `;
 
-const RightNavigation = styled(Flex)<ThemeProp>`
+const Navigation = styled(Flex)`
   border-bottom: 1px solid white;
+`;
 
+const SubNavigation = styled(Flex)<ThemeProp>`
   a {
     border: 1px solid white;
     padding: 8px;
     text-transform: uppercase;
     transform: translateY(1px);
     color: white;
-    padding: ${props => props.theme.elementSizes.xs * 1.5}px ${props => props.theme.elementSizes.sm}px;
+    padding: ${props => props.theme.elementSizes.sm}px
+      ${props => props.theme.elementSizes.lg}px;
   }
 `;
 
@@ -30,11 +33,11 @@ const NavigationContainer: React.FC = () => {
   return (
     <NavigationRow justify="center" align="center">
       <Col>
-        <Flex direction="row" justify="space-between" align="center">
-          <Flex direction="row" justify="flex-end" align="center">
+        <Navigation direction="row" justify="space-between" align="center">
+          <SubNavigation direction="row" justify="flex-end" align="center">
             <A>Salt</A>
-          </Flex>
-          <RightNavigation direction="row" justify="flex-end" align="center">
+          </SubNavigation>
+          <SubNavigation direction="row" justify="flex-end" align="center">
             <A marginLeft="sm" marginBottom="na">
               Events
             </A>
@@ -44,8 +47,8 @@ const NavigationContainer: React.FC = () => {
             <A marginLeft="sm" marginBottom="na">
               Info
             </A>
-          </RightNavigation>
-        </Flex>
+          </SubNavigation>
+        </Navigation>
       </Col>
     </NavigationRow>
   );

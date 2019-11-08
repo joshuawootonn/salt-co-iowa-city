@@ -43,7 +43,7 @@ const getColor = (
 };
 
 const TypographyBase = css`
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: 'Lato', sans-serif;
   text-align: ${(props: TypographyProps) =>
     props.textAlign === 'right' ? 'right' : 'left'};
   color: ${(props: TypographyProps) => getColor(props)};
@@ -58,6 +58,8 @@ const TypographyBase = css`
   margin-left: ${({ marginLeft, theme: { elementSizes } }: TypographyProps) =>
     marginLeft ? elementSizes[marginLeft] : elementSizes.na}px;
   margin-top: 0;
+  font-weight: lighter;
+  letter-spacing: 3px;
 `;
 
 export const H1 = styled.h1<TypographyProps>`
@@ -261,7 +263,7 @@ export const A = styled.a<TypographyProps>`
     transform: translateX(
       ${(props: TypographyProps) => getHorizontalTransform(props)}
     );
-    font-size: ${(props: TypographyProps) => props.theme.elementSizes.sm}px;
+    font-size: ${(props: TypographyProps) => props.theme.elementSizes.xs * 1.4}px;
   }
   @media (min-width: 1921px) {
     transform: translateX(
@@ -276,7 +278,6 @@ export const A = styled.a<TypographyProps>`
     font-size: ${(props: TypographyProps) => props.theme.elementSizes.xl}px;
   }
   color: ${(props: TypographyProps) => getColor(props, 'dark')};
-  font-weight: bold;
   display: inline-block;
   text-decoration: none;
   padding: 4px;

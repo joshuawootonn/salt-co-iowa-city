@@ -22,7 +22,7 @@ const GlobalStyle = createGlobalStyle`
   div {
     box-sizing: border-box;
   }
-  @import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
 `;
 
 const Content = styled.div`
