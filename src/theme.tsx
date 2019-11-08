@@ -22,7 +22,7 @@ export const theme: Theme = {
     pink: '#fe65b7',
     blue: '#446DF6',
     purple: '#AB87FF',
-    light: '#EFEFEF',
+    light: 'white',
     medium: '#CFCFCF',
     dark: '#333333',
   },

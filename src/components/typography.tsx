@@ -35,7 +35,7 @@ const getHorizontalTransform = (
 
 const getColor = (
   props: TypographyProps,
-  defaultColor: Color = 'dark'
+  defaultColor: Color = 'light'
 ): string => {
   return props.color
     ? props.theme.color[props.color]

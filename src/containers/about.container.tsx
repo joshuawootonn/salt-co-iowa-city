@@ -1,31 +1,40 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Flex } from '../components/flex';
-import { H1 } from '../components/typography';
+import { Col, Row } from '../components/layout';
+import { H1, H3, H4 } from '../components/typography';
 
-import HomeSplash from '../images/home-splash.jpg';
+import AboutSplashImage from '../images/home-splash.jpg';
 
-interface Splash {
+interface AboutRowProps {
   imgUrl: string;
 }
-// TODO: can this component be merged with the hero component that already exists?
-const Hero = styled(Flex)<Splash>`  
+
+const AboutRow = styled(Row)<AboutRowProps>`
+  top: 0;
   height: 100vh;
-  width: 100vw;
-  background:  linear-gradient(
-      rgba(127, 44, 203, 0.45), 
-      rgba(255, 169, 231, 0.45)
+  background:   linear-gradient(
+      rgba( 152, 114, 132, 0.35), 
+      rgba(77, 106, 109, 0.35)
     ), url("${props => props.imgUrl}") center;
-    
+    background-size: cover;
+`;
+
+const AboutH4 = styled(H4)`
+  border-top: 2px solid ${props => props.theme.color.light};
+  border-left: 2px solid ${props => props.theme.color.light};
+  padding-left: 8px;
 `;
 
 const AboutContainer: React.FC = () => {
   return (
-    <Hero imgUrl={HomeSplash} justify="center" align="center">
-      <div>
-        <H1>Salt</H1>
-      </div>
-    </Hero>
+    <AboutRow imgUrl={AboutSplashImage} justify="center" align="center">
+      <Col>
+        <AboutH4>
+          Together, our mission is to live as Salt and Light in the World
+        </AboutH4>
+      </Col>
+    </AboutRow>
   );
 };
 

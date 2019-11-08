@@ -14,16 +14,16 @@ const NavigationRow = styled(Row)`
 `;
 
 const Navigation = styled(Flex)`
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid ${props => props.theme.color.light};
 `;
 
 const SubNavigation = styled(Flex)<ThemeProp>`
   a {
-    border: 1px solid white;
+    border: 1px solid ${props => props.theme.color.light};
     padding: 8px;
     text-transform: uppercase;
     transform: translateY(1px);
-    color: white;
+    color: ${props => props.theme.color.light};
     padding: ${props => props.theme.elementSizes.sm}px
       ${props => props.theme.elementSizes.lg}px;
   }
