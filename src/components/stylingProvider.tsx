@@ -13,10 +13,11 @@ const GlobalStyle = createGlobalStyle`
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    cursor: none;
+    //cursor: none;
   }
   a {
-    cursor: none;
+    //cursor: none;
+    cursor:pointer;
   }
   div {
     box-sizing: border-box;

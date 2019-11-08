@@ -34,7 +34,7 @@ const StyledCursor = styled.div<CursorProps>`
   }};
   background-color: ${(props: CursorProps) => {
     switch (props.cursorState) {
-      case "default":
+      case 'default':
         return props.theme.color.dark;
       case 'link-1':
         return props.theme.color.blue;

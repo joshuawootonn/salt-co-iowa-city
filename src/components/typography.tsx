@@ -261,7 +261,7 @@ export const A = styled.a<TypographyProps>`
     transform: translateX(
       ${(props: TypographyProps) => getHorizontalTransform(props)}
     );
-    font-size: ${(props: TypographyProps) => props.theme.elementSizes.md}px;
+    font-size: ${(props: TypographyProps) => props.theme.elementSizes.sm}px;
   }
   @media (min-width: 1921px) {
     transform: translateX(
@@ -277,7 +277,6 @@ export const A = styled.a<TypographyProps>`
   }
   color: ${(props: TypographyProps) => getColor(props, 'dark')};
   font-weight: bold;
-  margin-bottom: 16px;
   display: inline-block;
   text-decoration: none;
   padding: 4px;

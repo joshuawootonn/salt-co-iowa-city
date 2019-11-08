@@ -5,18 +5,21 @@ import SEO from 'components/seo';
 
 import Cursor from 'components/cursor';
 import Hero from '../components/hero';
+import AboutContainer from '../containers/about.container';
+import NavigationContainer from "../containers/navigation.container";
 
 const IndexPage = () => (
   <>
     <SEO
       title="Home"
-      description="Joshua Wootonn home page"
+      description="Salt Company Iowa City"
       lang="en"
       meta={{}}
     />
     <StylingProvider>
-      <Hero text="WIP" backgroundColor="purple" />
-      <Cursor />
+      <NavigationContainer />
+      <AboutContainer />
+      {/*<Cursor />*/}
     </StylingProvider>
   </>
 );
