@@ -8,7 +8,7 @@ import Hero from '../components/hero';
 import AboutContainer from '../containers/about.container';
 import NavigationContainer from '../containers/navigation.container';
 
-const IndexPage = () => (
+const EventPage = () => (
   <>
     <SEO
       title="Home"
@@ -23,4 +23,4 @@ const IndexPage = () => (
   </>
 );
 
-export default IndexPage;
+export default EventPage;

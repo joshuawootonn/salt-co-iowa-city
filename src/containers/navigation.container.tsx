@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Flex } from '../components/flex';
-import { H1, A } from '../components/typography';
+import { H1, A, Link } from "../components/typography";
 import { Col, Row } from '../components/layout';
 import { ThemeProp } from '../theme';
 
@@ -38,15 +38,15 @@ const NavigationContainer: React.FC = () => {
             <A>Salt</A>
           </SubNavigation>
           <SubNavigation direction="row" justify="flex-end" align="center">
-            <A marginLeft="sm" marginBottom="na">
+            <Link to="/events" marginLeft="sm" marginBottom="na">
               Events
-            </A>
-            <A marginLeft="sm" marginBottom="na">
+            </Link>
+            <Link to="/media" marginLeft="sm" marginBottom="na">
               Media
-            </A>
-            <A marginLeft="sm" marginBottom="na">
+            </Link>
+            <Link to="/info" marginLeft="sm" marginBottom="na">
               Info
-            </A>
+            </Link>
           </SubNavigation>
         </Navigation>
       </Col>

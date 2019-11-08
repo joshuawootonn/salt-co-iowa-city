@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { Theme, ElementSizesUnion } from 'theme';
+import { Link as GatsbyLink } from 'gatsby';
 
 export type Color =
   | 'yellow'
@@ -263,7 +264,49 @@ export const A = styled.a<TypographyProps>`
     transform: translateX(
       ${(props: TypographyProps) => getHorizontalTransform(props)}
     );
-    font-size: ${(props: TypographyProps) => props.theme.elementSizes.xs * 1.4}px;
+    font-size: ${(props: TypographyProps) =>
+      props.theme.elementSizes.xs * 1.4}px;
+  }
+  @media (min-width: 1921px) {
+    transform: translateX(
+      ${(props: TypographyProps) => getHorizontalTransform(props)}
+    );
+    font-size: ${(props: TypographyProps) => props.theme.elementSizes.lg}px;
+  }
+  @media (min-width: 2561px) {
+    transform: translateX(
+      ${(props: TypographyProps) => getHorizontalTransform(props)}
+    );
+    font-size: ${(props: TypographyProps) => props.theme.elementSizes.xl}px;
+  }
+  color: ${(props: TypographyProps) => getColor(props, 'dark')};
+  display: inline-block;
+  text-decoration: none;
+  padding: 4px;
+`;
+
+export const Link = styled(GatsbyLink)<TypographyProps>`
+  ${TypographyBase};
+  @media (max-width: 575px) {
+    transform: translateX(
+      ${(props: TypographyProps) => getHorizontalTransform(props)}
+    );
+    font-size: ${(props: TypographyProps) =>
+      props.theme.elementSizes.sm * 1.5}px;
+  }
+  @media (min-width: 571px) and (max-width: 1100px) {
+    transform: translateX(
+      ${(props: TypographyProps) => getHorizontalTransform(props)}
+    );
+    font-size: ${(props: TypographyProps) =>
+      props.theme.elementSizes.sm * 1.2}px;
+  }
+  @media (min-width: 1101px) {
+    transform: translateX(
+      ${(props: TypographyProps) => getHorizontalTransform(props)}
+    );
+    font-size: ${(props: TypographyProps) =>
+      props.theme.elementSizes.xs * 1.4}px;
   }
   @media (min-width: 1921px) {
     transform: translateX(
