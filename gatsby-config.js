@@ -42,7 +42,15 @@ module.exports = {
         images: path.join(__dirname, 'src/images'),
       }
     },
-    `gatsby-plugin-styled-components`
+    `gatsby-plugin-styled-components`,
+    {
+      resolve: `gatsby-source-vimeo`,
+      options: {
+        clientID: process.env.VIMEO_CLIENT_ID,
+        clientSecret: process.env.VIMEO_CLIENT_SECRET,
+        userID: 'veritasiowacity'
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

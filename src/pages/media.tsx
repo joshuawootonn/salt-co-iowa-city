@@ -11,8 +11,8 @@ import NavigationContainer from '../containers/navigation.container';
 const EventPage = () => (
   <>
     <SEO
-      title="Home"
-      description="Salt Company Iowa City"
+      title="Media"
+      description="Media for Salt Company Iowa City"
       lang="en"
       meta={{}}
     />
