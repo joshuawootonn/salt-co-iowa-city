@@ -21,6 +21,7 @@ export interface Theme {
     medium: string;
     dark: string;
   };
+  borders: string[];
   space: number[];
   elementSizes: ElementSizes;
   typographySizes: TypographySizes;
@@ -38,6 +39,15 @@ export const theme: Theme = {
     medium: '#CFCFCF',
     dark: '#333333',
   },
+  borders: [
+    '0',
+    '1px solid',
+    '2px solid',
+    '4px solid',
+    '8px solid',
+    '16px solid',
+    '32px solid',
+  ],
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   elementSizes: {
     na: 0,

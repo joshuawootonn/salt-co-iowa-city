@@ -13,12 +13,12 @@ import {
 export type BoxProps = BorderProps & FlexboxProps & LayoutProps & SpaceProps;
 
 const Box = styled.div<BoxProps>`
+  display: flex;
+  flex-direction: row;
   ${border};
   ${flexbox};
   ${layout};
   ${space};
-  display: flex;
-  flex-direction: row;
 `;
 
 export default Box;

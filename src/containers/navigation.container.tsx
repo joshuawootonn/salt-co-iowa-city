@@ -16,7 +16,8 @@ const Navigation = styled(Container)`
 `;
 
 const NavigationLink = styled(Link)`
-  transform: translateY(2px); // TODO: fix this to be dynamic with the size of screen
+  transform: translateY(2px);
+  // TODO: fix this to be dynamic with the size of screen
 `;
 
 const NavigationContainer: React.FC = () => {
