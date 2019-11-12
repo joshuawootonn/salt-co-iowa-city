@@ -5,7 +5,7 @@ import SEO from 'components/seo';
 
 import Cursor from 'components/cursor';
 import Hero from '../components/hero';
-// import AboutContainer from '../containers/about.container';
+import AboutContainer from '../containers/about.container';
 import NavigationContainer from '../containers/navigation.container';
 import TestContainer from '../containers/test.container';
 
@@ -19,7 +19,7 @@ const IndexPage = () => (
     />
     <StylingProvider>
       <NavigationContainer />
-      {/*<AboutContainer />*/}
+      <AboutContainer />
       <TestContainer />
     </StylingProvider>
   </>
