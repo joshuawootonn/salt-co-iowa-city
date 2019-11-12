@@ -10,7 +10,9 @@ import {
   SpaceProps,
 } from 'styled-system';
 
-const Box = styled.div<BorderProps & FlexboxProps & LayoutProps & SpaceProps>`
+export type BoxProps = BorderProps & FlexboxProps & LayoutProps & SpaceProps;
+
+const Box = styled.div<BoxProps>`
   ${border};
   ${flexbox};
   ${layout};

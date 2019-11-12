@@ -8,10 +8,11 @@ import Box from 'components/box';
 import Container from '../components/container';
 
 // TODO: can this component be merged with the hero component that already exists?
-const NavigationRow = styled(Row)`
+const Navigation = styled(Container)`
   height: 60px;
   position: fixed;
   top: 0;
+  width: 100%;
   margin-bottom: 0 !important;
 `;
 
@@ -29,7 +30,7 @@ const NavigationRow = styled(Row)`
 
 const NavigationContainer: React.FC = () => {
   return (
-    <Container alignItems="center" justifyContent="space-between">
+    <Navigation alignItems="center" justifyContent="space-between">
       <Box justifyContent="flex-start" alignItems="center">
         <h1>Salt</h1>
       </Box>
@@ -44,7 +45,7 @@ const NavigationContainer: React.FC = () => {
           Info
         </Link>
       </Box>
-    </Container>
+    </Navigation>
   );
 };
 
