@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Flex } from '../components/flex';
-import { H1, A, Link } from "../components/typography";
+import { Link } from '../components/typography';
 import { Col, Row } from '../components/layout';
 import { ThemeProp } from '../theme';
+import Box from 'components/box';
+import Container from '../components/container';
 
 // TODO: can this component be merged with the hero component that already exists?
 const NavigationRow = styled(Row)`
@@ -13,44 +15,36 @@ const NavigationRow = styled(Row)`
   margin-bottom: 0 !important;
 `;
 
-const Navigation = styled(Flex)`
-  border-bottom: 1px solid ${props => props.theme.color.light};
-`;
-
-const SubNavigation = styled(Flex)<ThemeProp>`
-  a {
-    border: 1px solid ${props => props.theme.color.light};
-    padding: 8px;
-    text-transform: uppercase;
-    transform: translateY(1px);
-    color: ${props => props.theme.color.light};
-    padding: ${props => props.theme.elementSizes.sm}px
-      ${props => props.theme.elementSizes.lg}px;
-  }
-`;
+// const SubNavigation = styled(Flex)<ThemeProp>`
+//   a {
+//     border: 1px solid ${props => props.theme.color.light};
+//     padding: 8px;
+//     text-transform: uppercase;
+//     transform: translateY(1px);
+//     color: ${props => props.theme.color.light};
+//     padding: ${props => props.theme.elementSizes.sm}px
+//       ${props => props.theme.elementSizes.lg}px;
+//   }
+// `;
 
 const NavigationContainer: React.FC = () => {
   return (
-    <NavigationRow justify="center" align="center">
-      <Col>
-        <Navigation direction="row" justify="space-between" align="center">
-          <SubNavigation direction="row" justify="flex-end" align="center">
-            <A>Salt</A>
-          </SubNavigation>
-          <SubNavigation direction="row" justify="flex-end" align="center">
-            <Link to="/events" marginLeft="sm" marginBottom="na">
-              Events
-            </Link>
-            <Link to="/media" marginLeft="sm" marginBottom="na">
-              Media
-            </Link>
-            <Link to="/info" marginLeft="sm" marginBottom="na">
-              Info
-            </Link>
-          </SubNavigation>
-        </Navigation>
-      </Col>
-    </NavigationRow>
+    <Container alignItems="center" justifyContent="space-between">
+      <Box justifyContent="flex-start" alignItems="center">
+        <h1>Salt</h1>
+      </Box>
+      <Box justifyContent="flex-end" alignItems="center">
+        <Link to="/events" marginLeft="sm" marginBottom="na">
+          Events
+        </Link>
+        <Link to="/media" marginLeft="sm" marginBottom="na">
+          Media
+        </Link>
+        <Link to="/info" marginLeft="sm" marginBottom="na">
+          Info
+        </Link>
+      </Box>
+    </Container>
   );
 };
 

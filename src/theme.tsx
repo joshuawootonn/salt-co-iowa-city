@@ -1,5 +1,5 @@
 export interface Theme {
-  color: {
+  colors: {
     yellow: string;
     green: string;
     orange: string;
@@ -10,12 +10,13 @@ export interface Theme {
     dark: string;
     [key: string]: any;
   };
+  space: number[];
   elementSizes: ElementSizes;
   typographySizes: TypographySizes;
 }
 
 export const theme: Theme = {
-  color: {
+  colors: {
     yellow: '#ffff4c',
     green: '#ACECA1',
     orange: '#FBB02D',
@@ -26,6 +27,7 @@ export const theme: Theme = {
     medium: '#CFCFCF',
     dark: '#333333',
   },
+  space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   elementSizes: {
     na: 0,
     xs: 8,

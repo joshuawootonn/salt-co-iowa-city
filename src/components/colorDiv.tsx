@@ -8,7 +8,7 @@ export interface ColorBlockProps {
 
 export const ColorDiv = styled.div<ColorBlockProps>`
   background-color: ${(props: ThemeProp & ColorBlockProps) =>
-    props.theme.color[props.backgroundColor]};
+    props.theme.colors[props.backgroundColor]};
   position: absolute;
   width: 100%;
   height: 100%;

@@ -14,11 +14,14 @@
     "lint:fix": "yarn lint --fix"
   },
   "dependencies": {
+    "@styled-system/css": "^5.0.23",
     "@types/node": "^12.7.8",
     "@types/react": "^16.9.3",
     "@types/react-dom": "^16.9.1",
     "@types/react-helmet": "^5.0.10",
     "@types/styled-components": "^4.1.19",
+    "@types/styled-system": "^5.1.3",
+    "@types/styled-system__css": "^5.0.4",
     "babel-plugin-styled-components": "^1.10.6",
     "cross-env": "^6.0.0",
     "date-fns": "^2.4.1",
@@ -41,7 +44,8 @@
     "react-helmet": "^5.2.1",
     "react-markdown": "^4.2.2",
     "styled-bootstrap-grid": "^3.0.5",
-    "styled-components": "^4.4.0"
+    "styled-components": "^4.4.0",
+    "styled-system": "^5.1.2"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.3.1",

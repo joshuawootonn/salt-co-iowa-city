@@ -48,7 +48,7 @@ module.exports = {
       options: {
         clientID: process.env.VIMEO_CLIENT_ID,
         clientSecret: process.env.VIMEO_CLIENT_SECRET,
-        userID: 'veritasiowacity'
+        userID: 'horspistemovie'
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
