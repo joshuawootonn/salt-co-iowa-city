@@ -1,3 +1,14 @@
+type Colors =
+  | 'yellow'
+  | 'green'
+  | 'orange'
+  | 'pink'
+  | 'blue'
+  | 'purple'
+  | 'light'
+  | 'medium'
+  | 'dark';
+
 export interface Theme {
   colors: {
     yellow: string;
@@ -5,10 +16,10 @@ export interface Theme {
     orange: string;
     pink: string;
     blue: string;
+    purple: string;
     light: string;
     medium: string;
     dark: string;
-    [key: string]: any;
   };
   space: number[];
   elementSizes: ElementSizes;
@@ -23,7 +34,7 @@ export const theme: Theme = {
     pink: '#fe65b7',
     blue: '#446DF6',
     purple: '#AB87FF',
-    light: 'white',
+    light: '#ffffff',
     medium: '#CFCFCF',
     dark: '#333333',
   },

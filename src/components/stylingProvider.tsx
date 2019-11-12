@@ -12,11 +12,10 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0px;
     padding: 0px;
-    box-sizing: border-box;
-    //cursor: none;
+    box-sizing: border-box;    
+    font-family: 'Lato', sans-serif;
   }
   a {
-    //cursor: none;
     cursor:pointer;
   }
   div {

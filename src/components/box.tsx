@@ -7,7 +7,7 @@ import {
   layout,
   LayoutProps,
   space,
-  SpaceProps,
+  SpaceProps
 } from 'styled-system';
 
 export type BoxProps = BorderProps & FlexboxProps & LayoutProps & SpaceProps;

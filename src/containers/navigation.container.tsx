@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Flex } from '../components/flex';
-import { Link } from '../components/typography';
+import { H1, Link } from '../components/typography';
 import { Col, Row } from '../components/layout';
 import { ThemeProp } from '../theme';
 import Box from 'components/box';
 import Container from '../components/container';
 
-// TODO: can this component be merged with the hero component that already exists?
 const Navigation = styled(Container)`
   height: 60px;
   position: fixed;
@@ -16,34 +15,38 @@ const Navigation = styled(Container)`
   margin-bottom: 0 !important;
 `;
 
-// const SubNavigation = styled(Flex)<ThemeProp>`
-//   a {
-//     border: 1px solid ${props => props.theme.color.light};
-//     padding: 8px;
-//     text-transform: uppercase;
-//     transform: translateY(1px);
-//     color: ${props => props.theme.color.light};
-//     padding: ${props => props.theme.elementSizes.sm}px
-//       ${props => props.theme.elementSizes.lg}px;
-//   }
-// `;
+const NavigationLink = styled(Link)`
+  transform: translateY(2px); // TODO: fix this to be dynamic with the size of screen
+`;
 
 const NavigationContainer: React.FC = () => {
   return (
     <Navigation alignItems="center" justifyContent="space-between">
-      <Box justifyContent="flex-start" alignItems="center">
-        <h1>Salt</h1>
+      <Box
+        width="100%"
+        borderBottom="2px white solid"
+        borderBottomColor="light"
+        justifyContent="flex-start"
+        alignItems="center"
+      >
+        <H1>Salt</H1>
       </Box>
-      <Box justifyContent="flex-end" alignItems="center">
-        <Link to="/events" marginLeft="sm" marginBottom="na">
+      <Box
+        width="100%"
+        borderBottom="2px white solid"
+        borderBottomColor="light"
+        justifyContent="flex-end"
+        alignItems="center"
+      >
+        <NavigationLink to="/events" ml={3}>
           Events
-        </Link>
-        <Link to="/media" marginLeft="sm" marginBottom="na">
+        </NavigationLink>
+        <NavigationLink to="/media" ml={3}>
           Media
-        </Link>
-        <Link to="/info" marginLeft="sm" marginBottom="na">
+        </NavigationLink>
+        <NavigationLink to="/info" ml={3}>
           Info
-        </Link>
+        </NavigationLink>
       </Box>
     </Navigation>
   );
