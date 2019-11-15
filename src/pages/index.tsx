@@ -7,6 +7,9 @@ import Cursor from 'components/cursor';
 import Hero from '../components/hero';
 import AboutContainer from '../containers/about.container';
 import NavigationContainer from '../containers/navigation.container';
+import WhatContainer from '../containers/what.container';
+import HowContainer from '../containers/how.container';
+import FooterContainer from '../containers/footer.container';
 
 const IndexPage = () => (
   <>
@@ -19,6 +22,9 @@ const IndexPage = () => (
     <StylingProvider>
       <NavigationContainer />
       <AboutContainer />
+      <WhatContainer />
+      {/*<HowContainer />*/}
+      {/*<FooterContainer />*/}
     </StylingProvider>
   </>
 );
