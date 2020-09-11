@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Link from "next/link";
+import AnnouncementLink from "../src/components/announcementLink";
 
 
 export default function Home() {
@@ -11,6 +12,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+
+
+        <AnnouncementLink />
       <Link href='/who-we-are'><a>Who we are</a></Link>
       <footer className={styles.footer}>
         <a
