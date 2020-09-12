@@ -1,16 +1,27 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { css } from 'styled-components';
 
-const AnnouncementLink = () => {
-    return (
-        <h1
-            css={css`
-                background-color: lawngreen;
-            `}
-        >
-            This is so dope :D!!
-        </h1>
-    );
-};
+export interface LinkAnnouncement {
+    image: {
+        url: string;
+    };
+    text: string;
+    link: string;
+}
+
+interface AnnouncementLinkProps {
+    linkAnnouncement: LinkAnnouncement;
+}
+
+const AnnouncementLink: FC<AnnouncementLinkProps> = ({ linkAnnouncement }) => (
+    <h1
+        css={css`
+            background-color: lawngreen;
+            width: 400px;
+        `}
+    >
+        {linkAnnouncement.text}
+    </h1>
+);
 
 export default AnnouncementLink;

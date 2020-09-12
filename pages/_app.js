@@ -1,5 +1,6 @@
 import React from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import ApolloContext from '../src/context/apollo';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -15,13 +16,15 @@ const theme = {
     },
 };
 
-export default function App({ Component, pageProps }) {
-    return (
-        <>
-            <GlobalStyle />
-            <ThemeProvider theme={theme}>
+const App = ({ Component, pageProps }) => (
+    <>
+        <GlobalStyle />
+        <ThemeProvider theme={theme}>
+            <ApolloContext>
                 <Component {...pageProps} />
-            </ThemeProvider>
-        </>
-    );
-}
+            </ApolloContext>
+        </ThemeProvider>
+    </>
+);
+
+export default App;

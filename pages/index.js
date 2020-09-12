@@ -3,6 +3,7 @@ import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import Link from 'next/link';
 import AnnouncementLink from '../src/components/announcementLink';
+import AnnouncementBlock from '../src/blocks/announcements';
 
 export default function Home() {
     return (
@@ -12,7 +13,8 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <AnnouncementLink />
+            <AnnouncementBlock />
+
             <Link href="/who-we-are">
                 <a>Who we are</a>
             </Link>
