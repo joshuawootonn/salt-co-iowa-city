@@ -5,40 +5,41 @@ module.exports = {
         'plugin:react/recommended',
         'plugin:@typescript-eslint/recommended',
         'prettier/@typescript-eslint',
-        'plugin:prettier/recommended'
+        'plugin:prettier/recommended',
     ],
     settings: {
         react: {
-            version: 'detect'
-        }
+            version: 'detect',
+        },
     },
     env: {
         browser: true,
         node: true,
-        es6: true
+        es6: true,
     },
     plugins: ['@typescript-eslint', 'react'],
     parserOptions: {
         ecmaFeatures: {
-            jsx: true
+            jsx: true,
         },
         ecmaVersion: 2018,
-        sourceType: 'module'
+        sourceType: 'module',
     },
 
     rules: {
         'react/prop-types': 'off',
         '@typescript-eslint/explicit-function-return-type': 'off',
         '@typescript-eslint/no-explicit-any': 'off',
-        '@typescript-eslint/no-unused-vars': 'off'
+        '@typescript-eslint/no-unused-vars': 'off',
+        '@typescript-eslint/explicit-module-boundary-types': 'off',
     },
     overrides: [
         {
-            files: ['public','src','pages'],
-            excludedFiles: ['node_modules', '.next','.storybook','styles'],
+            files: ['public', 'src', 'pages'],
+            excludedFiles: ['node_modules', '.next'],
             rules: {
-                '@typescript-eslint/no-var-requires': 'off'
-            }
-        }
-    ]
+                '@typescript-eslint/no-var-requires': 'off',
+            },
+        },
+    ],
 };
