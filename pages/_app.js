@@ -1,30 +1,13 @@
 import React from 'react';
-import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import ApolloContext from '../src/context/apollo';
-
-const GlobalStyle = createGlobalStyle`
-  body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-`;
-
-const theme = {
-    colors: {
-        primary: '#0070f3',
-    },
-};
+import ThemeContext, { primaryTheme } from '../src/context/themeContext';
 
 const App = ({ Component, pageProps }) => (
-    <>
-        <GlobalStyle />
-        <ThemeProvider theme={theme}>
-            <ApolloContext>
-                <Component {...pageProps} />
-            </ApolloContext>
-        </ThemeProvider>
-    </>
+    <ThemeContext theme={primaryTheme}>
+        <ApolloContext>
+            <Component {...pageProps} />
+        </ApolloContext>
+    </ThemeContext>
 );
 
 export default App;
