@@ -1,16 +1,9 @@
 import React, { FC, useState } from 'react';
 import { css } from 'styled-components';
-
-export interface LinkAnnouncement {
-    image: {
-        url: string;
-    };
-    text: string;
-    link: string;
-}
+import { Announcement } from '../services/announcements';
 
 interface AnnouncementLinkProps {
-    linkAnnouncement: LinkAnnouncement;
+    linkAnnouncement: Announcement;
 }
 
 const styles = {

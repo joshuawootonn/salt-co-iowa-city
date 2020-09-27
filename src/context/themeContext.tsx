@@ -30,7 +30,25 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-export type Theme = DefaultTheme;
+export interface Color {
+    lightest: string;
+    light: string;
+    medium: string;
+    dark: string;
+    darkest: string;
+}
+
+export interface Theme {
+    colors: {
+        blue: Color;
+        purple: Color;
+        yellow: Color;
+        gray: Color;
+        transparent: string;
+        background: string;
+        backgroundTransparent: string;
+    };
+}
 
 export const primaryTheme: Theme = {
     colors: {
@@ -63,6 +81,7 @@ export const primaryTheme: Theme = {
             darkest: '#39393A',
         },
         background: '#1D1D1B',
+        transparent: 'transparent',
         backgroundTransparent: 'rgba(29,29,27,.8)',
     },
 };

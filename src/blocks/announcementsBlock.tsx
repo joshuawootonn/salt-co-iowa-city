@@ -1,35 +1,16 @@
-import React from 'react';
-import { gql, useQuery } from '@apollo/client';
-import AnnouncementLink, {
-    LinkAnnouncement,
-} from '../components/announcementLink';
+import React, { FC } from 'react';
+import AnnouncementLink from '../components/announcementLink';
 import { css } from 'styled-components';
-import Bullhorn from '../components/bullhornSVG';
-
-const query = gql`
-    query blockAnnouncement {
-        blockAnnouncementsCollection(limit: 1) {
-            items {
-                title
-                linksCollection(limit: 3) {
-                    items {
-                        image {
-                            url
-                        }
-                        text
-                        link
-                    }
-                }
-            }
-        }
-    }
-`;
+import { Announcement } from '../services/announcements';
+import Bullhorn from '../svgs/bullhorn.svg';
 
 const styles = {
     root: css`
         display: grid;
         column-gap: 20px;
         grid-auto-flow: column;
+        margin: 500px auto;
+        max-width: 1140px;
         position: relative;
     `,
     background: css`
@@ -42,25 +23,20 @@ const styles = {
     `,
 };
 
-const AnnouncementBlock = () => {
-    const { data, loading, error } = useQuery(query);
+export interface AnnouncementsBlockProps {
+    links: Announcement[];
+}
 
-    if (loading) return <div>...loading</div>;
-
-    const links: LinkAnnouncement[] =
-        data.blockAnnouncementsCollection.items[0].linksCollection.items;
-
-    return (
-        <div css={styles.root}>
-            <div css={styles.background}>
-                <Bullhorn />
-            </div>
-
-            {links.map((link, i) => (
-                <AnnouncementLink key={i} linkAnnouncement={link} />
-            ))}
+const AnnouncementBlock: FC<AnnouncementsBlockProps> = ({ links }) => (
+    <div css={styles.root}>
+        <div css={styles.background}>
+            <Bullhorn />
         </div>
-    );
-};
+
+        {links.map((link, i) => (
+            <AnnouncementLink key={i} linkAnnouncement={link} />
+        ))}
+    </div>
+);
 
 export default AnnouncementBlock;

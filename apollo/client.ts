@@ -16,12 +16,12 @@ const httpLink = createHttpLink({
     },
 });
 
-export default withApollo(
-    ({ initialState }: any) =>
-        new ApolloClient({
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            link: httpLink,
-            cache: new InMemoryCache(initialState || {}),
-        })
-);
+export const getApolloClient = ({ initialState }: any) =>
+    new ApolloClient({
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        link: httpLink,
+        cache: new InMemoryCache(initialState || {}),
+    });
+
+export const withApolloClient = withApollo(getApolloClient);

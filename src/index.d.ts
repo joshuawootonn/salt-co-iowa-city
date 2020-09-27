@@ -31,6 +31,7 @@ declare module 'styled-components' {
             purple: Color;
             yellow: Color;
             gray: Color;
+            transparent: string;
             background: string;
             backgroundTransparent: string;
         };
