@@ -1,31 +1,36 @@
 import React, { FC } from 'react';
 import Head from 'next/head';
-import AnnouncementBlock from '../src/blocks/announcementsBlock';
+import AnnouncementContainer from '../src/containers/announcement';
 import ThemeContext, { primaryTheme } from '../src/context/themeContext';
-import { Announcement, getAnnouncements } from '../src/services/announcements';
-import FooterBlock from '../src/blocks/footer';
+import {
+    Announcement,
+    AnnouncementBlock,
+    getAnnouncementBlock,
+} from '../src/services/announcements';
+import FooterContainer from '../src/containers/footer';
 
 export interface HomeProps {
-    announcements: Announcement[];
+    announcementBlock: AnnouncementBlock;
 }
 
-const Home: FC<HomeProps> = ({ announcements }) => (
-    <ThemeContext theme={primaryTheme}>
-        <div>
+const Home: FC<HomeProps> = (props) => {
+    console.log(props);
+    return (
+        <ThemeContext theme={primaryTheme}>
             <Head>
                 <title>Salt Company Iowa City</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-
-            <AnnouncementBlock links={announcements} />
-            <FooterBlock />
-        </div>
-    </ThemeContext>
-);
+            <AnnouncementContainer block={props.announcementBlock} />
+            <FooterContainer />
+        </ThemeContext>
+    );
+};
 
 export async function getStaticProps() {
-    const announcements = await getAnnouncements();
-    return { props: { announcements } };
+    const announcementBlock = await getAnnouncementBlock();
+
+    return { props: { announcementBlock } };
 }
 
 export default Home;

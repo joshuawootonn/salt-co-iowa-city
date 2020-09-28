@@ -7,27 +7,39 @@ import {
 import React, { FC, useContext } from 'react';
 
 const GlobalStyle = createGlobalStyle`
-  body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background-color: #1D1D1B;
-  }
-  
-  @font-face {
-      font-family: Montserrat;
-      src: url('/Montserrat-Regular.ttf') format('truetype')     
-  }
-  @font-face {
-      font-family: MonumentExtended;
-      src: url('/MonumentExtended-Regular.otf') format('opentype')     
-  }
+    body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: #1D1D1B;
+        overflow-x: hidden;
+    }
+    
+    @font-face {
+        font-family: Montserrat;
+        src: url('/Montserrat-Regular.ttf') format('truetype')     
+    }
+    @font-face {
+        font-family: MonumentExtended;
+        src: url('/MonumentExtended-Regular.otf') format('opentype')     
+    }
    
   
-  h1 {
-      font-family: "MonumentExtended" , Arial, sans-serif;
-      font-weight: 400;
-  }
+    h1,h2,h3 {
+        font-family: "MonumentExtended" , Arial, sans-serif;
+        font-weight: 400;
+        margin: 0;
+    }
+    
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+    
+    * {
+        box-sizing: border-box;
+    }
+
 `;
 
 export interface Color {

@@ -37,7 +37,7 @@ const styles = {
         svg {
             position: absolute;
             top: 50%;
-            left: 50%;
+            left: 40%;
             transform: translate(-50%, -50%) rotate(-90deg);
         }
     `,
@@ -57,9 +57,7 @@ const styles = {
     `,
 };
 
-export interface FooterBlockProps {}
-
-const FooterBlock: FC<FooterBlockProps> = () => (
+const FooterContainer: FC<{}> = () => (
     <div css={styles.root}>
         <div css={styles.logoContainer}>
             <Salt />
@@ -88,4 +86,4 @@ const FooterBlock: FC<FooterBlockProps> = () => (
     </div>
 );
 
-export default FooterBlock;
+export default FooterContainer;

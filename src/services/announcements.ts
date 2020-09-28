@@ -9,6 +9,11 @@ export interface Announcement {
     link: string;
 }
 
+export interface AnnouncementBlock {
+    title: string;
+    announcements: Announcement[];
+}
+
 const announcements = gql`
     query blockAnnouncement {
         blockAnnouncementsCollection(limit: 1) {
@@ -28,16 +33,17 @@ const announcements = gql`
     }
 `;
 
-export const getAnnouncements = async (): Promise<Announcement> => {
+export const getAnnouncementBlock = async (): Promise<AnnouncementBlock> => {
     const client = getApolloClient({});
 
     const { data: rawAnnouncements } = await client.query({
         query: announcements,
     });
 
-    console.log(rawAnnouncements);
+    const block = rawAnnouncements.blockAnnouncementsCollection.items[0];
 
-    // @ts-ignore
-    return rawAnnouncements.blockAnnouncementsCollection.items[0]
-        .linksCollection.items;
+    return {
+        title: block.title,
+        announcements: block.linksCollection.items,
+    };
 };
