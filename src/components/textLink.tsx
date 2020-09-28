@@ -13,7 +13,12 @@ const styles = {
               `
             : css`
                   border: 2px solid ${({ theme }) => theme.colors.transparent};
-                  font-family: 'Montserrat', Arial, sans-serif;
+                  font-family: ${size === 'default'
+                          ? 'MonumentExtended'
+                          : 'Montserrat'},
+                      Arial, sans-serif;
+                  text-transform: ${size === 'default' ? 'uppercase' : 'none'};
+
                   padding: 5px 5px 3px 5px;
               `};
 
@@ -23,16 +28,21 @@ const styles = {
 
         cursor: pointer;
         user-select: none;
+        text-decoration: none;
+        text-wrap: none;
     `,
 };
 
 export interface TextLinkProps {
     type?: 'primary' | 'secondary';
     size?: 'default' | 'small';
+    href: string;
 }
 
 const TextLink: FC<TextLinkProps> = ({ children, ...props }) => (
-    <a css={styles.root(props)}>{children}</a>
+    <a css={styles.root(props)} {...props}>
+        {children}
+    </a>
 );
 
 TextLink.defaultProps = {

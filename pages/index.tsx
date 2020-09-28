@@ -3,7 +3,7 @@ import Head from 'next/head';
 import AnnouncementBlock from '../src/blocks/announcementsBlock';
 import ThemeContext, { primaryTheme } from '../src/context/themeContext';
 import { Announcement, getAnnouncements } from '../src/services/announcements';
-import FooterBlock from '../src/blocks/footer.block';
+import FooterBlock from '../src/blocks/footer';
 
 export interface HomeProps {
     announcements: Announcement[];
