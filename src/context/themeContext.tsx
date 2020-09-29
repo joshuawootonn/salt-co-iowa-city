@@ -31,6 +31,12 @@ const GlobalStyle = createGlobalStyle`
         margin: 0;
     }
     
+    p,span {
+        font-family: "Montserrat" , Arial, sans-serif;
+        font-weight: 400;
+        margin: 0;
+    }
+    
     a {
         color: inherit;
         text-decoration: none;
@@ -57,6 +63,7 @@ export interface Theme {
         yellow: Color;
         gray: Color;
         transparent: string;
+        white: string;
         background: string;
         backgroundTransparent: string;
     };
@@ -92,6 +99,7 @@ export const primaryTheme: Theme = {
             dark: '#79797C',
             darkest: '#39393A',
         },
+        white: '#ffffff',
         background: '#1D1D1B',
         transparent: 'transparent',
         backgroundTransparent: 'rgba(29,29,27,.8)',

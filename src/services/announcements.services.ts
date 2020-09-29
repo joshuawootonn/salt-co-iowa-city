@@ -14,7 +14,19 @@ export interface AnnouncementBlock {
     announcements: Announcement[];
 }
 
-const announcements = gql`
+export const announcementQuery_test = gql`
+    query announcementLink {
+        linkAnnouncement(id: "1N5e3pwhAQVhT3XctYjwr4") {
+            text
+            link
+            image {
+                url
+            }
+        }
+    }
+`;
+
+export const announcementBlockQuery = gql`
     query blockAnnouncement {
         blockAnnouncementsCollection(limit: 1) {
             items {
@@ -37,7 +49,7 @@ export const getAnnouncementBlock = async (): Promise<AnnouncementBlock> => {
     const client = getApolloClient({});
 
     const { data: rawAnnouncements } = await client.query({
-        query: announcements,
+        query: announcementBlockQuery,
     });
 
     const block = rawAnnouncements.blockAnnouncementsCollection.items[0];

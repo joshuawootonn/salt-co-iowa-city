@@ -3,14 +3,16 @@ import Head from 'next/head';
 import AnnouncementContainer from '../src/containers/announcement';
 import ThemeContext, { primaryTheme } from '../src/context/themeContext';
 import {
-    Announcement,
     AnnouncementBlock,
     getAnnouncementBlock,
-} from '../src/services/announcements';
+} from '../src/services/announcements.services';
 import FooterContainer from '../src/containers/footer';
+import { getWelcomeBlock, WelcomeBlock } from '../src/services/welcome.services';
+import WelcomeContainer from '../src/containers/welcome';
 
 export interface HomeProps {
     announcementBlock: AnnouncementBlock;
+    welcomeBlock: WelcomeBlock;
 }
 
 const Home: FC<HomeProps> = (props) => {
@@ -21,6 +23,7 @@ const Home: FC<HomeProps> = (props) => {
                 <title>Salt Company Iowa City</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
+            <WelcomeContainer block={props.welcomeBlock} />
             <AnnouncementContainer block={props.announcementBlock} />
             <FooterContainer />
         </ThemeContext>
@@ -29,8 +32,9 @@ const Home: FC<HomeProps> = (props) => {
 
 export async function getStaticProps() {
     const announcementBlock = await getAnnouncementBlock();
+    const welcomeBlock = await getWelcomeBlock();
 
-    return { props: { announcementBlock } };
+    return { props: { announcementBlock, welcomeBlock } };
 }
 
 export default Home;

@@ -3,7 +3,7 @@ import TextLink from '../../components/textLink';
 import { css } from 'styled-components';
 
 const styles = {
-    root: css`
+    content: css`
         overflow: visible;
         white-space: nowrap;
     `,
@@ -14,7 +14,7 @@ const styles = {
 };
 
 const BigLinks = (props) => (
-    <div css={styles.root} {...props}>
+    <div css={styles.content} {...props}>
         <TextLink css={styles.link} href="">
             Contact us
         </TextLink>

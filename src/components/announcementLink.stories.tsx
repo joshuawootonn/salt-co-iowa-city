@@ -1,21 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import AnnouncementLink from './announcementLink';
-import { gql } from '@apollo/client';
 import { GraphQLStory } from '../helpers/story';
-
-const query = gql`
-    query announcementLink {
-        linkAnnouncement(id: "1N5e3pwhAQVhT3XctYjwr4") {
-            text
-            link
-            image {
-                url
-            }
-        }
-    }
-`;
+import { announcementQuery_test } from '../services/announcements.services';
 
 storiesOf('AnnouncementLink', module).add('Default', () => (
-    <GraphQLStory query={query} component={AnnouncementLink} />
+    <GraphQLStory query={announcementQuery_test} component={AnnouncementLink} />
 ));

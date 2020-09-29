@@ -6,16 +6,6 @@ import {
 } from 'styled-components';
 import 'styled-components';
 
-declare module 'react' {
-    interface DOMAttributes<T> {
-        css?: InterpolationWithTheme<any>;
-    }
-
-    interface HTMLAttributes<T> extends DOMAttributes<T> {
-        css?: CSSProp;
-    }
-}
-
 export interface Color {
     lightest: string;
     light: string;
@@ -31,9 +21,23 @@ declare module 'styled-components' {
             purple: Color;
             yellow: Color;
             gray: Color;
+            white: string;
             transparent: string;
             background: string;
             backgroundTransparent: string;
         };
+    }
+}
+declare module 'react' {
+    interface DOMAttributes<T> {
+        css?: InterpolationWithTheme<any>;
+    }
+
+    interface HTMLAttributes<T> extends DOMAttributes<T> {
+        css?: CSSProp;
+    }
+
+    interface Attributes {
+        css?: CSSProp;
     }
 }
