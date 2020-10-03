@@ -1,10 +1,10 @@
 import {
     CSSProp,
     DefaultTheme,
-    FlattenInterpolation,
-    ThemeProps,
+    FlattenSimpleInterpolation,
 } from 'styled-components';
 import 'styled-components';
+import { Attributes, ClassAttributes } from 'react';
 
 export interface Color {
     lightest: string;
@@ -39,5 +39,17 @@ declare module 'react' {
 
     interface Attributes {
         css?: CSSProp;
+    }
+}
+
+declare global {
+    namespace JSX {
+        interface IntrinsicAttributes extends Attributes {
+            css?: FlattenSimpleInterpolation;
+        }
+
+        interface IntrinsicClassAttributes<T> extends ClassAttributes<T> {
+            css?: FlattenSimpleInterpolation;
+        }
     }
 }

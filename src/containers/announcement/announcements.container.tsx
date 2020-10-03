@@ -1,9 +1,10 @@
 import React, { FC } from 'react';
 import AnnouncementLink from '../../components/announcementLink';
 import { css } from 'styled-components';
-import { AnnouncementBlock } from '../../services/announcements';
+
 import Bullhorn from '../../svgs/bullhorn.svg';
 import typography from '../../components/typography';
+import { AnnouncementBlock } from '../../services/announcements.services';
 
 const styles = {
     root: css`

@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import { css } from 'styled-components';
-import { Announcement } from '../services/announcements';
+import { Announcement } from '../services/announcements.services';
 
 interface AnnouncementLinkProps {
     linkAnnouncement: Announcement;

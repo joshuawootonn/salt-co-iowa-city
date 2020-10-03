@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { css } from 'styled-components';
+import { css, CSSProp } from 'styled-components';
 import ImageControl from '../../components/imageControl';
 import { Image } from '../../services/welcome.services';
 
@@ -22,6 +22,7 @@ const styles = {
 
 export interface ImageViewerProps {
     images: Image[];
+    css?: CSSProp;
 }
 
 const ImageViewer: FC<ImageViewerProps> = ({ images, ...props }) => {

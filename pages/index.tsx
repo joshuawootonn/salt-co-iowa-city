@@ -7,7 +7,10 @@ import {
     getAnnouncementBlock,
 } from '../src/services/announcements.services';
 import FooterContainer from '../src/containers/footer';
-import { getWelcomeBlock, WelcomeBlock } from '../src/services/welcome.services';
+import {
+    getWelcomeBlock,
+    WelcomeBlock,
+} from '../src/services/welcome.services';
 import WelcomeContainer from '../src/containers/welcome';
 
 export interface HomeProps {

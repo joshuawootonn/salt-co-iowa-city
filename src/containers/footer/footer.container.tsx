@@ -57,7 +57,7 @@ const styles = {
     `,
 };
 
-const FooterContainer: FC<{}> = () => (
+const FooterContainer: FC = () => (
     <div css={styles.root}>
         <div css={styles.logoContainer}>
             <Salt />
