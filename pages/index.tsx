@@ -18,20 +18,17 @@ export interface HomeProps {
     welcomeBlock: WelcomeBlock;
 }
 
-const Home: FC<HomeProps> = (props) => {
-    console.log(props);
-    return (
-        <ThemeContext theme={primaryTheme}>
-            <Head>
-                <title>Salt Company Iowa City</title>
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
-            <WelcomeContainer block={props.welcomeBlock} />
-            <AnnouncementContainer block={props.announcementBlock} />
-            <FooterContainer />
-        </ThemeContext>
-    );
-};
+const Home: FC<HomeProps> = (props) => (
+    <ThemeContext theme={primaryTheme}>
+        <Head>
+            <title>Salt Company Iowa City</title>
+            <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <WelcomeContainer block={props.welcomeBlock} />
+        <AnnouncementContainer block={props.announcementBlock} />
+        <FooterContainer />
+    </ThemeContext>
+);
 
 export async function getStaticProps() {
     const announcementBlock = await getAnnouncementBlock();

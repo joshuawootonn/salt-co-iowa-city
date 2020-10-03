@@ -30,17 +30,18 @@ const styles = {
         max-width: 100vw;
         overflow: hidden;
     `,
+    logo: css`
+        height: 130px;
+        position: absolute;
+        top: 50%;
+        left: 40%;
+        transform: translate(-50%, -50%) rotate(-90deg);
+    `,
     logoContainer: css`
         grid-row: 1/3;
         position: relative;
-
-        svg {
-            position: absolute;
-            top: 50%;
-            left: 40%;
-            transform: translate(-50%, -50%) rotate(-90deg);
-        }
     `,
+
     listOne: css``,
     listTwo: css``,
     social: css`
@@ -60,7 +61,7 @@ const styles = {
 const FooterContainer: FC = () => (
     <div css={styles.root}>
         <div css={styles.logoContainer}>
-            <Salt />
+            <Salt css={styles.logo} />
         </div>
 
         <LinkedList

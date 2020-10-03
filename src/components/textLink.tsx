@@ -36,7 +36,7 @@ const styles = {
 export interface TextLinkProps {
     type?: 'primary' | 'secondary';
     size?: 'default' | 'small';
-    href: string;
+    href?: string;
 }
 
 const TextLink: FC<TextLinkProps> = ({ children, ...props }) => (

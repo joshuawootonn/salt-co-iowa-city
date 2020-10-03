@@ -2,12 +2,13 @@ import React, { FC } from 'react';
 import { WelcomeBlock } from '../../services/welcome.services';
 import { css } from 'styled-components';
 import typography from '../../components/typography';
-import TextButton from './textButton';
+import WelcomeLink from './welcomeLink';
 import ImageViewer from './imageViewer';
 import Salt from '../../svgs/salt.svg';
 import { primaryTheme } from '../../context/themeContext';
 import LargeArrow from '../../svgs/largeArrow';
 import { addAlpha } from '../../helpers/color';
+import Link from 'next/link';
 
 const styles = {
     root: css`
@@ -17,6 +18,7 @@ const styles = {
         align-items: center;
         justify-content: center;
     `,
+    //TODO: generalize
     content: css`
         margin: 0 auto;
         max-width: 1400px;
@@ -68,15 +70,16 @@ const WelcomeContainer: FC<{ block: WelcomeBlock }> = ({ block }) => (
         <div css={styles.content}>
             <div css={styles.textColumn}>
                 <h1 css={styles.title}>{block.title}</h1>
-                <TextButton
+
+                <WelcomeLink
                     text="We are college students who have been transformed by the truth of the gospel."
                     label="Who We Are"
-                    href={''}
+                    href={'/who-we-are'}
                 />
-                <TextButton
+                <WelcomeLink
                     text="We meet every thursday night at 8PM at veritas church."
                     label="Get Connected"
-                    href={''}
+                    href={'/how-to-connect'}
                 />
             </div>
 

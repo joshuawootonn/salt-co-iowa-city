@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import typography from '../../components/typography';
 import { css } from 'styled-components';
 import TextLink from '../../components/textLink';
+import Link from 'next/link';
 
 const styles = {
     root: css`
@@ -27,15 +28,15 @@ export interface TextButtonProps {
     href: string;
 }
 
-const TextButton: FC<TextButtonProps> = ({ text, label, href }) => {
+const WelcomeLink: FC<TextButtonProps> = ({ text, label, href }) => {
     return (
         <div css={styles.root}>
             <p css={styles.text}>{text}</p>
-            <TextLink href={href} css={styles.button}>
-                {label}
-            </TextLink>
+            <Link href={href}>
+                <TextLink css={styles.button}>{label}</TextLink>
+            </Link>
         </div>
     );
 };
 
-export default TextButton;
+export default WelcomeLink;
