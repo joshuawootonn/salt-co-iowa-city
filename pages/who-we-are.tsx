@@ -12,10 +12,16 @@ import {
 } from '../src/services/whoWeAre.services';
 import StaffContainer from '../src/containers/staff';
 import { getStaffBlock, StaffBlock } from '../src/services/staff.services';
+import {
+    getMinistryDescriptionBlock,
+    MinistryDescriptionBlock,
+} from '../src/services/ministryDescription.service';
+import MinistryDescriptionContainer from '../src/containers/ministryDescription';
 
 export interface WhoWeAreProps {
     whoWeAreBlock: WhoWeAreBlock;
     staffBlock: StaffBlock;
+    ministryDescriptionsBlock: MinistryDescriptionBlock;
 }
 
 const WhoWeAre: FC<WhoWeAreProps> = (props) => (
@@ -28,6 +34,7 @@ const WhoWeAre: FC<WhoWeAreProps> = (props) => (
         <IntroContainer {...props.whoWeAreBlock}>
             <WhoWeAreSvg />
         </IntroContainer>
+        <MinistryDescriptionContainer {...props.ministryDescriptionsBlock} />
         <StaffContainer {...props.staffBlock} />
         <FooterContainer />
         <Link href="/">
@@ -38,8 +45,9 @@ const WhoWeAre: FC<WhoWeAreProps> = (props) => (
 export async function getStaticProps() {
     const whoWeAreBlock = await getWhoWeAreBlock();
     const staffBlock = await getStaffBlock();
+    const ministryDescriptionsBlock = await getMinistryDescriptionBlock();
 
-    return { props: { whoWeAreBlock, staffBlock } };
+    return { props: { whoWeAreBlock, staffBlock, ministryDescriptionsBlock } };
 }
 
 export default WhoWeAre;

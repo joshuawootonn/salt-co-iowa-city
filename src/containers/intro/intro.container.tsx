@@ -15,6 +15,7 @@ const styles = {
         justify-content: center;
 
         position: relative;
+        margin: 0 auto 300px auto;
     `,
     // TODO: generalize
     content: css`

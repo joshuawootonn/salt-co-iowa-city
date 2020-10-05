@@ -11,7 +11,6 @@ const styles = {
     root: css`
         ${layout.container};
         max-width: 1420px;
-        margin: 500px auto;
     `,
     title: css`
         ${typography.title2};
@@ -34,7 +33,7 @@ const styles = {
 
 const StaffContainer: FC<StaffBlock> = (props) => (
     <div css={styles.root}>
-        <h2 css={styles.title}>Staff</h2>
+        <h2 css={styles.title}>{props.title}</h2>
         <div css={styles.staffContainer}>
             {props.staff.map((s, i) => (
                 <StaffCard key={i} {...s} />
