@@ -25,7 +25,7 @@ const GlobalStyle = createGlobalStyle`
     }
    
   
-    h1,h2,h3 {
+    h1,h2,h3, h4 {
         font-family: "MonumentExtended" , Arial, sans-serif;
         font-weight: 400;
         margin: 0;

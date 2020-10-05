@@ -10,9 +10,12 @@ import {
     getWhoWeAreBlock,
     WhoWeAreBlock,
 } from '../src/services/whoWeAre.services';
+import StaffContainer from '../src/containers/staff';
+import { getStaffBlock, StaffBlock } from '../src/services/staff.services';
 
 export interface WhoWeAreProps {
     whoWeAreBlock: WhoWeAreBlock;
+    staffBlock: StaffBlock;
 }
 
 const WhoWeAre: FC<WhoWeAreProps> = (props) => (
@@ -25,6 +28,7 @@ const WhoWeAre: FC<WhoWeAreProps> = (props) => (
         <IntroContainer {...props.whoWeAreBlock}>
             <WhoWeAreSvg />
         </IntroContainer>
+        <StaffContainer {...props.staffBlock} />
         <FooterContainer />
         <Link href="/">
             <a>Back to home</a>
@@ -33,8 +37,9 @@ const WhoWeAre: FC<WhoWeAreProps> = (props) => (
 );
 export async function getStaticProps() {
     const whoWeAreBlock = await getWhoWeAreBlock();
+    const staffBlock = await getStaffBlock();
 
-    return { props: { whoWeAreBlock } };
+    return { props: { whoWeAreBlock, staffBlock } };
 }
 
 export default WhoWeAre;

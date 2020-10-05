@@ -8,7 +8,6 @@ import Salt from '../../svgs/salt.svg';
 import { primaryTheme } from '../../context/themeContext';
 import LargeArrow from '../../svgs/largeArrow';
 import { addAlpha } from '../../helpers/color';
-import Link from 'next/link';
 
 const styles = {
     root: css`
