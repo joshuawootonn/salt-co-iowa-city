@@ -15,10 +15,22 @@ import {
     getMinistryConnectionsBlock,
     MinistryConnectionBlock,
 } from '../src/services/ministryConnection.service';
+import {
+    getUpcomingEventsBlock,
+    UpcomingEventBlock,
+} from '../src/services/upcomingEvent.service';
+import {
+    ConnectionGroupBlock,
+    getConnectionGroupBlock,
+} from '../src/services/connectionGroup.service';
+import UpcomingEventsContainer from '../src/containers/upcomingEvents';
+import ConnectionGroupContainer from '../src/containers/connectionGroup';
 
 export interface HowToConnectProps {
     howToConnectBlock: HowToConnectBlock;
     ministryConnectionsBlock: MinistryConnectionBlock;
+    upcomingEventsBlock: UpcomingEventBlock;
+    connectionGroupBlock: ConnectionGroupBlock;
 }
 
 const HowToConnect: FC<HowToConnectProps> = (props) => (
@@ -31,7 +43,9 @@ const HowToConnect: FC<HowToConnectProps> = (props) => (
         <IntroContainer {...props.howToConnectBlock}>
             <HowToConnectSvg />
         </IntroContainer>
+        <UpcomingEventsContainer {...props.upcomingEventsBlock} />
 
+        <ConnectionGroupContainer {...props.connectionGroupBlock} />
         <MinistryConnectionContainer
             ministryConnections={
                 props.ministryConnectionsBlock.ministryConnections
@@ -46,7 +60,17 @@ const HowToConnect: FC<HowToConnectProps> = (props) => (
 export async function getStaticProps() {
     const howToConnectBlock = await getHowToConnectBlock();
     const ministryConnectionsBlock = await getMinistryConnectionsBlock();
-    return { props: { howToConnectBlock, ministryConnectionsBlock } };
+    const upcomingEventsBlock = await getUpcomingEventsBlock();
+    const connectionGroupBlock = await getConnectionGroupBlock();
+
+    return {
+        props: {
+            howToConnectBlock,
+            ministryConnectionsBlock,
+            upcomingEventsBlock,
+            connectionGroupBlock,
+        },
+    };
 }
 
 export default HowToConnect;

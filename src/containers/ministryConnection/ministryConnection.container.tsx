@@ -14,6 +14,7 @@ export type MinistryConnectionBackgroundImage = 'World' | 'Flag';
 const styles = {
     root: css`
         ${layout.container};
+        margin-bottom: 750px;
     `,
     title: css`
         ${typography.title2};

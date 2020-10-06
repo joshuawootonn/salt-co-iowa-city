@@ -1,20 +1,67 @@
 import { gql } from '@apollo/client';
+import { getApolloClient } from '../../apollo/client';
 
-export const connectionGroupBlockQuery = gql`
-    query blockConnectionGroup {
-        blockConnectionGroupsCollection(limit: 1) {
+export interface UpcomingEvent {
+    title: string;
+    image: {
+        url: string;
+    };
+    startDateTime: string;
+    endDateTime: string;
+    description: string;
+    contact: {
+        text: string;
+    };
+    location: {
+        text: string;
+        url: string;
+    };
+}
+
+export interface UpcomingEventBlock {
+    title: string;
+    events: UpcomingEvent[];
+}
+
+export const upcomingEventBlockQuery = gql`
+    query blockUpcomingEventsCollection {
+        blockUpcomingEventsCollection(limit: 1) {
             items {
                 title
-                desciption
                 itemsCollection {
                     items {
-                        leaders
+                        title
+                        image {
+                            url
+                        }
+                        startDateTime
+                        endDateTime
                         description
-                        gender
-                        dateTime
+                        contact {
+                            text
+                        }
+                        location {
+                            text
+                            url
+                        }
                     }
                 }
             }
         }
     }
 `;
+
+export const getUpcomingEventsBlock = async (): Promise<UpcomingEventBlock> => {
+    const client = getApolloClient({});
+
+    const { data: rawQueryResult } = await client.query({
+        query: upcomingEventBlockQuery,
+    });
+
+    const rawBlock = rawQueryResult.blockUpcomingEventsCollection.items[0];
+
+    return {
+        title: rawBlock.title,
+        events: rawBlock.itemsCollection.items,
+    };
+};

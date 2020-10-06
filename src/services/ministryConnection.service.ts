@@ -49,7 +49,8 @@ export const ministryConnectionsBlockQuery = gql`
                             contact {
                                 text
                             }
-                            date
+                            startDateTime
+                            endDateTime
                         }
                     }
                 }

@@ -60,6 +60,7 @@ export interface Theme {
     colors: {
         blue: Color;
         purple: Color;
+        pink: Color;
         yellow: Color;
         gray: Color;
         transparent: string;
@@ -91,6 +92,13 @@ export const primaryTheme: Theme = {
             medium: '#CEA1CB',
             dark: '#A959A2',
             darkest: '#783F73',
+        },
+        pink: {
+            lightest: '#F4CDDD',
+            light: '#F0BCD2',
+            medium: '#E58AAE',
+            dark: '#D33675',
+            darkest: '#A72559',
         },
         gray: {
             lightest: '#EAEAEB',

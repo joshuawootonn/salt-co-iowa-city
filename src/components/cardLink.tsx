@@ -13,6 +13,8 @@ const styles = {
 
 export interface CardLinkProps {
     href?: string;
+    target?: string;
+    rel?: string;
 }
 
 const CardLink: FC<CardLinkProps> = ({ children, ...props }) => (
