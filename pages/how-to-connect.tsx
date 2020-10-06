@@ -10,9 +10,15 @@ import {
     HowToConnectBlock,
 } from '../src/services/howToConnect.services';
 import HowToConnectSvg from '../src/svgs/howToConnect.svg';
+import MinistryConnectionContainer from '../src/containers/ministryConnection';
+import {
+    getMinistryConnectionsBlock,
+    MinistryConnectionBlock,
+} from '../src/services/ministryConnection.service';
 
 export interface HowToConnectProps {
     howToConnectBlock: HowToConnectBlock;
+    ministryConnectionsBlock: MinistryConnectionBlock;
 }
 
 const HowToConnect: FC<HowToConnectProps> = (props) => (
@@ -25,6 +31,12 @@ const HowToConnect: FC<HowToConnectProps> = (props) => (
         <IntroContainer {...props.howToConnectBlock}>
             <HowToConnectSvg />
         </IntroContainer>
+
+        <MinistryConnectionContainer
+            ministryConnections={
+                props.ministryConnectionsBlock.ministryConnections
+            }
+        />
         <FooterContainer />
         <Link href="/">
             <a>Back to home</a>
@@ -33,8 +45,8 @@ const HowToConnect: FC<HowToConnectProps> = (props) => (
 );
 export async function getStaticProps() {
     const howToConnectBlock = await getHowToConnectBlock();
-
-    return { props: { howToConnectBlock } };
+    const ministryConnectionsBlock = await getMinistryConnectionsBlock();
+    return { props: { howToConnectBlock, ministryConnectionsBlock } };
 }
 
 export default HowToConnect;

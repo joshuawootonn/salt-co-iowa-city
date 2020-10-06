@@ -10,7 +10,7 @@ const styles = {
         justify-self: center;
         position: relative;
     `,
-    imageContainer: (url: string) => css`
+    image: (url: string) => css`
         width: 100%;
         height: 761px;
         background: url('${url}') no-repeat center;
@@ -58,7 +58,7 @@ const MinistryDescriptionCard: FC<MinistryDescription> = (props) => {
     return (
         <div css={styles.root}>
             <div
-                css={styles.imageContainer(props.images[currentImage].url)}
+                css={styles.image(props.images[currentImage].url)}
             ></div>
             <ImageControl
                 current={currentImage}

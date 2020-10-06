@@ -1,8 +1,25 @@
 import { gql } from '@apollo/client';
 import { getApolloClient } from '../../apollo/client';
-import { StaffBlock, staffBlockQuery } from './staff.services';
+import { MinistryDescription } from './ministryDescription.service';
+import { Image } from './welcome.services';
 
-export const MinistryConnectionsBlockQuery = gql`
+export interface MinistryConnection {
+    title: string;
+    acronym?: string;
+    description: string;
+    images: Image[];
+    backgroundImage: 'World' | 'Flag';
+    link: {
+        text: string;
+    };
+}
+
+export interface MinistryConnectionBlock {
+    ministryConnections: MinistryConnection[];
+}
+
+// TODO: link language here is kinda generic.. maybe rethink this?
+export const ministryConnectionsBlockQuery = gql`
     query blockMinistryConnectionsCollection {
         blockMinistryConnectionsCollection(limit: 1) {
             items {
@@ -16,12 +33,23 @@ export const MinistryConnectionsBlockQuery = gql`
                                 url
                             }
                         }
-
                         link {
                             text
-                            sys {
-                                id
+                        }
+                        backgroundImage
+                        nextEvent {
+                            title
+                            image {
+                                url
                             }
+                            location {
+                                text
+                                url
+                            }
+                            contact {
+                                text
+                            }
+                            date
                         }
                     }
                 }
@@ -29,20 +57,24 @@ export const MinistryConnectionsBlockQuery = gql`
         }
     }
 `;
-export const getMinistryConnectionsBlock = async (): Promise<StaffBlock> => {
+export const getMinistryConnectionsBlock = async (): Promise<
+    MinistryConnectionBlock
+> => {
     const client = getApolloClient({});
 
     const { data: rawMinistryConnectionResult } = await client.query({
-        query: staffBlockQuery,
+        query: ministryConnectionsBlockQuery,
     });
 
-    const rawStaffBlock =
+    const rawBlock =
         rawMinistryConnectionResult.blockMinistryConnectionsCollection.items[0];
 
     return {
-        title: rawStaffBlock.title,
-        staff: rawStaffBlock.itemsCollection.items,
+        ministryConnections: rawBlock.itemsCollection.items.map(
+            (i: any): MinistryDescription => ({
+                ...i,
+                images: i.imagesCollection.items,
+            })
+        ),
     };
 };
-
-

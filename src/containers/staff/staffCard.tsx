@@ -11,7 +11,7 @@ const styles = {
         width: 100%;
         justify-self: center;
     `,
-    imageContainer: (url: string) => css`
+    image: (url: string) => css`
         height: 505px;
         background: url('${url}') no-repeat center;
         background-size: cover;
@@ -42,7 +42,7 @@ const styles = {
 
 const StaffCard: FC<Staff> = (props) => (
     <div css={styles.root}>
-        <div css={styles.imageContainer(props.image.url)} />
+        <div css={styles.image(props.image.url)} />
         <div css={styles.textContainer}>
             <div css={styles.textBlock1}>
                 <h4 css={typography.card.title}>

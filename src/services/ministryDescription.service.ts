@@ -15,7 +15,7 @@ export interface MinistryDescriptionBlock {
     title: string;
     ministryDescriptions: MinistryDescription[];
 }
-
+// TODO: link language here is kinda generic.. maybe rethink this?
 export const ministryDescriptionsBlockQuery = gql`
     query blockMinistryDescriptionsCollection {
         blockMinistryDescriptionsCollection(limit: 1) {
