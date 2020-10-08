@@ -36,8 +36,9 @@ const styles = {
     `,
 };
 
-const AnnouncementContainer: FC<{ block: AnnouncementBlock }> = ({
-    block: { title, announcements },
+const AnnouncementContainer: FC<AnnouncementBlock> = ({
+    title,
+    announcements,
 }) => (
     <div css={styles.root}>
         <h2 css={styles.title}>{title}</h2>

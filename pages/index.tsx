@@ -25,7 +25,7 @@ const Home: FC<HomeProps> = (props) => (
             <link rel="icon" href="/favicon.ico" />
         </Head>
         <WelcomeContainer {...props.welcomeBlock} />
-        <AnnouncementContainer block={props.announcementBlock} />
+        <AnnouncementContainer {...props.announcementBlock} />
         <FooterContainer />
     </ThemeContext>
 );
