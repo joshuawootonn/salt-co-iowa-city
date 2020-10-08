@@ -64,11 +64,11 @@ const styles = {
     `,
 };
 
-const WelcomeContainer: FC<{ block: WelcomeBlock }> = ({ block }) => (
+const WelcomeContainer: FC<WelcomeBlock> = (props) => (
     <div css={styles.root}>
         <div css={styles.content}>
             <div css={styles.textColumn}>
-                <h1 css={styles.title}>{block.title}</h1>
+                <h1 css={styles.title}>{props.title}</h1>
 
                 <WelcomeLink
                     text="We are college students who have been transformed by the truth of the gospel."
@@ -82,7 +82,7 @@ const WelcomeContainer: FC<{ block: WelcomeBlock }> = ({ block }) => (
                 />
             </div>
 
-            <ImageViewer css={styles.imageViewer} images={block.images} />
+            <ImageViewer css={styles.imageViewer} images={props.images} />
 
             <Salt
                 css={styles.imageBackground}

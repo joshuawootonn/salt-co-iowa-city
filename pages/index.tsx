@@ -24,7 +24,7 @@ const Home: FC<HomeProps> = (props) => (
             <title>Salt Company Iowa City</title>
             <link rel="icon" href="/favicon.ico" />
         </Head>
-        <WelcomeContainer block={props.welcomeBlock} />
+        <WelcomeContainer {...props.welcomeBlock} />
         <AnnouncementContainer block={props.announcementBlock} />
         <FooterContainer />
     </ThemeContext>
