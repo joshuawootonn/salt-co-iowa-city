@@ -12,9 +12,9 @@ export interface WelcomeBlock {
     images: Image[];
 }
 
-export const welcomeQuery = gql`
+export const getWelcomeQuery = (isPreview = false) => gql`
     query blockWelcome {
-        blockWelcomeCollection(limit: 1, preview: true) {
+        blockWelcomeCollection(limit: 1, preview: ${isPreview}) {
             items {
                 title
                 introWhoWeAre
@@ -29,11 +29,13 @@ export const welcomeQuery = gql`
     }
 `;
 
-export const getWelcomeBlock = async (): Promise<WelcomeBlock> => {
-    const client = getApolloClient({});
+export const getWelcomeBlock = async (
+    isPreview = false
+): Promise<WelcomeBlock> => {
+    const client = getApolloClient({}, isPreview);
 
     const { data: rawWelcome } = await client.query({
-        query: welcomeQuery,
+        query: getWelcomeQuery(isPreview),
     });
 
     const block = rawWelcome.blockWelcomeCollection.items[0];

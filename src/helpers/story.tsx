@@ -1,14 +1,18 @@
 import React, { FC, useEffect, useState } from 'react';
 import { DocumentNode, useQuery } from '@apollo/client';
+import axios from 'axios';
 
-const useService = (aaa: () => Promise<any>) => {
+const useBlockData = (domain: string) => {
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        aaa()
-            .then((result) => setData(result))
+        axios
+            .get(
+                `https://salt-co-iowa-city.vercel.app/api/${domain}?isPreview=true`
+            )
+            .then((result) => setData(result.data))
             .catch((e) => setError(e))
             .finally(() => setLoading(false));
     }, []);
@@ -30,11 +34,11 @@ export const QueryStory: FC<{
     return <Component {...data} />;
 };
 
-export const ServiceStory: FC<{
-    service: () => Promise<any>;
+export const BlockStory: FC<{
+    domain: string;
     component: any;
-}> = ({ service, component: Component }) => {
-    const { data, loading, error } = useService(service);
+}> = ({ domain, component: Component }) => {
+    const { data, loading, error } = useBlockData(domain);
 
     if (loading) return <p>...loading</p>;
     if (error) return <p>...error</p>;
