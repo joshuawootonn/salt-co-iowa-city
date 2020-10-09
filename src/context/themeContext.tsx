@@ -1,52 +1,8 @@
 import {
-    createGlobalStyle,
-    DefaultTheme,
     ThemeContext as StyledThemeContext,
     ThemeProvider,
 } from 'styled-components';
 import React, { FC, useContext } from 'react';
-
-const GlobalStyle = createGlobalStyle`
-    body {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        background-color: #1D1D1B;
-        overflow-x: hidden;
-    }
-    
-    @font-face {
-        font-family: Montserrat;
-        src: url('/Montserrat-Regular.ttf') format('truetype')     
-    }
-    @font-face {
-        font-family: MonumentExtended;
-        src: url('/MonumentExtended-Regular.otf') format('opentype')     
-    }
-   
-  
-    h1,h2,h3, h4 {
-        font-family: "MonumentExtended" , Arial, sans-serif;
-        font-weight: 400;
-        margin: 0;
-    }
-    
-    p,span {
-        font-family: "Montserrat" , Arial, sans-serif;
-        font-weight: 400;
-        margin: 0;
-    }
-    
-    a {
-        color: inherit;
-        text-decoration: none;
-    }
-    
-    * {
-        box-sizing: border-box;
-    }
-
-`;
 
 export interface Color {
     lightest: string;
@@ -125,12 +81,7 @@ interface ThemeContextProps {
 }
 
 const ThemeContext: FC<ThemeContextProps> = ({ children, theme }) => (
-    <>
-        <ThemeProvider theme={theme}>
-            <GlobalStyle />
-            {children}
-        </ThemeProvider>
-    </>
+    <ThemeProvider theme={theme}>{children}</ThemeProvider>
 );
 
 export default ThemeContext;
