@@ -8,7 +8,7 @@ import { AnnouncementBlock } from '../../services/announcements.services';
 
 const styles = {
     root: css`
-        margin: 500px auto;
+        margin: 300px auto 500px auto;
         max-width: 1140px;
         position: relative;
     `,
@@ -30,8 +30,9 @@ const styles = {
         z-index: -1;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%);
-        max-width: 100vw;
+        transform: translate(-50%, -55%);
+        width: 100vw;
+        height: auto;
         overflow: hidden;
     `,
 };
@@ -43,9 +44,8 @@ const AnnouncementContainer: FC<AnnouncementBlock> = ({
     <div css={styles.root}>
         <h2 css={styles.title}>{title}</h2>
         <div css={styles.announcements}>
-            <div css={styles.background}>
-                <Bullhorn />
-            </div>
+            <Bullhorn css={styles.background} />
+
             {announcements.map((link, i) => (
                 <AnnouncementLink key={i} linkAnnouncement={link} />
             ))}
