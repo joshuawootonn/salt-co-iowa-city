@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import TextLink from '../../components/textLink';
 import { css } from 'styled-components';
+import Link from 'next/link';
 
 const styles = {
     content: css`
@@ -15,9 +16,9 @@ const styles = {
 
 const BigLinks = (props) => (
     <div css={styles.content} {...props}>
-        <TextLink css={styles.link} href="">
-            Contact us
-        </TextLink>
+        <Link href="/contact">
+            <TextLink css={styles.link}>Contact us</TextLink>
+        </Link>
         <br />
         <br />
         <TextLink css={styles.link} href="">

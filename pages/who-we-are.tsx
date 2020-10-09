@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Link from 'next/link';
+
 import ThemeContext, { primaryTheme } from '../src/context/themeContext';
 import Head from 'next/head';
 import FooterContainer from '../src/containers/footer';
@@ -18,6 +18,20 @@ import {
 } from '../src/services/ministryDescription.service';
 import MinistryDescriptionContainer from '../src/containers/ministryDescription';
 
+import { css } from 'styled-components';
+
+const styles = {
+    intro: css`
+        margin-bottom: 150px;
+    `,
+    ministryDescriptions: css`
+        margin-bottom: 450px;
+    `,
+    staff: css`
+        margin-bottom: 350px;
+    `,
+};
+
 export interface WhoWeAreProps {
     whoWeAreBlock: WhoWeAreBlock;
     staffBlock: StaffBlock;
@@ -31,15 +45,15 @@ const WhoWeAre: FC<WhoWeAreProps> = (props) => (
             <link rel="icon" href="/favicon.ico" />
         </Head>
         <HeaderContainer />
-        <IntroContainer {...props.whoWeAreBlock}>
+        <IntroContainer {...props.whoWeAreBlock} css={styles.intro}>
             <WhoWeAreSvg />
         </IntroContainer>
-        <MinistryDescriptionContainer {...props.ministryDescriptionsBlock} />
-        <StaffContainer {...props.staffBlock} />
+        <MinistryDescriptionContainer
+            {...props.ministryDescriptionsBlock}
+            css={styles.ministryDescriptions}
+        />
+        <StaffContainer {...props.staffBlock} css={styles.staff} />
         <FooterContainer />
-        <Link href="/">
-            <a>Back to home</a>
-        </Link>
     </ThemeContext>
 );
 export async function getStaticProps() {

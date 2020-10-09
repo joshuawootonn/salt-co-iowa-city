@@ -7,17 +7,16 @@ import EventCard from './eventCard';
 
 const styles = {
     root: css`
-        ${layout.container};
-        margin-bottom: 0;
         overflow-x: visible;
+    `,
+    titleContainer: css`
+        ${layout.container};
     `,
     title: css`
         ${typography.title2};
         margin-bottom: 50px;
     `,
     itemsContainer: css`
-        ${layout.container};
-        margin-bottom: 260px;
         width: 100vw;
         max-width: 100vw;
         display: flex;
@@ -52,24 +51,22 @@ const styles = {
     `,
 };
 
-const UpcomingEventsContainer: FC<UpcomingEventBlock> = (props) => {
-    return (
-        <>
-            <div css={styles.root}>
-                <h2 css={styles.title}>{props.title}</h2>
-            </div>
+const UpcomingEventsContainer: FC<UpcomingEventBlock> = (props) => (
+    <div css={styles.root} {...props}>
+        <div css={styles.titleContainer}>
+            <h2 css={styles.title}>{props.title}</h2>
+        </div>
 
-            <div css={styles.itemsContainer}>
-                {props.events.map((event, i) => (
-                    <div key={i} css={styles.image(event.image.url)}>
-                        <div css={styles.cardContainer}>
-                            <EventCard {...event} key={i} />
-                        </div>
+        <div css={styles.itemsContainer}>
+            {props.events.map((event, i) => (
+                <div key={i} css={styles.image(event.image.url)}>
+                    <div css={styles.cardContainer}>
+                        <EventCard {...event} key={i} />
                     </div>
-                ))}
-            </div>
-        </>
-    );
-};
+                </div>
+            ))}
+        </div>
+    </div>
+);
 
 export default UpcomingEventsContainer;

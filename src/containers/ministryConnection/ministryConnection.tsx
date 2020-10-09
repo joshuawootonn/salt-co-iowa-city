@@ -14,28 +14,31 @@ export type MinistryConnectionBackgroundImage = 'World' | 'Flag';
 const styles = {
     root: css`
         ${layout.container};
-        margin-bottom: 750px;
+        height: 1000px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     `,
     title: css`
         ${typography.title2};
         margin-bottom: 40px;
     `,
 
-    content: css`
+    columns: css`
         justify-self: center;
         position: relative;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        margin-bottom: 500px;
+        display: flex;
+        flex-direction: row;
     `,
     imageContainer: css`
         position: relative;
         width: 500px;
+
+        margin-right: 25px;
     `,
 
     image: (url: string) => css`
-        position: absolute;
-        right: 0;
+        transform: translateX(-170px);
         width: 670px;
         height: 450px;
         background: url('${url}') no-repeat center;
@@ -48,6 +51,8 @@ const styles = {
         z-index: 10;
     `,
     textContainer: css`
+        margin-left: 25px;
+        display: table;
         background-color: ${({ theme }) => theme.colors.backgroundTransparent};
         width: 500px;
     `,
@@ -71,9 +76,9 @@ const styles = {
     `,
     backgroundImage: css`
         position: absolute;
-        height: auto;
-        width: 80%;
-        top: 70%;
+        height: 100%;
+        width: auto;
+        top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: -2;
@@ -93,27 +98,32 @@ const MinistryConnectionCard: FC<MinistryConnection> = (props) => {
                     <World css={styles.backgroundImage} />
                 )
             }
-
-            <h2 css={styles.title}>{props.acronym || props.title}</h2>
-            <div css={styles.content}>
-                <div css={styles.imageContainer}>
-                    <div css={styles.image(props.images[currentImage].url)}>
-                        <ImageControl
-                            current={currentImage}
-                            images={props.images}
-                            handleChange={setCurrentImage}
-                            css={styles.imageControl}
-                        />
+            <div>
+                <h2 css={styles.title}>{props.acronym || props.title}</h2>
+                <div css={styles.columns}>
+                    <div css={styles.imageContainer}>
+                        <div css={styles.image(props.images[currentImage].url)}>
+                            <ImageControl
+                                current={currentImage}
+                                images={props.images}
+                                handleChange={setCurrentImage}
+                                css={styles.imageControl}
+                            />
+                        </div>
                     </div>
-                </div>
 
-                <div css={styles.textContainer}>
-                    <div css={styles.textBlock1}>
-                        <h4 css={typography.card.title}>{props.title}</h4>
-                        <p css={typography.card.text}>{props.description}</p>
-                    </div>
-                    <div css={styles.textBlock2}>
-                        <CardLink href={'/contact'}>{props.link.text}</CardLink>
+                    <div css={styles.textContainer}>
+                        <div css={styles.textBlock1}>
+                            <h4 css={typography.card.title}>{props.title}</h4>
+                            <p css={typography.card.text}>
+                                {props.description}
+                            </p>
+                        </div>
+                        <div css={styles.textBlock2}>
+                            <CardLink href={'/contact'}>
+                                {props.link.text}
+                            </CardLink>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -8,6 +8,7 @@ import layout from '../../components/layout';
 const styles = {
     root: css`
         ${layout.container};
+        margin-bottom: 0;
         height: 100vh;
         display: flex;
         align-items: center;

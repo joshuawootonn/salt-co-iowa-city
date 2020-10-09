@@ -32,7 +32,7 @@ const styles = {
 };
 
 const StaffContainer: FC<StaffBlock> = (props) => (
-    <div css={styles.root}>
+    <div css={styles.root} {...props}>
         <h2 css={styles.title}>{props.title}</h2>
         <div css={styles.staffContainer}>
             {props.staff.map((s, i) => (

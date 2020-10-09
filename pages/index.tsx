@@ -12,6 +12,16 @@ import {
     WelcomeBlock,
 } from '../src/services/welcome.services';
 import WelcomeContainer from '../src/containers/welcome';
+import { css } from 'styled-components';
+
+const styles = {
+    intro: css`
+        margin-bottom: 250px;
+    `,
+    announcements: css`
+        margin-bottom: 450px;
+    `,
+};
 
 export interface HomeProps {
     announcementBlock: AnnouncementBlock;
@@ -24,8 +34,11 @@ const Home: FC<HomeProps> = (props) => (
             <title>Salt Company Iowa City</title>
             <link rel="icon" href="/favicon.ico" />
         </Head>
-        <WelcomeContainer {...props.welcomeBlock} />
-        <AnnouncementContainer {...props.announcementBlock} />
+        <WelcomeContainer {...props.welcomeBlock} css={styles.intro} />
+        <AnnouncementContainer
+            {...props.announcementBlock}
+            css={styles.announcements}
+        />
         <FooterContainer />
     </ThemeContext>
 );

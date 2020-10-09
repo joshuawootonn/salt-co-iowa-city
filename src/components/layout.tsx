@@ -2,7 +2,7 @@ import { css } from 'styled-components';
 
 const layout = {
     container: css`
-        margin: 0 auto 600px auto;
+        margin: 0 auto;
         max-width: 1140px;
         position: relative;
     `,

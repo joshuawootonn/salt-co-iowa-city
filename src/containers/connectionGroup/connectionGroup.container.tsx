@@ -9,7 +9,6 @@ import Masonry from 'react-masonry-css';
 const styles = {
     root: css`
         ${layout.container};
-        margin-bottom: 400px;
 
         .masonry-grid {
             display: flex;
@@ -34,8 +33,9 @@ const ConnectionGroupContainer: FC<ConnectionGroupBlock> = ({
     title,
     description,
     groups,
+    ...props
 }) => (
-    <div css={styles.root}>
+    <div css={styles.root} {...props}>
         <div css={styles.titleContainer}>
             <h2 css={typography.title2}>{title}</h2>
             <p css={typography.bigText}>{description}</p>

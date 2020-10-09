@@ -24,7 +24,7 @@ const styles = {
 };
 
 const MinistryDescriptionContainer: FC<MinistryDescriptionBlock> = (props) => (
-    <div css={styles.root}>
+    <div css={styles.root} {...props}>
         <h2 css={styles.title}>{props.title}</h2>
         <div css={styles.itemsContainer}>
             {props.ministryDescriptions.map((s, i) => (

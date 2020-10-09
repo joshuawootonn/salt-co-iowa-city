@@ -15,7 +15,6 @@ const styles = {
         justify-content: center;
 
         position: relative;
-        margin: 0 auto 300px auto;
     `,
     // TODO: generalize
     content: css`
@@ -59,22 +58,18 @@ const styles = {
         z-index: -1;
     `,
 };
-const IntroContainer: FC<HowToConnectBlock | WhoWeAreBlock> = (props) => {
-    return (
-        <div css={styles.root}>
-            <div css={styles.content}>
-                <div css={styles.textColumn}>
-                    <h1 css={styles.title}>{props.title}</h1>
-                    <p css={styles.body}>{props.body}</p>
-                </div>
-                <div css={styles.backgroundContainer}>
-                    <div css={styles.backgroundPositioner}>
-                        {props.children}
-                    </div>
-                </div>
+const IntroContainer: FC<HowToConnectBlock | WhoWeAreBlock> = (props) => (
+    <div css={styles.root} {...props}>
+        <div css={styles.content}>
+            <div css={styles.textColumn}>
+                <h1 css={styles.title}>{props.title}</h1>
+                <p css={styles.body}>{props.body}</p>
+            </div>
+            <div css={styles.backgroundContainer}>
+                <div css={styles.backgroundPositioner}>{props.children}</div>
             </div>
         </div>
-    );
-};
+    </div>
+);
 
 export default IntroContainer;

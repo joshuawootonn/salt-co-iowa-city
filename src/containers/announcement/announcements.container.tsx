@@ -5,12 +5,11 @@ import { css } from 'styled-components';
 import Bullhorn from '../../svgs/bullhorn.svg';
 import typography from '../../components/typography';
 import { AnnouncementBlock } from '../../services/announcements.services';
+import layout from '../../components/layout';
 
 const styles = {
     root: css`
-        margin: 300px auto 500px auto;
-        max-width: 1140px;
-        position: relative;
+        ${layout.container};
     `,
 
     title: css`
@@ -31,7 +30,7 @@ const styles = {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -55%);
-        width: 100vw;
+        width: 2420px;
         height: auto;
         overflow: hidden;
     `,
@@ -40,8 +39,9 @@ const styles = {
 const AnnouncementContainer: FC<AnnouncementBlock> = ({
     title,
     announcements,
+    ...props
 }) => (
-    <div css={styles.root}>
+    <div css={styles.root} {...props}>
         <h2 css={styles.title}>{title}</h2>
         <div css={styles.announcements}>
             <Bullhorn css={styles.background} />

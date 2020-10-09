@@ -25,6 +25,22 @@ import {
 } from '../src/services/connectionGroup.service';
 import UpcomingEventsContainer from '../src/containers/upcomingEvents';
 import ConnectionGroupContainer from '../src/containers/connectionGroup';
+import { css } from 'styled-components';
+
+const styles = {
+    intro: css`
+        margin-bottom: 150px;
+    `,
+    upcomingEvents: css`
+        margin-bottom: 300px;
+    `,
+    connectionGroup: css`
+        margin-bottom: 250px;
+    `,
+    ministryConnections: css`
+        margin-bottom: 250px;
+    `,
+};
 
 export interface HowToConnectProps {
     howToConnectBlock: HowToConnectBlock;
@@ -40,21 +56,25 @@ const HowToConnect: FC<HowToConnectProps> = (props) => (
             <link rel="icon" href="/favicon.ico" />
         </Head>
         <HeaderContainer />
-        <IntroContainer {...props.howToConnectBlock}>
+        <IntroContainer {...props.howToConnectBlock} css={styles.intro}>
             <HowToConnectSvg />
         </IntroContainer>
-        <UpcomingEventsContainer {...props.upcomingEventsBlock} />
+        <UpcomingEventsContainer
+            {...props.upcomingEventsBlock}
+            css={styles.upcomingEvents}
+        />
 
-        <ConnectionGroupContainer {...props.connectionGroupBlock} />
+        <ConnectionGroupContainer
+            {...props.connectionGroupBlock}
+            css={styles.connectionGroup}
+        />
         <MinistryConnectionContainer
             ministryConnections={
                 props.ministryConnectionsBlock.ministryConnections
             }
+            css={styles.ministryConnections}
         />
         <FooterContainer />
-        <Link href="/">
-            <a>Back to home</a>
-        </Link>
     </ThemeContext>
 );
 export async function getStaticProps() {

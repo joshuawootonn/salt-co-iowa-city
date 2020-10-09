@@ -8,6 +8,7 @@ import Salt from '../../svgs/salt.svg';
 import { primaryTheme } from '../../context/themeContext';
 import LargeArrow from '../../svgs/largeArrow';
 import { addAlpha } from '../../helpers/color';
+import layout from '../../components/layout';
 
 const styles = {
     root: css`
@@ -17,17 +18,11 @@ const styles = {
         align-items: center;
         justify-content: center;
     `,
-    //TODO: generalize
     content: css`
-        margin: 0 auto;
-        max-width: 1400px;
-
+        ${layout.container};
         display: flex;
         flex-direction: row;
-
-        position: relative;
     `,
-
     title: css`
         ${typography.title1};
         margin-bottom: 57px;
@@ -65,7 +60,7 @@ const styles = {
 };
 
 const WelcomeContainer: FC<WelcomeBlock> = (props) => (
-    <div css={styles.root}>
+    <div css={styles.root} {...props}>
         <div css={styles.content}>
             <div css={styles.textColumn}>
                 <h1 css={styles.title}>{props.title}</h1>
