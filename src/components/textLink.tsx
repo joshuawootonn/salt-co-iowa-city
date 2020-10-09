@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { css } from 'styled-components';
+import Salt from '../svgs/salt.svg';
 
 const styles = {
     root: ({ size, type }: TextLinkProps) => css`
