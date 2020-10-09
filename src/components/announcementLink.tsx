@@ -7,17 +7,16 @@ interface AnnouncementLinkProps {
 }
 
 const styles = {
-    root: (backgroundUrl: string) => {
-        return css`
-            background-image: url('${backgroundUrl}');
-            background-position: center;
-            background-size: cover;
-            height: 225px;
-            width: 367px;
+    root: css`
+        height: 225px;
+        width: 367px;
 
-            position: relative;
-        `;
-    },
+        position: relative;
+    `,
+    image: css`
+        height: 100%;
+        width: 100%;
+    `,
     textRoot: (isHovered: boolean) => css`
         background-color: rgba(29, 29, 27, 0.8);
         padding: 20px;
@@ -46,14 +45,14 @@ const styles = {
 
 const AnnouncementLink: FC<AnnouncementLinkProps> = ({ linkAnnouncement }) => {
     const [isHovered, setIsHovered] = useState(false);
-
     return (
         <a
             href={linkAnnouncement.link}
-            css={styles.root(linkAnnouncement.image.url)}
+            css={styles.root}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
+            <img src={linkAnnouncement.image.url} css={styles.image} />
             <div css={styles.textRoot(isHovered)}>
                 <h1 css={styles.text}>{linkAnnouncement.text}</h1>
             </div>
