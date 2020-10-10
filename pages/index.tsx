@@ -14,6 +14,9 @@ import {
 import WelcomeContainer from '../src/containers/welcome';
 import { css } from 'styled-components';
 
+import { convertToImage, storeImage } from '../src/helpers/imageOptimization';
+import deepMap, { deepMapAsync } from '../src/helpers/deepMap';
+
 const styles = {
     intro: css`
         margin-bottom: 250px;
@@ -43,11 +46,40 @@ const Home: FC<HomeProps> = (props) => (
     </ThemeContext>
 );
 
+const processImage = async (url: string) => {
+    console.log('1');
+    const response = await fetch(url);
+    console.log('2');
+    const fileName = url.split('/').pop();
+    console.log('3');
+    if (!fileName) return url;
+    const i = convertToImage(url);
+    console.log('4');
+
+    return storeImage(i, response);
+};
+
+const aaa = async (bbb: AnnouncementBlock) => {
+    // console.log(JSON.stringify(bbb));
+    const ccc = deepMap(bbb, (val: any, key: string) => (!val ? null : val));
+    // console.log(JSON.stringify(ccc));
+    return deepMapAsync(ccc, async (val: any, key: string) => {
+        console.log('LAMBDA', key, val);
+        return key === 'url' ? processImage(val) : val;
+    });
+};
+
 export async function getStaticProps() {
     const announcementBlock = await getAnnouncementBlock();
     const welcomeBlock = await getWelcomeBlock();
 
-    return { props: { announcementBlock, welcomeBlock } };
+    console.log(JSON.stringify(announcementBlock));
+    const ccc = await aaa(announcementBlock);
+    console.log(JSON.stringify(ccc));
+
+    return {
+        props: { announcementBlock: ccc, welcomeBlock },
+    };
 }
 
 export default Home;

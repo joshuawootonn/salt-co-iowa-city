@@ -3,7 +3,7 @@ import { gql } from '@apollo/client';
 
 export interface Announcement {
     image: {
-        url: string;
+        url: any;
     };
     text: string;
     link: string;

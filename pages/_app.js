@@ -13,13 +13,13 @@ const App = ({ Component, pageProps }) => {
             <ApolloContext>
                 <Component {...pageProps} />
 
-                {process.browser && (
-                    <CustomPreloader
-                        background={primaryTheme.colors.background}
-                    >
-                        <Preloader />
-                    </CustomPreloader>
-                )}
+                {/*{process.browser && (*/}
+                {/*    <CustomPreloader*/}
+                {/*        background={primaryTheme.colors.background}*/}
+                {/*    >*/}
+                {/*        <Preloader />*/}
+                {/*    </CustomPreloader>*/}
+                {/*)}*/}
             </ApolloContext>
         </ThemeContext>
     );

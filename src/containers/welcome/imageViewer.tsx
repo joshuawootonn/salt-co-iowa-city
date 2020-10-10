@@ -29,11 +29,11 @@ const ImageViewer: FC<ImageViewerProps> = ({ images, ...props }) => {
     const [currentImage, setCurrentImage] = useState(0);
     return (
         <div>
-            <div
+            <img
                 css={css`
                     ${styles.root};
-                    background-image: url('${images[currentImage].url}');
                 `}
+                src={`${images[currentImage].url}?lqip`}
                 {...props}
             />
             <ImageControl
