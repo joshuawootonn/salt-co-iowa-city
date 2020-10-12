@@ -4,7 +4,7 @@ import { css } from 'styled-components';
 
 import Bullhorn from '../../svgs/bullhorn.svg';
 import typography from '../../components/typography';
-import { AnnouncementBlock } from '../../services/announcements.services';
+import { any } from '../../services/announcements.services';
 import layout from '../../components/layout';
 
 const styles = {
@@ -36,7 +36,7 @@ const styles = {
     `,
 };
 
-const AnnouncementContainer: FC<AnnouncementBlock> = ({
+const AnnouncementContainer: FC<any> = ({
     title,
     announcements,
     ...props

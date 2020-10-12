@@ -3,7 +3,7 @@ import Head from 'next/head';
 import AnnouncementContainer from '../src/containers/announcement';
 import ThemeContext, { primaryTheme } from '../src/context/themeContext';
 import {
-    AnnouncementBlock,
+    any,
     getAnnouncementBlock,
 } from '../src/services/announcements.services';
 import FooterContainer from '../src/containers/footer';
@@ -14,7 +14,11 @@ import {
 import WelcomeContainer from '../src/containers/welcome';
 import { css } from 'styled-components';
 
-import { convertToImage, storeImage } from '../src/helpers/imageOptimization';
+import {
+    convertToImage,
+    findImagesAndConvert,
+    storeImage,
+} from '../src/helpers/imageOptimization';
 import deepMap, { deepMapAsync } from '../src/helpers/deepMap';
 
 const styles = {
@@ -27,7 +31,7 @@ const styles = {
 };
 
 export interface HomeProps {
-    announcementBlock: AnnouncementBlock;
+    announcementBlock: any;
     welcomeBlock: WelcomeBlock;
 }
 
@@ -46,35 +50,12 @@ const Home: FC<HomeProps> = (props) => (
     </ThemeContext>
 );
 
-const processImage = async (url: string) => {
-    console.log('1');
-    const response = await fetch(url);
-    console.log('2');
-    const fileName = url.split('/').pop();
-    console.log('3');
-    if (!fileName) return url;
-    const i = convertToImage(url);
-    console.log('4');
-
-    return storeImage(i, response);
-};
-
-const aaa = async (bbb: AnnouncementBlock) => {
-    // console.log(JSON.stringify(bbb));
-    const ccc = deepMap(bbb, (val: any, key: string) => (!val ? null : val));
-    // console.log(JSON.stringify(ccc));
-    return deepMapAsync(ccc, async (val: any, key: string) => {
-        console.log('LAMBDA', key, val);
-        return key === 'url' ? processImage(val) : val;
-    });
-};
-
 export async function getStaticProps() {
     const announcementBlock = await getAnnouncementBlock();
     const welcomeBlock = await getWelcomeBlock();
 
     console.log(JSON.stringify(announcementBlock));
-    const ccc = await aaa(announcementBlock);
+    const ccc = await findImagesAndConvert(announcementBlock);
     console.log(JSON.stringify(ccc));
 
     return {
