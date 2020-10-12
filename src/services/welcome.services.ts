@@ -1,8 +1,9 @@
 import { getApolloClient } from '../../apollo/client';
 import { gql } from '@apollo/client';
+import { findImagesAndConvert, ImageFile } from '../helpers/imageOptimization';
 
 export interface Image {
-    url: string;
+    url: ImageFile;
 }
 
 export interface WelcomeBlock {
@@ -40,10 +41,11 @@ export const getWelcomeBlock = async (
 
     const block = rawWelcome.blockWelcomeCollection.items[0];
 
-    return {
+    const formattedBlock = {
         title: block.title,
         introWhoWeAre: block.introWhoWeAre,
         introGetConnected: block.introGetConnected,
         images: block.imagesCollection.items,
     };
+    return findImagesAndConvert(formattedBlock);
 };

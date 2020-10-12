@@ -48,9 +48,7 @@ const styles = {
 const AnnouncementLink: FC<AnnouncementLinkProps> = ({ linkAnnouncement }) => {
     const [isHovered, setIsHovered] = useState(false);
 
-    const imageFile = linkAnnouncement.image.url as ImageFile;
-    console.log(imageFile);
-
+    const imageFile = linkAnnouncement.image.url;
     return (
         <a
             href={linkAnnouncement.link}

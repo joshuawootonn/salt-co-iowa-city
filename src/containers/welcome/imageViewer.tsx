@@ -9,7 +9,6 @@ const styles = {
         height: 717px;
         background-repeat: no-repeat;
         background-size: cover;
-
         position: relative;
     `,
     imageControl: css`
@@ -27,13 +26,17 @@ export interface ImageViewerProps {
 
 const ImageViewer: FC<ImageViewerProps> = ({ images, ...props }) => {
     const [currentImage, setCurrentImage] = useState(0);
+    console.log(require(`../../../pages/images/${images[currentImage].url.location}?lqip-colors`))
     return (
         <div>
             <img
-                css={css`
-                    ${styles.root};
-                `}
-                src={`${images[currentImage].url}?lqip`}
+                css={[
+                    styles.root,
+                    css`
+                        background-color: ${require(`../../../pages/images/${images[currentImage].url.location}?lqip-colors`)[0]};
+                    `,
+                ]}
+                src={require(`../../../pages/images/${images[currentImage].url.location}?resize&size=10000`)}
                 {...props}
             />
             <ImageControl

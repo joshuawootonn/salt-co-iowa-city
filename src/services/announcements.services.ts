@@ -1,16 +1,16 @@
 import { getApolloClient } from '../../apollo/client';
 import { gql } from '@apollo/client';
-import { ImageFile } from '../helpers/imageOptimization';
+import { findImagesAndConvert, ImageFile } from '../helpers/imageOptimization';
 
 export interface Announcement {
     image: {
-        url: string | ImageFile;
+        url: ImageFile;
     };
     text: string;
     link: string;
 }
 
-export interface any {
+export interface AnnouncementBlock {
     title: string;
     announcements: Announcement[];
 }
@@ -54,9 +54,10 @@ export const getAnnouncementBlock = async (): Promise<any> => {
     });
 
     const block = rawAnnouncements.blockAnnouncementsCollection.items[0];
-
-    return {
+    const announcementBlock = {
         title: block.title,
         announcements: block.linksCollection.items,
     };
+
+    return findImagesAndConvert(announcementBlock);
 };

@@ -2,10 +2,7 @@ import React, { FC } from 'react';
 import Head from 'next/head';
 import AnnouncementContainer from '../src/containers/announcement';
 import ThemeContext, { primaryTheme } from '../src/context/themeContext';
-import {
-    any,
-    getAnnouncementBlock,
-} from '../src/services/announcements.services';
+import { getAnnouncementBlock } from '../src/services/announcements.services';
 import FooterContainer from '../src/containers/footer';
 import {
     getWelcomeBlock,
@@ -13,13 +10,6 @@ import {
 } from '../src/services/welcome.services';
 import WelcomeContainer from '../src/containers/welcome';
 import { css } from 'styled-components';
-
-import {
-    convertToImage,
-    findImagesAndConvert,
-    storeImage,
-} from '../src/helpers/imageOptimization';
-import deepMap, { deepMapAsync } from '../src/helpers/deepMap';
 
 const styles = {
     intro: css`
@@ -54,12 +44,8 @@ export async function getStaticProps() {
     const announcementBlock = await getAnnouncementBlock();
     const welcomeBlock = await getWelcomeBlock();
 
-    console.log(JSON.stringify(announcementBlock));
-    const ccc = await findImagesAndConvert(announcementBlock);
-    console.log(JSON.stringify(ccc));
-
     return {
-        props: { announcementBlock: ccc, welcomeBlock },
+        props: { announcementBlock, welcomeBlock },
     };
 }
 
