@@ -1,6 +1,7 @@
 import React, { FC, useState } from 'react';
 import { css } from 'styled-components/macro';
-import { Announcement } from '../services/announcements.services';
+import { Announcement } from '../__stories__/services/announcements.services';
+import GatsbyImage from 'gatsby-image';
 
 interface AnnouncementLinkProps {
     linkAnnouncement: Announcement;
@@ -53,7 +54,10 @@ const AnnouncementLink: FC<AnnouncementLinkProps> = ({ linkAnnouncement }) => {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
-            <img src={linkAnnouncement.image.url} css={styles.image} />
+            <GatsbyImage
+                fluid={linkAnnouncement.image.fluid}
+                css={styles.image}
+            />
             <div css={styles.textRoot(isHovered)}>
                 <h1 css={styles.text}>{linkAnnouncement.text}</h1>
             </div>

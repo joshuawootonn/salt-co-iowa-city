@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { ConnectionGroupBlock } from '../../services/connectionGroup.service';
+import { ConnectionGroupBlock } from '../../__stories__/services/connectionGroup.service';
 import { css } from 'styled-components/macro';
 import layout from '../../components/layout';
 import typography from '../../components/typography';

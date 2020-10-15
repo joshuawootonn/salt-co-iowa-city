@@ -4,7 +4,7 @@ import { css } from 'styled-components/macro';
 
 import Bullhorn from '../../svgs/bullhorn.svg';
 import typography from '../../components/typography';
-import { any } from '../../services/announcements.services';
+
 import layout from '../../components/layout';
 
 const styles = {
@@ -36,17 +36,13 @@ const styles = {
     `,
 };
 
-const AnnouncementContainer: FC<any> = ({
-    title,
-    announcements,
-    ...props
-}) => (
+const AnnouncementContainer: FC<any> = ({ title, announcements, ...props }) => (
     <div css={styles.root} {...props}>
         <h2 css={styles.title}>{title}</h2>
         <div css={styles.announcements}>
             <Bullhorn css={styles.background} />
 
-            {announcements.map((link, i) => (
+            {announcements.map((link: any, i: number) => (
                 <AnnouncementLink key={i} linkAnnouncement={link} />
             ))}
         </div>

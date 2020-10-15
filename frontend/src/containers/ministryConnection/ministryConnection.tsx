@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import { css } from 'styled-components/macro';
 import layout from '../../components/layout';
 import typography from '../../components/typography';
-import { MinistryConnection } from '../../services/ministryConnection.service';
+import { MinistryConnection } from '../../__stories__/services/ministryConnection.service';
 import ImageControl from '../../components/imageControl';
 import CardLink from '../../components/cardLink';
 

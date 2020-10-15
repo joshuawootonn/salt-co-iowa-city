@@ -2,8 +2,12 @@ import React, { FC } from 'react';
 import ThemeContext, { primaryTheme } from '../context/themeContext';
 import WelcomeContainer from '../containers/welcome';
 import { css } from 'styled-components/macro';
-import { WelcomeBlock } from '../services/welcome.services';
+import { WelcomeBlock } from '../__stories__/services/welcome.services';
+import { AnnouncementBlock } from '../__stories__/services/announcements.services';
+import AnnouncementContainer from '../containers/announcement';
+import FooterContainer from '../containers/footer';
 import { graphql, useStaticQuery } from 'gatsby';
+import { useAnnouncementBlock } from '../services/announcement.services';
 
 const styles = {
     intro: css`
@@ -37,11 +41,16 @@ export const useWelcomeBlock = (): WelcomeBlock => {
 
 const Home: FC = () => {
     const welcomeBlock = useWelcomeBlock();
+    const announcementBlock = useAnnouncementBlock();
+
     return (
         <ThemeContext theme={primaryTheme}>
             <WelcomeContainer css={styles.intro} {...welcomeBlock} />
-            {/*<AnnouncementContainer css={styles.announcements} />*/}
-            {/*<FooterContainer />*/}
+            <AnnouncementContainer
+                css={styles.announcements}
+                {...announcementBlock}
+            />
+            <FooterContainer />
         </ThemeContext>
     );
 };

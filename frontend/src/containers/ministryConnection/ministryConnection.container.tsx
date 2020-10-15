@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { MinistryConnectionBlock } from '../../services/ministryConnection.service';
+import { MinistryConnectionBlock } from '../../__stories__/services/ministryConnection.service';
 import MinistryConnectionCard from './ministryConnection';
 
 import { css } from 'styled-components/macro';

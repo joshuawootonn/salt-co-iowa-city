@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Staff } from '../../services/staff.services';
+import { Staff } from '../../__stories__/services/staff.services';
 
 import { css } from 'styled-components/macro';
 import typography from '../../components/typography';

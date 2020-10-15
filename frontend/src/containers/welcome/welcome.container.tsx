@@ -9,7 +9,7 @@ import LargeArrow from '../../svgs/largeArrow';
 import { addAlpha } from '../../helpers/color';
 import layout from '../../components/layout';
 import { graphql, useStaticQuery } from 'gatsby';
-import { WelcomeBlock } from '../../services/welcome.services';
+import { WelcomeBlock } from '../../__stories__/services/welcome.services';
 
 const styles = {
     root: css`

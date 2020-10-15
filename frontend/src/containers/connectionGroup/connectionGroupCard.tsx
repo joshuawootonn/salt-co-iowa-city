@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { css } from 'styled-components/macro';
-import { ConnectionGroup } from '../../services/connectionGroup.service';
+import { ConnectionGroup } from '../../__stories__/services/connectionGroup.service';
 import dayjs from 'dayjs';
 import typography from '../../components/typography';
 import CardLink from '../../components/cardLink';
