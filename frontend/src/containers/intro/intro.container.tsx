@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { css } from 'styled-components';
+import { css } from 'styled-components/macro';
 import typography from '../../components/typography';
 import { HowToConnectBlock } from '../../services/howToConnect.services';
 import { WhoWeAreBlock } from '../../services/whoWeAre.services';

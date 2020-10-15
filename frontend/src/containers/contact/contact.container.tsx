@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { css } from 'styled-components';
+import { css } from 'styled-components/macro';
 import typography from '../../components/typography';
 import { ContactBlock } from '../../services/contact.service';
 import Dove from './dove.svg';

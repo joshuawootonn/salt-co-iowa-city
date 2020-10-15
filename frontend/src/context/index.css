@@ -8,11 +8,11 @@ body {
 
 @font-face {
     font-family: Montserrat;
-    src: url('/Montserrat-Regular.ttf') format('truetype')
+    src: url('../../public/Montserrat-Regular.ttf') format('truetype')
 }
 @font-face {
     font-family: MonumentExtended;
-    src: url('/MonumentExtended-Regular.otf') format('opentype')
+    src: url('../../public/MonumentExtended-Regular.otf') format('opentype')
 }
 
 

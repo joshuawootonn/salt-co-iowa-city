@@ -1,8 +1,7 @@
 import React, { FC } from 'react';
 import typography from '../../components/typography';
-import { css } from 'styled-components';
+import { css } from 'styled-components/macro';
 import TextLink from '../../components/textLink';
-import Link from 'next/link';
 
 const styles = {
     root: css`
@@ -32,9 +31,8 @@ const WelcomeLink: FC<TextButtonProps> = ({ text, label, href }) => {
     return (
         <div css={styles.root}>
             <p css={styles.text}>{text}</p>
-            <Link href={href}>
-                <TextLink css={styles.button}>{label}</TextLink>
-            </Link>
+
+            <TextLink css={styles.button}>{label}</TextLink>
         </div>
     );
 };

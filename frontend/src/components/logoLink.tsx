@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { css } from 'styled-components';
+import { css } from 'styled-components/macro';
 import Salt from '../svgs/salt.svg';
 
 const styles = {

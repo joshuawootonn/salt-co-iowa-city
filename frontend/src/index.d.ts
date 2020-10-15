@@ -2,7 +2,7 @@ import {
     CSSProp,
     DefaultTheme,
     FlattenSimpleInterpolation,
-} from 'styled-components';
+} from 'styled-components/macro';
 import 'styled-components';
 import { Attributes, ClassAttributes } from 'react';
 

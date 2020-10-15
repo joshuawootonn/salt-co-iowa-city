@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { StaffBlock } from '../../services/staff.services';
 
-import { css } from 'styled-components';
+import { css } from 'styled-components/macro';
 import layout from '../../components/layout';
 import typography from '../../components/typography';
 import StaffCard from './staffCard';

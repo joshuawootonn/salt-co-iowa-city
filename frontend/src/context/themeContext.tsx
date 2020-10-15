@@ -1,8 +1,10 @@
 import {
     ThemeContext as StyledThemeContext,
     ThemeProvider,
-} from 'styled-components';
+} from 'styled-components/macro';
 import React, { FC, useContext } from 'react';
+
+import '../context/index.css';
 
 export interface Color {
     lightest: string;

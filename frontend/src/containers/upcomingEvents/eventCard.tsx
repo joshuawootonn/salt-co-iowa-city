@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import typography from '../../components/typography';
 import CardLink from '../../components/cardLink';
 import { UpcomingEvent } from '../../services/upcomingEvent.service';
-import { css } from 'styled-components';
+import { css } from 'styled-components/macro';
 import dayjs, { Dayjs } from 'dayjs';
 
 const boxBase = css`

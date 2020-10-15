@@ -1,6 +1,6 @@
 import Arrow from '../svgs/arrow.svg';
 import React, { FC } from 'react';
-import { css } from 'styled-components';
+import { css } from 'styled-components/macro';
 import { Image } from '../services/welcome.services';
 
 const styles = {

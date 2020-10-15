@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Staff } from '../../services/staff.services';
 
-import { css } from 'styled-components';
+import { css } from 'styled-components/macro';
 import typography from '../../components/typography';
 import CardLink from '../../components/cardLink';
 

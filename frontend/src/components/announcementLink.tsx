@@ -1,8 +1,6 @@
 import React, { FC, useState } from 'react';
-import { css } from 'styled-components';
+import { css } from 'styled-components/macro';
 import { Announcement } from '../services/announcements.services';
-import { ImageFile } from '../helpers/imageOptimization';
-import path from 'path';
 
 interface AnnouncementLinkProps {
     linkAnnouncement: Announcement;
@@ -48,7 +46,6 @@ const styles = {
 const AnnouncementLink: FC<AnnouncementLinkProps> = ({ linkAnnouncement }) => {
     const [isHovered, setIsHovered] = useState(false);
 
-    const imageFile = linkAnnouncement.image.url;
     return (
         <a
             href={linkAnnouncement.link}
@@ -56,12 +53,7 @@ const AnnouncementLink: FC<AnnouncementLinkProps> = ({ linkAnnouncement }) => {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
-            <img
-                // src={require(`../../pages/images/${imageFile.slug}.jpg?resize&size=300`)}
-                src={require(`../../pages/images/${imageFile.slug}.jpg?resize&size=300`)}
-                // src={imageFile}
-                css={styles.image}
-            />
+            <img src={linkAnnouncement.image.url} css={styles.image} />
             <div css={styles.textRoot(isHovered)}>
                 <h1 css={styles.text}>{linkAnnouncement.text}</h1>
             </div>

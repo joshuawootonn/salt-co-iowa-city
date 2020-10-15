@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { css } from 'styled-components';
+import { css } from 'styled-components/macro';
 import layout from '../../components/layout';
 import typography from '../../components/typography';
 import MinistryDescriptionCard from './ministryDescriptionCard';

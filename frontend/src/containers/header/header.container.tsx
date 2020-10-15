@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { css } from 'styled-components';
+import { css } from 'styled-components/macro';
 import Salt from '../../svgs/salt.svg';
 import TextLink from '../../components/textLink';
 import Link from 'next/link';

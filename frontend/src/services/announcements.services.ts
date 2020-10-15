@@ -1,10 +1,9 @@
 import { getApolloClient } from '../../apollo/client';
 import { gql } from '@apollo/client';
-import { findImagesAndConvert, ImageFile } from '../helpers/imageOptimization';
 
 export interface Announcement {
     image: {
-        url: ImageFile;
+        url: string;
     };
     text: string;
     link: string;
@@ -46,7 +45,7 @@ export const announcementBlockQuery = gql`
     }
 `;
 
-export const getAnnouncementBlock = async (): Promise<any> => {
+export const getAnnouncementBlock = async (): Promise<AnnouncementBlock> => {
     const client = getApolloClient({});
 
     const { data: rawAnnouncements } = await client.query({
@@ -54,10 +53,8 @@ export const getAnnouncementBlock = async (): Promise<any> => {
     });
 
     const block = rawAnnouncements.blockAnnouncementsCollection.items[0];
-    const announcementBlock = {
+    return {
         title: block.title,
         announcements: block.linksCollection.items,
     };
-
-    return findImagesAndConvert(announcementBlock);
 };

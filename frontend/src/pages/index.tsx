@@ -1,45 +1,49 @@
-import React, { FC } from "react"
-
-import AnnouncementContainer from "../src/containers/announcement"
-import ThemeContext, { primaryTheme } from "../src/context/themeContext"
-import { getAnnouncementBlock } from "../src/services/announcements.services"
-import FooterContainer from "../src/containers/footer"
-import { getWelcomeBlock, WelcomeBlock } from "../src/services/welcome.services"
-import WelcomeContainer from "../src/containers/welcome"
-import { css } from "styled-components"
+import React, { FC } from 'react';
+import ThemeContext, { primaryTheme } from '../context/themeContext';
+import WelcomeContainer from '../containers/welcome';
+import { css } from 'styled-components/macro';
+import { WelcomeBlock } from '../services/welcome.services';
+import { graphql, useStaticQuery } from 'gatsby';
 
 const styles = {
-  intro: css`
-    margin-bottom: 250px;
-  `,
-  announcements: css`
-    margin-bottom: 450px;
-  `,
-}
+    intro: css`
+        margin-bottom: 250px;
+    `,
+    announcements: css`
+        margin-bottom: 450px;
+    `,
+};
 
-export interface HomeProps {
-  announcementBlock: any
-  welcomeBlock: WelcomeBlock
-}
+export const useWelcomeBlock = (): WelcomeBlock => {
+    const welcomeBlock = useStaticQuery(graphql`
+        query blockWelcome {
+            allContentfulBlockWelcome(limit: 1) {
+                nodes {
+                    title
+                    introWhoWeAre
+                    introGetConnected
+                    images {
+                        fluid(maxWidth: 500, quality: 90) {
+                            ...GatsbyContentfulFluid_withWebp
+                        }
+                    }
+                }
+            }
+        }
+    `);
 
-const Home: FC<HomeProps> = props => (
-  <ThemeContext theme={primaryTheme}>
-    <WelcomeContainer {...props.welcomeBlock} css={styles.intro} />
-    <AnnouncementContainer
-      {...props.announcementBlock}
-      css={styles.announcements}
-    />
-    <FooterContainer />
-  </ThemeContext>
-)
+    return welcomeBlock.allContentfulBlockWelcome.nodes[0];
+};
 
-export async function getStaticProps() {
-  const announcementBlock = await getAnnouncementBlock()
-  const welcomeBlock = await getWelcomeBlock()
+const Home: FC = () => {
+    const welcomeBlock = useWelcomeBlock();
+    return (
+        <ThemeContext theme={primaryTheme}>
+            {/*<WelcomeContainer css={styles.intro} {...welcomeBlock} />*/}
+            {/*<AnnouncementContainer css={styles.announcements} />*/}
+            {/*<FooterContainer />*/}
+        </ThemeContext>
+    );
+};
 
-  return {
-    props: { announcementBlock, welcomeBlock },
-  }
-}
-
-export default Home
+export default Home;

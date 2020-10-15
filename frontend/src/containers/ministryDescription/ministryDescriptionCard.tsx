@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import { MinistryDescription } from '../../services/ministryDescription.service';
-import { css } from 'styled-components';
+import { css } from 'styled-components/macro';
 import ImageControl from '../../components/imageControl';
 import typography from '../../components/typography';
 import CardLink from '../../components/cardLink';

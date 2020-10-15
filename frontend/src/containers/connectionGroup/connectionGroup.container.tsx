@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { ConnectionGroupBlock } from '../../services/connectionGroup.service';
-import { css } from 'styled-components';
+import { css } from 'styled-components/macro';
 import layout from '../../components/layout';
 import typography from '../../components/typography';
 import ConnectionGroupCard from './connectionGroupCard';

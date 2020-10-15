@@ -1,7 +1,7 @@
 import React from 'react';
 import Salt from '../svgs/salt.svg';
 
-import { css } from 'styled-components';
+import { css } from 'styled-components/macro';
 import { primaryTheme } from '../context/themeContext';
 import { addAlpha } from '../helpers/color';
 

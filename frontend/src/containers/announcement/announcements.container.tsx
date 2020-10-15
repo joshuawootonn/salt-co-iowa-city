@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import AnnouncementLink from '../../components/announcementLink';
-import { css } from 'styled-components';
+import { css } from 'styled-components/macro';
 
 import Bullhorn from '../../svgs/bullhorn.svg';
 import typography from '../../components/typography';

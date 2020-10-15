@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { css } from 'styled-components';
+import { css } from 'styled-components/macro';
 import { ConnectionGroup } from '../../services/connectionGroup.service';
 import dayjs from 'dayjs';
 import typography from '../../components/typography';

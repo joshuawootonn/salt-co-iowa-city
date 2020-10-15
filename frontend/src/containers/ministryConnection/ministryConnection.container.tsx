@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { MinistryConnectionBlock } from '../../services/ministryConnection.service';
 import MinistryConnectionCard from './ministryConnection';
 
-import { css } from 'styled-components';
+import { css } from 'styled-components/macro';
 
 const styles = {
     root: css`

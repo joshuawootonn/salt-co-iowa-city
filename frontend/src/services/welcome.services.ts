@@ -1,9 +1,8 @@
-import { getApolloClient } from '../../apollo/client';
 import { gql } from '@apollo/client';
-import { findImagesAndConvert, ImageFile } from '../helpers/imageOptimization';
+import { getApolloClient } from './client';
 
 export interface Image {
-    url: ImageFile;
+    url: string;
 }
 
 export interface WelcomeBlock {
@@ -13,9 +12,9 @@ export interface WelcomeBlock {
     images: Image[];
 }
 
-export const getWelcomeQuery = (isPreview = false) => gql`
+export const getWelcomeQuery = gql`
     query blockWelcome {
-        blockWelcomeCollection(limit: 1, preview: ${isPreview}) {
+        blockWelcomeCollection(limit: 1, preview: true) {
             items {
                 title
                 introWhoWeAre
@@ -36,16 +35,18 @@ export const getWelcomeBlock = async (
     const client = getApolloClient({}, isPreview);
 
     const { data: rawWelcome } = await client.query({
-        query: getWelcomeQuery(isPreview),
+        query: getWelcomeQuery,
     });
+    console.log(rawWelcome);
 
     const block = rawWelcome.blockWelcomeCollection.items[0];
 
-    const formattedBlock = {
+    return {
         title: block.title,
         introWhoWeAre: block.introWhoWeAre,
         introGetConnected: block.introGetConnected,
-        images: block.imagesCollection.items,
+        images: block.imagesCollection.items.map((i) => ({
+            fluid: { src: i.url },
+        })),
     };
-    return findImagesAndConvert(formattedBlock);
 };

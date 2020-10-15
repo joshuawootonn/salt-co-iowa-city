@@ -2,9 +2,67 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b4d47477-a5cd-4dd5-9779-b5f3c355cd52" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.eslintrc.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.prettierrc.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/__stories__/block.storie.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/containers/welcome/welcome.stories.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/client.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.prettierrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.storybook/preview.js" beforeDir="false" afterPath="$PROJECT_DIR$/.storybook/preview.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gatsby-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/gatsby-config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/__stories__/block.stories.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/__stories__/home.stories.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/announcementLink.stories.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/announcementLink.storie.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/announcementLink.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/announcementLink.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/cardLink.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/cardLink.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/imageControl.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/imageControl.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/logoLink.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/logoLink.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/preloader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/preloader.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/socialLink.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/socialLink.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/textLink.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/textLink.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/typography.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/typography.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/announcement/announcements.container.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/announcement/announcements.container.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/connectionGroup/connectionGroup.container.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/connectionGroup/connectionGroup.container.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/connectionGroup/connectionGroupCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/connectionGroup/connectionGroupCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/connectionGroup/female.svg.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/connectionGroup/female.svg.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/connectionGroup/male.svg.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/connectionGroup/male.svg.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/contact/contact.container.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/contact/contact.container.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/contact/dove.svg.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/contact/dove.svg.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/footer/bigLinks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/footer/bigLinks.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/footer/footer.container.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/footer/footer.container.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/footer/linkedList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/footer/linkedList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/footer/socialLinks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/footer/socialLinks.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/header/header.container.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/header/header.container.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/intro/intro.container.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/intro/intro.container.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/ministryConnection/ministryConnection.container.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/ministryConnection/ministryConnection.container.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/ministryConnection/ministryConnection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/ministryConnection/ministryConnection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/ministryDescription/ministryDescription.container.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/ministryDescription/ministryDescription.container.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/ministryDescription/ministryDescriptionCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/ministryDescription/ministryDescriptionCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/staff/staff.container.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/staff/staff.container.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/staff/staffCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/staff/staffCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/upcomingEvents/eventCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/upcomingEvents/eventCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/upcomingEvents/upcomingEvents.container.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/upcomingEvents/upcomingEvents.container.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/welcome/imageViewer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/welcome/imageViewer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/welcome/welcome.container.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/welcome/welcome.container.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/welcome/welcomeLink.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/welcome/welcomeLink.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/context/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/context/themeContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/themeContext.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/deepMap.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/imageOptimization.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/story.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/story.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/announcements.services.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/announcements.services.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/welcome.services.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/welcome.services.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stories/Button.stories.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/stories/Button.stories.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/svgs/bullhorn.svg.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/svgs/bullhorn.svg.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/svgs/flag.svg.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/svgs/flag.svg.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/svgs/hands.svg.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/svgs/hands.svg.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/svgs/salt.svg.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/svgs/salt.svg.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/svgs/world.svg.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/svgs/world.svg.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,15 +84,25 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.storybook" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.standard" value="" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="settings.editor.selected.configurable" value="settings.javascript.linters.eslint" />
-    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2019.2.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+    <property name="ts.external.directory.path" value="C:\Users\jose5\Git\salt-co-iowa-city\frontend\node_modules\typescript\lib" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\jose5\Git\salt-co-iowa-city\frontend\.storybook" />
+      <recent name="C:\Users\jose5\Git\salt-co-iowa-city\frontend\public" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
@@ -45,17 +113,25 @@
       <screen x="0" y="0" width="2560" height="1410" />
     </state>
     <state x="1101" y="284" width="875" height="838" key="#ESLint/2560.0.2560.1410/0.0.2560.1410@0.0.2560.1410" timestamp="1602508413529" />
-    <state x="1256" y="384" key="FileChooserDialogImpl" timestamp="1602508155180">
+    <state x="1256" y="384" key="FileChooserDialogImpl" timestamp="1602759452318">
       <screen x="0" y="0" width="2560" height="1410" />
     </state>
-    <state x="1256" y="384" key="FileChooserDialogImpl/2560.0.2560.1410/0.0.2560.1410@0.0.2560.1410" timestamp="1602508155180" />
+    <state x="1256" y="384" key="FileChooserDialogImpl/2560.0.2560.1410/0.0.2560.1410@0.0.2560.1410" timestamp="1602759452318" />
     <state x="701" y="263" key="SettingsEditor" timestamp="1602508498138">
       <screen x="0" y="0" width="2560" height="1410" />
     </state>
     <state x="701" y="263" key="SettingsEditor/2560.0.2560.1410/0.0.2560.1410@0.0.2560.1410" timestamp="1602508498138" />
-    <state x="859" y="310" width="840" height="1034" key="search.everywhere.popup" timestamp="1602508270521">
+    <state x="772" y="374" key="Vcs.Push.Dialog.v2" timestamp="1602509404246">
       <screen x="0" y="0" width="2560" height="1410" />
     </state>
-    <state x="859" y="310" width="840" height="1034" key="search.everywhere.popup/2560.0.2560.1410/0.0.2560.1410@0.0.2560.1410" timestamp="1602508270521" />
+    <state x="772" y="374" key="Vcs.Push.Dialog.v2/2560.0.2560.1410/0.0.2560.1410@0.0.2560.1410" timestamp="1602509404246" />
+    <state x="901" y="380" width="757" height="650" key="find.popup" timestamp="1602759561894">
+      <screen x="0" y="0" width="2560" height="1410" />
+    </state>
+    <state x="901" y="380" width="757" height="650" key="find.popup/2560.0.2560.1410/0.0.2560.1410@0.0.2560.1410" timestamp="1602759561894" />
+    <state x="859" y="310" width="840" height="1034" key="search.everywhere.popup" timestamp="1602762968691">
+      <screen x="0" y="0" width="2560" height="1410" />
+    </state>
+    <state x="859" y="310" width="840" height="1034" key="search.everywhere.popup/2560.0.2560.1410/0.0.2560.1410@0.0.2560.1410" timestamp="1602762968691" />
   </component>
 </project>

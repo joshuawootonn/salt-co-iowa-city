@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { DocumentNode, useQuery } from '@apollo/client';
 import axios from 'axios';
-import { css } from 'styled-components';
+import { css } from 'styled-components/macro';
 
 const useBlockData = (domain: string) => {
     const [data, setData] = useState(null);

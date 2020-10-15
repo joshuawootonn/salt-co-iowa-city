@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
-import { WelcomeBlock } from '../../services/welcome.services';
-import { css } from 'styled-components';
+import { css } from 'styled-components/macro';
 import typography from '../../components/typography';
 import WelcomeLink from './welcomeLink';
 import ImageViewer from './imageViewer';
@@ -9,6 +8,8 @@ import { primaryTheme } from '../../context/themeContext';
 import LargeArrow from '../../svgs/largeArrow';
 import { addAlpha } from '../../helpers/color';
 import layout from '../../components/layout';
+import { graphql, useStaticQuery } from 'gatsby';
+import { WelcomeBlock } from '../../services/welcome.services';
 
 const styles = {
     root: css`
@@ -20,6 +21,7 @@ const styles = {
     `,
     content: css`
         ${layout.container};
+        max-width: 1363px;
         display: flex;
         flex-direction: row;
     `,
@@ -59,33 +61,38 @@ const styles = {
     `,
 };
 
-const WelcomeContainer: FC<WelcomeBlock> = (props) => (
-    <div css={styles.root} {...props}>
-        <div css={styles.content}>
-            <div css={styles.textColumn}>
-                <h1 css={styles.title}>{props.title}</h1>
+const WelcomeContainer: FC<WelcomeBlock> = (welcomeBlock) => {
+    return (
+        <div css={styles.root} {...welcomeBlock}>
+            <div css={styles.content}>
+                <div css={styles.textColumn}>
+                    <h1 css={styles.title}>{welcomeBlock.title}</h1>
 
-                <WelcomeLink
-                    text="We are college students who have been transformed by the truth of the gospel."
-                    label="Who We Are"
-                    href={'/who-we-are'}
+                    <WelcomeLink
+                        text="We are college students who have been transformed by the truth of the gospel."
+                        label="Who We Are"
+                        href={'/who-we-are'}
+                    />
+                    <WelcomeLink
+                        text="We meet every thursday night at 8PM at veritas church."
+                        label="Get Connected"
+                        href={'/how-to-connect'}
+                    />
+                </div>
+
+                <ImageViewer
+                    css={styles.imageViewer}
+                    images={welcomeBlock.images}
                 />
-                <WelcomeLink
-                    text="We meet every thursday night at 8PM at veritas church."
-                    label="Get Connected"
-                    href={'/how-to-connect'}
+
+                <Salt
+                    css={styles.imageBackground}
+                    color={addAlpha(primaryTheme.colors.purple.lightest, 0.05)}
                 />
             </div>
-
-            <ImageViewer css={styles.imageViewer} images={props.images} />
-
-            <Salt
-                css={styles.imageBackground}
-                color={addAlpha(primaryTheme.colors.purple.lightest, 0.05)}
-            />
+            <LargeArrow css={styles.largeArrow} />
         </div>
-        <LargeArrow css={styles.largeArrow} />
-    </div>
-);
+    );
+};
 
 export default WelcomeContainer;
