@@ -4,6 +4,7 @@ import {
 } from 'styled-components/macro';
 import React, { FC, useContext } from 'react';
 
+import type {} from 'styled-components/cssprop';
 import '../context/index.css';
 
 export interface Color {

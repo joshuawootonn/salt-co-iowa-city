@@ -39,7 +39,7 @@ const Home: FC = () => {
     const welcomeBlock = useWelcomeBlock();
     return (
         <ThemeContext theme={primaryTheme}>
-            {/*<WelcomeContainer css={styles.intro} {...welcomeBlock} />*/}
+            <WelcomeContainer css={styles.intro} {...welcomeBlock} />
             {/*<AnnouncementContainer css={styles.announcements} />*/}
             {/*<FooterContainer />*/}
         </ThemeContext>
