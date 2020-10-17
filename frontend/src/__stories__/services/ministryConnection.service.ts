@@ -1,22 +1,9 @@
 import { gql } from '@apollo/client';
-import { getApolloClient } from '../../apollo/client';
-import { MinistryDescription } from './ministryDescription.service';
-import { Image } from './welcome.services';
-
-export interface MinistryConnection {
-    title: string;
-    acronym?: string;
-    description: string;
-    images: Image[];
-    backgroundImage: 'World' | 'Flag';
-    link: {
-        text: string;
-    };
-}
-
-export interface MinistryConnectionBlock {
-    ministryConnections: MinistryConnection[];
-}
+import { getApolloClient } from './client';
+import {
+    MinistryConnection,
+    MinistryConnectionBlock,
+} from '../../models/ministryConnection';
 
 // TODO: link language here is kinda generic.. maybe rethink this?
 export const ministryConnectionsBlockQuery = gql`
@@ -72,7 +59,7 @@ export const getMinistryConnectionsBlock = async (): Promise<
 
     return {
         ministryConnections: rawBlock.itemsCollection.items.map(
-            (i: any): MinistryDescription => ({
+            (i: any): MinistryConnection => ({
                 ...i,
                 images: i.imagesCollection.items,
             })

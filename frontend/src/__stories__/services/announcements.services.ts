@@ -1,17 +1,7 @@
 import { gql } from '@apollo/client';
-import { Image, mapUrlToFluid } from './welcome.services';
+import { mapUrlToFluid } from './welcome.services';
 import { getApolloClient } from './client';
-
-export interface Announcement {
-    image: Image;
-    text: string;
-    link: string;
-}
-
-export interface AnnouncementBlock {
-    title: string;
-    announcements: Announcement[];
-}
+import { AnnouncementBlock } from '../../models/announcement';
 
 export const announcementBlockQuery = gql`
     query blockAnnouncement {

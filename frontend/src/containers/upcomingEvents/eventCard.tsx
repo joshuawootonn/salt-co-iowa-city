@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import typography from '../../components/typography';
 import CardLink from '../../components/cardLink';
-import { UpcomingEvent } from '../../__stories__/services/upcomingEvent.service';
 import { css } from 'styled-components/macro';
 import dayjs, { Dayjs } from 'dayjs';
+import { UpcomingEvent } from "../../models/upcomingEvent"
 
 const boxBase = css`
     background-color: ${({ theme }) => theme.colors.backgroundTransparent};

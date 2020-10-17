@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
-import { css } from 'styled-components/macro';
+import styled, { css } from 'styled-components/macro';
+import GatsbyLink from 'gatsby-link';
 
 const styles = {
-    root: ({ size, type }: TextLinkProps) => css`
+    root: ({ size, type }: BaseTextLinkProps) => css`
         ${type === 'primary'
             ? css`
                   border: 2px solid
@@ -33,17 +34,35 @@ const styles = {
     `,
 };
 
-export interface TextLinkProps {
+interface BaseTextLinkProps {
     type?: 'primary' | 'secondary';
     size?: 'default' | 'small';
-    href?: string;
 }
 
-const TextLink: FC<TextLinkProps> = ({ children, ...props }) => (
-    <a css={styles.root(props)} {...props}>
-        {children}
-    </a>
-);
+export interface ExternalTextLinkProps extends BaseTextLinkProps {
+    href?: string;
+    destinationType: 'external';
+}
+
+export interface InternalTextLinkProps extends BaseTextLinkProps {
+    to?: string;
+    destinationType: 'internal';
+}
+
+const Link = (props: any) => <GatsbyLink {...props} css={styles.root(props)} />;
+
+const TextLink: FC<InternalTextLinkProps | ExternalTextLinkProps> = ({
+    children,
+    ...props
+}) => {
+    return props.destinationType === 'internal' ? (
+        <Link {...props}>{children}</Link>
+    ) : (
+        <a css={styles.root(props)} {...props}>
+            {children}
+        </a>
+    );
+};
 
 TextLink.defaultProps = {
     type: 'primary',

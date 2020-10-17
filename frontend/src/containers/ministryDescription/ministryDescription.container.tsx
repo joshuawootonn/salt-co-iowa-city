@@ -3,7 +3,7 @@ import { css } from 'styled-components/macro';
 import layout from '../../components/layout';
 import typography from '../../components/typography';
 import MinistryDescriptionCard from './ministryDescriptionCard';
-import { MinistryDescriptionBlock } from '../../__stories__/services/ministryDescription.service';
+import { MinistryDescriptionBlock } from "../../models/ministryDescription"
 
 const styles = {
     root: css`

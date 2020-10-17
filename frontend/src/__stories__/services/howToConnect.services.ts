@@ -1,10 +1,6 @@
-import { getApolloClient } from '../../apollo/client';
 import { gql } from '@apollo/client';
-
-export interface HowToConnectBlock {
-    title: string;
-    body: string;
-}
+import { getApolloClient } from './client';
+import { HowToConnectBlock } from '../../models/howToConnect';
 
 export const howToConnectQuery = gql`
     query blockWhoWeAre {

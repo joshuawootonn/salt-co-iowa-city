@@ -1,9 +1,10 @@
 import React, { FC } from 'react';
 import { css } from 'styled-components/macro';
 import typography from '../../components/typography';
-import { ContactBlock } from '../../__stories__/services/contact.service';
+
 import Dove from './dove.svg';
 import layout from '../../components/layout';
+import { ContactBlock } from '../../models/contact';
 
 const styles = {
     root: css`

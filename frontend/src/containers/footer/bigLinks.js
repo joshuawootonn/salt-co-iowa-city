@@ -15,7 +15,13 @@ const styles = {
 
 const BigLinks = (props) => (
     <div css={styles.content} {...props}>
-        <TextLink css={styles.link}>Contact us</TextLink>
+        <TextLink
+            destinationType={'internal'}
+            to={'/contact'}
+            css={styles.link}
+        >
+            Contact us
+        </TextLink>
 
         <br />
         <br />

@@ -6,6 +6,7 @@ import Bullhorn from '../../svgs/bullhorn.svg';
 import typography from '../../components/typography';
 
 import layout from '../../components/layout';
+import { AnnouncementBlock } from '../../models/announcement';
 
 const styles = {
     root: css`
@@ -36,7 +37,11 @@ const styles = {
     `,
 };
 
-const AnnouncementContainer: FC<any> = ({ title, announcements, ...props }) => (
+const AnnouncementContainer: FC<AnnouncementBlock> = ({
+    title,
+    announcements,
+    ...props
+}) => (
     <div css={styles.root} {...props}>
         <h2 css={styles.title}>{title}</h2>
         <div css={styles.announcements}>

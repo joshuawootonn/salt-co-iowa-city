@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
-import { Staff } from '../../__stories__/services/staff.services';
-
+import GatsbyBackgroundImage from 'gatsby-background-image';
 import { css } from 'styled-components/macro';
 import typography from '../../components/typography';
 import CardLink from '../../components/cardLink';
+import { Staff } from '../../models/staff';
 
 const styles = {
     root: css`
@@ -11,9 +11,10 @@ const styles = {
         width: 100%;
         justify-self: center;
     `,
-    image: (url: string) => css`
+    image: css`
         height: 505px;
-        background: url('${url}') no-repeat center;
+        background-repeat: no-repeat;
+        background-position: center;
         background-size: cover;
     `,
     textContainer: css`
@@ -42,7 +43,7 @@ const styles = {
 
 const StaffCard: FC<Staff> = (props) => (
     <div css={styles.root}>
-        <div css={styles.image(props.image.url)} />
+        <GatsbyBackgroundImage fluid={props.image.fluid} css={styles.image} />
         <div css={styles.textContainer}>
             <div css={styles.textBlock1}>
                 <h4 css={typography.card.title}>

@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import { css } from 'styled-components/macro';
 import ImageControl from '../../components/imageControl';
 import GatsbyImage from 'gatsby-image';
-import { Image } from '../../__stories__/services/welcome.services';
+import { Image } from '../../models/image';
 
 const styles = {
     root: css`

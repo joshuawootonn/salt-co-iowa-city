@@ -1,29 +1,31 @@
 import React, { FC } from 'react';
-import { css } from 'styled-components/macro';
+import styled, { css } from 'styled-components/macro';
 import Salt from '../svgs/salt.svg';
+import { Link as GatsbyLink } from 'gatsby';
 
 const styles = {
-    root: css`
-        color: ${({ theme }) => theme.colors.purple.light};
-
-        cursor: pointer;
-        user-select: none;
-        text-decoration: none;
-        text-wrap: none;
-    `,
     logo: css`
         height: 68px;
     `,
 };
 
 export interface TextLinkProps {
-    href?: string;
+    to: string;
 }
 
+const Link = styled((props) => <GatsbyLink {...props} />)`
+    color: ${({ theme }) => theme.colors.purple.light};
+
+    cursor: pointer;
+    user-select: none;
+    text-decoration: none;
+    text-wrap: none;
+`;
+
 const LogoLink: FC<TextLinkProps> = ({ children, ...props }) => (
-    <a css={styles.root} {...props}>
+    <Link {...props}>
         <Salt css={styles.logo} />
-    </a>
+    </Link>
 );
 
 export default LogoLink;

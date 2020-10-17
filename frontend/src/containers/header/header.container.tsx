@@ -1,9 +1,6 @@
 import React, { FC } from 'react';
-
 import { css } from 'styled-components/macro';
-import Salt from '../../svgs/salt.svg';
 import TextLink from '../../components/textLink';
-import Link from 'next/link';
 import LogoLink from '../../components/logoLink';
 
 const styles = {
@@ -30,16 +27,23 @@ const styles = {
 
 const HeaderContainer: FC = () => (
     <div css={styles.root}>
-        <Link href="/">
-            <LogoLink css={styles.link} />
-        </Link>
+        <LogoLink to={'/'} css={styles.link} />
         <div css={styles.grow} />
-        <Link href="/who-we-are">
-            <TextLink css={styles.link}>Who We are</TextLink>
-        </Link>
-        <Link href="/how-to-connect">
-            <TextLink css={styles.link}>Get Connected</TextLink>
-        </Link>
+
+        <TextLink
+            to={'/who-we-are'}
+            destinationType={'internal'}
+            css={styles.link}
+        >
+            Who We are
+        </TextLink>
+        <TextLink
+            to={'/how-to-connect'}
+            destinationType={'internal'}
+            css={styles.link}
+        >
+            Get Connected
+        </TextLink>
     </div>
 );
 
