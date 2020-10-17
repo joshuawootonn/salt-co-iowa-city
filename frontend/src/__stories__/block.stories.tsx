@@ -22,6 +22,8 @@ import UpcomingEventsContainer from '../containers/upcomingEvents';
 import { getMinistryConnectionsBlock } from './services/ministryConnection.service';
 import { getMinistryDescriptionBlock } from './services/ministryDescription.service';
 import { getUpcomingEventsBlock } from './services/upcomingEvent.service';
+import FooterContainer from '../containers/footer';
+import { getFooterBlock } from './services/footer.service';
 
 storiesOf('Block', module)
     .add('Announcements', () => (
@@ -38,6 +40,9 @@ storiesOf('Block', module)
     ))
     .add('Contact', () => (
         <ServiceStory service={getContactBlock} component={ContactContainer} />
+    ))
+    .add('Footer', () => (
+        <ServiceStory service={getFooterBlock} component={FooterContainer} />
     ))
     .add('How To Connect', () => (
         <ServiceStory

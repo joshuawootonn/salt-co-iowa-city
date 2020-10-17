@@ -6,6 +6,7 @@ import AnnouncementContainer from '../containers/announcement';
 import FooterContainer from '../containers/footer';
 import { useAnnouncementBlock } from '../services/announcement.services';
 import { useWelcomeBlock } from '../services/welcome.services';
+import { useFooterBlock } from '../services/footer.services';
 
 const styles = {
     intro: css`
@@ -19,6 +20,7 @@ const styles = {
 const Home: FC = () => {
     const welcomeBlock = useWelcomeBlock();
     const announcementBlock = useAnnouncementBlock();
+    const footerBlock = useFooterBlock();
 
     return (
         <ThemeContext theme={primaryTheme}>
@@ -27,7 +29,7 @@ const Home: FC = () => {
                 css={styles.announcements}
                 {...announcementBlock}
             />
-            <FooterContainer />
+            <FooterContainer {...footerBlock} />
         </ThemeContext>
     );
 };

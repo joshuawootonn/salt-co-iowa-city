@@ -4,6 +4,7 @@ import Salt from '../../svgs/salt.svg';
 import LinkedList from './linkedList';
 import BigLinks from './bigLinks';
 import SocialLinks from './socialLinks';
+import { FooterBlock } from '../../models/footer';
 
 const styles = {
     root: css`
@@ -57,33 +58,36 @@ const styles = {
     `,
 };
 
-const FooterContainer: FC = () => (
-    <div css={styles.root}>
-        <div css={styles.logoContainer}>
-            <Salt css={styles.logo} />
+const FooterContainer: FC<FooterBlock> = ({ externalLinks }) => {
+    console.log(externalLinks);
+    return (
+        <div css={styles.root}>
+            <div css={styles.logoContainer}>
+                <Salt css={styles.logo} />
+            </div>
+
+            <LinkedList
+                links={[
+                    { label: 'Who we Are', to: '/who-we-are' },
+                    { label: 'Ministries', to: '/who-we-are' },
+                    { label: 'Staff', to: '/who-we-are' },
+                ]}
+            />
+            <BigLinks links={externalLinks} css={styles.bigLinks} />
+
+            <LinkedList
+                links={[
+                    { label: 'Get Connected', to: '/how-to-connect' },
+                    { label: 'Events', to: '/how-to-connect' },
+                    { label: 'Connection Groups', to: '/how-to-connect' },
+                    { label: 'IFC', to: '/how-to-connect' },
+                    { label: 'Freshman Church', to: '/how-to-connect' },
+                ]}
+            />
+
+            <SocialLinks css={styles.social} />
         </div>
-
-        <LinkedList
-            links={[
-                { label: 'Who we Are', href: '' },
-                { label: 'Ministries', href: '' },
-                { label: 'Staff', href: '' },
-            ]}
-        />
-        <BigLinks css={styles.bigLinks} />
-
-        <LinkedList
-            links={[
-                { label: 'Get Connected', href: '' },
-                { label: 'Events', href: '' },
-                { label: 'Connection Groups', href: '' },
-                { label: 'IFC', href: '' },
-                { label: 'Freshman Church', href: '' },
-            ]}
-        />
-
-        <SocialLinks css={styles.social} />
-    </div>
-);
+    );
+};
 
 export default FooterContainer;

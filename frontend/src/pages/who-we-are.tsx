@@ -10,9 +10,7 @@ import { useWhoWeAreBlock } from '../services/whoWeAre.services';
 import { useMinistryDescriptionBlock } from '../services/ministryDescription.services';
 import { useStaffBlock } from '../services/staff.services';
 import StaffContainer from '../containers/staff';
-import { WhoWeAreBlock } from '../models/whoWeAre';
-import { StaffBlock } from '../models/staff';
-import { MinistryDescriptionBlock } from '../models/ministryDescription';
+import { useFooterBlock } from '../services/footer.services';
 
 const styles = {
     intro: css`
@@ -26,16 +24,11 @@ const styles = {
     `,
 };
 
-export interface WhoWeAreProps {
-    whoWeAreBlock: WhoWeAreBlock;
-    staffBlock: StaffBlock;
-    ministryDescriptionsBlock: MinistryDescriptionBlock;
-}
-
-const WhoWeAre: FC<WhoWeAreProps> = (props) => {
+const WhoWeAre: FC = () => {
     const whoWeAreBlock = useWhoWeAreBlock();
     const ministryDescriptionBlock = useMinistryDescriptionBlock();
     const staffBlock = useStaffBlock();
+    const footerBlock = useFooterBlock();
 
     return (
         <ThemeContext theme={primaryTheme}>
@@ -48,7 +41,7 @@ const WhoWeAre: FC<WhoWeAreProps> = (props) => {
                 css={styles.ministryDescriptions}
             />
             <StaffContainer {...staffBlock} css={styles.staff} />
-            <FooterContainer />
+            <FooterContainer {...footerBlock} />
         </ThemeContext>
     );
 };

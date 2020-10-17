@@ -12,6 +12,8 @@ import { useHowToConnectBlock } from '../services/howToConnect.services';
 import { useUpcomingEventBlock } from '../services/upcomingEvent.services';
 import { useConnectionGroupBlock } from '../services/connectionGroup.services';
 import { useMinistryConnectionBlock } from '../services/ministryConnection.services';
+import { useFooterBlock } from '../services/footer.services';
+import AnnouncementContainer from '../containers/announcement';
 
 const styles = {
     intro: css`
@@ -31,11 +33,10 @@ const styles = {
 const HowToConnect: FC = () => {
     const howToConnectBlock = useHowToConnectBlock();
     const upcomingEventBlock = useUpcomingEventBlock();
-
     const connectionGroupBlock = useConnectionGroupBlock();
     const ministryConnectionsBlock = useMinistryConnectionBlock();
+    const footerBlock = useFooterBlock();
 
-    console.log(connectionGroupBlock);
     return (
         <ThemeContext theme={primaryTheme}>
             <HeaderContainer />
@@ -57,7 +58,7 @@ const HowToConnect: FC = () => {
                 }
                 css={styles.ministryConnections}
             />
-            <FooterContainer />
+            <FooterContainer {...footerBlock} />
         </ThemeContext>
     );
 };

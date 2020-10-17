@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import TextLink from '../../components/textLink';
 import { css } from 'styled-components/macro';
+import { ExternalLink } from '../../models/footer';
 
 const styles = {
     content: css`
@@ -13,7 +14,11 @@ const styles = {
     `,
 };
 
-const BigLinks = (props) => (
+interface BigLinksProps {
+    links: ExternalLink[];
+}
+
+const BigLinks: FC<BigLinksProps> = (props) => (
     <div css={styles.content} {...props}>
         <TextLink
             destinationType={'internal'}
@@ -23,11 +28,19 @@ const BigLinks = (props) => (
             Contact us
         </TextLink>
 
-        <br />
-        <br />
-        <TextLink css={styles.link} href="">
-            Our home church
-        </TextLink>
+        {props.links.map((link, i) => (
+            <>
+                <br />
+                <br />
+                <TextLink
+                    destinationType={'external'}
+                    href={link.href}
+                    css={styles.link}
+                >
+                    {link.label}
+                </TextLink>
+            </>
+        ))}
     </div>
 );
 

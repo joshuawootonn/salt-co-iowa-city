@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { css } from 'styled-components/macro';
 import TextLink from '../../components/textLink';
+import { ExternalLink, InternalLink } from '../../models/footer';
 
 const styles = {
     root: css`
@@ -9,12 +10,8 @@ const styles = {
     `,
 };
 
-export interface Link {
-    href: string;
-    label: string;
-}
 interface LinkedListProps {
-    links: Link[];
+    links: InternalLink[];
 }
 
 const LinkedList: FC<LinkedListProps> = ({ links }) => {
@@ -22,10 +19,11 @@ const LinkedList: FC<LinkedListProps> = ({ links }) => {
         <div css={styles.root}>
             {links.map((link, i) => (
                 <TextLink
+                    destinationType={'internal'}
                     type={'secondary'}
                     key={i}
                     size={i !== 0 ? 'small' : 'default'}
-                    href={link.href}
+                    to={link.to}
                 >
                     {link.label}
                 </TextLink>
