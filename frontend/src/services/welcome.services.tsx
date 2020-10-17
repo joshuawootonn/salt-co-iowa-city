@@ -1,5 +1,5 @@
-import { WelcomeBlock } from '../__stories__/services/welcome.services';
 import { graphql, useStaticQuery } from 'gatsby';
+import { WelcomeBlock } from '../models/welcome';
 
 export const useWelcomeBlock = (): WelcomeBlock => {
     const welcomeBlock = useStaticQuery(graphql`

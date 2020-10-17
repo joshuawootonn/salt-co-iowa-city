@@ -1,5 +1,5 @@
 import { graphql, useStaticQuery } from 'gatsby';
-import { HowToConnectBlock } from '../__stories__/services/howToConnect.services';
+import { HowToConnectBlock } from '../models/howToConnect';
 
 export const useHowToConnectBlock = (): HowToConnectBlock => {
     const raw = useStaticQuery(graphql`

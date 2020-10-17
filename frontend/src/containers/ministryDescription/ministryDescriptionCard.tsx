@@ -12,7 +12,7 @@ const styles = {
         position: relative;
     `,
     image: css`
-        width: 100%;
+        width: 1100px;
         height: 761px;
         background-repeat: no-repeat;
         background-position: center;

@@ -1,5 +1,5 @@
 import { graphql, useStaticQuery } from 'gatsby';
-import { WhoWeAreBlock } from '../__stories__/services/whoWeAre.services';
+import { WhoWeAreBlock } from "../models/whoWeAre"
 
 export const useWhoWeAreBlock = (): WhoWeAreBlock => {
     const raw = useStaticQuery(graphql`

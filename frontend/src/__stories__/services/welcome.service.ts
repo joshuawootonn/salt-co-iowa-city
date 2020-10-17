@@ -1,10 +1,7 @@
 import { gql } from '@apollo/client';
 import { getApolloClient } from './client';
 import { WelcomeBlock } from '../../models/welcome';
-
-export const mapUrlToFluid = (i: any) => ({
-    fluid: { src: i.url },
-});
+import { imageRawTransform } from '../../models/image';
 
 export const getWelcomeQuery = gql`
     query blockWelcome {
@@ -34,6 +31,6 @@ export const getWelcomeBlock = async (): Promise<WelcomeBlock> => {
 
     return {
         ...block,
-        images: block.imagesCollection.items.map(mapUrlToFluid),
+        images: block.imagesCollection.items.map(imageRawTransform),
     };
 };

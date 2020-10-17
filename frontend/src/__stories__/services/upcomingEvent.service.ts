@@ -1,6 +1,7 @@
 import { gql } from '@apollo/client';
 import { getApolloClient } from './client';
 import { UpcomingEventBlock } from '../../models/upcomingEvent';
+import { imageRawTransform } from '../../models/image';
 
 export const upcomingEventBlockQuery = gql`
     query blockUpcomingEventsCollection {
@@ -41,6 +42,9 @@ export const getUpcomingEventsBlock = async (): Promise<UpcomingEventBlock> => {
 
     return {
         title: rawBlock.title,
-        events: rawBlock.itemsCollection.items,
+        events: rawBlock.itemsCollection.items.map((i: any) => ({
+            ...i,
+            image: imageRawTransform(i.image),
+        })),
     };
 };

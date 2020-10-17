@@ -1,6 +1,6 @@
 import { graphql, useStaticQuery } from 'gatsby';
-import { MinistryConnectionBlock } from '../__stories__/services/ministryConnection.service';
-import { convertQueryToUpcomingEvent } from './upcomingEvent.services';
+import { upcomingEventGatsbyTransform } from './upcomingEvent.services';
+import { MinistryConnectionBlock } from '../models/ministryConnection';
 
 export const useMinistryConnectionBlock = (): MinistryConnectionBlock => {
     const raw = useStaticQuery(graphql`
@@ -64,7 +64,7 @@ export const useMinistryConnectionBlock = (): MinistryConnectionBlock => {
             return {
                 ...i,
                 description: i.description.description,
-                nextEvent: convertQueryToUpcomingEvent(i.nextEvent),
+                nextEvent: upcomingEventGatsbyTransform(i.nextEvent),
             };
         }),
     };

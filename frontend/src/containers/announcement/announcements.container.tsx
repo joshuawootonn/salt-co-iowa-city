@@ -1,12 +1,10 @@
-import React, { FC } from 'react';
-import AnnouncementLink from '../../components/announcementLink';
-import { css } from 'styled-components/macro';
-
-import Bullhorn from '../../svgs/bullhorn.svg';
-import typography from '../../components/typography';
-
-import layout from '../../components/layout';
 import { AnnouncementBlock } from '../../models/announcement';
+import AnnouncementLink from '../../components/announcementLink';
+import Bullhorn from '../../svgs/bullhorn.svg';
+import React, { FC } from 'react';
+import layout from '../../components/layout';
+import typography from '../../components/typography';
+import { css } from 'styled-components/macro';
 
 const styles = {
     root: css`

@@ -1,7 +1,7 @@
 import Arrow from '../svgs/arrow.svg';
 import React, { FC } from 'react';
 import { css } from 'styled-components/macro';
-import { Image } from '../__stories__/services/welcome.services';
+import { Image } from '../models/image';
 
 const styles = {
     root: css`

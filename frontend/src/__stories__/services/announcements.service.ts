@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
-import { mapUrlToFluid } from './welcome.services';
+import { Announcement, AnnouncementBlock } from '../../models/announcement';
+import { imageRawTransform } from '../../models/image';
 import { getApolloClient } from './client';
-import { AnnouncementBlock } from '../../models/announcement';
 
 export const announcementBlockQuery = gql`
     query blockAnnouncement {
@@ -22,19 +22,27 @@ export const announcementBlockQuery = gql`
     }
 `;
 
+export const announcementRawTransform = (raw: any): Announcement => ({
+    ...raw,
+    image: imageRawTransform(raw.image),
+});
+
+export const announcementBlockRawTransform = (raw: any): AnnouncementBlock => {
+    const block = raw.blockAnnouncementsCollection.items[0];
+    return {
+        title: block.title,
+        announcements: block.linksCollection.items.map(
+            announcementRawTransform
+        ),
+    };
+};
+
 export const getAnnouncementBlock = async (): Promise<AnnouncementBlock> => {
     const client = getApolloClient({});
 
-    const { data: rawAnnouncements } = await client.query({
+    const { data } = await client.query({
         query: announcementBlockQuery,
     });
 
-    const block = rawAnnouncements.blockAnnouncementsCollection.items[0];
-    return {
-        title: block.title,
-        announcements: block.linksCollection.items.map((i: any) => ({
-            ...i,
-            image: mapUrlToFluid(i.image),
-        })),
-    };
+    return announcementBlockRawTransform(data);
 };

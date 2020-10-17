@@ -9,10 +9,12 @@ const styles = {
     root: css`
         max-width: 367px;
         width: 100%;
+
         justify-self: center;
     `,
     image: css`
         height: 505px;
+        width: 367px;
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
