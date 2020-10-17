@@ -1,7 +1,8 @@
 import React, { FC, useState } from 'react';
 import { css } from 'styled-components/macro';
-import { Announcement } from '../__stories__/services/announcements.services';
+
 import GatsbyImage from 'gatsby-image';
+import { Announcement } from '../models/announcement';
 
 interface AnnouncementLinkProps {
     linkAnnouncement: Announcement;

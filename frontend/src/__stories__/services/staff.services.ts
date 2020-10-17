@@ -1,6 +1,7 @@
 import { gql } from '@apollo/client';
 import { getApolloClient } from './client';
 import { StaffBlock } from '../../models/staff';
+import { imageRawTransform } from '../../models/image';
 
 export const staffBlockQuery = gql`
     query blockStaff {
@@ -36,6 +37,9 @@ export const getStaffBlock = async (): Promise<StaffBlock> => {
 
     return {
         title: rawStaffBlock.title,
-        staff: rawStaffBlock.itemsCollection.items,
+        staff: rawStaffBlock.itemsCollection.items.map((s: any) => ({
+            ...s,
+            image: imageRawTransform(s.image),
+        })),
     };
 };

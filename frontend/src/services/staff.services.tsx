@@ -1,5 +1,10 @@
 import { graphql, useStaticQuery } from 'gatsby';
-import { StaffBlock } from '../__stories__/services/staff.services';
+import { Staff, StaffBlock } from '../models/staff';
+
+export const staffGatsbyTransform = (i: any): Staff => ({
+    ...i,
+    about: i.about.about,
+});
 
 export const useStaffBlock = (): StaffBlock => {
     const raw = useStaticQuery(graphql`
@@ -31,9 +36,6 @@ export const useStaffBlock = (): StaffBlock => {
 
     return {
         ...block,
-        staff: block.items.map((i: any) => ({
-            ...i,
-            about: i.about.about,
-        })),
+        staff: block.items.map(staffGatsbyTransform),
     };
 };

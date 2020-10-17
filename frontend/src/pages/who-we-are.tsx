@@ -1,7 +1,4 @@
 import { css } from 'styled-components/macro';
-import { StaffBlock } from '../__stories__/services/staff.services';
-import { WhoWeAreBlock } from '../__stories__/services/whoWeAre.services';
-import { MinistryDescriptionBlock } from '../__stories__/services/ministryDescription.service';
 import React, { FC } from 'react';
 import ThemeContext, { primaryTheme } from '../context/themeContext';
 import HeaderContainer from '../containers/header';
@@ -13,6 +10,9 @@ import { useWhoWeAreBlock } from '../services/whoWeAre.services';
 import { useMinistryDescriptionBlock } from '../services/ministryDescription.services';
 import { useStaffBlock } from '../services/staff.services';
 import StaffContainer from '../containers/staff';
+import { WhoWeAreBlock } from '../models/whoWeAre';
+import { StaffBlock } from '../models/staff';
+import { MinistryDescriptionBlock } from '../models/ministryDescription';
 
 const styles = {
     intro: css`

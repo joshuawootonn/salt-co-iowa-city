@@ -4,7 +4,7 @@ import layout from '../../components/layout';
 import typography from '../../components/typography';
 import StaffCard from './staffCard';
 import Hand from '../../svgs/hands.svg';
-import { StaffBlock } from "../../models/staff"
+import { StaffBlock } from '../../models/staff';
 
 const styles = {
     root: css`

@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 import { getApolloClient } from './client';
-import { ContactBlock } from "../../models/contact"
+import { ContactBlock } from '../../models/contact';
 
 export const contactBlockQuery = gql`
     query blockContact {

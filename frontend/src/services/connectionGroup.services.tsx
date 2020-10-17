@@ -1,6 +1,5 @@
 import { graphql, useStaticQuery } from 'gatsby';
-
-import { ConnectionGroupBlock } from '../__stories__/services/connectionGroup.service';
+import { ConnectionGroupBlock } from '../models/connectionGroup';
 
 export const useConnectionGroupBlock = (): ConnectionGroupBlock => {
     const raw = useStaticQuery(graphql`

@@ -1,11 +1,7 @@
 import { graphql, useStaticQuery } from 'gatsby';
+import { UpcomingEvent, UpcomingEventBlock } from '../models/upcomingEvent';
 
-import {
-    UpcomingEvent,
-    UpcomingEventBlock,
-} from '../__stories__/services/upcomingEvent.service';
-
-export const convertQueryToUpcomingEvent = (i: any): UpcomingEvent => ({
+export const upcomingEventGatsbyTransform = (i: any): UpcomingEvent => ({
     ...i,
     description: i.description.description,
 });
@@ -45,6 +41,6 @@ export const useUpcomingEventBlock = (): UpcomingEventBlock => {
 
     return {
         ...block,
-        events: block.items.map(convertQueryToUpcomingEvent),
+        events: block.items.map(upcomingEventGatsbyTransform),
     };
 };

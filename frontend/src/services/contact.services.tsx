@@ -1,5 +1,6 @@
 import { graphql, useStaticQuery } from 'gatsby';
-import { ContactBlock } from '../__stories__/services/contact.service';
+import { ContactBlock } from '../models/contact';
+import { staffGatsbyTransform } from './staff.services';
 
 export const useContactBlock = (): ContactBlock => {
     const raw = useStaticQuery(graphql`
@@ -13,6 +14,9 @@ export const useContactBlock = (): ContactBlock => {
                         lastName
                         email
                         position
+                        about {
+                            about
+                        }
                     }
                 }
             }
@@ -22,5 +26,6 @@ export const useContactBlock = (): ContactBlock => {
     const block = raw.allContentfulBlockContact.nodes[0];
     return {
         ...block,
+        contacts: block.contacts.map(staffGatsbyTransform),
     };
 };

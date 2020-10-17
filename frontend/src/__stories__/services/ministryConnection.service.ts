@@ -4,6 +4,7 @@ import {
     MinistryConnection,
     MinistryConnectionBlock,
 } from '../../models/ministryConnection';
+import { imageRawTransform } from '../../models/image';
 
 // TODO: link language here is kinda generic.. maybe rethink this?
 export const ministryConnectionsBlockQuery = gql`
@@ -61,7 +62,11 @@ export const getMinistryConnectionsBlock = async (): Promise<
         ministryConnections: rawBlock.itemsCollection.items.map(
             (i: any): MinistryConnection => ({
                 ...i,
-                images: i.imagesCollection.items,
+                images: i.imagesCollection.items.map(imageRawTransform),
+                nextEvent: {
+                    ...i.nextEvent,
+                    image: imageRawTransform(i.nextEvent.image),
+                },
             })
         ),
     };

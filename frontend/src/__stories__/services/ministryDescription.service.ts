@@ -4,6 +4,7 @@ import {
     MinistryDescription,
     MinistryDescriptionBlock,
 } from '../../models/ministryDescription';
+import { imageRawTransform } from '../../models/image';
 
 // TODO: link language here is kinda generic.. maybe rethink this?
 export const ministryDescriptionsBlockQuery = gql`
@@ -51,7 +52,7 @@ export const getMinistryDescriptionBlock = async (): Promise<
         ministryDescriptions: rawBlock.itemsCollection.items.map(
             (i: any): MinistryDescription => ({
                 ...i,
-                images: i.imagesCollection.items,
+                images: i.imagesCollection.items.map(imageRawTransform),
             })
         ),
     };

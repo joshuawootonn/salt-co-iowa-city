@@ -1,10 +1,5 @@
 import React, { FC } from 'react';
-
 import { css } from 'styled-components/macro';
-import { HowToConnectBlock } from '../__stories__/services/howToConnect.services';
-import { MinistryConnectionBlock } from '../__stories__/services/ministryConnection.service';
-import { UpcomingEventBlock } from '../__stories__/services/upcomingEvent.service';
-import { ConnectionGroupBlock } from '../__stories__/services/connectionGroup.service';
 import ThemeContext, { primaryTheme } from '../context/themeContext';
 import HeaderContainer from '../containers/header';
 import IntroContainer from '../containers/intro';
