@@ -49,7 +49,9 @@ export interface InternalTextLinkProps extends BaseTextLinkProps {
     destinationType: 'internal';
 }
 
-const Link = (props: any) => <GatsbyLink {...props} css={styles.root(props)} />;
+const Link = (props: any) => (
+    <GatsbyLink to={'/'} {...props} css={styles.root(props)} />
+);
 
 const TextLink: FC<InternalTextLinkProps | ExternalTextLinkProps> = ({
     children,

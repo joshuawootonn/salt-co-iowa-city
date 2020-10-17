@@ -4,7 +4,7 @@ import { WhoWeAreBlock } from '../../models/whoWeAre';
 
 export const whoWeAreBlockQuery = gql`
     query blockWhoWeAre {
-        blockWhoWeAreCollection(limit: 1) {
+        blockWhoWeAreCollection(limit: 1, preview: true) {
             items {
                 title
                 body

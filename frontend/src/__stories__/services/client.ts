@@ -1,9 +1,9 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 import { createHttpLink } from 'apollo-link-http';
 
-const SPACE = process.env.CONTENTFUL_SPACE_ID;
-const ENVIRONMENT = process.env.CONTENTFUL_ENVIRONMENT;
-const PREVIEW_TOKEN = process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN;
+const SPACE = process.env.STORYBOOK_CONTENTFUL_SPACE_ID;
+const ENVIRONMENT = process.env.STORYBOOK_CONTENTFUL_ENVIRONMENT;
+const PREVIEW_TOKEN = process.env.STORYBOOK_CONTENTFUL_PREVIEW_ACCESS_TOKEN;
 const CDA = `https://graphql.contentful.com/content/v1/spaces/${SPACE}/environments/${ENVIRONMENT}`;
 
 const createLink = createHttpLink({

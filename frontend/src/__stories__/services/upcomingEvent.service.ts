@@ -5,7 +5,7 @@ import { imageRawTransform } from '../../models/image';
 
 export const upcomingEventBlockQuery = gql`
     query blockUpcomingEventsCollection {
-        blockUpcomingEventsCollection(limit: 1) {
+        blockUpcomingEventsCollection(limit: 1, preview: true) {
             items {
                 title
                 itemsCollection {

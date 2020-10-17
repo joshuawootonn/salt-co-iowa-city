@@ -4,7 +4,7 @@ import { HowToConnectBlock } from '../../models/howToConnect';
 
 export const howToConnectQuery = gql`
     query blockWhoWeAre {
-        blockHowToConnectCollection(limit: 1) {
+        blockHowToConnectCollection(limit: 1, preview: true) {
             items {
                 title
                 body
