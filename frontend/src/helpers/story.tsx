@@ -74,6 +74,7 @@ export const ServiceStory: FC<{
             .finally(() => setLoading(false));
     }, []);
 
+    console.log(error, data, loading);
     if (loading) return <p css={style}>...Loading</p>;
     if (error) return <p css={style}>{JSON.stringify(error)}</p>;
 
