@@ -58,36 +58,33 @@ const styles = {
     `,
 };
 
-const FooterContainer: FC<FooterBlock> = ({ externalLinks }) => {
-    console.log(externalLinks);
-    return (
-        <div css={styles.root}>
-            <div css={styles.logoContainer}>
-                <Salt css={styles.logo} />
-            </div>
-
-            <LinkedList
-                links={[
-                    { label: 'Who we Are', to: '/who-we-are' },
-                    { label: 'Ministries', to: '/who-we-are' },
-                    { label: 'Staff', to: '/who-we-are' },
-                ]}
-            />
-            <BigLinks links={externalLinks} css={styles.bigLinks} />
-
-            <LinkedList
-                links={[
-                    { label: 'Get Connected', to: '/how-to-connect' },
-                    { label: 'Events', to: '/how-to-connect' },
-                    { label: 'Connection Groups', to: '/how-to-connect' },
-                    { label: 'IFC', to: '/how-to-connect' },
-                    { label: 'Freshman Church', to: '/how-to-connect' },
-                ]}
-            />
-
-            <SocialLinks css={styles.social} />
+const FooterContainer: FC<FooterBlock> = ({ externalLinks }) => (
+    <div css={styles.root}>
+        <div css={styles.logoContainer}>
+            <Salt css={styles.logo} />
         </div>
-    );
-};
+
+        <LinkedList
+            links={[
+                { label: 'Who we Are', to: '/who-we-are' },
+                { label: 'Ministries', to: '/who-we-are' },
+                { label: 'Staff', to: '/who-we-are' },
+            ]}
+        />
+        <BigLinks links={externalLinks} css={styles.bigLinks} />
+
+        <LinkedList
+            links={[
+                { label: 'Get Connected', to: '/how-to-connect' },
+                { label: 'Events', to: '/how-to-connect' },
+                { label: 'Connection Groups', to: '/how-to-connect' },
+                { label: 'IFC', to: '/how-to-connect' },
+                { label: 'Freshman Church', to: '/how-to-connect' },
+            ]}
+        />
+
+        <SocialLinks css={styles.social} />
+    </div>
+);
 
 export default FooterContainer;
