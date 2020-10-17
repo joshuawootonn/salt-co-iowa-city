@@ -3,6 +3,7 @@ import { css } from 'styled-components/macro';
 import ImageControl from '../../components/imageControl';
 import GatsbyImage from 'gatsby-image';
 import { Image } from '../../models/image';
+import { primaryTheme } from '../../context/themeContext';
 
 const styles = {
     root: css`
@@ -30,6 +31,7 @@ const ImageViewer: FC<ImageViewerProps> = ({ images, ...props }) => {
             <GatsbyImage
                 css={styles.root}
                 fluid={images[currentImage].fluid}
+                backgroundColor={primaryTheme.colors.purple.medium}
                 {...props}
             />
             <ImageControl

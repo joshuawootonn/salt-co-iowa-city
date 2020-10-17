@@ -4,7 +4,7 @@ import { ConnectionGroupBlock } from '../../models/connectionGroup';
 
 export const connectionGroupBlockQuery = gql`
     query blockConnectionGroup {
-        blockConnectionGroupsCollection(limit: 1) {
+        blockConnectionGroupsCollection(limit: 1, preview: true) {
             items {
                 title
                 description

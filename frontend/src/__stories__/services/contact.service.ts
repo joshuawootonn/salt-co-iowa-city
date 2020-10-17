@@ -4,7 +4,7 @@ import { ContactBlock } from '../../models/contact';
 
 export const contactBlockQuery = gql`
     query blockContact {
-        blockContactCollection(limit: 1) {
+        blockContactCollection(limit: 1, preview: true) {
             items {
                 title
                 description

@@ -9,7 +9,7 @@ import { imageRawTransform } from '../../models/image';
 // TODO: link language here is kinda generic.. maybe rethink this?
 export const ministryConnectionsBlockQuery = gql`
     query blockMinistryConnectionsCollection {
-        blockMinistryConnectionsCollection(limit: 1) {
+        blockMinistryConnectionsCollection(limit: 1, preview: true) {
             items {
                 itemsCollection {
                     items {

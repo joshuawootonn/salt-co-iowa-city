@@ -5,7 +5,7 @@ import { imageRawTransform } from '../../models/image';
 
 export const staffBlockQuery = gql`
     query blockStaff {
-        blockStaffCollection(limit: 1) {
+        blockStaffCollection(limit: 1, preview: true) {
             items {
                 title
                 itemsCollection {
