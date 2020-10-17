@@ -1,19 +1,22 @@
 import React, { FC, useState } from 'react';
-import { MinistryDescription } from '../../__stories__/services/ministryDescription.service';
 import { css } from 'styled-components/macro';
 import ImageControl from '../../components/imageControl';
 import typography from '../../components/typography';
 import CardLink from '../../components/cardLink';
+import BackgroundImage from 'gatsby-background-image';
+import { MinistryDescription } from '../../models/ministryDescription';
 
 const styles = {
     root: css`
         justify-self: center;
         position: relative;
     `,
-    image: (url: string) => css`
+    image: css`
         width: 100%;
         height: 761px;
-        background: url('${url}') no-repeat center;
+        background-repeat: no-repeat;
+        background-position: center;
+
         background-size: cover;
     `,
     textContainer: css`
@@ -57,9 +60,10 @@ const MinistryDescriptionCard: FC<MinistryDescription> = (props) => {
 
     return (
         <div css={styles.root}>
-            <div
-                css={styles.image(props.images[currentImage].url)}
-            ></div>
+            <BackgroundImage
+                css={styles.image}
+                fluid={props.images[currentImage].fluid}
+            ></BackgroundImage>
             <ImageControl
                 current={currentImage}
                 images={props.images}

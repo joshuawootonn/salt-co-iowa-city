@@ -1,12 +1,6 @@
 import { gql } from '@apollo/client';
-import { getApolloClient } from '../../apollo/client';
-import { Staff } from './staff.services';
-
-export interface ContactBlock {
-    title: string;
-    description: string;
-    contacts: Staff[];
-}
+import { getApolloClient } from './client';
+import { ContactBlock } from "../../models/contact"
 
 export const contactBlockQuery = gql`
     query blockContact {

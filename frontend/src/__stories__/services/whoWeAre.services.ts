@@ -1,10 +1,6 @@
-import { getApolloClient } from '../../apollo/client';
 import { gql } from '@apollo/client';
-
-export interface WhoWeAreBlock {
-    title: string;
-    body: string;
-}
+import { getApolloClient } from './client';
+import { WhoWeAreBlock } from '../../models/whoWeAre';
 
 export const whoWeAreBlockQuery = gql`
     query blockWhoWeAre {

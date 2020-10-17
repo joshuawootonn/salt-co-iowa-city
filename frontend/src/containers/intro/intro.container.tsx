@@ -2,8 +2,8 @@ import React, { FC } from 'react';
 
 import { css } from 'styled-components/macro';
 import typography from '../../components/typography';
-import { HowToConnectBlock } from '../../__stories__/services/howToConnect.services';
-import { WhoWeAreBlock } from '../../__stories__/services/whoWeAre.services';
+import { HowToConnectBlock } from '../../models/howToConnect';
+import { WhoWeAreBlock } from '../../models/whoWeAre';
 
 const styles = {
     root: css`

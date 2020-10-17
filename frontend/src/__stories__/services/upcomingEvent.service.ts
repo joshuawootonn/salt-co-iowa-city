@@ -1,27 +1,6 @@
 import { gql } from '@apollo/client';
-import { getApolloClient } from '../../apollo/client';
-
-export interface UpcomingEvent {
-    title: string;
-    image: {
-        url: string;
-    };
-    startDateTime: string;
-    endDateTime: string;
-    description: string;
-    contact: {
-        text: string;
-    };
-    location: {
-        text: string;
-        url: string;
-    };
-}
-
-export interface UpcomingEventBlock {
-    title: string;
-    events: UpcomingEvent[];
-}
+import { getApolloClient } from './client';
+import { UpcomingEventBlock } from '../../models/upcomingEvent';
 
 export const upcomingEventBlockQuery = gql`
     query blockUpcomingEventsCollection {

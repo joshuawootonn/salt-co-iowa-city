@@ -1,21 +1,6 @@
-import { getApolloClient } from '../../apollo/client';
 import { gql } from '@apollo/client';
-import { Image } from './welcome.services';
-
-export interface Staff {
-    firstName: string;
-    lastName: string;
-    position: string;
-    email: string;
-    about: string;
-    connectionLinkText: string;
-    image: Image;
-}
-
-export interface StaffBlock {
-    title: string;
-    staff: Staff[];
-}
+import { getApolloClient } from './client';
+import { StaffBlock } from '../../models/staff';
 
 export const staffBlockQuery = gql`
     query blockStaff {

@@ -8,8 +8,7 @@ import { primaryTheme } from '../../context/themeContext';
 import LargeArrow from '../../svgs/largeArrow';
 import { addAlpha } from '../../helpers/color';
 import layout from '../../components/layout';
-import { graphql, useStaticQuery } from 'gatsby';
-import { WelcomeBlock } from '../../__stories__/services/welcome.services';
+import { WelcomeBlock } from '../../models/welcome';
 
 const styles = {
     root: css`
@@ -71,12 +70,12 @@ const WelcomeContainer: FC<WelcomeBlock> = (welcomeBlock) => {
                     <WelcomeLink
                         text="We are college students who have been transformed by the truth of the gospel."
                         label="Who We Are"
-                        href={'/who-we-are'}
+                        to={'/who-we-are'}
                     />
                     <WelcomeLink
                         text="We meet every thursday night at 8PM at veritas church."
                         label="Get Connected"
-                        href={'/how-to-connect'}
+                        to={'/how-to-connect'}
                     />
                 </div>
 

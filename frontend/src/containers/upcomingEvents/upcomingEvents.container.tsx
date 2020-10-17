@@ -1,9 +1,10 @@
 import React, { FC } from 'react';
-import { UpcomingEventBlock } from '../../__stories__/services/upcomingEvent.service';
 import { css } from 'styled-components/macro';
 import layout from '../../components/layout';
 import typography from '../../components/typography';
 import EventCard from './eventCard';
+import GatsbyBackgroundImage from 'gatsby-background-image';
+import { UpcomingEventBlock } from "../../models/upcomingEvent"
 
 const styles = {
     root: css`
@@ -33,12 +34,13 @@ const styles = {
             // background: ${({ theme }) => theme.colors.purple.darkest};
         }
     `,
-    image: (url: string) => css`
+    image: css`
         position: relative;
         display: flex;
         width: 784px !important;
         height: 521px;
-        background: url('${url}') no-repeat center;
+        background-repeat: no-repeat;
+        background-position: center;
         background-size: cover;
         flex-shrink: 0;
 
@@ -59,11 +61,15 @@ const UpcomingEventsContainer: FC<UpcomingEventBlock> = (props) => (
 
         <div css={styles.itemsContainer}>
             {props.events.map((event, i) => (
-                <div key={i} css={styles.image(event.image.url)}>
+                <GatsbyBackgroundImage
+                    fluid={event.image.fluid}
+                    key={i}
+                    css={styles.image}
+                >
                     <div css={styles.cardContainer}>
                         <EventCard {...event} key={i} />
                     </div>
-                </div>
+                </GatsbyBackgroundImage>
             ))}
         </div>
     </div>

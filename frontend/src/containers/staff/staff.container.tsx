@@ -1,11 +1,10 @@
 import React, { FC } from 'react';
-import { StaffBlock } from '../../__stories__/services/staff.services';
-
 import { css } from 'styled-components/macro';
 import layout from '../../components/layout';
 import typography from '../../components/typography';
 import StaffCard from './staffCard';
 import Hand from '../../svgs/hands.svg';
+import { StaffBlock } from "../../models/staff"
 
 const styles = {
     root: css`

@@ -1,18 +1,6 @@
 import { gql } from '@apollo/client';
-import { getApolloClient } from '../../apollo/client';
-
-export interface ConnectionGroup {
-    leaders: string;
-    description: string;
-    gender: 'Male' | 'Female';
-    dateTime: string;
-}
-
-export interface ConnectionGroupBlock {
-    title: string;
-    description: string;
-    groups: ConnectionGroup[];
-}
+import { getApolloClient } from './client';
+import { ConnectionGroupBlock } from '../../models/connectionGroup';
 
 export const connectionGroupBlockQuery = gql`
     query blockConnectionGroup {

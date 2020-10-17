@@ -1,17 +1,6 @@
 import { gql } from '@apollo/client';
 import { getApolloClient } from './client';
-import { FluidObject } from 'gatsby-image';
-
-export interface Image {
-    fluid: FluidObject;
-}
-
-export interface WelcomeBlock {
-    title: string;
-    introWhoWeAre: string;
-    introGetConnected: string;
-    images: Image[];
-}
+import { WelcomeBlock } from '../../models/welcome';
 
 export const mapUrlToFluid = (i: any) => ({
     fluid: { src: i.url },

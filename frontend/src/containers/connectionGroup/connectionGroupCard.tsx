@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import { css } from 'styled-components/macro';
-import { ConnectionGroup } from '../../__stories__/services/connectionGroup.service';
 import dayjs from 'dayjs';
 import typography from '../../components/typography';
 import CardLink from '../../components/cardLink';
 import Male from './male.svg';
 import Female from './female.svg';
+import { ConnectionGroup } from '../../models/connectionGroup';
 
 const boxBase = css`
     background-color: ${({ theme }) => theme.colors.backgroundTransparent};

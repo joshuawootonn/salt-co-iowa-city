@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import { MinistryConnectionBlock } from '../../__stories__/services/ministryConnection.service';
 import MinistryConnectionCard from './ministryConnection';
 
 import { css } from 'styled-components/macro';
+import { MinistryConnectionBlock } from '../../models/ministryConnection';
 
 const styles = {
     root: css`

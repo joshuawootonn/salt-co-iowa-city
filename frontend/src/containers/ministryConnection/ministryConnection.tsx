@@ -2,12 +2,12 @@ import React, { FC, useState } from 'react';
 import { css } from 'styled-components/macro';
 import layout from '../../components/layout';
 import typography from '../../components/typography';
-import { MinistryConnection } from '../../__stories__/services/ministryConnection.service';
 import ImageControl from '../../components/imageControl';
 import CardLink from '../../components/cardLink';
-
+import GatsbyBackgroundImage from 'gatsby-background-image';
 import World from '../../svgs/world.svg';
 import Flag from '../../svgs/flag.svg';
+import { MinistryConnection } from '../../models/ministryConnection';
 
 export type MinistryConnectionBackgroundImage = 'World' | 'Flag';
 
@@ -37,11 +37,12 @@ const styles = {
         margin-right: 25px;
     `,
 
-    image: (url: string) => css`
+    image: css`
         transform: translateX(-170px);
         width: 670px;
         height: 450px;
-        background: url('${url}') no-repeat center;
+        background-repeat: no-repeat;
+        background-position: center;
         background-size: cover;
     `,
     imageControl: css`
@@ -102,14 +103,17 @@ const MinistryConnectionCard: FC<MinistryConnection> = (props) => {
                 <h2 css={styles.title}>{props.acronym || props.title}</h2>
                 <div css={styles.columns}>
                     <div css={styles.imageContainer}>
-                        <div css={styles.image(props.images[currentImage].url)}>
+                        <GatsbyBackgroundImage
+                            fluid={props.images[currentImage].fluid}
+                            css={styles.image}
+                        >
                             <ImageControl
                                 current={currentImage}
                                 images={props.images}
                                 handleChange={setCurrentImage}
                                 css={styles.imageControl}
                             />
-                        </div>
+                        </GatsbyBackgroundImage>
                     </div>
 
                     <div css={styles.textContainer}>

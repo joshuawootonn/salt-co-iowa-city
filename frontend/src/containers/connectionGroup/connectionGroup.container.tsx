@@ -1,10 +1,11 @@
 import React, { FC } from 'react';
-import { ConnectionGroupBlock } from '../../__stories__/services/connectionGroup.service';
+
 import { css } from 'styled-components/macro';
 import layout from '../../components/layout';
 import typography from '../../components/typography';
 import ConnectionGroupCard from './connectionGroupCard';
 import Masonry from 'react-masonry-css';
+import { ConnectionGroupBlock } from '../../models/connectionGroup';
 
 const styles = {
     root: css`

@@ -24,17 +24,17 @@ const styles = {
 export interface TextButtonProps {
     text: string;
     label: string;
-    href: string;
+    to: string;
 }
 
-const WelcomeLink: FC<TextButtonProps> = ({ text, label, href }) => {
-    return (
-        <div css={styles.root}>
-            <p css={styles.text}>{text}</p>
+const WelcomeLink: FC<TextButtonProps> = ({ text, label, ...props }) => (
+    <div css={styles.root}>
+        <p css={styles.text}>{text}</p>
 
-            <TextLink css={styles.button}>{label}</TextLink>
-        </div>
-    );
-};
+        <TextLink destinationType={'internal'} css={styles.button} {...props}>
+            {label}
+        </TextLink>
+    </div>
+);
 
 export default WelcomeLink;

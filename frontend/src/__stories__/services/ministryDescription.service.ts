@@ -1,20 +1,10 @@
 import { gql } from '@apollo/client';
-import { getApolloClient } from '../../apollo/client';
-import { Image } from './welcome.services';
+import { getApolloClient } from './client';
+import {
+    MinistryDescription,
+    MinistryDescriptionBlock,
+} from '../../models/ministryDescription';
 
-export interface MinistryDescription {
-    title: string;
-    description: string;
-    images: Image[];
-    link: {
-        text: string;
-    };
-}
-
-export interface MinistryDescriptionBlock {
-    title: string;
-    ministryDescriptions: MinistryDescription[];
-}
 // TODO: link language here is kinda generic.. maybe rethink this?
 export const ministryDescriptionsBlockQuery = gql`
     query blockMinistryDescriptionsCollection {
