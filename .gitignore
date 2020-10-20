@@ -2,3 +2,7 @@
 frontend/.idea/
 
 frontend/storybook-static/
+
+.idea/inspectionProfiles/
+
+.idea/

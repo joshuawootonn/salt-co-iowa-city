@@ -7,6 +7,7 @@ const isPreview = process.env.CONTENTFUL_HOST === previewHost;
 
 module.exports = {
     plugins: [
+        `gatsby-plugin-styled-components`,
         {
             resolve: `gatsby-source-contentful`,
             options: {
