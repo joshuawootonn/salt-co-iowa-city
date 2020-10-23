@@ -1,9 +1,9 @@
-import React, { FC } from 'react';
-import GatsbyBackgroundImage from 'gatsby-background-image';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import { css } from 'styled-components/macro';
-import typography from '../../components/typography';
-import CardLink from '../../components/cardLink';
 import { Staff } from '../../models/staff';
+import StaffImage from './staffImage';
+import StaffText from './staffText';
+import anime from 'animejs';
 
 const styles = {
     root: css`
@@ -12,55 +12,38 @@ const styles = {
 
         justify-self: center;
     `,
-    image: css`
-        height: 505px;
-        width: 367px;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
-    `,
-    textContainer: css`
-        background-color: ${({ theme }) => theme.colors.backgroundTransparent};
-        transform: translate(20px, -77px);
-    `,
-
-    textBlock1: css`
-        border: 2px solid ${({ theme }) => theme.colors.purple.light};
-        display: flex;
-        flex-direction: column;
-        padding: 15px;
-        h4 {
-            margin-bottom: 6px;
-        }
-    `,
-    textBlock2: css`
-        border: 2px solid ${({ theme }) => theme.colors.purple.light};
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        padding: 15px;
-    `,
 };
 
-const StaffCard: FC<Staff> = (props) => (
-    <div css={styles.root}>
-        <GatsbyBackgroundImage fluid={props.image.fluid} css={styles.image} />
-        <div css={styles.textContainer}>
-            <div css={styles.textBlock1}>
-                <h4 css={typography.card.title}>
-                    {props.firstName} {props.lastName}
-                </h4>
-                <p css={typography.card.text}>{props.about}</p>
-            </div>
-            <div css={styles.textBlock2}>
-                <span css={typography.card.smallText}>{props.position}</span>
-                <CardLink href={'/contact'}>
-                    {props.connectionLinkText}
-                </CardLink>
-            </div>
+const StaffCard: FC<Staff & { i: number }> = (props) => {
+    const animateIn = `staff-card-image-${props.i}`;
+    const animateOut = `staff-card-loader-${props.i}`;
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    useEffect(() => {
+        anime({
+            targets: `[data-animation=${animateIn}]`,
+            translateX: ['100%', '0%'],
+            duration: 400,
+            easing: 'easeInOutQuart',
+            delay: anime.stagger(200),
+        });
+    }, []);
+
+    return (
+        <div css={styles.root}>
+            <StaffImage
+                loaderAnimateTag={animateOut}
+                contentAnimateTag={animateIn}
+                setIsLoaded={setIsLoaded}
+                fluid={props.image.fluid}
+            />
+            <StaffText
+                isLoaded={isLoaded}
+                contentAnimateTag={animateIn}
+                {...props}
+            />
         </div>
-    </div>
-);
+    );
+};
 
 export default StaffCard;
