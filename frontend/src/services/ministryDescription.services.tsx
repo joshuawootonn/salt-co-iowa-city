@@ -18,6 +18,7 @@ export const useMinistryDescriptionBlock = (): MinistryDescriptionBlock => {
                                 lastName
                                 email
                                 position
+                                id
                             }
                             text
                         }

@@ -6,6 +6,7 @@ export interface Staff {
     position: string;
     email: string;
     about: string;
+    id: string;
     connectionLinkText: string;
     image: Image;
 }

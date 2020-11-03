@@ -7,7 +7,8 @@ export const contactBlockQuery = gql`
         blockContactCollection(limit: 1, preview: true) {
             items {
                 title
-                description
+                confirmationTitle
+                errorTitle
                 contactsCollection {
                     items {
                         firstName

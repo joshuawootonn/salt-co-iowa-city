@@ -30,16 +30,19 @@ const styles = {
     `,
 };
 
-const StaffContainer: FC<StaffBlock> = (props) => (
-    <div css={styles.root} {...props}>
-        <h2 css={styles.title}>{props.title}</h2>
-        <div css={styles.staffContainer}>
-            {props.staff.map((s, i) => (
-                <StaffCard key={i} {...s} />
-            ))}
+const StaffContainer: FC<StaffBlock> = (props) => {
+    console.log(props);
+    return (
+        <div css={styles.root} {...props}>
+            <h2 css={styles.title}>{props.title}</h2>
+            <div css={styles.staffContainer}>
+                {props.staff.map((s, i) => (
+                    <StaffCard key={i} {...s} />
+                ))}
+            </div>
+            <Hand css={styles.imageBackground} />
         </div>
-        <Hand css={styles.imageBackground} />
-    </div>
-);
+    );
+};
 
 export default StaffContainer;

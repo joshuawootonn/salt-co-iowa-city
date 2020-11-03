@@ -41,6 +41,22 @@ const typography = {
             text-decoration: underline;
         `,
     },
+
+    input: css`
+        font-family: 'Montserrat', Arial, sans-serif;
+        font-size: 17px;
+        color: ${({ theme }) => theme.colors.purple.light};
+    `,
+    select: css`
+        font-family: 'Montserrat', Arial, sans-serif;
+        font-size: 17px;
+        color: ${({ theme }) => theme.colors.purple.light};
+    `,
+    textArea: css`
+        font-family: 'Montserrat', Arial, sans-serif;
+        font-size: 17px;
+        color: ${({ theme }) => theme.colors.purple.light};
+    `,
 };
 
 export default typography;

@@ -8,12 +8,14 @@ export const useContactBlock = (): ContactBlock => {
             allContentfulBlockContact(limit: 1) {
                 nodes {
                     title
-                    description
+                    confirmationTitle
+                    errorTitle
                     contacts {
                         firstName
                         lastName
                         email
                         position
+                        id
                         about {
                             about
                         }

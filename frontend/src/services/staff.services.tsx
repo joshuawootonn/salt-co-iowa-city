@@ -17,6 +17,7 @@ export const useStaffBlock = (): StaffBlock => {
                         lastName
                         email
                         position
+                        id
                         connectionLinkText
                         about {
                             about
