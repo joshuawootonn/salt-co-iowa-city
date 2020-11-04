@@ -1,5 +1,5 @@
 import { css } from 'styled-components/macro';
-import typography from '../../components/typography';
+import typography from '../../../components/typography';
 
 export default {
     input: css`

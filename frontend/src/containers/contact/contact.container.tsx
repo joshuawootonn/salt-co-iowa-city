@@ -1,102 +1,49 @@
-import React, { FC } from 'react';
-import { css } from 'styled-components/macro';
-import typography from '../../components/typography';
-
-import Dove from './dove.svg';
-import layout from '../../components/layout';
+import React, { FC, useState } from 'react';
 import { ContactBlock } from '../../models/contact';
-import { Staff } from '../../models/staff';
-import ContactSelect from './contactSelect';
-import ReactSelect from 'react-select';
-import Input from './input';
-import TextArea from './textArea';
-import BlockArrow from '../../svgs/blockArrow.svg';
-import SubmitButton from './submitButton';
+import { ContactForm } from './formCompositions/initialForm';
+import Contact from './contact';
 
-const styles = {
-    root: css`
-        ${layout.container};
-        margin-bottom: 0;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    `,
-    title: css`
-        ${typography.title1};
-        color: ${({ theme }) => theme.colors.blue.medium};
-        opacity: 40%;
-        font-size: 200px;
-        width: 100%;
+export type FormState = 'initial' | 'loading' | 'error' | 'success';
 
-        white-space: nowrap;
+const ContactContainer: FC<ContactBlock> = (props) => {
+    const [formState, setFormState] = useState<FormState>('initial');
 
-        transform: translateX(-200px);
-    `,
-    content: css`
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-    `,
-    textColumn: css`
-        ${layout.container};
+    const handleSubmit = (values: ContactForm) => {
+        console.log(values);
+        const isProd = process.env.NODE_ENV === 'production';
+        const endpoint: string = isProd
+            ? (process.env.EMAIL_API_ENDPOINT as string)
+            : 'http://localhost:3000/';
 
-        h2 {
-            ${typography.title1};
+        const derivedValues = {
+            ...values,
+            to: isProd
+                ? props.contacts.find((s) => s.id === values.to).email
+                : 'joshuawootonn@gmail.com',
+        };
 
-            color: ${({ theme }) => theme.colors.blue.light};
-            font-size: 60px;
-            transform: translateY(-20px);
-        }
-    `,
-    imageBackground: css`
-        position: absolute;
-        height: 50vh;
-        width: auto;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: -2;
-    `,
-    formColumn: css`
-        width: 100%;
+        console.log(derivedValues);
 
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
+        fetch(endpoint, {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(derivedValues),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    };
 
-        & > * {
-            margin-bottom: 20px;
-        }
-    `,
+    return (
+        <Contact {...props} handleSubmit={handleSubmit} formState={formState} />
+    );
 };
-
-const ContactContainer: FC<ContactBlock> = ({ title, contacts }) => (
-    <div css={styles.root}>
-        <h1 css={styles.title}>{title}</h1>
-        <div css={styles.content}>
-            <div css={styles.textColumn}>
-                <h2>How can we help?</h2>
-            </div>
-            <div css={styles.formColumn}>
-                <Input placeholder="Name" />
-                <Input placeholder="Email" />
-                <ContactSelect
-                    options={contacts.map((s: Staff) => ({
-                        ...s,
-                        value: s.id,
-                        label: `${s.firstName} ${s.lastName} - ${s.position}`,
-                    }))}
-                />
-                <Input placeholder="Subject matter" />
-                <TextArea placeholder="Message" />
-                <SubmitButton />
-            </div>
-        </div>
-        <Dove css={styles.imageBackground} />
-    </div>
-);
 
 export default ContactContainer;
