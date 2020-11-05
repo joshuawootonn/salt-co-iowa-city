@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Field, Form, Formik, FormikProps } from 'formik';
+import { Field, Form } from 'formik';
 import Input from '../formElements/input';
 import ContactSelect from '../formElements/contactSelect';
 import { Staff } from '../../../models/staff';
@@ -7,100 +7,106 @@ import TextArea from '../formElements/textArea';
 import SubmitButton from '../formElements/submitButton';
 
 import { css } from 'styled-components/macro';
-import layout from '../../../components/layout';
-import typography from '../../../components/typography';
 import { ContactBlock } from '../../../models/contact';
 import SubTitle from '../formElements/subTitle';
 import Title from '../formElements/title';
 import compositionStyles from './compositionStyles';
+import layout from '../../../components/layout';
+import Dove from '../formElements/dove.svg';
+
+const doveBase = css`
+    position: absolute;
+    height: 200px;
+    width: auto;
+    z-index: -2;
+`;
 
 const styles = {
     content: css`
+        ${layout.container};
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: center;
+        justify-content: space-around;
+        width: 100%;
     `,
     formColumn: css`
-        width: 100%;
+        width: 50%;
 
         display: flex;
         flex-direction: column;
         align-items: flex-end;
-
-        & > * {
-            margin-bottom: 20px;
-        }
     `,
+
+    subTitleContainer: css`
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        margin-bottom: 100px;
+    `,
+    doves: [
+        css`
+            ${doveBase};
+            right: -50px;
+            top: 0;
+            height: 170px;
+        `,
+        css`
+            ${doveBase};
+            top: 35%;
+            left: -100px;
+            transform: scale(-1, 1);
+        `,
+        css`
+            ${doveBase};
+            top: 70%;
+            right: 50px;
+            height: 230px;
+        `,
+    ],
 };
 
-export interface ContactForm {
-    name: string;
-    email: string;
-    subject: string;
-    message: string;
-    to: Staff | null;
-}
-
-export const initialContactForm: ContactForm = {
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-    to: null,
-};
-
-const InitialForm: FC<
-    ContactBlock & { handleSubmit: (Contact: ContactForm) => void }
-> = ({ title, contacts, handleSubmit }) => {
+const InitialForm: FC<ContactBlock> = ({ title, contacts }) => {
     return (
         <div css={compositionStyles.root}>
             <Title>{title}</Title>
             <div css={styles.content}>
-                <SubTitle>How can we help?</SubTitle>
+                <div css={styles.subTitleContainer}>
+                    {styles.doves.map((doveStyle, i) => (
+                        <Dove css={doveStyle} key={i} />
+                    ))}
+                    <SubTitle>How can we help?</SubTitle>
+                </div>
 
-                <Formik<ContactForm>
-                    initialValues={initialContactForm}
-                    onSubmit={handleSubmit}
-                >
-                    {(props: FormikProps<any>) => (
-                        <Form css={styles.formColumn}>
-                            <Field
-                                name="name"
-                                component={Input}
-                                placeholder="Name"
-                            />
-                            <Field
-                                name="email"
-                                component={Input}
-                                placeholder="Email"
-                            />
+                <Form css={styles.formColumn}>
+                    <Field
+                        component={ContactSelect}
+                        name="to"
+                        placeholder="Who you want to contact"
+                        options={contacts.map((s: Staff) => ({
+                            ...s,
+                            value: s.id,
+                            label: `${s.firstName} ${s.lastName} - ${s.position}`,
+                        }))}
+                    />
+                    <Field name="name" component={Input} placeholder="Name" />
+                    <Field name="email" component={Input} placeholder="Email" />
 
-                            <Field
-                                component={ContactSelect}
-                                name="to"
-                                placeholder="Who you want to contact"
-                                options={contacts.map((s: Staff) => ({
-                                    ...s,
-                                    value: s.id,
-                                    label: `${s.firstName} ${s.lastName} - ${s.position}`,
-                                }))}
-                            />
-                            <Field
-                                name="subject"
-                                component={Input}
-                                placeholder="Subject"
-                            />
-                            <Field
-                                name="message"
-                                component={TextArea}
-                                placeholder="Message"
-                            />
+                    <Field
+                        name="subject"
+                        component={Input}
+                        placeholder="Subject"
+                    />
+                    <Field
+                        name="message"
+                        component={TextArea}
+                        placeholder="Message"
+                    />
 
-                            <SubmitButton />
-                        </Form>
-                    )}
-                </Formik>
+                    <SubmitButton />
+                </Form>
             </div>
         </div>
     );

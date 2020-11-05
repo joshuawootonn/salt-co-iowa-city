@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-
 import { css } from 'styled-components/macro';
 import typography from '../../../components/typography';
 
@@ -10,6 +9,9 @@ const styles = {
         color: ${({ theme }) => theme.colors.blue.light};
         font-size: 60px;
         transform: translateY(-20px);
+
+        width: 400px;
+        flex-shrink: 0;
     `,
 };
 

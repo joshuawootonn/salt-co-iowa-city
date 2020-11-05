@@ -16,8 +16,8 @@ const styles = {
         max-width: 1140px;
         position: relative;
 
-        border-top: 2px solid ${({ theme }) => theme.colors.purple.medium};
-        border-right: 2px solid ${({ theme }) => theme.colors.purple.medium};
+        border-top: 2px solid ${({ theme }) => theme.colors.blue.medium};
+        border-right: 2px solid ${({ theme }) => theme.colors.blue.medium};
 
         grid-template-columns: repeat(3, minmax(0, 1fr));
         grid-template-rows: repeat(2, 1fr);

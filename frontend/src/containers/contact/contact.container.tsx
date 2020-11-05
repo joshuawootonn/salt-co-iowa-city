@@ -1,48 +1,66 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { ContactBlock } from '../../models/contact';
-import { ContactForm } from './formCompositions/initialForm';
 import Contact from './contact';
+import { Formik, FormikProps } from 'formik';
+import { contactValidationSchema } from './validation';
+import {
+    ContactForm,
+    ContactRequest,
+    FinalContactForm,
+    initialContactForm,
+} from './types';
 
-export type FormState = 'initial' | 'loading' | 'error' | 'success';
+const isProd = process.env.NODE_ENV === 'production';
+
+const getEndpoint = () =>
+    isProd
+        ? (process.env.EMAIL_API_ENDPOINT as string)
+        : 'http://localhost:3000/';
+
+const mapValidStateToRequest = (values: FinalContactForm): ContactRequest => ({
+    name: values.name,
+    email: values.email,
+    message: values.message,
+    subject: values.subject,
+    // TODO:PROD
+    // to: values.to.email,
+    to: 'joshuawootonn@gmail.com',
+});
 
 const ContactContainer: FC<ContactBlock> = (props) => {
-    const [formState, setFormState] = useState<FormState>('initial');
-
-    const handleSubmit = (values: ContactForm) => {
-        console.log(values);
-        const isProd = process.env.NODE_ENV === 'production';
-        const endpoint: string = isProd
-            ? (process.env.EMAIL_API_ENDPOINT as string)
-            : 'http://localhost:3000/';
-
-        const derivedValues = {
-            ...values,
-            to: isProd
-                ? props.contacts.find((s) => s.id === values.to).email
-                : 'joshuawootonn@gmail.com',
-        };
-
-        console.log(derivedValues);
-
-        fetch(endpoint, {
+    const handleSubmit = (
+        values: FinalContactForm,
+        { setFieldValue }: FormikProps<ContactForm>
+    ) => {
+        setFieldValue('formUIPhase', 'loading');
+        fetch(getEndpoint(), {
             method: 'POST',
             mode: 'cors',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(derivedValues),
+            body: JSON.stringify(mapValidStateToRequest(values)),
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log('Success:', data);
+                setFieldValue('formUIPhase', 'success');
             })
             .catch((error) => {
-                console.error('Error:', error);
+                setFieldValue('formUIPhase', 'error');
             });
     };
 
     return (
-        <Contact {...props} handleSubmit={handleSubmit} formState={formState} />
+        <Formik<ContactForm>
+            initialValues={initialContactForm}
+            onSubmit={handleSubmit as any}
+            validationSchema={contactValidationSchema}
+            isInitialValid={false}
+        >
+            {(formikProps: FormikProps<ContactForm>) => (
+                <Contact {...props} values={formikProps.values} />
+            )}
+        </Formik>
     );
 };
 

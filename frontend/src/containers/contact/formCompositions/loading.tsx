@@ -1,5 +1,4 @@
 import React from 'react';
-import typography from '../../../components/typography';
 import compositionStyles from './compositionStyles';
 import SubTitle from '../formElements/subTitle';
 

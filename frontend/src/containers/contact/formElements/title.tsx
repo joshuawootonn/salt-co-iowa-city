@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-
 import { css } from 'styled-components/macro';
 import typography from '../../../components/typography';
 

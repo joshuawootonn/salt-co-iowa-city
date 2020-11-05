@@ -1,7 +1,6 @@
 import React from 'react';
 import BlockArrow from '../../../svgs/blockArrow.svg';
 import styles from './styles';
-
 import { css } from 'styled-components/macro';
 
 const SubmitButton = () => {

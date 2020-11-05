@@ -14,7 +14,7 @@ export interface TextLinkProps {
 }
 
 const Link = styled((props) => <GatsbyLink {...props} />)`
-    color: ${({ theme }) => theme.colors.purple.light};
+    color: ${({ theme }) => theme.colors.blue.light};
 
     cursor: pointer;
     user-select: none;

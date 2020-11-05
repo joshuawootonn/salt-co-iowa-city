@@ -2,6 +2,18 @@ import { css } from 'styled-components/macro';
 import typography from '../../../components/typography';
 
 export default {
+    elementRoot: css`
+        width: 100%;
+        & > span {
+            color: ${({ theme }) => theme.colors.yellow.medium};
+            display: inline-block;
+            min-height: 40px;
+            padding: 10px;
+        }
+        display: flex;
+        flex-direction: column;
+    `,
+
     input: css`
         ${typography.input};
         padding: 8.5px;
@@ -19,6 +31,13 @@ export default {
             outline: none;
             z-index: 1;
             border: 2px solid ${({ theme }) => theme.colors.blue.medium};
+        }
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover,
+        &:-webkit-autofill:focus,
+        &:-webkit-autofill:active {
+            transition: background-color 5000s;
+            -webkit-text-fill-color: #fff !important;
         }
     `,
 
@@ -45,14 +64,15 @@ export default {
             }
 
             .${baseClassName}__menu {
-                background-color: transparent;
-
+                background: ${({ theme }) =>
+                    theme.colors.backgroundTransparent};
                 border: 2px solid ${({ theme }) => theme.colors.blue.lightest};
                 z-index: 10000 !important;
                 border-radius: 0;
 
                 .${baseClassName}__menu-list {
                     .${baseClassName}__option {
+                        cursor: pointer;
                         ${typography.select};
                         background-color: ${({ theme }) =>
                             theme.colors.backgroundTransparent};
@@ -81,6 +101,12 @@ export default {
             &::before {
                 content: '   ';
             }
+        }
+
+        &:focus {
+            outline: none;
+            z-index: 1;
+            border: 2px solid ${({ theme }) => theme.colors.blue.medium};
         }
     `,
     button: css`

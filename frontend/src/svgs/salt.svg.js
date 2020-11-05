@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { css } from 'styled-components/macro';
 
 const styles = {
@@ -6,7 +6,7 @@ const styles = {
         fill: none;
         path {
             fill: ${({ theme, color }) =>
-                !color ? theme.colors.purple.medium : color};
+                !color ? theme.colors.blue.medium : color};
         }
     `,
 };
