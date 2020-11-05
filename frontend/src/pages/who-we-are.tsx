@@ -1,5 +1,5 @@
 import { css } from 'styled-components/macro';
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import ThemeContext, { primaryTheme } from '../context/themeContext';
 import HeaderContainer from '../containers/header';
 import IntroContainer from '../containers/intro';
@@ -11,6 +11,7 @@ import { useMinistryDescriptionBlock } from '../services/ministryDescription.ser
 import { useStaffBlock } from '../services/staff.services';
 import StaffContainer from '../containers/staff';
 import { useFooterBlock } from '../services/footer.services';
+import { useTitleScoller } from '../components/title';
 
 const styles = {
     intro: css`
@@ -29,6 +30,8 @@ const WhoWeAre: FC = () => {
     const ministryDescriptionBlock = useMinistryDescriptionBlock();
     const staffBlock = useStaffBlock();
     const footerBlock = useFooterBlock();
+
+    useTitleScoller();
 
     return (
         <ThemeContext theme={primaryTheme}>

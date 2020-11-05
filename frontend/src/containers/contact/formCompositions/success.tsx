@@ -2,10 +2,9 @@ import React, { FC } from 'react';
 import Title from '../formElements/title';
 import compositionStyles from './compositionStyles';
 import SubTitle from '../formElements/subTitle';
-import { Staff } from '../../../models/staff';
-
 import { css } from 'styled-components/macro';
 import Dove from '../formElements/dove.svg';
+import { ContactOption } from '../contact';
 
 const styles = {
     subTitle: css`
@@ -15,7 +14,7 @@ const styles = {
 };
 
 export interface SuccessProps {
-    to: Staff;
+    to: ContactOption;
 }
 
 const Success: FC<SuccessProps> = ({ to }) => {
@@ -26,7 +25,10 @@ const Success: FC<SuccessProps> = ({ to }) => {
                 <Dove css={doveStyle} key={i} />
             ))}
             <SubTitle css={styles.subTitle}>
-                {to.firstName} will reach out to you shortly
+                {to.__typename === 'ContentfulStaff'
+                    ? to.firstName
+                    : to.leaders}{' '}
+                will reach out to you shortly
             </SubTitle>
         </div>
     );

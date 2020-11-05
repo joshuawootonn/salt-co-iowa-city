@@ -4,7 +4,10 @@ import { MinistryDescriptionBlock } from '../models/ministryDescription';
 export const useMinistryDescriptionBlock = (): MinistryDescriptionBlock => {
     const raw = useStaticQuery(graphql`
         query blockMinistryDescription {
-            allContentfulBlockMinistryDescriptions(limit: 1) {
+            allContentfulBlockMinistryDescriptions(
+                limit: 1
+                sort: { fields: createdAt, order: ASC }
+            ) {
                 nodes {
                     title
                     items {
@@ -14,11 +17,18 @@ export const useMinistryDescriptionBlock = (): MinistryDescriptionBlock => {
                         }
                         link {
                             reference {
-                                firstName
-                                lastName
-                                email
-                                position
-                                id
+                                __typename
+                                ... on ContentfulBlockConnectionGroups {
+                                    id
+                                    title
+                                }
+                                ... on ContentfulStaff {
+                                    firstName
+                                    lastName
+                                    email
+                                    position
+                                    id
+                                }
                             }
                             text
                         }

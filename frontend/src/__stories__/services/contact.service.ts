@@ -15,6 +15,7 @@ export const contactBlockQuery = gql`
                         lastName
                         email
                         position
+                        __typename
                     }
                 }
             }
@@ -33,7 +34,7 @@ export const getContactBlock = async (): Promise<ContactBlock> => {
 
     return {
         title: rawBlock.title,
-        description: rawBlock.description,
+
         contacts: rawBlock.contactsCollection.items,
     };
 };

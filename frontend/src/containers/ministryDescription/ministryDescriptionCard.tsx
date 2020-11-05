@@ -5,6 +5,8 @@ import typography from '../../components/typography';
 import CardLink from '../../components/cardLink';
 import BackgroundImage from 'gatsby-background-image';
 import { MinistryDescription } from '../../models/ministryDescription';
+import Title from '../../components/title';
+import { mapReferenceToLink } from '../../helpers/link';
 
 const styles = {
     root: css`
@@ -18,6 +20,17 @@ const styles = {
         background-position: center;
 
         background-size: cover;
+    `,
+    titleContainer: css`
+        position: absolute;
+
+        top: -50px;
+        left: 50px;
+        z-index: 10;
+
+        h2 {
+            color: ${({ theme }) => theme.colors.blue.medium};
+        }
     `,
     textContainer: css`
         background-color: ${({ theme }) => theme.colors.backgroundTransparent};
@@ -41,6 +54,8 @@ const styles = {
     `,
     textBlock2: css`
         border: 2px solid ${({ theme }) => theme.colors.purple.light};
+
+        transform: translateY(-2px);
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -57,26 +72,29 @@ const styles = {
 
 const MinistryDescriptionCard: FC<MinistryDescription> = (props) => {
     const [currentImage, setCurrentImage] = useState(0);
-
     return (
         <div css={styles.root}>
             <BackgroundImage
                 css={styles.image}
                 fluid={props.images[currentImage].fluid}
-            ></BackgroundImage>
+            />
             <ImageControl
                 current={currentImage}
                 images={props.images}
                 handleChange={setCurrentImage}
                 css={styles.imageControl}
             />
+            <div css={styles.titleContainer}>
+                <Title variant="small">{props.title}</Title>
+            </div>
             <div css={styles.textContainer}>
                 <div css={styles.textBlock1}>
-                    <h4 css={typography.card.title}>{props.title}</h4>
                     <p css={typography.card.text}>{props.description}</p>
                 </div>
                 <div css={styles.textBlock2}>
-                    <CardLink href={'/contact'}>{props.link.text}</CardLink>
+                    <CardLink to={mapReferenceToLink(props.link.reference)}>
+                        {props.link.text}
+                    </CardLink>
                 </div>
             </div>
         </div>

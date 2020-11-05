@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import { css } from 'styled-components/macro';
 import layout from '../../components/layout';
-import typography from '../../components/typography';
 import MinistryDescriptionCard from './ministryDescriptionCard';
 import { MinistryDescriptionBlock } from '../../models/ministryDescription';
 
@@ -10,7 +9,6 @@ const styles = {
         ${layout.container};
     `,
     title: css`
-        ${typography.title2};
         margin-bottom: 40px;
     `,
     itemsContainer: css`
@@ -24,10 +22,8 @@ const styles = {
 };
 
 const MinistryDescriptionContainer: FC<MinistryDescriptionBlock> = (props) => {
-    console.log(props);
     return (
         <div css={styles.root} {...props}>
-            <h2 css={styles.title}>{props.title}</h2>
             <div css={styles.itemsContainer}>
                 {props.ministryDescriptions.map((s, i) => (
                     <MinistryDescriptionCard key={i} {...s} />

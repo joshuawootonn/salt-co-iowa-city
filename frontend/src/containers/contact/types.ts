@@ -1,4 +1,5 @@
 import { Staff } from '../../models/staff';
+import { ConnectionGroup } from '../../models/connectionGroup';
 
 export type FormUIPhase = 'initial' | 'loading' | 'error' | 'success';
 
@@ -7,8 +8,7 @@ export type InitialContactForm = {
     email: string;
     subject: string;
     message: string;
-    to: Staff | null;
-
+    to: Staff | null | undefined | ConnectionGroup;
     formUIPhase: 'initial';
 };
 
@@ -17,7 +17,7 @@ export type FinalContactForm = {
     email: string;
     subject: string;
     message: string;
-    to: Staff;
+    to: Staff | ConnectionGroup;
     formUIPhase: 'loading' | 'error' | 'success';
 };
 

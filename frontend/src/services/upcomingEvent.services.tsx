@@ -9,7 +9,10 @@ export const upcomingEventGatsbyTransform = (i: any): UpcomingEvent => ({
 export const useUpcomingEventBlock = (): UpcomingEventBlock => {
     const raw = useStaticQuery(graphql`
         query blockUpcomingEvents {
-            allContentfulBlockUpcomingEvents(limit: 1) {
+            allContentfulBlockUpcomingEvents(
+                limit: 1
+                sort: { fields: createdAt, order: ASC }
+            ) {
                 nodes {
                     title
                     items {
@@ -26,6 +29,21 @@ export const useUpcomingEventBlock = (): UpcomingEventBlock => {
                         }
                         contact {
                             text
+                            reference {
+                                __typename
+                                __typename
+                                ... on ContentfulBlockConnectionGroups {
+                                    id
+                                    title
+                                }
+                                ... on ContentfulStaff {
+                                    firstName
+                                    lastName
+                                    email
+                                    position
+                                    id
+                                }
+                            }
                         }
                         location {
                             text

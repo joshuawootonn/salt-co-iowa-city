@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import { css } from 'styled-components/macro';
 import layout from '../../components/layout';
-import typography from '../../components/typography';
 import EventCard from './eventCard';
 import GatsbyBackgroundImage from 'gatsby-background-image';
-import { UpcomingEventBlock } from "../../models/upcomingEvent"
+import { UpcomingEventBlock } from '../../models/upcomingEvent';
+import Title from '../../components/title';
 
 const styles = {
     root: css`
@@ -14,7 +14,6 @@ const styles = {
         ${layout.container};
     `,
     title: css`
-        ${typography.title2};
         margin-bottom: 50px;
     `,
     itemsContainer: css`
@@ -56,7 +55,9 @@ const styles = {
 const UpcomingEventsContainer: FC<UpcomingEventBlock> = (props) => (
     <div css={styles.root} {...props}>
         <div css={styles.titleContainer}>
-            <h2 css={styles.title}>{props.title}</h2>
+            <Title variant="small" css={styles.title}>
+                {props.title}
+            </Title>
         </div>
 
         <div css={styles.itemsContainer}>

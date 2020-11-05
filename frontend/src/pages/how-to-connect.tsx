@@ -13,7 +13,7 @@ import { useUpcomingEventBlock } from '../services/upcomingEvent.services';
 import { useConnectionGroupBlock } from '../services/connectionGroup.services';
 import { useMinistryConnectionBlock } from '../services/ministryConnection.services';
 import { useFooterBlock } from '../services/footer.services';
-import AnnouncementContainer from '../containers/announcement';
+import { useTitleScoller } from '../components/title';
 
 const styles = {
     intro: css`
@@ -36,6 +36,8 @@ const HowToConnect: FC = () => {
     const connectionGroupBlock = useConnectionGroupBlock();
     const ministryConnectionsBlock = useMinistryConnectionBlock();
     const footerBlock = useFooterBlock();
+
+    useTitleScoller();
 
     return (
         <ThemeContext theme={primaryTheme}>

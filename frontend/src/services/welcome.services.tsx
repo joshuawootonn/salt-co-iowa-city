@@ -4,7 +4,10 @@ import { WelcomeBlock } from '../models/welcome';
 export const useWelcomeBlock = (): WelcomeBlock => {
     const welcomeBlock = useStaticQuery(graphql`
         query blockWelcome {
-            allContentfulBlockWelcome(limit: 1) {
+            allContentfulBlockWelcome(
+                limit: 1
+                sort: { fields: createdAt, order: ASC }
+            ) {
                 nodes {
                     title
                     introWhoWeAre

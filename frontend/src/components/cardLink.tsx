@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { css } from 'styled-components/macro';
 import typography from './typography';
+import { Link } from 'gatsby';
 
 const styles = {
     root: css`
@@ -12,15 +13,15 @@ const styles = {
 };
 
 export interface CardLinkProps {
-    href?: string;
+    to?: string;
     target?: string;
     rel?: string;
 }
 
 const CardLink: FC<CardLinkProps> = ({ children, ...props }) => (
-    <a css={styles.root} {...props}>
+    <Link css={styles.root as any} {...props}>
         {children}
-    </a>
+    </Link>
 );
 
 export default CardLink;

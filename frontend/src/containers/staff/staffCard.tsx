@@ -55,7 +55,7 @@ const StaffCard: FC<Staff> = (props) => (
             </div>
             <div css={styles.textBlock2}>
                 <span css={typography.card.smallText}>{props.position}</span>
-                <CardLink href={`/contact?id=${props.id}`}>
+                <CardLink to={`/contact?id=${props.id}`}>
                     {props.connectionLinkText}
                 </CardLink>
             </div>

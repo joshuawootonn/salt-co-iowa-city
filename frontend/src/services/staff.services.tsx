@@ -9,7 +9,10 @@ export const staffGatsbyTransform = (i: any): Staff => ({
 export const useStaffBlock = (): StaffBlock => {
     const raw = useStaticQuery(graphql`
         query blockStaff {
-            allContentfulBlockStaff(limit: 1) {
+            allContentfulBlockStaff(
+                limit: 1
+                sort: { fields: createdAt, order: ASC }
+            ) {
                 nodes {
                     title
                     items {
@@ -27,6 +30,7 @@ export const useStaffBlock = (): StaffBlock => {
                                 ...GatsbyContentfulFluid_withWebp
                             }
                         }
+                        __typename
                     }
                 }
             }

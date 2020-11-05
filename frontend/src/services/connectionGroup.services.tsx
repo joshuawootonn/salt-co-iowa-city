@@ -4,13 +4,15 @@ import { ConnectionGroupBlock } from '../models/connectionGroup';
 export const useConnectionGroupBlock = (): ConnectionGroupBlock => {
     const raw = useStaticQuery(graphql`
         query blockConnectionGroups {
-            allContentfulBlockConnectionGroups(limit: 1) {
+            allContentfulBlockConnectionGroups(
+                sort: { fields: createdAt, order: ASC }
+                limit: 1
+            ) {
                 nodes {
                     title
                     description {
                         description
                     }
-
                     items {
                         leaders
                         description {
@@ -18,7 +20,12 @@ export const useConnectionGroupBlock = (): ConnectionGroupBlock => {
                         }
                         gender
                         dateTime
+                        email
+                        connectionLinkText
+                        __typename
+                        id
                     }
+                    __typename
                 }
             }
         }

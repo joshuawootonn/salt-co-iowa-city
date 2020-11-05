@@ -3,8 +3,8 @@ import { css } from 'styled-components/macro';
 import Title from '../formElements/title';
 import compositionStyles from './compositionStyles';
 import SubTitle from '../formElements/subTitle';
-import { Staff } from '../../../models/staff';
 import Dove from '../formElements/dove.svg';
+import { ContactOption } from '../contact';
 
 const styles = {
     subTitle: css`
@@ -13,7 +13,7 @@ const styles = {
     `,
 };
 export interface ErrorProps {
-    to: Staff;
+    to: ContactOption;
 }
 
 const Error: FC<ErrorProps> = ({ to }) => {
@@ -24,8 +24,11 @@ const Error: FC<ErrorProps> = ({ to }) => {
                 <Dove css={doveStyle} key={i} />
             ))}
             <SubTitle css={styles.subTitle}>
-                Something went wrong. Reach {to.firstName} directly at{' '}
-                {to.email}
+                Something went wrong. Reach{' '}
+                {to.__typename === 'ContentfulStaff'
+                    ? to.firstName
+                    : to.leaders}{' '}
+                directly at {to.email}
             </SubTitle>
         </div>
     );

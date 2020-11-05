@@ -4,7 +4,10 @@ import { AnnouncementBlock } from '../models/announcement';
 export const useAnnouncementBlock = (): AnnouncementBlock => {
     const raw = useStaticQuery(graphql`
         query blockAnnouncement {
-            allContentfulBlockAnnouncements(limit: 1) {
+            allContentfulBlockAnnouncements(
+                limit: 1
+                sort: { fields: createdAt, order: ASC }
+            ) {
                 nodes {
                     title
                     links {

@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import InitialForm from './formCompositions/initialForm';
 import { ContactBlock } from '../../models/contact';
 import { css } from 'styled-components/macro';
 import Loading from './formCompositions/loading';
@@ -7,6 +6,10 @@ import Error from './formCompositions/error';
 import Success from './formCompositions/success';
 import { Staff } from '../../models/staff';
 import { ContactForm } from './types';
+import { ConnectionGroup } from '../../models/connectionGroup';
+import InitialForm from './formCompositions/initialForm';
+import { ConnectionGroupOption, StaffOption } from './contact.container';
+import { ConnectionOptions } from 'tls';
 
 const styles = {
     root: css`
@@ -19,9 +22,12 @@ const styles = {
     `,
 };
 
+export type ContactOption = ConnectionGroupOption | StaffOption;
+
 const Contact: FC<
     ContactBlock & {
         values: ContactForm;
+        contactOptions: ContactOption[];
     }
 > = (props) => {
     return (
@@ -31,10 +37,10 @@ const Contact: FC<
             )}
             {props.values.formUIPhase === 'loading' && <Loading />}
             {props.values.formUIPhase === 'success' && (
-                <Success to={props.values.to} />
+                <Success to={props.values.to as ContactOption} />
             )}
             {props.values.formUIPhase === 'error' && (
-                <Error to={props.values.to as Staff} />
+                <Error to={props.values.to as ContactOption} />
             )}
         </div>
     );

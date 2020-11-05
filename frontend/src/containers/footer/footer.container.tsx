@@ -5,6 +5,7 @@ import LinkedList from './linkedList';
 import BigLinks from './bigLinks';
 import SocialLinks from './socialLinks';
 import { FooterBlock } from '../../models/footer';
+import slugify from '../../helpers/slugify';
 
 const styles = {
     root: css`
@@ -58,7 +59,11 @@ const styles = {
     `,
 };
 
-const FooterContainer: FC<FooterBlock> = ({ externalLinks }) => (
+const FooterContainer: FC<FooterBlock> = ({
+    externalLinks,
+    howToConnectLinks,
+    whoWeAreLinks,
+}) => (
     <div css={styles.root}>
         <div css={styles.logoContainer}>
             <Salt css={styles.logo} />
@@ -67,8 +72,10 @@ const FooterContainer: FC<FooterBlock> = ({ externalLinks }) => (
         <LinkedList
             links={[
                 { label: 'Who we Are', to: '/who-we-are' },
-                { label: 'Ministries', to: '/who-we-are' },
-                { label: 'Staff', to: '/who-we-are' },
+                ...whoWeAreLinks.map((link: string) => ({
+                    label: link,
+                    to: `/who-we-are/#${slugify(link)}`,
+                })),
             ]}
         />
         <BigLinks links={externalLinks} css={styles.bigLinks} />
@@ -76,10 +83,10 @@ const FooterContainer: FC<FooterBlock> = ({ externalLinks }) => (
         <LinkedList
             links={[
                 { label: 'Get Connected', to: '/how-to-connect' },
-                { label: 'Events', to: '/how-to-connect' },
-                { label: 'Connection Groups', to: '/how-to-connect' },
-                { label: 'IFC', to: '/how-to-connect' },
-                { label: 'Freshman Church', to: '/how-to-connect' },
+                ...howToConnectLinks.map((link: string) => ({
+                    label: link,
+                    to: `/how-to-connect/#${slugify(link)}`,
+                })),
             ]}
         />
 

@@ -9,6 +9,7 @@ export interface Staff {
     id: string;
     connectionLinkText: string;
     image: Image;
+    __typename: 'ContentfulStaff';
 }
 
 export interface StaffBlock {

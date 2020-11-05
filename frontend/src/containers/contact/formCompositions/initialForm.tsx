@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Field, Form } from 'formik';
 import Input from '../formElements/input';
-import ContactSelect from '../formElements/contactSelect';
+import SelectTo from '../formElements/selectTo';
 import { Staff } from '../../../models/staff';
 import TextArea from '../formElements/textArea';
 import SubmitButton from '../formElements/submitButton';
@@ -13,6 +13,11 @@ import Title from '../formElements/title';
 import compositionStyles from './compositionStyles';
 import layout from '../../../components/layout';
 import Dove from '../formElements/dove.svg';
+import {
+    ConnectionGroup,
+    ConnectionGroupBlock,
+} from '../../../models/connectionGroup';
+import { ContactOption } from '../contact';
 
 const doveBase = css`
     position: absolute;
@@ -68,7 +73,10 @@ const styles = {
     ],
 };
 
-const InitialForm: FC<ContactBlock> = ({ title, contacts }) => {
+const InitialForm: FC<{ title: string; contactOptions: ContactOption[] }> = ({
+    title,
+    contactOptions,
+}) => {
     return (
         <div css={compositionStyles.root}>
             <Title>{title}</Title>
@@ -82,14 +90,10 @@ const InitialForm: FC<ContactBlock> = ({ title, contacts }) => {
 
                 <Form css={styles.formColumn}>
                     <Field
-                        component={ContactSelect}
+                        component={SelectTo}
                         name="to"
                         placeholder="Who you want to contact"
-                        options={contacts.map((s: Staff) => ({
-                            ...s,
-                            value: s.id,
-                            label: `${s.firstName} ${s.lastName} - ${s.position}`,
-                        }))}
+                        options={contactOptions}
                     />
                     <Field name="name" component={Input} placeholder="Name" />
                     <Field name="email" component={Input} placeholder="Email" />

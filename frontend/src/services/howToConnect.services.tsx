@@ -4,7 +4,10 @@ import { HowToConnectBlock } from '../models/howToConnect';
 export const useHowToConnectBlock = (): HowToConnectBlock => {
     const raw = useStaticQuery(graphql`
         query blockHowToConnect {
-            allContentfulBlockHowToConnect(limit: 1) {
+            allContentfulBlockHowToConnect(
+                limit: 1
+                sort: { fields: createdAt, order: ASC }
+            ) {
                 nodes {
                     title
                     body {
