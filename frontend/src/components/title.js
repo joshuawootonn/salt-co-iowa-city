@@ -16,24 +16,28 @@ const styles = {
 };
 
 export const forceScroll = () => {
-    scroller.scrollTo(document.location.hash, {
-        duration: 1000,
-        delay: 0,
-        smooth: 'easeInOutQuart',
-        offset: -200,
-    });
+    if (typeof window !== `undefined`) {
+        scroller.scrollTo(document.location.hash, {
+            duration: 1000,
+            delay: 0,
+            smooth: 'easeInOutQuart',
+            offset: -200,
+        });
+    }
 };
 
 export const useTitleScoller = () => {
     useEffect(() => {
         forceScroll();
-    }, [document.location.href]);
+    }, [typeof window !== `undefined` && document.location.href]);
 };
 
 const handleClick = (location) => {
-    document.location.href = `${document.location.origin}${
-        document.location.pathname
-    }#${slugify(location)}`;
+    if (typeof window !== `undefined`) {
+        document.location.href = `${document.location.origin}${
+            document.location.pathname
+        }#${slugify(location)}`;
+    }
 };
 
 const Normal = (props) => (

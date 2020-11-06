@@ -38,6 +38,9 @@ const getDefaultPersonFromQueryString = (
     contacts: Staff[],
     connectionGroups: ConnectionGroup[]
 ) => {
+    if (typeof window === `undefined`) {
+        return null;
+    }
     const query = queryString.parse(document.location.search.replace('?', ''));
     if (query.name) {
         return contacts.find((contact) => slugStaff(contact) === query.name);
