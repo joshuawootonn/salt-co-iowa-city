@@ -1,124 +1,129 @@
-import React, { FC } from 'react';
-import { css } from 'styled-components/macro';
-import typography from '../../components/typography';
-
-import Dove from './dove.svg';
-import layout from '../../components/layout';
+import React, { FC, useRef } from 'react';
 import { ContactBlock } from '../../models/contact';
+import Contact from './contact';
+import { Formik, FormikProps } from 'formik';
+import { contactValidationSchema } from './validation';
+import {
+    ContactForm,
+    ContactRequest,
+    FinalContactForm,
+    initialContactForm,
+} from './types';
+import queryString from 'querystring';
+import { slugConnectionGroup, slugStaff } from '../../helpers/slugify';
+import {
+    ConnectionGroup,
+    ConnectionGroupBlock,
+} from '../../models/connectionGroup';
+import { Staff } from '../../models/staff';
 
-const styles = {
-    root: css`
-        ${layout.container};
-        margin-bottom: 0;
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    `,
+const isProd = process.env.NODE_ENV === 'production';
 
-    content: css`
-        display: flex;
-        flex-direction: row;
-        position: relative;
-    `,
+const getEndpoint = () =>
+    isProd
+        ? (process.env.EMAIL_API_ENDPOINT as string)
+        : 'http://localhost:3000/';
 
-    textColumn: css`
-        width: 50%;
-        margin-right: 50px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    `,
-    imageBackground: css`
-        position: absolute;
-        height: 50vh;
-        width: auto;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: -2;
-    `,
-    formColumn: css`
-        width: 50%;
+const mapValidStateToRequest = (values: FinalContactForm): ContactRequest => ({
+    name: values.name,
+    email: values.email,
+    message: values.message,
+    subject: values.subject,
+    // TODO:PROD
+    // to: values.to.email,
+    to: 'joshuawootonn@gmail.com',
+});
 
-        & > div:nth-child(2) {
-            transform: translateY(-2px);
-        }
-
-        & > div:nth-child(3) {
-            transform: translateY(-4px);
-        }
-    `,
-    row: css`
-        display: flex;
-        flex-direction: row;
-
-        input:last-child {
-            transform: translateX(-2px);
-        }
-    `,
-    input: css`
-        height: 50px;
-        width: 100%;
-        background: ${({ theme }) => theme.colors.backgroundTransparent};
-        border: 2px solid ${({ theme }) => theme.colors.purple.lightest};
-
-        &::placeholder {
-            color: ${({ theme }) => theme.colors.purple.light};
-
-            &::before {
-                content: '   ';
-            }
-        }
-    `,
-    textArea: css`
-        height: 150px;
-        width: calc(100% - 2px);
-
-        background: ${({ theme }) => theme.colors.backgroundTransparent};
-        border: 2px solid ${({ theme }) => theme.colors.purple.lightest};
-    `,
+const getDefaultPersonFromQueryString = (
+    contacts: Staff[],
+    connectionGroups: ConnectionGroup[]
+) => {
+    const query = queryString.parse(document.location.search.replace('?', ''));
+    if (query.name) {
+        return contacts.find((contact) => slugStaff(contact) === query.name);
+    }
+    if (query.groupName) {
+        return connectionGroups.find(
+            (cg) => slugConnectionGroup(cg) === query.groupName
+        );
+    }
+    return null;
 };
 
-interface InputProps {
-    placeholder: string;
+export interface ConnectionGroupOption extends ConnectionGroup {
+    value: string;
+    label: string;
 }
 
-const Input: FC<InputProps> = (props) => {
-    return <input css={styles.input} {...props} />;
-};
+export interface StaffOption extends Staff {
+    value: string;
+    label: string;
+}
+const mapStaffToOption = (staff: Staff[]): StaffOption[] =>
+    staff.map((s: Staff) => ({
+        ...s,
+        value: s.id,
+        label: `${s.firstName} ${s.lastName} - ${s.position}`,
+    }));
 
-const TextArea: FC<InputProps> = (props) => {
-    return <textarea css={styles.textArea} {...props} />;
-};
+const mapConnectionGroupToOption = (
+    connectionGroups: ConnectionGroup[]
+): ConnectionGroupOption[] =>
+    connectionGroups.map((cg: ConnectionGroup) => ({
+        ...cg,
+        value: cg.id,
+        label: `${cg.leaders} - Connection Group Leader(s)`,
+    }));
 
-const ContactContainer: FC<ContactBlock> = ({
-    description,
-    title,
-    contacts,
-}) => (
-    <div css={styles.root}>
-        <div css={styles.content}>
-            <div css={styles.textColumn}>
-                <h1 css={typography.title1}>{title}</h1>
-                <p css={typography.bigText}>{description}</p>
-            </div>
-            <div css={styles.formColumn}>
-                <div css={styles.row}>
-                    <Input placeholder="Name" />
-                    <Input placeholder="Email" />
-                </div>
-                <div css={styles.row}>
-                    <Input placeholder="Who you want to contact" />
-                    <Input placeholder="Subject matter" />
-                </div>
-                <div css={styles.row}>
-                    <TextArea placeholder="Message" />
-                </div>
-            </div>
-            <Dove css={styles.imageBackground} />
-        </div>
-    </div>
-);
+const ContactContainer: FC<ContactBlock & ConnectionGroupBlock> = (props) => {
+    const initialTo = useRef(
+        getDefaultPersonFromQueryString(props.contacts, props.groups)
+    );
+
+    const handleSubmit = (
+        values: FinalContactForm,
+        { setFieldValue }: FormikProps<ContactForm>
+    ) => {
+        setFieldValue('formUIPhase', 'loading');
+        fetch(getEndpoint(), {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(mapValidStateToRequest(values)),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                setFieldValue('formUIPhase', 'success');
+            })
+            .catch((error) => {
+                setFieldValue('formUIPhase', 'error');
+            });
+    };
+
+    return (
+        <Formik<ContactForm>
+            initialValues={{
+                ...initialContactForm,
+                to: initialTo.current,
+            }}
+            onSubmit={handleSubmit as any}
+            validationSchema={contactValidationSchema}
+            isInitialValid={false}
+        >
+            {(formikProps: FormikProps<ContactForm>) => (
+                <Contact
+                    {...props}
+                    contactOptions={[
+                        ...mapStaffToOption(props.contacts),
+                        ...mapConnectionGroupToOption(props.groups),
+                    ]}
+                    values={formikProps.values}
+                />
+            )}
+        </Formik>
+    );
+};
 
 export default ContactContainer;

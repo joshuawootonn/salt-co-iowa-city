@@ -5,7 +5,10 @@ import { MinistryConnectionBlock } from '../models/ministryConnection';
 export const useMinistryConnectionBlock = (): MinistryConnectionBlock => {
     const raw = useStaticQuery(graphql`
         query blockMinistryConnections {
-            allContentfulBlockMinistryConnections(limit: 1) {
+            allContentfulBlockMinistryConnections(
+                limit: 1
+                sort: { fields: createdAt, order: ASC }
+            ) {
                 nodes {
                     items {
                         title
@@ -41,10 +44,18 @@ export const useMinistryConnectionBlock = (): MinistryConnectionBlock => {
                         }
                         link {
                             reference {
-                                firstName
-                                lastName
-                                email
-                                position
+                                __typename
+                                ... on ContentfulBlockConnectionGroups {
+                                    id
+                                    title
+                                }
+                                ... on ContentfulStaff {
+                                    firstName
+                                    lastName
+                                    email
+                                    position
+                                    id
+                                }
                             }
                             text
                             event {

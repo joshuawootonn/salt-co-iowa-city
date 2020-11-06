@@ -1,4 +1,6 @@
 import { FluidObject } from 'gatsby-image';
+import { ConnectionGroupBlock } from './connectionGroup';
+import { Staff } from './staff';
 
 export interface UpcomingEvent {
     title: string;
@@ -10,6 +12,7 @@ export interface UpcomingEvent {
     description: string;
     contact: {
         text: string;
+        reference: Staff | ConnectionGroupBlock;
     };
     location: {
         text: string;

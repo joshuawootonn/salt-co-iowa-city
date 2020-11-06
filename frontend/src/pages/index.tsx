@@ -7,6 +7,7 @@ import FooterContainer from '../containers/footer';
 import { useAnnouncementBlock } from '../services/announcement.services';
 import { useWelcomeBlock } from '../services/welcome.services';
 import { useFooterBlock } from '../services/footer.services';
+import { useTitleScoller } from '../components/title';
 
 const styles = {
     intro: css`
@@ -21,6 +22,8 @@ const Home: FC = () => {
     const welcomeBlock = useWelcomeBlock();
     const announcementBlock = useAnnouncementBlock();
     const footerBlock = useFooterBlock();
+
+    useTitleScoller();
 
     return (
         <ThemeContext theme={primaryTheme}>

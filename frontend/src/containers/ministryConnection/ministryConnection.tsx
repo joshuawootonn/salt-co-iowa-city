@@ -8,6 +8,8 @@ import GatsbyBackgroundImage from 'gatsby-background-image';
 import World from '../../svgs/world.svg';
 import Flag from '../../svgs/flag.svg';
 import { MinistryConnection } from '../../models/ministryConnection';
+import Title from '../../components/title';
+import { mapReferenceToLink } from '../../helpers/link';
 
 export type MinistryConnectionBackgroundImage = 'World' | 'Flag';
 
@@ -100,7 +102,9 @@ const MinistryConnectionCard: FC<MinistryConnection> = (props) => {
                 )
             }
             <div>
-                <h2 css={styles.title}>{props.acronym || props.title}</h2>
+                <Title variant="small" css={styles.title}>
+                    {props.acronym || props.title}
+                </Title>
                 <div css={styles.columns}>
                     <div css={styles.imageContainer}>
                         <GatsbyBackgroundImage
@@ -124,7 +128,9 @@ const MinistryConnectionCard: FC<MinistryConnection> = (props) => {
                             </p>
                         </div>
                         <div css={styles.textBlock2}>
-                            <CardLink href={'/contact'}>
+                            <CardLink
+                                to={mapReferenceToLink(props.link.reference)}
+                            >
                                 {props.link.text}
                             </CardLink>
                         </div>

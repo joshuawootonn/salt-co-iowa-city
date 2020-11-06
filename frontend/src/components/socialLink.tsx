@@ -19,7 +19,7 @@ const styles = {
         fill: none;
 
         path {
-            fill: ${({ theme }) => theme.colors.purple.medium};
+            fill: ${({ theme }) => theme.colors.blue.medium};
         }
     `,
 };

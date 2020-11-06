@@ -1,4 +1,5 @@
 import {
+    CSSProp,
     DefaultTheme,
     FlattenSimpleInterpolation,
 } from 'styled-components/macro';
@@ -25,6 +26,20 @@ declare module 'styled-components' {
             background: string;
             backgroundTransparent: string;
         };
+    }
+}
+
+declare module 'react' {
+    interface DOMAttributes<T> {
+        css?: InterpolationWithTheme<any>;
+    }
+
+    interface HTMLAttributes<T> extends DOMAttributes<T> {
+        css?: CSSProp;
+    }
+
+    interface Attributes {
+        css?: CSSProp;
     }
 }
 

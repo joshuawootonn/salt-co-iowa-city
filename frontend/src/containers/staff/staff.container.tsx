@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import { css } from 'styled-components/macro';
 import layout from '../../components/layout';
-import typography from '../../components/typography';
 import StaffCard from './staffCard';
 import Hand from '../../svgs/hands.svg';
 import { StaffBlock } from '../../models/staff';
+import Title from '../../components/title';
 
 const styles = {
     root: css`
@@ -12,7 +12,6 @@ const styles = {
         max-width: 1420px;
     `,
     title: css`
-        ${typography.title2};
         margin-bottom: 40px;
     `,
     staffContainer: css`
@@ -30,16 +29,20 @@ const styles = {
     `,
 };
 
-const StaffContainer: FC<StaffBlock> = (props) => (
-    <div css={styles.root} {...props}>
-        <h2 css={styles.title}>{props.title}</h2>
-        <div css={styles.staffContainer}>
-            {props.staff.map((s, i) => (
-                <StaffCard key={i} {...s} />
-            ))}
+const StaffContainer: FC<StaffBlock> = (props) => {
+    return (
+        <div css={styles.root} {...props}>
+            <Title variant="small" css={styles.title}>
+                {props.title}
+            </Title>
+            <div css={styles.staffContainer}>
+                {props.staff.map((s, i) => (
+                    <StaffCard key={i} {...s} />
+                ))}
+            </div>
+            <Hand css={styles.imageBackground} />
         </div>
-        <Hand css={styles.imageBackground} />
-    </div>
-);
+    );
+};
 
 export default StaffContainer;

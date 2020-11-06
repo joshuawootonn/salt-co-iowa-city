@@ -6,6 +6,7 @@ import CardLink from '../../components/cardLink';
 import Male from './male.svg';
 import Female from './female.svg';
 import { ConnectionGroup } from '../../models/connectionGroup';
+import { mapReferenceToLink } from '../../helpers/link';
 
 const boxBase = css`
     background-color: ${({ theme }) => theme.colors.backgroundTransparent};
@@ -29,7 +30,7 @@ const styles = {
         span:first-child {
             ${typography.card.text};
         }
-        span:first-child {
+        span:nth-child(2) {
             ${typography.card.text};
         }
     `,
@@ -68,28 +69,25 @@ const styles = {
     `,
 };
 
-const ConnectionGroupCard: FC<ConnectionGroup> = ({
-    description,
-    dateTime,
-    gender,
-    leaders,
-}) => {
-    const dateObject = dayjs(dateTime);
+const ConnectionGroupCard: FC<ConnectionGroup> = (props) => {
+    const dateObject = dayjs(props.dateTime);
     return (
         <div css={styles.root}>
             <div css={styles.box1}>
                 <span>{`${dateObject.format('dddd')} at ${dateObject.format(
                     'h:mm a'
                 )}`}</span>
-                <span>{gender === 'Male' ? 'Men' : 'Women'}</span>
+                <span>{props.gender === 'Male' ? 'Men' : 'Women'}</span>
             </div>
             <div css={styles.box2}>
-                <p>{description}</p>
-                {gender === 'Male' ? <Male /> : <Female />}
+                <p>{props.description}</p>
+                {props.gender === 'Male' ? <Male /> : <Female />}
             </div>
             <div css={styles.box3}>
-                <span>{leaders}</span>
-                <CardLink>Contact</CardLink>
+                <span>{props.leaders}</span>
+                <CardLink to={mapReferenceToLink(props)}>
+                    {props.connectionLinkText}
+                </CardLink>
             </div>
         </div>
     );

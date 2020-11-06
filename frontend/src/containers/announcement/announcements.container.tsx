@@ -3,8 +3,8 @@ import AnnouncementLink from '../../components/announcementLink';
 import Bullhorn from '../../svgs/bullhorn.svg';
 import React, { FC } from 'react';
 import layout from '../../components/layout';
-import typography from '../../components/typography';
 import { css } from 'styled-components/macro';
+import Title from '../../components/title';
 
 const styles = {
     root: css`
@@ -12,7 +12,6 @@ const styles = {
     `,
 
     title: css`
-        ${typography.title2};
         margin-bottom: 60px;
     `,
 
@@ -41,7 +40,9 @@ const AnnouncementContainer: FC<AnnouncementBlock> = ({
     ...props
 }) => (
     <div css={styles.root} {...props}>
-        <h2 css={styles.title}>{title}</h2>
+        <Title variant="small" css={styles.title}>
+            {title}
+        </Title>
         <div css={styles.announcements}>
             <Bullhorn css={styles.background} />
 

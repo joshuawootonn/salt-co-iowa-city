@@ -6,8 +6,7 @@ const styles = {
     root: ({ size, type }: BaseTextLinkProps) => css`
         ${type === 'primary'
             ? css`
-                  border: 2px solid
-                      ${({ theme }) => theme.colors.purple.lightest};
+                  border: 2px solid ${({ theme }) => theme.colors.blue.lightest};
                   font-family: 'MonumentExtended', Arial, sans-serif;
                   padding: 5px 50px 3px 50px;
                   text-transform: uppercase;
@@ -23,7 +22,7 @@ const styles = {
                   padding: 5px 5px 3px 5px;
               `};
 
-        color: ${({ theme }) => theme.colors.purple.light};
+        color: ${({ theme }) => theme.colors.blue.light};
 
         font-size: ${size === 'default' ? 25 : 18}px;
 

@@ -5,15 +5,21 @@ import { staffGatsbyTransform } from './staff.services';
 export const useContactBlock = (): ContactBlock => {
     const raw = useStaticQuery(graphql`
         query blockContact {
-            allContentfulBlockContact(limit: 1) {
+            allContentfulBlockContact(
+                limit: 1
+                sort: { fields: createdAt, order: ASC }
+            ) {
                 nodes {
                     title
-                    description
+                    confirmationTitle
+                    errorTitle
                     contacts {
                         firstName
                         lastName
                         email
                         position
+                        id
+                        __typename
                         about {
                             about
                         }

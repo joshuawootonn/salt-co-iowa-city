@@ -6,6 +6,7 @@ import typography from '../../components/typography';
 import ConnectionGroupCard from './connectionGroupCard';
 import Masonry from 'react-masonry-css';
 import { ConnectionGroupBlock } from '../../models/connectionGroup';
+import Title from '../../components/title';
 
 const styles = {
     root: css`
@@ -38,7 +39,7 @@ const ConnectionGroupContainer: FC<ConnectionGroupBlock> = ({
 }) => (
     <div css={styles.root} {...props}>
         <div css={styles.titleContainer}>
-            <h2 css={typography.title2}>{title}</h2>
+            <Title variant="small">{title}</Title>
             <p css={typography.bigText}>{description}</p>
         </div>
         <Masonry

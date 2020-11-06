@@ -4,6 +4,7 @@ import { css } from 'styled-components/macro';
 import typography from '../../components/typography';
 import { HowToConnectBlock } from '../../models/howToConnect';
 import { WhoWeAreBlock } from '../../models/whoWeAre';
+import Title from '../../components/title';
 
 const styles = {
     root: css`

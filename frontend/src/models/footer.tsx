@@ -1,5 +1,7 @@
 export interface FooterBlock {
     externalLinks: ExternalLink[];
+    whoWeAreLinks: string[];
+    howToConnectLinks: string[];
 }
 
 export interface ExternalLink {

@@ -4,15 +4,15 @@ import { css } from 'styled-components/macro';
 const styles = {
     root: css`
         g:first-child {
-            opacity: 0.1;
-            stroke: ${({ theme }) => theme.colors.purple.darkest};
-            stroke-width: 15px;
+            opacity: 0.3;
+            stroke: ${({ theme }) => theme.colors.blue.medium};
+            stroke-width: 5px;
             stroke-linejoin: round;
             stroke-linecap: round;
         }
         g:last-child {
-            opacity: 0.1;
-            fill: ${({ theme }) => theme.colors.purple.darkest};
+            opacity: 0.3;
+            fill: ${({ theme }) => theme.colors.blue.medium};
         }
     `,
 };

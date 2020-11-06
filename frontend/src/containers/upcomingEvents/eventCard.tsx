@@ -3,7 +3,8 @@ import typography from '../../components/typography';
 import CardLink from '../../components/cardLink';
 import { css } from 'styled-components/macro';
 import dayjs, { Dayjs } from 'dayjs';
-import { UpcomingEvent } from "../../models/upcomingEvent"
+import { UpcomingEvent } from '../../models/upcomingEvent';
+import { mapReferenceToLink } from '../../helpers/link';
 
 const boxBase = css`
     background-color: ${({ theme }) => theme.colors.backgroundTransparent};
@@ -97,13 +98,15 @@ const EventCard: FC<UpcomingEvent> = ({
                 <CardLink
                     target="_blank"
                     rel="noopener noreferrer"
-                    href={location.url}
+                    to={location.url}
                 >
                     {location.text}
                 </CardLink>
             </div>
             <div css={styles.box3}>
-                <CardLink>{contact.text}</CardLink>
+                <CardLink to={mapReferenceToLink(contact.reference)}>
+                    {contact.text}
+                </CardLink>
             </div>
         </div>
     );

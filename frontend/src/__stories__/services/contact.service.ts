@@ -7,13 +7,15 @@ export const contactBlockQuery = gql`
         blockContactCollection(limit: 1, preview: true) {
             items {
                 title
-                description
+                confirmationTitle
+                errorTitle
                 contactsCollection {
                     items {
                         firstName
                         lastName
                         email
                         position
+                        __typename
                     }
                 }
             }
@@ -32,7 +34,7 @@ export const getContactBlock = async (): Promise<ContactBlock> => {
 
     return {
         title: rawBlock.title,
-        description: rawBlock.description,
+
         contacts: rawBlock.contactsCollection.items,
     };
 };
