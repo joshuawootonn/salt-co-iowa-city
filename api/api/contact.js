@@ -23,13 +23,26 @@ const createMessage = ({ to, subject, name, message, email }) => ({
   template_id: "d-62acc838094c43888ca0020db35dadc7",
 });
 
-module.exports = (req, res) => {
-  console.log(req.body);
-  mailer
-    .send(createMessage(req.body))
-    .then(() => res.status(200).json({ success: true }))
-    .catch((error) => {
-      console.error(error);
-      return res.status(500).send(error);
-    });
+const handler = (request, response) => {
+  console.info("Method: ", request.method);
+  console.info("Body: ", request.body);
+  if (request.method === "OPTIONS") {
+    return response.status(200).end();
+  }
+  if (request.method === "GET") {
+    return response.end("<html><body><p>Hi :)</p></body></html>");
+  }
+  if (request.method === "POST") {
+    const sendGridRequestBody = createMessage(request.body);
+    console.info("SendGrid Request Body: ", sendGridRequestBody);
+    mailer
+      .send(sendGridRequestBody)
+      .then(() => response.status(200).json({ success: true }))
+      .catch((error) => {
+        console.error(error);
+        return response.status(500).send(error);
+      });
+  }
 };
+
+module.exports = handler;
