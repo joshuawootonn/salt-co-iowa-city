@@ -53,6 +53,7 @@ export default {
                 border: 2px solid ${({ theme }) => theme.colors.blue.lightest};
                 border-radius: 0;
                 color: ${({ theme }) => theme.colors.blue.light};
+                cursor: pointer;
             }
             .${baseClassName}__placeholder {
                 ${typography.select};

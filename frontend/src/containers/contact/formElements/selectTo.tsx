@@ -23,9 +23,12 @@ const SelectTo: FC<FieldProps<any> & SelectProps> = (props) => {
                     (option) => option.__typename === 'ContentfulStaff'
                 )}
                 defaultValue={props.field.value}
-                value={props.options.filter(
-                    (option) => option.id === props.field.value.id
-                )}
+                value={
+                    props.field.value &&
+                    props.options.filter(
+                        (option) => option.id === props.field.value.id
+                    )
+                }
                 onChange={(option: any) =>
                     props.form.setFieldValue(props.field.name, option)
                 }

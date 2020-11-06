@@ -72,7 +72,7 @@ const mapConnectionGroupToOption = (
     connectionGroups.map((cg: ConnectionGroup) => ({
         ...cg,
         value: cg.id,
-        label: `${cg.leaders} - Connection Group Leaders`,
+        label: `${cg.leaders} - Connection Group Leader(s)`,
     }));
 
 const ContactContainer: FC<ContactBlock & ConnectionGroupBlock> = (props) => {

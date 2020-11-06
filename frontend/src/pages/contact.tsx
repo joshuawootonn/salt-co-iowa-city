@@ -17,7 +17,7 @@ const Contact: FC = () => {
     return (
         <ThemeContext theme={primaryTheme}>
             <HeaderContainer />
-            <ContactContainer {...contactBlock} {...connectionGroupBlock} />
+            <ContactContainer {...connectionGroupBlock} {...contactBlock} />
             <FooterContainer {...footerBlock} />
         </ThemeContext>
     );

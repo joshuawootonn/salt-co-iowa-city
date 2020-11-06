@@ -4,12 +4,9 @@ import { css } from 'styled-components/macro';
 import Loading from './formCompositions/loading';
 import Error from './formCompositions/error';
 import Success from './formCompositions/success';
-import { Staff } from '../../models/staff';
 import { ContactForm } from './types';
-import { ConnectionGroup } from '../../models/connectionGroup';
 import InitialForm from './formCompositions/initialForm';
 import { ConnectionGroupOption, StaffOption } from './contact.container';
-import { ConnectionOptions } from 'tls';
 
 const styles = {
     root: css`

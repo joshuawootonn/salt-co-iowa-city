@@ -4,6 +4,7 @@ import { css } from 'styled-components/macro';
 import typography from '../../components/typography';
 import CardLink from '../../components/cardLink';
 import { Staff } from '../../models/staff';
+import { mapReferenceToLink } from '../../helpers/link';
 
 const styles = {
     root: css`
@@ -55,7 +56,7 @@ const StaffCard: FC<Staff> = (props) => (
             </div>
             <div css={styles.textBlock2}>
                 <span css={typography.card.smallText}>{props.position}</span>
-                <CardLink to={`/contact?id=${props.id}`}>
+                <CardLink to={mapReferenceToLink(props)}>
                     {props.connectionLinkText}
                 </CardLink>
             </div>

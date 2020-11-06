@@ -9,6 +9,7 @@ import World from '../../svgs/world.svg';
 import Flag from '../../svgs/flag.svg';
 import { MinistryConnection } from '../../models/ministryConnection';
 import Title from '../../components/title';
+import { mapReferenceToLink } from '../../helpers/link';
 
 export type MinistryConnectionBackgroundImage = 'World' | 'Flag';
 
@@ -127,7 +128,9 @@ const MinistryConnectionCard: FC<MinistryConnection> = (props) => {
                             </p>
                         </div>
                         <div css={styles.textBlock2}>
-                            <CardLink to={'/contact'}>
+                            <CardLink
+                                to={mapReferenceToLink(props.link.reference)}
+                            >
                                 {props.link.text}
                             </CardLink>
                         </div>
