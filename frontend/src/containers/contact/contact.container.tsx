@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { FC, useRef } from 'react';
 import { ContactBlock } from '../../models/contact';
 import Contact from './contact';
@@ -88,21 +89,13 @@ const ContactContainer: FC<ContactBlock & ConnectionGroupBlock> = (props) => {
         { setFieldValue }: FormikProps<ContactForm>
     ) => {
         setFieldValue('formUIPhase', 'loading');
-        fetch(getEndpoint(), {
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(mapValidStateToRequest(values)),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                setFieldValue('formUIPhase', 'success');
-            })
-            .catch((error) => {
-                setFieldValue('formUIPhase', 'error');
-            });
+
+        console.log(mapValidStateToRequest(values));
+
+        return axios
+            .post(getEndpoint(), mapValidStateToRequest(values))
+            .then(() => setFieldValue('formUIPhase', 'success'))
+            .catch(() => setFieldValue('formUIPhase', 'error'));
     };
 
     return (

@@ -59,9 +59,12 @@ export default {
                 ${typography.select};
                 color: ${({ theme }) => theme.colors.blue.light};
             }
-            .${baseClassName}__single-value {
-                ${typography.select};
-                color: ${({ theme }) => theme.colors.blue.light};
+
+            .${baseClassName}__value-container {
+                * {
+                    ${typography.select};
+                    color: ${({ theme }) => theme.colors.blue.light} !important;
+                }
             }
 
             .${baseClassName}__menu {
@@ -70,6 +73,11 @@ export default {
                 border: 2px solid ${({ theme }) => theme.colors.blue.lightest};
                 z-index: 10000 !important;
                 border-radius: 0;
+
+                * {
+                    ${typography.select};
+                    color: ${({ theme }) => theme.colors.blue.light} !important;
+                }
 
                 .${baseClassName}__menu-list {
                     .${baseClassName}__option {

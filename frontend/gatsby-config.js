@@ -20,5 +20,11 @@ module.exports = {
         },
         `gatsby-transformer-sharp`,
         `gatsby-plugin-sharp`,
+        {
+            resolve: `gatsby-plugin-env-variables`,
+            options: {
+                allowList: ['EMAIL_API_ENDPOINT'],
+            },
+        },
     ],
 };
