@@ -1,10 +1,11 @@
 import React, { FC } from 'react';
 import typography from '../../components/typography';
-import CardLink from '../../components/cardLink';
+
 import { css } from 'styled-components/macro';
 import dayjs, { Dayjs } from 'dayjs';
 import { UpcomingEvent } from '../../models/upcomingEvent';
 import { mapReferenceToLink } from '../../helpers/link';
+import TextLink from '../../components/textLink';
 
 const boxBase = css`
     background-color: ${({ theme }) => theme.colors.backgroundTransparent};
@@ -95,18 +96,22 @@ const EventCard: FC<UpcomingEvent> = ({
             </div>
             <div css={styles.box2}>
                 <span>Location</span>
-                <CardLink
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    to={location.url}
+                <TextLink
+                    type="card"
+                    destinationType="external"
+                    href={location.url}
                 >
                     {location.text}
-                </CardLink>
+                </TextLink>
             </div>
             <div css={styles.box3}>
-                <CardLink to={mapReferenceToLink(contact.reference)}>
+                <TextLink
+                    type="card"
+                    destinationType="internal"
+                    to={mapReferenceToLink(contact.reference)}
+                >
                     {contact.text}
-                </CardLink>
+                </TextLink>
             </div>
         </div>
     );

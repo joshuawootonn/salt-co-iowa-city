@@ -2,11 +2,11 @@ import React, { FC } from 'react';
 import { css } from 'styled-components/macro';
 import dayjs from 'dayjs';
 import typography from '../../components/typography';
-import CardLink from '../../components/cardLink';
 import Male from './male.svg';
 import Female from './female.svg';
 import { ConnectionGroup } from '../../models/connectionGroup';
 import { mapReferenceToLink } from '../../helpers/link';
+import TextLink from '../../components/textLink';
 
 const boxBase = css`
     background-color: ${({ theme }) => theme.colors.backgroundTransparent};
@@ -85,9 +85,12 @@ const ConnectionGroupCard: FC<ConnectionGroup> = (props) => {
             </div>
             <div css={styles.box3}>
                 <span>{props.leaders}</span>
-                <CardLink to={mapReferenceToLink(props)}>
+                <TextLink
+                    destinationType="internal"
+                    to={mapReferenceToLink(props)}
+                >
                     {props.connectionLinkText}
-                </CardLink>
+                </TextLink>
             </div>
         </div>
     );

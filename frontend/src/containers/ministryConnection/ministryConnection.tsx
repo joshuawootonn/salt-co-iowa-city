@@ -3,13 +3,13 @@ import { css } from 'styled-components/macro';
 import layout from '../../components/layout';
 import typography from '../../components/typography';
 import ImageControl from '../../components/imageControl';
-import CardLink from '../../components/cardLink';
 import GatsbyBackgroundImage from 'gatsby-background-image';
 import World from '../../svgs/world.svg';
 import Flag from '../../svgs/flag.svg';
 import { MinistryConnection } from '../../models/ministryConnection';
 import Title from '../../components/title';
 import { mapReferenceToLink } from '../../helpers/link';
+import TextLink from '../../components/textLink';
 
 export type MinistryConnectionBackgroundImage = 'World' | 'Flag';
 
@@ -128,11 +128,12 @@ const MinistryConnectionCard: FC<MinistryConnection> = (props) => {
                             </p>
                         </div>
                         <div css={styles.textBlock2}>
-                            <CardLink
+                            <TextLink
+                                destinationType="internal"
                                 to={mapReferenceToLink(props.link.reference)}
                             >
                                 {props.link.text}
-                            </CardLink>
+                            </TextLink>
                         </div>
                     </div>
                 </div>

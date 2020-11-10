@@ -16,7 +16,7 @@ const styles = {
 };
 
 export const forceScroll = () => {
-    if (typeof window !== `undefined`) {
+    if (typeof window !== `undefined` && document.location.hash !== '') {
         scroller.scrollTo(document.location.hash, {
             duration: 1000,
             delay: 0,

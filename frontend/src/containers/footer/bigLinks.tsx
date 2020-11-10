@@ -29,7 +29,7 @@ const BigLinks: FC<BigLinksProps> = (props) => (
         </TextLink>
 
         {props.links.map((link, i) => (
-            <>
+            <React.Fragment key={i}>
                 <br />
                 <br />
                 <TextLink
@@ -39,7 +39,7 @@ const BigLinks: FC<BigLinksProps> = (props) => (
                 >
                     {link.label}
                 </TextLink>
-            </>
+            </React.Fragment>
         ))}
     </div>
 );

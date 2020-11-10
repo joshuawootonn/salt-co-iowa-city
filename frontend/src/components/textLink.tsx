@@ -1,30 +1,35 @@
 import React, { FC } from 'react';
 import styled, { css } from 'styled-components/macro';
 import GatsbyLink from 'gatsby-link';
+import typography from './typography';
 
 const styles = {
     root: ({ size, type }: BaseTextLinkProps) => css`
-        ${type === 'primary'
-            ? css`
-                  border: 2px solid ${({ theme }) => theme.colors.blue.lightest};
-                  font-family: 'MonumentExtended', Arial, sans-serif;
-                  padding: 5px 50px 3px 50px;
-                  text-transform: uppercase;
-              `
-            : css`
-                  border: 2px solid ${({ theme }) => theme.colors.transparent};
-                  font-family: ${size === 'default'
-                          ? 'MonumentExtended'
-                          : 'Montserrat'},
-                      Arial, sans-serif;
-                  text-transform: ${size === 'default' ? 'uppercase' : 'none'};
-
-                  padding: 5px 5px 3px 5px;
-              `};
+        ${type === 'primary' &&
+        css`
+            border: 2px solid ${({ theme }) => theme.colors.blue.lightest};
+            font-family: 'MonumentExtended', Arial, sans-serif;
+            padding: 5px 50px 3px 50px;
+            text-transform: uppercase;
+            font-size: ${size === 'default' ? 25 : 18}px;
+        `}
+        ${type === 'secondary' &&
+        css`
+            border: 2px solid ${({ theme }) => theme.colors.transparent};
+            font-family: ${size === 'default'
+                    ? 'MonumentExtended'
+                    : 'Montserrat'},
+                Arial, sans-serif;
+            text-transform: ${size === 'default' ? 'uppercase' : 'none'};
+            padding: 5px 5px 3px 5px;
+            font-size: ${size === 'default' ? 25 : 18}px;
+        `};
+        ${type === 'card' &&
+        css`
+            ${typography.card.link};
+        `};
 
         color: ${({ theme }) => theme.colors.blue.light};
-
-        font-size: ${size === 'default' ? 25 : 18}px;
 
         cursor: pointer;
         user-select: none;
@@ -34,7 +39,7 @@ const styles = {
 };
 
 interface BaseTextLinkProps {
-    type?: 'primary' | 'secondary';
+    type?: 'primary' | 'secondary' | 'card';
     size?: 'default' | 'small';
 }
 
@@ -54,12 +59,18 @@ const Link = (props: any) => (
 
 const TextLink: FC<InternalTextLinkProps | ExternalTextLinkProps> = ({
     children,
+    destinationType,
     ...props
 }) => {
-    return props.destinationType === 'internal' ? (
+    return destinationType === 'internal' ? (
         <Link {...props}>{children}</Link>
     ) : (
-        <a css={styles.root(props)} {...props}>
+        <a
+            target="_blank"
+            rel="noopener noreferrer"
+            css={styles.root(props)}
+            {...props}
+        >
             {children}
         </a>
     );

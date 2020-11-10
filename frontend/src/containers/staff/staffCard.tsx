@@ -2,9 +2,9 @@ import React, { FC } from 'react';
 import GatsbyBackgroundImage from 'gatsby-background-image';
 import { css } from 'styled-components/macro';
 import typography from '../../components/typography';
-import CardLink from '../../components/cardLink';
 import { Staff } from '../../models/staff';
 import { mapReferenceToLink } from '../../helpers/link';
+import TextLink from '../../components/textLink';
 
 const styles = {
     root: css`
@@ -56,9 +56,12 @@ const StaffCard: FC<Staff> = (props) => (
             </div>
             <div css={styles.textBlock2}>
                 <span css={typography.card.smallText}>{props.position}</span>
-                <CardLink to={mapReferenceToLink(props)}>
+                <TextLink
+                    destinationType="internal"
+                    to={mapReferenceToLink(props)}
+                >
                     {props.connectionLinkText}
-                </CardLink>
+                </TextLink>
             </div>
         </div>
     </div>

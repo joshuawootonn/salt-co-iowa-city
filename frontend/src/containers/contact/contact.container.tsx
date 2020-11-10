@@ -106,7 +106,7 @@ const ContactContainer: FC<ContactBlock & ConnectionGroupBlock> = (props) => {
             }}
             onSubmit={handleSubmit as any}
             validationSchema={contactValidationSchema}
-            isInitialValid={false}
+            validateOnMount={true}
         >
             {(formikProps: FormikProps<ContactForm>) => (
                 <Contact

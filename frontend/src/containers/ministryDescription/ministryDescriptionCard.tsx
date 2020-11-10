@@ -2,11 +2,11 @@ import React, { FC, useState } from 'react';
 import { css } from 'styled-components/macro';
 import ImageControl from '../../components/imageControl';
 import typography from '../../components/typography';
-import CardLink from '../../components/cardLink';
 import BackgroundImage from 'gatsby-background-image';
 import { MinistryDescription } from '../../models/ministryDescription';
 import Title from '../../components/title';
 import { mapReferenceToLink } from '../../helpers/link';
+import TextLink from '../../components/textLink';
 
 const styles = {
     root: css`
@@ -92,9 +92,12 @@ const MinistryDescriptionCard: FC<MinistryDescription> = (props) => {
                     <p css={typography.card.text}>{props.description}</p>
                 </div>
                 <div css={styles.textBlock2}>
-                    <CardLink to={mapReferenceToLink(props.link.reference)}>
+                    <TextLink
+                        destinationType="internal"
+                        to={mapReferenceToLink(props.link.reference)}
+                    >
                         {props.link.text}
-                    </CardLink>
+                    </TextLink>
                 </div>
             </div>
         </div>
