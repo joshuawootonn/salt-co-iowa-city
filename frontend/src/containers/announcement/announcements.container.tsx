@@ -9,6 +9,7 @@ import Title from '../../components/title';
 const styles = {
     root: css`
         ${layout.container};
+        margin-bottom: 500px;
     `,
 
     title: css`
@@ -28,7 +29,7 @@ const styles = {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -55%);
-        width: 2420px;
+        width: 110vw;
         height: auto;
         overflow: hidden;
     `,
@@ -44,8 +45,13 @@ const AnnouncementContainer: FC<AnnouncementBlock> = ({
             {title}
         </Title>
         <div css={styles.announcements}>
-            <Bullhorn css={styles.background} />
-
+            <div css={styles.background}>
+                <Bullhorn />
+                <Bullhorn />
+                <Bullhorn />
+                <Bullhorn />
+                <Bullhorn />
+            </div>
             {announcements.map((link: any, i: number) => (
                 <AnnouncementLink key={i} linkAnnouncement={link} />
             ))}

@@ -1,7 +1,9 @@
 import React, { FC } from 'react';
 import { css } from 'styled-components/macro';
-import TextLink from '../../components/textLink';
 import LogoLink from '../../components/logoLink';
+import useScreenType, { queryShit } from '../../components/useScreenType';
+import Boiger from './boiger';
+import NonBoiger from './nonboiger';
 
 const styles = {
     root: css`
@@ -11,40 +13,34 @@ const styles = {
         align-items: center;
         justify-content: center;
         height: 70px;
+
         margin: 40px auto 0 auto;
         padding: 0 80px;
         width: 100vw;
         z-index: 10;
+        ${queryShit({
+            mobile: css`
+                margin: 15px auto 0 auto;
+                padding: 0 15px;
+            `,
+        })}
     `,
     grow: css`
         flex-grow: 1;
     `,
-    link: css`
-        margin-left: 44px;
-        display: inline-block;
-    `,
 };
 
-const HeaderContainer: FC = () => (
-    <div css={styles.root}>
-        <LogoLink to={'/'} css={styles.link} />
-        <div css={styles.grow} />
+const HeaderContainer: FC = () => {
+    const media = useScreenType();
+    const isBoiger = media === 'mobile' || media === 'tablet';
 
-        <TextLink
-            to={'/who-we-are'}
-            destinationType={'internal'}
-            css={styles.link}
-        >
-            Who We are
-        </TextLink>
-        <TextLink
-            to={'/how-to-connect'}
-            destinationType={'internal'}
-            css={styles.link}
-        >
-            Get Connected
-        </TextLink>
-    </div>
-);
+    return (
+        <div css={styles.root}>
+            <LogoLink to={'/'} />
+            <div css={styles.grow} />
+            {isBoiger ? <Boiger /> : <NonBoiger />}
+        </div>
+    );
+};
 
 export default HeaderContainer;

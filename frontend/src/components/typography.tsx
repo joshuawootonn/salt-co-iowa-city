@@ -4,7 +4,7 @@ const typography = {
     title1: css`
         font-family: 'MonumentExtended', Arial, sans-serif;
         font-size: 80px;
-        color: ${({ theme }) => theme.colors.white};
+        color: ${({ theme }) => theme.colors.purple.lightest};
     `,
     title2: css`
         font-family: 'MonumentExtended', Arial, sans-serif;
@@ -18,6 +18,22 @@ const typography = {
         color: ${({ theme }) => theme.colors.white};
     `,
 
+    largeText: {
+        text: css`
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 40px;
+            color: ${({ theme }) => theme.colors.white};
+        `,
+
+        link: css`
+            color: ${({ theme }) => theme.colors.blue.lightest};
+            font-family: 'MonumentExtended', Arial, sans-serif;
+            font-size: 40px;
+            font-weight: 400;
+            text-decoration: underline;
+            text-transform: none;
+        `,
+    },
     card: {
         title: css`
             font-family: 'MonumentExtended', Arial, sans-serif;

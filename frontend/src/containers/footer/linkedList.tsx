@@ -23,6 +23,7 @@ const LinkedList: FC<LinkedListProps> = ({ links }) => {
                     type={'secondary'}
                     key={i}
                     size={i !== 0 ? 'small' : 'default'}
+                    font={i !== 0 ? 'secondary' : 'primary'}
                     to={link.to}
                 >
                     {link.label}

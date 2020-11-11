@@ -17,3 +17,4 @@ export const mapReferenceToLink = (
             return `/contact?groupName=${slugConnectionGroup(reference)}`;
     }
 };
+

@@ -46,11 +46,11 @@ export const primaryTheme: Theme = {
             darkest: '#FFEE33',
         },
         purple: {
-            lightest: '#EAD7E8',
-            light: '#E3CAE1',
-            medium: '#CEA1CB',
-            dark: '#A959A2',
-            darkest: '#783F73',
+            lightest: '#E1CEF3',
+            light: '#D7BCF0',
+            medium: '#B98CE3',
+            dark: '#9147D7',
+            darkest: '#7F2CCB',
         },
         pink: {
             lightest: '#F4CDDD',
@@ -67,9 +67,9 @@ export const primaryTheme: Theme = {
             darkest: '#39393A',
         },
         white: '#ffffff',
-        background: '#1D1D1B',
+        background: '#181A26',
         transparent: 'transparent',
-        backgroundTransparent: 'rgba(29,29,27,.8)',
+        backgroundTransparent: 'rgba(24,26,38,.8)',
     },
 };
 

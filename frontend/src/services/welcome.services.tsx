@@ -10,12 +10,27 @@ export const useWelcomeBlock = (): WelcomeBlock => {
             ) {
                 nodes {
                     title
-                    introWhoWeAre
-                    introGetConnected
-                    images {
-                        fluid(maxWidth: 500, quality: 90) {
-                            ...GatsbyContentfulFluid_withWebp
+                    primaryImage {
+                        fluid(maxWidth: 1240, quality: 90) {
+                            ...GatsbyContentfulFluid_withWebp_noBase64
                         }
+                    }
+                    secondaryImage {
+                        fluid(maxWidth: 1240, quality: 90) {
+                            ...GatsbyContentfulFluid_withWebp_noBase64
+                        }
+                    }
+                    text1 {
+                        json
+                    }
+                    text2 {
+                        json
+                    }
+                    text3 {
+                        json
+                    }
+                    text4 {
+                        json
                     }
                 }
             }

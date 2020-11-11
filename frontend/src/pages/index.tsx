@@ -8,28 +8,16 @@ import { useAnnouncementBlock } from '../services/announcement.services';
 import { useWelcomeBlock } from '../services/welcome.services';
 import { useFooterBlock } from '../services/footer.services';
 import { useTitleScoller } from '../components/title';
+import HeaderContainer from '../containers/header';
 
 const styles = {
     intro: css`
         margin-bottom: 250px;
     `,
     announcements: css`
-        margin-bottom: 450px;
+        margin-bottom: 650px;
     `,
 };
-
-/**
- alert('Roboto loaded? ' + document.fonts.check('1em Roboto'));  // false
-
- document.fonts.ready.then(function () {
-  alert('All fonts in use by visible text have loaded.');
-   alert('Roboto loaded? ' + document.fonts.check('1em Roboto'));  // true
-});
-
- document.fonts.onloadingdone = function (fontFaceSetEvent) {
-   alert('onloadingdone we have ' + fontFaceSetEvent.fontfaces.length + ' font faces loaded');
-};
- */
 
 const Home: FC = () => {
     const welcomeBlock = useWelcomeBlock();
@@ -40,6 +28,7 @@ const Home: FC = () => {
 
     return (
         <ThemeContext theme={primaryTheme}>
+            <HeaderContainer />
             <WelcomeContainer css={styles.intro} {...welcomeBlock} />
             <AnnouncementContainer
                 css={styles.announcements}

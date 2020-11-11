@@ -20,10 +20,10 @@ const styles = {
         width: 100%;
     `,
     textRoot: (isHovered: boolean) => css`
-        background-color: rgba(29, 29, 27, 0.8);
+        background-color: ${({ theme }) => theme.colors.backgroundTransparent};
         padding: 20px;
 
-        border: 2px solid ${({ theme }) => theme.colors.purple.lightest};
+        border: 2px solid ${({ theme }) => theme.colors.blue.lightest};
 
         position: absolute;
         top: -25px;
@@ -39,7 +39,7 @@ const styles = {
         `}
     `,
     text: css`
-        color: ${({ theme }) => theme.colors.purple.light};
+        color: ${({ theme }) => theme.colors.blue.light};
         font-size: 18px;
         margin: 0;
     `,

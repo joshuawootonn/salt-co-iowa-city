@@ -2,13 +2,13 @@ import React, { FC } from 'react';
 import styled, { css } from 'styled-components/macro';
 import GatsbyLink from 'gatsby-link';
 import typography from './typography';
+import { motion } from 'framer-motion';
 
 const styles = {
-    root: ({ size, type }: BaseTextLinkProps) => css`
+    root: ({ size, type, font }: BaseTextLinkProps) => css`
         ${type === 'primary' &&
         css`
             border: 2px solid ${({ theme }) => theme.colors.blue.lightest};
-            font-family: 'MonumentExtended', Arial, sans-serif;
             padding: 5px 50px 3px 50px;
             text-transform: uppercase;
             font-size: ${size === 'default' ? 25 : 18}px;
@@ -16,11 +16,6 @@ const styles = {
         ${type === 'secondary' &&
         css`
             border: 2px solid ${({ theme }) => theme.colors.transparent};
-            font-family: ${size === 'default'
-                    ? 'MonumentExtended'
-                    : 'Montserrat'},
-                Arial, sans-serif;
-            text-transform: ${size === 'default' ? 'uppercase' : 'none'};
             padding: 5px 5px 3px 5px;
             font-size: ${size === 'default' ? 25 : 18}px;
         `};
@@ -28,6 +23,16 @@ const styles = {
         css`
             ${typography.card.link};
         `};
+
+        ${type === 'largeText' &&
+        css`
+            ${typography.card.link};
+        `};
+
+        font-family: ${font === 'primary' ? 'MonumentExtended' : 'Montserrat'},
+            Arial, sans-serif;
+
+        text-transform: ${font === 'primary' ? 'uppercase' : 'none'};
 
         color: ${({ theme }) => theme.colors.blue.light};
 
@@ -39,7 +44,8 @@ const styles = {
 };
 
 interface BaseTextLinkProps {
-    type?: 'primary' | 'secondary' | 'card';
+    type?: 'primary' | 'secondary' | 'card' | 'largeText';
+    font?: 'primary' | 'secondary';
     size?: 'default' | 'small';
 }
 
@@ -65,19 +71,20 @@ const TextLink: FC<InternalTextLinkProps | ExternalTextLinkProps> = ({
     return destinationType === 'internal' ? (
         <Link {...props}>{children}</Link>
     ) : (
-        <a
+        <motion.a
             target="_blank"
             rel="noopener noreferrer"
-            css={styles.root(props)}
+            css={styles.root(props) as any}
             {...props}
         >
             {children}
-        </a>
+        </motion.a>
     );
 };
 
 TextLink.defaultProps = {
     type: 'primary',
+    font: 'primary',
     size: 'default',
 };
 
