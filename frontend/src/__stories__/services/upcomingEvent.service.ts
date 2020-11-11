@@ -41,7 +41,7 @@ export const getUpcomingEventsBlock = async (): Promise<UpcomingEventBlock> => {
     const rawBlock = rawQueryResult.blockUpcomingEventsCollection.items[0];
 
     return {
-        title: rawBlock.title,
+        root: rawBlock.title,
         events: rawBlock.itemsCollection.items.map((i: any) => ({
             ...i,
             image: imageRawTransform(i.image),

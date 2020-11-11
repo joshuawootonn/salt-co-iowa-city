@@ -30,7 +30,7 @@ export const announcementRawTransform = (raw: any): Announcement => ({
 export const announcementBlockRawTransform = (raw: any): AnnouncementBlock => {
     const block = raw.blockAnnouncementsCollection.items[0];
     return {
-        title: block.title,
+        root: block.title,
         announcements: block.linksCollection.items.map(
             announcementRawTransform
         ),

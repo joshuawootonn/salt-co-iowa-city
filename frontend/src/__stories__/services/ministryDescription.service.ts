@@ -48,7 +48,7 @@ export const getMinistryDescriptionBlock = async (): Promise<
             .items[0];
 
     return {
-        title: rawBlock.title,
+        root: rawBlock.title,
         ministryDescriptions: rawBlock.itemsCollection.items.map(
             (i: any): MinistryDescription => ({
                 ...i,

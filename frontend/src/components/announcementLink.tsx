@@ -3,6 +3,8 @@ import { css } from 'styled-components/macro';
 
 import GatsbyImage from 'gatsby-image';
 import { Announcement } from '../models/announcement';
+import Image from './image';
+import { motion } from 'framer-motion';
 
 interface AnnouncementLinkProps {
     linkAnnouncement: Announcement;
@@ -49,20 +51,17 @@ const AnnouncementLink: FC<AnnouncementLinkProps> = ({ linkAnnouncement }) => {
     const [isHovered, setIsHovered] = useState(false);
 
     return (
-        <a
+        <motion.a
             href={linkAnnouncement.link}
             css={styles.root}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
-            <GatsbyImage
-                fluid={linkAnnouncement.image.fluid}
-                css={styles.image}
-            />
+            <Image fluid={linkAnnouncement.image.fluid} css={styles.image} />
             <div css={styles.textRoot(isHovered)}>
                 <h1 css={styles.text}>{linkAnnouncement.text}</h1>
             </div>
-        </a>
+        </motion.a>
     );
 };
 

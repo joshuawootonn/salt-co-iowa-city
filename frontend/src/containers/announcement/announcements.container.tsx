@@ -1,62 +1,21 @@
 import { AnnouncementBlock } from '../../models/announcement';
-import AnnouncementLink from '../../components/announcementLink';
-import Bullhorn from '../../svgs/bullhorn.svg';
 import React, { FC } from 'react';
 import layout from '../../components/layout';
 import { css } from 'styled-components/macro';
-import Title from '../../components/title';
+import { IntersectionObserver } from '../../components/IntersectionObserver';
+import Announcements from './announcement';
 
 const styles = {
     root: css`
         ${layout.container};
         margin-bottom: 500px;
     `,
-
-    title: css`
-        margin-bottom: 60px;
-    `,
-
-    announcements: css`
-        display: grid;
-        column-gap: 20px;
-        grid-auto-flow: column;
-        position: relative;
-    `,
-
-    background: css`
-        position: absolute;
-        z-index: -1;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -55%);
-        width: 110vw;
-        height: auto;
-        overflow: hidden;
-    `,
 };
 
-const AnnouncementContainer: FC<AnnouncementBlock> = ({
-    title,
-    announcements,
-    ...props
-}) => (
-    <div css={styles.root} {...props}>
-        <Title variant="small" css={styles.title}>
-            {title}
-        </Title>
-        <div css={styles.announcements}>
-            <div css={styles.background}>
-                <Bullhorn />
-                <Bullhorn />
-                <Bullhorn />
-                <Bullhorn />
-                <Bullhorn />
-            </div>
-            {announcements.map((link: any, i: number) => (
-                <AnnouncementLink key={i} linkAnnouncement={link} />
-            ))}
-        </div>
-    </div>
+const AnnouncementContainer: FC<AnnouncementBlock> = (props) => (
+    <IntersectionObserver css={styles.root} {...props}>
+        <Announcements {...props} />
+    </IntersectionObserver>
 );
 
 export default AnnouncementContainer;

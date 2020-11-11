@@ -3,8 +3,11 @@ import { css } from 'styled-components/macro';
 import typography from './typography';
 import slugify from '../helpers/slugify';
 import { Element, scroller } from 'react-scroll';
-
+import { motion } from 'framer-motion';
 const styles = {
+    root: css`
+        overflow: hidden;
+    `,
     normal: css`
         ${typography.title1};
         cursor: pointer;
@@ -40,27 +43,38 @@ const handleClick = (location) => {
     }
 };
 
+const animationProps = {
+    initial: { opacity: 0 },
+    variants: {
+        entered: { y: 0, opacity: 1 },
+        exited: { y: 100, opacity: 0 },
+    },
+    transition: { bounce: 0 },
+};
+
 const Normal = (props) => (
-    <Element name={`#${slugify(props.children)}`}>
-        <h1
+    <Element css={styles.root} name={`#${slugify(props.children)}`}>
+        <motion.h1
+            {...animationProps}
             onClick={() => handleClick(props.children)}
             css={styles.normal}
             {...props}
         >
             {props.children}
-        </h1>
+        </motion.h1>
     </Element>
 );
 
 const Small = (props) => (
-    <Element name={`#${slugify(props.children)}`}>
-        <h2
+    <Element css={styles.root} name={`#${slugify(props.children)}`}>
+        <motion.h2
+            {...animationProps}
             onClick={() => handleClick(props.children)}
             css={styles.small}
             {...props}
         >
             {props.children}
-        </h2>
+        </motion.h2>
     </Element>
 );
 

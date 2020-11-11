@@ -1,15 +1,19 @@
 import { css } from 'styled-components/macro';
+import { motion } from 'framer-motion';
+import React from 'react';
 
 const typography = {
     title1: css`
         font-family: 'MonumentExtended', Arial, sans-serif;
         font-size: 80px;
         color: ${({ theme }) => theme.colors.purple.lightest};
+        white-space: nowrap;
     `,
     title2: css`
         font-family: 'MonumentExtended', Arial, sans-serif;
         font-size: 65px;
         color: ${({ theme }) => theme.colors.purple.lightest};
+        white-space: nowrap;
     `,
 
     bigText: css`

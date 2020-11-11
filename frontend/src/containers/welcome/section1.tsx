@@ -2,12 +2,13 @@ import Image from '../../components/image';
 import { WelcomeBlock } from '../../models/welcome';
 import { css } from 'styled-components/macro';
 import WelcomeRichText from './components/welcomeRichText';
-import React, { FC, useState } from 'react';
-import Title from './components/welcomeTitle';
+import React, { FC } from 'react';
+
 import { motion } from 'framer-motion';
 import { useFontLoader } from '../../context/fontLoader';
 import { useIntersectionObserver } from '../../components/IntersectionObserver';
 import { toVariant } from '../../helpers/animation';
+import Title from '../../components/title';
 
 const styles = {
     root: css`
@@ -41,6 +42,7 @@ const styles = {
 const Section1: FC<WelcomeBlock> = (welcomeBlock) => {
     const isLoaded = useFontLoader();
     const { isVisible } = useIntersectionObserver();
+    console.log(welcomeBlock.title);
     return (
         <motion.div
             animate={toVariant(isLoaded && isVisible)}
@@ -55,7 +57,7 @@ const Section1: FC<WelcomeBlock> = (welcomeBlock) => {
             css={styles.root}
         >
             <div css={styles.one}>
-                <Title title={welcomeBlock.title} />
+                <Title>{welcomeBlock.title}</Title>
                 <WelcomeRichText json={welcomeBlock.text1.json} />
             </div>
             <div css={styles.one}>

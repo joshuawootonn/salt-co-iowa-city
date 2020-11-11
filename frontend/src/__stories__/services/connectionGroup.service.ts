@@ -33,7 +33,7 @@ export const getConnectionGroupBlock = async (): Promise<
     const rawBlock = rawQueryResult.blockConnectionGroupsCollection.items[0];
 
     return {
-        title: rawBlock.title,
+        root: rawBlock.title,
         description: rawBlock.description,
         groups: rawBlock.itemsCollection.items,
     };

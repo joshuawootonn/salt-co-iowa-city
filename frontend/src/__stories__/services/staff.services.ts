@@ -36,7 +36,7 @@ export const getStaffBlock = async (): Promise<StaffBlock> => {
     const rawStaffBlock = rawStaffResult.blockStaffCollection.items[0];
 
     return {
-        title: rawStaffBlock.title,
+        root: rawStaffBlock.title,
         staff: rawStaffBlock.itemsCollection.items.map((s: any) => ({
             ...s,
             image: imageRawTransform(s.image),

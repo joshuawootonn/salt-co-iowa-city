@@ -21,7 +21,7 @@ export const useWhoWeAreBlock = (): WhoWeAreBlock => {
     const block = raw.allContentfulBlockWhoWeAre.nodes[0];
 
     return {
-        title: block.title,
+        root: block.title,
         body: block.body.body,
     };
 };

@@ -21,8 +21,7 @@ const styles = {
         width: 100%;
         height: 100%;
         background-color: ${({ theme }) =>
-            lighten(0.05, theme.colors.background)};
-        filter: blur(4px);
+            lighten(0.02, theme.colors.background)};
     `,
     img: css`
         position: absolute;
@@ -33,8 +32,6 @@ const styles = {
         height: 100%;
         object-fit: cover;
         object-position: center;
-
-        filter: blur(4px);
     `,
 };
 
@@ -55,6 +52,7 @@ const Image: FC<ImageProps> = (props) => {
         <IntersectionObserver
             reset={false}
             css={styles.root}
+            threshold={0.25}
             {...props}
             render={({ isVisible, viewState }) => {
                 return (
