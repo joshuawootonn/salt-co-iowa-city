@@ -7,6 +7,7 @@ import { css } from 'styled-components/macro';
 import { AnnouncementBlock } from '../../models/announcement';
 import { motion } from 'framer-motion';
 import { toVariant } from '../../helpers/animation';
+import { queryShit } from '../../components/useScreenType';
 
 const styles = {
     announcements: css`
@@ -14,6 +15,13 @@ const styles = {
         column-gap: 20px;
         grid-auto-flow: column;
         position: relative;
+        
+        ${queryShit({
+            mobile: css`
+                grid-auto-flow: row;
+            `,
+        })}
+    })
     `,
 
     background: css`

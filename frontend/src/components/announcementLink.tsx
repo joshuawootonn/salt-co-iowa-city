@@ -1,7 +1,5 @@
 import React, { FC, useState } from 'react';
 import { css } from 'styled-components/macro';
-
-import GatsbyImage from 'gatsby-image';
 import { Announcement } from '../models/announcement';
 import Image from './image';
 import { motion } from 'framer-motion';
@@ -13,7 +11,7 @@ interface AnnouncementLinkProps {
 const styles = {
     root: css`
         height: 225px;
-        width: 367px;
+        width: 100%;
 
         position: relative;
     `,

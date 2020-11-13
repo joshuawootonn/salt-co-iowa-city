@@ -18,8 +18,8 @@ export const useUpcomingEventBlock = (): UpcomingEventBlock => {
                     items {
                         title
                         image {
-                            fluid(maxWidth: 800, quality: 90) {
-                                ...GatsbyContentfulFluid_withWebp
+                            fluid(maxWidth: 800, quality: 100) {
+                                ...GatsbyContentfulFluid_withWebp_noBase64
                             }
                         }
                         startDateTime

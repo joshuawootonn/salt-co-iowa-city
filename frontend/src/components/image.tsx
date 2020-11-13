@@ -4,6 +4,7 @@ import { IntersectionObserver } from './IntersectionObserver';
 import { motion } from 'framer-motion';
 import { css } from 'styled-components/macro';
 import { lighten } from 'polished';
+import { toVariant } from '../helpers/animation';
 
 const styles = {
     root: css`
@@ -58,16 +59,14 @@ const Image: FC<ImageProps> = (props) => {
                 return (
                     <div css={styles.root}>
                         <motion.div
-                            animate={
-                                isLoaded && isVisible ? 'entered' : 'exited'
-                            }
-                            initial={{ y: '0%' }}
+                            animate={toVariant(isLoaded && isVisible)}
+                            initial={{ x: '0%' }}
                             variants={{
-                                entered: { y: '-100%' },
-                                exited: { y: '0%' },
+                                entered: { x: '100%' },
+                                exited: { x: '0%' },
                             }}
                             transition={{
-                                duration: 0.4,
+                                duration: 0.8,
                                 bounce: 0,
                                 stiffness: 200,
                                 ease: [0.165, 0.84, 0.44, 1],

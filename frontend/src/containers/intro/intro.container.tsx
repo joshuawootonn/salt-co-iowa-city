@@ -5,6 +5,11 @@ import typography from '../../components/typography';
 import { HowToConnectBlock } from '../../models/howToConnect';
 import { WhoWeAreBlock } from '../../models/whoWeAre';
 import Title from '../../components/title';
+import { IntersectionObserver } from '../../components/IntersectionObserver';
+import { useFontLoader } from '../../context/fontLoader';
+import { toVariant } from '../../helpers/animation';
+import { motion } from 'framer-motion';
+import { Paragraph } from '../../components/text';
 
 const styles = {
     root: css`
@@ -59,18 +64,42 @@ const styles = {
         z-index: -1;
     `,
 };
-const IntroContainer: FC<HowToConnectBlock | WhoWeAreBlock> = (props) => (
-    <div css={styles.root} {...props}>
-        <div css={styles.content}>
-            <div css={styles.textColumn}>
-                <h1 css={styles.title}>{props.title}</h1>
-                <p css={styles.body}>{props.body}</p>
-            </div>
-            <div css={styles.backgroundContainer}>
-                <div css={styles.backgroundPositioner}>{props.children}</div>
-            </div>
-        </div>
-    </div>
-);
+const IntroContainer: FC<HowToConnectBlock | WhoWeAreBlock> = (props) => {
+    const isLoaded = useFontLoader();
+
+    return (
+        <IntersectionObserver
+            render={({ isVisible }) => (
+                <motion.div
+                    animate={toVariant(isVisible && isLoaded)}
+                    variants={{
+                        entered: {
+                            transition: {
+                                delayChildren: 0,
+                                staggerChildren: 0.17,
+                            },
+                        },
+                    }}
+                    css={styles.root}
+                    {...props}
+                >
+                    <div css={styles.content}>
+                        <div css={styles.textColumn}>
+                            <Title css={styles.title}>{props.title}</Title>
+                            <Paragraph css={styles.body}>
+                                {props.body}
+                            </Paragraph>
+                        </div>
+                        <div css={styles.backgroundContainer}>
+                            <div css={styles.backgroundPositioner}>
+                                {props.children}
+                            </div>
+                        </div>
+                    </div>
+                </motion.div>
+            )}
+        />
+    );
+};
 
 export default IntroContainer;

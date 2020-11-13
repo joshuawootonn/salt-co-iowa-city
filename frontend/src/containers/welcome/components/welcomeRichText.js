@@ -6,6 +6,9 @@ import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import slugify from '../../../helpers/slugify';
 import { motion } from 'framer-motion';
+import { IntersectionObserver } from '../../../components/IntersectionObserver';
+import { toVariant } from '../../../helpers/animation';
+import { useFontLoader } from '../../../context/fontLoader';
 
 const ParagraphLink = (props) => (
     <TextLink css={typography.largeText.link} type={'largeText'} {...props}>
@@ -40,16 +43,17 @@ const EntryHyperLink = ({ content, data }) => {
     }
 };
 
+const animationProps = {
+    initial: { opacity: 0, y: 50, rotate: '5deg' },
+    variants: {
+        entered: { y: 0, opacity: 1, rotate: '0deg' },
+        exited: { y: 50, opacity: 0, rotate: '5deg' },
+    },
+    transition: { type: 'spring', duration: 1 },
+};
+
 const Paragraph = ({ content, data }, children) => (
-    <motion.p
-        initial={{ opacity: 0 }}
-        variants={{
-            entered: { y: 0, opacity: 1 },
-            exited: { y: 100, opacity: 0 },
-        }}
-        transition={{ bounce: 0 }}
-        css={typography.largeText.text}
-    >
+    <motion.p {...animationProps} css={typography.largeText.text}>
         {children}
     </motion.p>
 );
@@ -59,7 +63,6 @@ const WelcomeRichText = (props) => (
         css={css`
             overflow: hidden;
         `}
-        {...props}
     >
         {documentToReactComponents(props.json, {
             renderNode: {

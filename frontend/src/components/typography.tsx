@@ -1,6 +1,7 @@
 import { css } from 'styled-components/macro';
 import { motion } from 'framer-motion';
 import React from 'react';
+import { queryShit } from './useScreenType';
 
 const typography = {
     title1: css`
@@ -27,6 +28,7 @@ const typography = {
             font-family: 'Montserrat', Arial, sans-serif;
             font-size: 40px;
             color: ${({ theme }) => theme.colors.white};
+            transform-origin: left;
         `,
 
         link: css`
@@ -43,6 +45,12 @@ const typography = {
             font-family: 'MonumentExtended', Arial, sans-serif;
             color: ${({ theme }) => theme.colors.purple.light};
             font-size: 30px;
+
+            ${queryShit({
+                mobile: css`
+                    font-size: 20px;
+                `,
+            })}
         `,
         text: css`
             font-family: 'Montserrat', Arial, sans-serif;
@@ -59,6 +67,11 @@ const typography = {
             color: ${({ theme }) => theme.colors.purple.light};
             font-size: 16px;
             text-decoration: underline;
+            ${queryShit({
+                mobile: css`
+                    font-size: 12px;
+                `,
+            })}
         `,
     },
 

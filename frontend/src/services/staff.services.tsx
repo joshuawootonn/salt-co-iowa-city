@@ -26,8 +26,8 @@ export const useStaffBlock = (): StaffBlock => {
                             about
                         }
                         image {
-                            fluid(maxWidth: 300, quality: 90) {
-                                ...GatsbyContentfulFluid_withWebp
+                            fluid(maxWidth: 300, quality: 100) {
+                                ...GatsbyContentfulFluid_withWebp_noBase64
                             }
                         }
                         __typename

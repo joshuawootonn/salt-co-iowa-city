@@ -4,7 +4,9 @@ import { css } from 'styled-components/macro';
 import WelcomeRichText from './components/welcomeRichText';
 import React, { FC } from 'react';
 import { motion } from 'framer-motion';
-import { useIntersectionObserver } from '../../components/IntersectionObserver';
+import useIntersect from '../../helpers/useIntersect';
+import { useFontLoader } from '../../context/fontLoader';
+import { toVariant } from '../../helpers/animation';
 
 const styles = {
     root: css`
@@ -40,26 +42,32 @@ const styles = {
 };
 
 const Section2: FC<WelcomeBlock> = (welcomeBlock) => {
-    const { viewState } = useIntersectionObserver();
+    const isLoaded = useFontLoader();
+    const ref = React.useRef(null);
+    const { isVisible } = useIntersect(ref, {
+        threshold: 0,
+    });
+
     return (
         <motion.div
-            animate={viewState}
+            ref={ref}
+            animate={toVariant(isLoaded && isVisible)}
             variants={{
                 entered: {
                     transition: {
-                        delayChildren: 0.2,
-                        staggerChildren: 0.17,
+                        delayChildren: 0.4,
+                        staggerChildren: 0.2,
                     },
                 },
             }}
             css={styles.root}
         >
-            <motion.div css={styles.one}>
+            <div css={styles.one}>
                 <WelcomeRichText json={welcomeBlock.text3.json} />
-            </motion.div>
-            <motion.div css={styles.two}>
+            </div>
+            <div css={styles.two}>
                 <WelcomeRichText json={welcomeBlock.text4.json} />
-            </motion.div>
+            </div>
             <Image
                 css={styles.image}
                 fluid={welcomeBlock.secondaryImage.fluid}

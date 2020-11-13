@@ -6,9 +6,9 @@ import React, { FC } from 'react';
 
 import { motion } from 'framer-motion';
 import { useFontLoader } from '../../context/fontLoader';
-import { useIntersectionObserver } from '../../components/IntersectionObserver';
 import { toVariant } from '../../helpers/animation';
 import Title from '../../components/title';
+import useIntersect from '../../helpers/useIntersect';
 
 const styles = {
     root: css`
@@ -41,16 +41,20 @@ const styles = {
 
 const Section1: FC<WelcomeBlock> = (welcomeBlock) => {
     const isLoaded = useFontLoader();
-    const { isVisible } = useIntersectionObserver();
-    console.log(welcomeBlock.title);
+    const ref = React.useRef(null);
+    const { isVisible } = useIntersect(ref, {
+        threshold: 0,
+    });
+
     return (
         <motion.div
+            ref={ref}
             animate={toVariant(isLoaded && isVisible)}
             variants={{
                 entered: {
                     transition: {
                         delayChildren: 0.4,
-                        staggerChildren: 0.17,
+                        staggerChildren: 0.2,
                     },
                 },
             }}

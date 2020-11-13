@@ -11,10 +11,12 @@ const styles = {
     normal: css`
         ${typography.title1};
         cursor: pointer;
+        transform-origin: left;
     `,
     small: css`
         ${typography.title2};
         cursor: pointer;
+        transform-origin: left;
     `,
 };
 
@@ -44,34 +46,36 @@ const handleClick = (location) => {
 };
 
 const animationProps = {
-    initial: { opacity: 0 },
+    initial: { opacity: 0, y: 50, rotate: '5deg' },
     variants: {
-        entered: { y: 0, opacity: 1 },
-        exited: { y: 100, opacity: 0 },
+        entered: { y: 0, opacity: 1, rotate: '0deg' },
+        exited: { y: 50, opacity: 0, rotate: '5deg' },
     },
-    transition: { bounce: 0 },
+    transition: { type: 'spring', duration: 1 },
 };
 
-const Normal = (props) => (
-    <Element css={styles.root} name={`#${slugify(props.children)}`}>
-        <motion.h1
-            {...animationProps}
-            onClick={() => handleClick(props.children)}
-            css={styles.normal}
-            {...props}
-        >
-            {props.children}
-        </motion.h1>
-    </Element>
-);
+const Normal = (props) => {
+    // console.log(props.children);
+    return (
+        <Element name={`#${slugify(props.children)}`}>
+            <motion.h1
+                {...animationProps}
+                onClick={() => handleClick(props.children)}
+                css={styles.normal}
+                {...props}
+            >
+                {props.children}
+            </motion.h1>
+        </Element>
+    );
+};
 
 const Small = (props) => (
-    <Element css={styles.root} name={`#${slugify(props.children)}`}>
+    <Element css={styles.root} name={`#${slugify(props.children)}`} {...props}>
         <motion.h2
             {...animationProps}
             onClick={() => handleClick(props.children)}
             css={styles.small}
-            {...props}
         >
             {props.children}
         </motion.h2>

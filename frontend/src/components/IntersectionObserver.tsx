@@ -1,7 +1,5 @@
 import React, { FC, useContext, useEffect, useState } from 'react';
 import { useIntersection } from 'react-use';
-import { useFontLoader } from '../context/fontLoader';
-import { motion } from 'framer-motion';
 
 interface IC {
     isVisible: boolean;
@@ -51,14 +49,14 @@ export const IntersectionObserver: FC<IntersectionObserverProp> = ({
                 viewState: isVisible ? 'entered' : 'exited',
             }}
         >
-            <motion.div ref={intersectionRef} {...props}>
+            <div ref={intersectionRef} {...props}>
                 {render
                     ? render({
                           isVisible: isVisible,
                           viewState: isVisible ? 'entered' : 'exited',
                       })
                     : (children as any)}
-            </motion.div>
+            </div>
         </IntersectionContext.Provider>
     );
 };

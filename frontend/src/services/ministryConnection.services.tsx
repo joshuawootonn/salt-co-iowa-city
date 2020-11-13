@@ -17,16 +17,16 @@ export const useMinistryConnectionBlock = (): MinistryConnectionBlock => {
                             description
                         }
                         images {
-                            fluid(maxWidth: 800, quality: 90) {
-                                ...GatsbyContentfulFluid_withWebp
+                            fluid(maxWidth: 800, quality: 100) {
+                                ...GatsbyContentfulFluid_withWebp_noBase64
                             }
                         }
                         backgroundImage
                         nextEvent {
                             title
                             image {
-                                fluid(maxWidth: 800, quality: 90) {
-                                    ...GatsbyContentfulFluid_withWebp
+                                fluid(maxWidth: 800, quality: 100) {
+                                    ...GatsbyContentfulFluid_withWebp_noBase64
                                 }
                             }
                             location {

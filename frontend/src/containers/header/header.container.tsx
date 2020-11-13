@@ -21,7 +21,7 @@ const styles = {
         ${queryShit({
             mobile: css`
                 margin: 15px auto 0 auto;
-                padding: 0 15px;
+                padding: 0 25px;
             `,
         })}
     `,

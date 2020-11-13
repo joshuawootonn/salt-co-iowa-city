@@ -7,6 +7,9 @@ import { MinistryDescription } from '../../models/ministryDescription';
 import Title from '../../components/title';
 import { mapReferenceToLink } from '../../helpers/link';
 import TextLink from '../../components/textLink';
+import Image from '../../components/image';
+import { motion } from 'framer-motion';
+import { useIntersectionObserver } from '../../components/IntersectionObserver';
 
 const styles = {
     root: css`
@@ -16,21 +19,13 @@ const styles = {
     image: css`
         width: 1100px;
         height: 761px;
-        background-repeat: no-repeat;
-        background-position: center;
-
-        background-size: cover;
     `,
-    titleContainer: css`
+    title: css`
         position: absolute;
 
         top: -50px;
-        left: 50px;
+        left: 0;
         z-index: 10;
-
-        h2 {
-            color: ${({ theme }) => theme.colors.blue.medium};
-        }
     `,
     textContainer: css`
         background-color: ${({ theme }) => theme.colors.backgroundTransparent};
@@ -72,9 +67,21 @@ const styles = {
 
 const MinistryDescriptionCard: FC<MinistryDescription> = (props) => {
     const [currentImage, setCurrentImage] = useState(0);
+    const { viewState } = useIntersectionObserver();
     return (
-        <div css={styles.root}>
-            <BackgroundImage
+        <motion.div
+            variants={{
+                entered: {
+                    transition: {
+                        delayChildren: 0,
+                        staggerChildren: 0.17,
+                    },
+                },
+            }}
+            animate={viewState}
+            css={styles.root}
+        >
+            <Image
                 css={styles.image}
                 fluid={props.images[currentImage].fluid}
             />
@@ -84,15 +91,17 @@ const MinistryDescriptionCard: FC<MinistryDescription> = (props) => {
                 handleChange={setCurrentImage}
                 css={styles.imageControl}
             />
-            <div css={styles.titleContainer}>
-                <Title variant="small">{props.title}</Title>
-            </div>
+            <Title variant="small" css={styles.title}>
+                {props.title}
+            </Title>
             <div css={styles.textContainer}>
                 <div css={styles.textBlock1}>
                     <p css={typography.card.text}>{props.description}</p>
                 </div>
                 <div css={styles.textBlock2}>
                     <TextLink
+                        type="card"
+                        // size="small"
                         destinationType="internal"
                         to={mapReferenceToLink(props.link.reference)}
                     >
@@ -100,7 +109,7 @@ const MinistryDescriptionCard: FC<MinistryDescription> = (props) => {
                     </TextLink>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 };
 
