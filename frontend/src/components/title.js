@@ -1,24 +1,9 @@
 import React, { useEffect } from 'react';
-import { css } from 'styled-components/macro';
+import styled, { css } from 'styled-components/macro';
 import typography from './typography';
 import slugify from '../helpers/slugify';
 import { Element, scroller } from 'react-scroll';
-import { motion } from 'framer-motion';
-const styles = {
-    root: css`
-        overflow: hidden;
-    `,
-    normal: css`
-        ${typography.title1};
-        cursor: pointer;
-        transform-origin: left;
-    `,
-    small: css`
-        ${typography.title2};
-        cursor: pointer;
-        transform-origin: left;
-    `,
-};
+import { animated, useSpring, config } from 'react-spring';
 
 export const forceScroll = () => {
     if (typeof window !== `undefined` && document.location.hash !== '') {
@@ -45,44 +30,58 @@ const handleClick = (location) => {
     }
 };
 
-const animationProps = {
-    initial: { opacity: 0, y: 50, rotate: '5deg' },
-    variants: {
-        entered: { y: 0, opacity: 1, rotate: '0deg' },
-        exited: { y: 50, opacity: 0, rotate: '5deg' },
-    },
-    transition: { type: 'spring', duration: 1 },
+const styles = {
+    root: css`
+        overflow: hidden;
+    `,
+    normal: css`
+        ${typography.title1};
+        cursor: pointer;
+        transform-origin: left;
+        color: lawngreen;
+    `,
+    small: css`
+        ${typography.title2};
+        cursor: pointer;
+        transform-origin: left;
+    `,
 };
 
-const Normal = (props) => {
-    // console.log(props.children);
+const Root = styled(Element)`
+    overflow: hidden;
+`;
+
+const H1 = styled(animated.h1)`
+    ${typography.title1};
+    cursor: pointer;
+    transform-origin: left;
+`;
+
+const H2 = styled(animated.h2)`
+    ${typography.title2};
+    cursor: pointer;
+    transform-origin: left;
+`;
+
+const Title = ({ v, ...props }) => {
+    const style = useSpring({
+        transform: `translateY(${v ? '0' : '100'}%) rotate(${v ? 0 : 5}deg)`,
+        opacity: v ? 1 : 0,
+        config: { ...config.slow, friction: 50, clamp: true },
+    });
+    const Component = props.variant === 'small' ? H2 : H1;
+
     return (
-        <Element name={`#${slugify(props.children)}`}>
-            <motion.h1
-                {...animationProps}
+        <Root name={`#${slugify(props.children)}`}>
+            <Component
+                style={style}
                 onClick={() => handleClick(props.children)}
-                css={styles.normal}
                 {...props}
             >
                 {props.children}
-            </motion.h1>
-        </Element>
+            </Component>
+        </Root>
     );
 };
-
-const Small = (props) => (
-    <Element css={styles.root} name={`#${slugify(props.children)}`} {...props}>
-        <motion.h2
-            {...animationProps}
-            onClick={() => handleClick(props.children)}
-            css={styles.small}
-        >
-            {props.children}
-        </motion.h2>
-    </Element>
-);
-
-const Title = (props) =>
-    props.variant === 'small' ? <Small {...props} /> : <Normal {...props} />;
 
 export default Title;
