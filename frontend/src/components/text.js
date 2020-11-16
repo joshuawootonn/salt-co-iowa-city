@@ -1,14 +1,6 @@
-import React, { useEffect, useRef } from 'react';
-import {
-    config,
-    useSpring,
-    a,
-    animated,
-    useTrail,
-    interpolate,
-} from 'react-spring';
+import React from 'react';
+import { motion } from 'framer-motion';
 import styled, { css } from 'styled-components/macro';
-import Splitting from 'splitting';
 
 const styles = {
     phantom: css`
@@ -24,9 +16,9 @@ const Root = styled.div`
     position: relative;
 `;
 
-const P = styled(animated.p)``;
+const P = styled(motion.p)``;
 
-const Span = styled(animated.span)`
+const Span = styled(motion.span)`
     display: inline-block;
     overflow: hidden;
 
@@ -37,46 +29,21 @@ const Span = styled(animated.span)`
     }
 `;
 
-const Text = ({ v, ...props }) => {
-    console.log(props);
-    const items = React.Children.toArray(props.children.split(' '));
+const animationProps = {
+    initial: { opacity: 0, y: 50 },
+    variants: {
+        entered: { y: 0, opacity: 1 },
+        exited: { y: 50, opacity: 0 },
+    },
+    transition: { type: 'spring', duration: 1, bounce: 0 },
+};
 
-    const trail = useTrail(items.length, {
-        config: {
-            ...config.default,
-            tension: 2000,
-            friction: 130,
-        },
-        opacity: v ? 1 : 0,
-        y: v ? 0 : 30,
-        rotate: v ? 0 : 20,
-        height: v ? 100 : 0,
-        from: { opacity: 0, y: 50, rotate: 2, height: '0%' },
-    });
+const Text = (props) => {
     const Component = props.elementType === 'paragraph' ? P : Span;
     return (
         <Root>
-            <Component {...props}>
-                {trail.map(({ height, ...style }, index) => (
-                    <a.div
-                        style={{ ['max-height']: height }}
-                        key={items[index]}
-                    >
-                        <a.div
-                            style={{
-                                ...style,
-                                transform: interpolate(
-                                    [style.rotate, style.y],
-                                    (rotate, y) =>
-                                        `rotate(${rotate}deg) translateY(${y}px)`
-                                ),
-                            }}
-                        >
-                            {items[index]}
-                        </a.div>
-                        <span>&nbsp;</span>
-                    </a.div>
-                ))}
+            <Component {...animationProps} {...props}>
+                {props.children}
             </Component>
         </Root>
     );

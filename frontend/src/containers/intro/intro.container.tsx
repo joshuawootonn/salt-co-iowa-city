@@ -9,7 +9,7 @@ import { IntersectionObserver } from '../../components/IntersectionObserver';
 import { useFontLoader } from '../../context/fontLoader';
 import { toVariant } from '../../helpers/animation';
 import { motion } from 'framer-motion';
-import { Paragraph } from '../../components/text';
+import Text from '../../components/text';
 
 const styles = {
     root: css`
@@ -86,9 +86,7 @@ const IntroContainer: FC<HowToConnectBlock | WhoWeAreBlock> = (props) => {
                     <div css={styles.content}>
                         <div css={styles.textColumn}>
                             <Title css={styles.title}>{props.title}</Title>
-                            <Paragraph css={styles.body}>
-                                {props.body}
-                            </Paragraph>
+                            <Text css={styles.body}>{props.body}</Text>
                         </div>
                         <div css={styles.backgroundContainer}>
                             <div css={styles.backgroundPositioner}>

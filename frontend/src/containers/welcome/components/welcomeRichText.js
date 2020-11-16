@@ -44,12 +44,12 @@ const EntryHyperLink = ({ content, data }) => {
 };
 
 const animationProps = {
-    initial: { opacity: 0, y: 50, rotate: '5deg' },
+    initial: { opacity: 0, y: 50, rotate: '2deg' },
     variants: {
         entered: { y: 0, opacity: 1, rotate: '0deg' },
-        exited: { y: 50, opacity: 0, rotate: '5deg' },
+        exited: { y: 50, opacity: 0, rotate: '2deg' },
     },
-    transition: { type: 'spring', duration: 1 },
+    transition: { type: 'spring', duration: 1,bounce: 0 },
 };
 
 const Paragraph = ({ content, data }, children) => (
