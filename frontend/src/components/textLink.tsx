@@ -6,6 +6,20 @@ import { motion } from 'framer-motion';
 
 const styles = {
     root: ({ size, type, font }: BaseTextLinkProps) => css`
+        text-decoration: none;
+
+        font-family: ${font === 'primary' ? 'MonumentExtended' : 'Montserrat'},
+            Arial, sans-serif;
+
+        text-transform: ${font === 'primary' ? 'uppercase' : 'none'};
+
+        color: ${({ theme }) => theme.colors.blue.light};
+
+        cursor: pointer;
+        user-select: none;
+
+        text-wrap: none;
+
         ${type === 'primary' &&
         css`
             border: 2px solid ${({ theme }) => theme.colors.blue.lightest};
@@ -27,19 +41,8 @@ const styles = {
         ${type === 'largeText' &&
         css`
             ${typography.card.link};
+            text-decoration: underline;
         `};
-
-        font-family: ${font === 'primary' ? 'MonumentExtended' : 'Montserrat'},
-            Arial, sans-serif;
-
-        text-transform: ${font === 'primary' ? 'uppercase' : 'none'};
-
-        color: ${({ theme }) => theme.colors.blue.light};
-
-        cursor: pointer;
-        user-select: none;
-        text-decoration: none;
-        text-wrap: none;
     `,
 };
 

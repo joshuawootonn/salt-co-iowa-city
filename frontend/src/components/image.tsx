@@ -1,32 +1,34 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { FluidObject } from 'gatsby-image';
-import { IntersectionObserver } from './IntersectionObserver';
-import { motion } from 'framer-motion';
-import { css } from 'styled-components/macro';
+import { AnimatePresence, motion } from 'framer-motion';
+import styled, { css } from 'styled-components/macro';
 import { lighten } from 'polished';
 import { toVariant } from '../helpers/animation';
+import useIntersect from '../helpers/useIntersect';
+
+const Root = styled.div`
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    overflow: hidden;
+    background-color: ${({ theme }) => lighten(0.02, theme.colors.background)};
+`;
+
+const Cover = styled(motion.div)`
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: ${({ theme }) => lighten(0.02, theme.colors.background)};
+`;
 
 const styles = {
-    root: css`
-        width: 100%;
-        height: 100%;
-        position: relative;
-
-        overflow: hidden;
-    `,
-    cover: css`
-        position: absolute;
-        z-index: 0;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: ${({ theme }) =>
-            lighten(0.02, theme.colors.background)};
-    `,
+    cover: css``,
     img: css`
         position: absolute;
-        z-index: -1;
         top: 0;
         left: 0;
         width: 100%;
@@ -43,64 +45,77 @@ export interface ImageProps {
 
 const Image: FC<ImageProps> = (props) => {
     const [isLoaded, setIsLoaded] = useState(false);
+    const ref = React.useRef(null);
+    const { isVisible } = useIntersect(ref, {
+        threshold: 0,
+    });
+
+    useEffect(() => {
+        setIsLoaded(false);
+    }, [props.fluid]);
 
     const handleLoad = () => {
         props.onLoad && props.onLoad();
         setIsLoaded(true);
     };
 
+    const variants1 = {
+        enter: {
+            x: '0',
+        },
+        center: {
+            x: '0',
+        },
+    };
+
+    const variants2 = {
+        enter: {
+            x: '0%',
+        },
+        center: {
+            x: '100%',
+        },
+    };
+
     return (
-        <IntersectionObserver
-            reset={false}
-            css={styles.root}
-            threshold={0.25}
-            {...props}
-            render={({ isVisible, viewState }) => {
-                return (
-                    <div css={styles.root}>
-                        <motion.div
-                            animate={toVariant(isLoaded && isVisible)}
-                            initial={{ x: '0%' }}
-                            variants={{
-                                entered: { x: '100%' },
-                                exited: { x: '0%' },
-                            }}
-                            transition={{
-                                duration: 0.8,
-                                bounce: 0,
-                                stiffness: 200,
-                                ease: [0.165, 0.84, 0.44, 1],
-                            }}
-                            css={styles.cover}
-                        />
-                        <picture>
-                            {props.fluid.srcSetWebp && (
-                                <source
-                                    type="image/webp"
-                                    media={props.fluid.media}
-                                    srcSet={props.fluid.srcSetWebp}
-                                    sizes={props.fluid.sizes}
-                                />
-                            )}
-                            {props.fluid.srcSet && (
-                                <source
-                                    media={props.fluid.media}
-                                    srcSet={props.fluid.srcSet}
-                                    sizes={props.fluid.sizes}
-                                />
-                            )}
-                            <img
-                                css={styles.img}
-                                srcSet={props.fluid.srcSet}
-                                src={props.fluid.src}
-                                onLoad={handleLoad}
-                            />
-                        </picture>
-                        {props.children}
-                    </div>
-                );
-            }}
-        />
+        <Root ref={ref} {...props}>
+            {/*<Cover*/}
+            {/*    variants={variants1}*/}
+            {/*    animate={isLoaded && isVisible ? 'center' : 'enter'}*/}
+            {/*    transition={{ type: 'spring', duration: 0.8, bounce: 0 }}*/}
+            {/*/>*/}
+            <Cover
+                variants={variants2}
+                animate={isLoaded && isVisible ? 'center' : 'enter'}
+                transition={{ type: 'spring', duration: 0.8, bounce: 0 }}
+            />
+
+            <motion.picture key={props.fluid.src + '-picture'}>
+                {props.fluid.srcSetWebp && (
+                    <source
+                        type="image/webp"
+                        media={props.fluid.media}
+                        srcSet={props.fluid.srcSetWebp}
+                        sizes={props.fluid.sizes}
+                    />
+                )}
+                {props.fluid.srcSet && (
+                    <source
+                        media={props.fluid.media}
+                        srcSet={props.fluid.srcSet}
+                        sizes={props.fluid.sizes}
+                    />
+                )}
+                <img
+                    css={styles.img}
+                    srcSet={props.fluid.srcSet}
+                    src={props.fluid.src}
+
+                    onLoad={handleLoad}
+                />
+            </motion.picture>
+            {props.children}
+        </Root>
     );
 };
 

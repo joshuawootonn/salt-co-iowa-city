@@ -3,7 +3,6 @@ import { css } from 'styled-components/macro';
 import layout from '../../components/layout';
 import MinistryDescriptionCard from './ministryDescriptionCard';
 import { MinistryDescriptionBlock } from '../../models/ministryDescription';
-import { IntersectionObserver } from '../../components/IntersectionObserver';
 
 const styles = {
     root: css`
@@ -27,9 +26,7 @@ const MinistryDescriptionContainer: FC<MinistryDescriptionBlock> = (props) => {
         <div css={styles.root} {...props}>
             <div css={styles.itemsContainer}>
                 {props.ministryDescriptions.map((s, i) => (
-                    <IntersectionObserver key={i}>
-                        <MinistryDescriptionCard {...s} />
-                    </IntersectionObserver>
+                    <MinistryDescriptionCard key={i} {...s} />
                 ))}
             </div>
         </div>

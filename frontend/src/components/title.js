@@ -47,10 +47,10 @@ const H2 = styled(motion.h2)`
 `;
 
 const animationProps = {
-    initial: { opacity: 0, y: 50, rotate: '5deg' },
+    initial: { opacity: 0, y: 40, rotate: '4deg' },
     variants: {
         entered: { y: 0, opacity: 1, rotate: '0deg' },
-        exited: { y: 50, opacity: 0, rotate: '5deg' },
+        exited: { y: 40, opacity: 0, rotate: '4deg' },
     },
     transition: { type: 'spring', duration: 1, bounce: 0 },
 };

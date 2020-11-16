@@ -14,8 +14,9 @@ export const staffBlockQuery = gql`
                         lastName
                         email
                         position
-                        about
                         connectionLinkText
+                        about
+                        __typename
                         image {
                             url
                         }
@@ -36,7 +37,7 @@ export const getStaffBlock = async (): Promise<StaffBlock> => {
     const rawStaffBlock = rawStaffResult.blockStaffCollection.items[0];
 
     return {
-        root: rawStaffBlock.title,
+        title: rawStaffBlock.title,
         staff: rawStaffBlock.itemsCollection.items.map((s: any) => ({
             ...s,
             image: imageRawTransform(s.image),

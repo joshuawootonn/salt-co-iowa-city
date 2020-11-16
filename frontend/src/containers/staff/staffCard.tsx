@@ -1,10 +1,12 @@
 import React, { FC } from 'react';
 import GatsbyBackgroundImage from 'gatsby-background-image';
-import { css } from 'styled-components/macro';
+import styled, { css } from 'styled-components/macro';
 import typography from '../../components/typography';
 import { Staff } from '../../models/staff';
 import { mapReferenceToLink } from '../../helpers/link';
 import TextLink from '../../components/textLink';
+import Image from '../../components/image';
+import { motion } from 'framer-motion';
 
 const styles = {
     root: css`
@@ -20,13 +22,10 @@ const styles = {
         background-position: center;
         background-size: cover;
     `,
-    textContainer: css`
-        background-color: ${({ theme }) => theme.colors.backgroundTransparent};
-        transform: translate(20px, -77px);
-    `,
+    textContainer: css``,
 
     textBlock1: css`
-        border: 2px solid ${({ theme }) => theme.colors.purple.light};
+        border: 2px solid ${({ theme }) => theme.colors.blue.light};
         display: flex;
         flex-direction: column;
         padding: 15px;
@@ -35,7 +34,8 @@ const styles = {
         }
     `,
     textBlock2: css`
-        border: 2px solid ${({ theme }) => theme.colors.purple.light};
+        transform: translateY(-2px);
+        border: 2px solid ${({ theme }) => theme.colors.blue.light};
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -44,10 +44,24 @@ const styles = {
     `,
 };
 
+const animationProps = {
+    initial: { opacity: 0, x: -20, y: -77 },
+    variants: {
+        entered: { x: 20, opacity: 1, y: -77 },
+        exited: { x: -20, opacity: 0, y: -77 },
+    },
+    transition: { type: 'spring', duration: 1, bounce: 0 },
+};
+
+const TextCard = styled(motion.div)`
+    background-color: ${({ theme }) => theme.colors.backgroundTransparent};
+    transform: translate(20px, -77px);
+`;
+
 const StaffCard: FC<Staff> = (props) => (
     <div css={styles.root}>
-        <GatsbyBackgroundImage fluid={props.image.fluid} css={styles.image} />
-        <div css={styles.textContainer}>
+        <Image fluid={props.image.fluid} css={styles.image} />
+        <TextCard {...animationProps}>
             <div css={styles.textBlock1}>
                 <h4 css={typography.card.title}>
                     {props.firstName} {props.lastName}
@@ -59,11 +73,12 @@ const StaffCard: FC<Staff> = (props) => (
                 <TextLink
                     destinationType="internal"
                     to={mapReferenceToLink(props)}
+                    type={'card'}
                 >
                     {props.connectionLinkText}
                 </TextLink>
             </div>
-        </div>
+        </TextCard>
     </div>
 );
 

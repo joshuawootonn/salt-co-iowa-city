@@ -30,10 +30,10 @@ const Span = styled(motion.span)`
 `;
 
 const animationProps = {
-    initial: { opacity: 0, y: 50 },
+    initial: { opacity: 0, y: 20 },
     variants: {
         entered: { y: 0, opacity: 1 },
-        exited: { y: 50, opacity: 0 },
+        exited: { y: 20, opacity: 0 },
     },
     transition: { type: 'spring', duration: 1, bounce: 0 },
 };

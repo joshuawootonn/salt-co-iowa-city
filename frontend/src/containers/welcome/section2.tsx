@@ -7,9 +7,11 @@ import { motion } from 'framer-motion';
 import useIntersect from '../../helpers/useIntersect';
 import { useFontLoader } from '../../context/fontLoader';
 import { toVariant } from '../../helpers/animation';
+import layout from '../../components/layout';
 
 const styles = {
     root: css`
+        ${layout.container};
         position: relative;
         width: 1240px;
         height: 800px;

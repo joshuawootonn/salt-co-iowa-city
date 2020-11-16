@@ -43,7 +43,7 @@ const typography = {
     card: {
         title: css`
             font-family: 'MonumentExtended', Arial, sans-serif;
-            color: ${({ theme }) => theme.colors.purple.light};
+            color: ${({ theme }) => theme.colors.blue.light};
             font-size: 30px;
 
             ${queryShit({
@@ -54,18 +54,19 @@ const typography = {
         `,
         text: css`
             font-family: 'Montserrat', Arial, sans-serif;
-            font-size: 18px;
-            color: ${({ theme }) => theme.colors.purple.lightest};
+            font-size: 20px;
+            color: ${({ theme }) => theme.colors.blue.lightest};
         `,
         smallText: css`
             font-family: 'Montserrat', Arial, sans-serif;
             font-size: 15px;
-            color: ${({ theme }) => theme.colors.purple.lightest};
+            color: ${({ theme }) => theme.colors.blue.lightest};
         `,
         link: css`
             font-family: 'MonumentExtended', Arial, sans-serif;
-            color: ${({ theme }) => theme.colors.purple.light};
-            font-size: 16px;
+            color: ${({ theme }) => theme.colors.blue.light};
+            font-size: 15px;
+            text-transform: none;
             text-decoration: underline;
             ${queryShit({
                 mobile: css`

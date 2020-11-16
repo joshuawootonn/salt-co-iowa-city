@@ -9,9 +9,13 @@ import { useFontLoader } from '../../context/fontLoader';
 import { toVariant } from '../../helpers/animation';
 import Title from '../../components/title';
 import useIntersect from '../../helpers/useIntersect';
+import layout from '../../components/layout';
 
 const styles = {
     root: css`
+        ${layout.container};
+
+        margin-top: 180px;
         position: relative;
         width: 1240px;
         height: 1000px;
