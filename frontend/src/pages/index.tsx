@@ -1,4 +1,4 @@
-import React, { FC, useRef, useState } from 'react';
+import React, { FC } from 'react';
 import ThemeContext, { primaryTheme } from '../context/themeContext';
 import WelcomeContainer from '../containers/welcome';
 import { css } from 'styled-components/macro';

@@ -1,4 +1,4 @@
-import Image from '../../components/image';
+import ImageController from '../../components/image/image.controller';
 import { WelcomeBlock } from '../../models/welcome';
 import { css } from 'styled-components/macro';
 import WelcomeRichText from './components/welcomeRichText';
@@ -18,7 +18,7 @@ const styles = {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        align-items: center;
+        align-items: flex-start;
 
         margin-bottom: 300px;
 
@@ -31,7 +31,9 @@ const styles = {
         position: absolute;
         top: 0;
         left: 0;
-        min-width: 100%;
+
+        left: -50px;
+        min-width: calc(100% + 100px);
         height: 800px;
         z-index: -1;
     `,
@@ -54,14 +56,6 @@ const Section2: FC<WelcomeBlock> = (welcomeBlock) => {
         <motion.div
             ref={ref}
             animate={toVariant(isLoaded && isVisible)}
-            variants={{
-                entered: {
-                    transition: {
-                        delayChildren: 0.4,
-                        staggerChildren: 0.2,
-                    },
-                },
-            }}
             css={styles.root}
         >
             <div css={styles.one}>
@@ -70,9 +64,9 @@ const Section2: FC<WelcomeBlock> = (welcomeBlock) => {
             <div css={styles.two}>
                 <WelcomeRichText json={welcomeBlock.text4.json} />
             </div>
-            <Image
+            <ImageController
                 css={styles.image}
-                fluid={welcomeBlock.secondaryImage.fluid}
+                images={[welcomeBlock.secondaryImage]}
             />
         </motion.div>
     );

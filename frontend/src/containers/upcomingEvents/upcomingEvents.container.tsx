@@ -5,6 +5,11 @@ import EventCard from './eventCard';
 import GatsbyBackgroundImage from 'gatsby-background-image';
 import { UpcomingEventBlock } from '../../models/upcomingEvent';
 import Title from '../../components/title';
+import { toVariant } from '../../helpers/animation';
+import { motion } from 'framer-motion';
+import { useFontLoader } from '../../context/fontLoader';
+import useIntersect from '../../helpers/useIntersect';
+import ImageController from '../../components/image';
 
 const styles = {
     root: css`
@@ -52,28 +57,48 @@ const styles = {
     `,
 };
 
-const UpcomingEventsContainer: FC<UpcomingEventBlock> = (props) => (
-    <div css={styles.root} {...props}>
-        <div css={styles.titleContainer}>
-            <Title variant="small" css={styles.title}>
-                {props.title}
-            </Title>
-        </div>
+const UpcomingEventsContainer: FC<UpcomingEventBlock> = (props) => {
+    const isLoaded = useFontLoader();
+    const ref = React.useRef(null);
+    const { isVisible } = useIntersect(ref, {
+        threshold: 0,
+    });
+    return (
+        <motion.div
+            animate={toVariant(isLoaded && isVisible)}
+            variants={{
+                entered: {
+                    transition: {
+                        delayChildren: 0.2,
+                        staggerChildren: 0.05,
+                    },
+                },
+            }}
+            ref={ref}
+            css={styles.root}
+            {...props}
+        >
+            <div css={styles.titleContainer}>
+                <Title variant="small" css={styles.title}>
+                    {props.title}
+                </Title>
+            </div>
 
-        <div css={styles.itemsContainer}>
-            {props.events.map((event, i) => (
-                <GatsbyBackgroundImage
-                    fluid={event.image.fluid}
-                    key={i}
-                    css={styles.image}
-                >
-                    <div css={styles.cardContainer}>
-                        <EventCard {...event} key={i} />
-                    </div>
-                </GatsbyBackgroundImage>
-            ))}
-        </div>
-    </div>
-);
+            <div css={styles.itemsContainer}>
+                {props.events.map((event, i) => (
+                    <ImageController
+                        images={[event.image]}
+                        key={i}
+                        css={styles.image}
+                    >
+                        <div css={styles.cardContainer}>
+                            <EventCard {...event} key={i} />
+                        </div>
+                    </ImageController>
+                ))}
+            </div>
+        </motion.div>
+    );
+};
 
 export default UpcomingEventsContainer;

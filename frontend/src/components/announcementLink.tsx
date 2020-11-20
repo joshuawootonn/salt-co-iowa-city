@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 import { css } from 'styled-components/macro';
 import { Announcement } from '../models/announcement';
-import Image from './image';
+import ImageController from './image/image.controller';
 import { motion } from 'framer-motion';
 
 interface AnnouncementLinkProps {
@@ -55,7 +55,10 @@ const AnnouncementLink: FC<AnnouncementLinkProps> = ({ linkAnnouncement }) => {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
-            <Image fluid={linkAnnouncement.image.fluid} css={styles.image} />
+            <ImageController
+                images={[linkAnnouncement.image]}
+                css={styles.image}
+            />
             <div css={styles.textRoot(isHovered)}>
                 <h1 css={styles.text}>{linkAnnouncement.text}</h1>
             </div>

@@ -5,7 +5,7 @@ import typography from '../../components/typography';
 import { Staff } from '../../models/staff';
 import { mapReferenceToLink } from '../../helpers/link';
 import TextLink from '../../components/textLink';
-import Image from '../../components/image';
+import ImageController from '../../components/image/image.controller';
 import { motion } from 'framer-motion';
 
 const styles = {
@@ -60,7 +60,7 @@ const TextCard = styled(motion.div)`
 
 const StaffCard: FC<Staff> = (props) => (
     <div css={styles.root}>
-        <Image fluid={props.image.fluid} css={styles.image} />
+        <ImageController images={[props.image]} css={styles.image} />
         <TextCard {...animationProps}>
             <div css={styles.textBlock1}>
                 <h4 css={typography.card.title}>

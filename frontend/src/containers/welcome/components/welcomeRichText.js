@@ -9,6 +9,7 @@ import { motion } from 'framer-motion';
 import { IntersectionObserver } from '../../../components/IntersectionObserver';
 import { toVariant } from '../../../helpers/animation';
 import { useFontLoader } from '../../../context/fontLoader';
+import useIntersect from '../../../helpers/useIntersect';
 
 const ParagraphLink = (props) => (
     <TextLink css={typography.largeText.link} type={'largeText'} {...props}>
@@ -49,7 +50,7 @@ const animationProps = {
         entered: { y: 0, opacity: 1, rotate: '0deg' },
         exited: { y: 50, opacity: 0, rotate: '2deg' },
     },
-    transition: { type: 'spring', duration: 1,bounce: 0 },
+    transition: { type: 'spring', duration: 1, bounce: 0 },
 };
 
 const Paragraph = ({ content, data }, children) => (
@@ -58,20 +59,30 @@ const Paragraph = ({ content, data }, children) => (
     </motion.p>
 );
 
-const WelcomeRichText = (props) => (
-    <motion.div
-        css={css`
-            overflow: hidden;
-        `}
-    >
-        {documentToReactComponents(props.json, {
-            renderNode: {
-                [INLINES.HYPERLINK]: HyperLink,
-                [INLINES.ENTRY_HYPERLINK]: EntryHyperLink,
-                [BLOCKS.PARAGRAPH]: Paragraph,
-            },
-        })}
-    </motion.div>
-);
+const WelcomeRichText = (props) => {
+    const isLoaded = useFontLoader();
+    const ref = React.useRef(null);
+    const { isVisible } = useIntersect(ref, {
+        threshold: 0,
+    });
+
+    return (
+        <motion.div
+            animate={!props.isOrchestrated && toVariant(isLoaded && isVisible)}
+            ref={ref}
+            css={css`
+                overflow: hidden;
+            `}
+        >
+            {documentToReactComponents(props.json, {
+                renderNode: {
+                    [INLINES.HYPERLINK]: HyperLink,
+                    [INLINES.ENTRY_HYPERLINK]: EntryHyperLink,
+                    [BLOCKS.PARAGRAPH]: Paragraph,
+                },
+            })}
+        </motion.div>
+    );
+};
 
 export default WelcomeRichText;

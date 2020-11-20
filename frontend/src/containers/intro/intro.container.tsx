@@ -10,6 +10,7 @@ import { useFontLoader } from '../../context/fontLoader';
 import { toVariant } from '../../helpers/animation';
 import { motion } from 'framer-motion';
 import Text from '../../components/text';
+import useIntersect from '../../helpers/useIntersect';
 
 const styles = {
     root: css`
@@ -66,6 +67,10 @@ const styles = {
 };
 const IntroContainer: FC<HowToConnectBlock | WhoWeAreBlock> = (props) => {
     const isLoaded = useFontLoader();
+    const ref = React.useRef(null);
+    const { isVisible } = useIntersect(ref, {
+        threshold: 0,
+    });
 
     return (
         <IntersectionObserver

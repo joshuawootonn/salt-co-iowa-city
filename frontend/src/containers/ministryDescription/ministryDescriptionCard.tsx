@@ -3,7 +3,7 @@ import { css } from 'styled-components/macro';
 import ImageControl from '../../components/imageControl';
 import { MinistryDescription } from '../../models/ministryDescription';
 import Title from '../../components/title';
-import Image from '../../components/image';
+import ImageController from '../../components/image/image.controller';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useFontLoader } from '../../context/fontLoader';
 import useIntersect from '../../helpers/useIntersect';
@@ -42,8 +42,6 @@ const MinistryDescriptionCard: FC<MinistryDescription> = (props) => {
         threshold: 0,
     });
 
-    console.log(isLoaded, isVisible, toVariant(isLoaded && isVisible));
-
     return (
         <motion.div
             ref={ref}
@@ -62,11 +60,7 @@ const MinistryDescriptionCard: FC<MinistryDescription> = (props) => {
                 {props.title}
             </Title>
 
-            <Image
-                key={props.images[currentImage].fluid.src}
-                css={styles.image}
-                imgea={props.images}
-            />
+            <ImageController css={styles.image} images={props.images} />
             {/*<ImageControl*/}
             {/*    current={currentImage}*/}
             {/*    images={props.images}*/}

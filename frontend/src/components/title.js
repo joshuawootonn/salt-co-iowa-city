@@ -3,7 +3,10 @@ import styled from 'styled-components/macro';
 import typography from './typography';
 import slugify from '../helpers/slugify';
 import { Element, scroller } from 'react-scroll';
-import { motion } from 'framer-motion';
+import { motion, useAnimatedState, useAnimation, use } from 'framer-motion';
+import { toVariant } from '../helpers/animation';
+import { useFontLoader } from '../context/fontLoader';
+import useIntersect from '../helpers/useIntersect';
 
 export const forceScroll = () => {
     if (typeof window !== `undefined` && document.location.hash !== '') {
@@ -56,11 +59,21 @@ const animationProps = {
 };
 
 const Title = (props) => {
+    const isLoaded = useFontLoader();
+    const ref = React.useRef(null);
+    const { isVisible } = useIntersect(ref, {
+        threshold: 0,
+    });
     const Component = props.variant === 'small' ? H2 : H1;
+
     return (
         <Root name={`#${slugify(props.children)}`}>
             <Component
+                ref={ref}
                 {...animationProps}
+                animate={
+                    !props.isOrchestrated && toVariant(isLoaded && isVisible)
+                }
                 onClick={() => handleClick(props.children)}
                 {...props}
             >

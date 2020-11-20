@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
-import React, { FC } from 'react';
-import { MinistryDescription } from '../../models/ministryDescription';
+import React from 'react';
 import typography from '../../components/typography';
 import TextLink from '../../components/textLink';
 import { mapReferenceToLink } from '../../helpers/link';
@@ -27,7 +26,7 @@ const TextContainer = styled(motion.div)`
     z-index: 10;
 
     & > div:first-child {
-        border: 2px solid ${({ theme }) => theme.colors.purple.light};
+        border: 2px solid ${({ theme }) => theme.colors.blue.light};
         display: flex;
         flex-direction: column;
         padding: 15px;
@@ -37,7 +36,7 @@ const TextContainer = styled(motion.div)`
     }
 
     & > div:last-child {
-        border: 2px solid ${({ theme }) => theme.colors.purple.light};
+        border: 2px solid ${({ theme }) => theme.colors.blue.light};
 
         transform: translateY(-2px);
         display: flex;
