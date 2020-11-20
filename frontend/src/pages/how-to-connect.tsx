@@ -13,7 +13,7 @@ import { useUpcomingEventBlock } from '../services/upcomingEvent.services';
 import { useConnectionGroupBlock } from '../services/connectionGroup.services';
 import { useMinistryConnectionBlock } from '../services/ministryConnection.services';
 import { useFooterBlock } from '../services/footer.services';
-import { useTitleScoller } from '../components/title';
+import { useTitleScoller } from '../components/title/utils';
 
 const styles = {
     intro: css`

@@ -6,7 +6,7 @@ import typography from '../../components/typography';
 import ConnectionGroupCard from './connectionGroupCard';
 import Masonry from 'react-masonry-css';
 import { ConnectionGroupBlock } from '../../models/connectionGroup';
-import Title from '../../components/title';
+import { Title } from '../../components/title';
 
 const styles = {
     root: css`

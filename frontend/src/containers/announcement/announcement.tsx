@@ -1,63 +1,36 @@
 import React, { FC } from 'react';
-import { useIntersectionObserver } from '../../components/IntersectionObserver';
-import Title from '../../components/title';
-import Bullhorn from '../../svgs/bullhorn.svg';
 import AnnouncementLink from '../../components/announcementLink';
-import { css } from 'styled-components/macro';
+import styled, { css } from 'styled-components/macro';
 import { AnnouncementBlock } from '../../models/announcement';
 import { motion } from 'framer-motion';
 import { toVariant } from '../../helpers/animation';
-import { queryShit } from '../../components/useScreenType';
+import { useFontLoader } from '../../context/fontLoader';
+import useIntersect from '../../helpers/useIntersect';
+import layout from '../../components/layout';
 
-const styles = {
-    announcements: css`
-        display: grid;
-        column-gap: 20px;
-        grid-auto-flow: column;
-        position: relative;
-        
-        ${queryShit({
-            mobile: css`
-                grid-auto-flow: row;
-            `,
-        })}
-    })
-    `,
+const Root = styled(motion.div)`
+    ${layout.container};
+    display: grid;
+    column-gap: 20px;
+    grid-auto-flow: column;
+    position: relative;
+`;
 
-    background: css`
-        position: absolute;
-        z-index: -1;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -47%);
-        width: 110vw;
-        height: auto;
-        overflow: hidden;
-    `,
-    title: css`
-        margin-bottom: 60px;
-    `,
-};
-const Announcements: FC<AnnouncementBlock> = ({ title, announcements }) => {
-    const { isVisible } = useIntersectionObserver();
+// ${queryShit({
+//     mobile: css`
+//         grid-auto-flow: row;
+//     `,
+// })}
+const Announcements: FC<AnnouncementBlock> = ({ announcements }) => {
+    const isLoaded = useFontLoader();
+    const ref = React.useRef(null);
+    const { isVisible } = useIntersect(ref);
     return (
-        <motion.div animate={toVariant(isVisible)}>
-            <Title variant="small" css={styles.title}>
-                {title}
-            </Title>
-            <div css={styles.background}>
-                <Bullhorn />
-                <Bullhorn />
-                <Bullhorn />
-                <Bullhorn />
-                <Bullhorn />
-            </div>
-            <div css={styles.announcements}>
-                {announcements.map((link: any, i: number) => (
-                    <AnnouncementLink key={i} linkAnnouncement={link} />
-                ))}
-            </div>
-        </motion.div>
+        <Root animate={toVariant(isVisible && isLoaded)}>
+            {announcements.map((link: any, i: number) => (
+                <AnnouncementLink key={i} linkAnnouncement={link} />
+            ))}
+        </Root>
     );
 };
 

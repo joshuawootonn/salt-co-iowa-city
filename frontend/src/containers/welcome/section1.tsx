@@ -7,10 +7,9 @@ import React, { FC } from 'react';
 import { motion } from 'framer-motion';
 import { useFontLoader } from '../../context/fontLoader';
 import { toVariant } from '../../helpers/animation';
-import Title from '../../components/title';
+import { Title } from '../../components/title';
 import useIntersect from '../../helpers/useIntersect';
 import layout from '../../components/layout';
-import Image from '../../components/image/image';
 
 const styles = {
     root: css`

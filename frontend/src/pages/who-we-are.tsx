@@ -11,7 +11,7 @@ import { useMinistryDescriptionBlock } from '../services/ministryDescription.ser
 import { useStaffBlock } from '../services/staff.services';
 import StaffContainer from '../containers/staff';
 import { useFooterBlock } from '../services/footer.services';
-import { useTitleScoller } from '../components/title';
+import { useTitleScoller } from '../components/title/utils';
 
 const styles = {
     intro: css`

@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import Title from './title';
+import { Title } from './title';
 import Text from './text';
 import { css } from 'styled-components/macro';
 import { useBoolean } from 'react-use';

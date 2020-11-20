@@ -4,7 +4,7 @@ import layout from '../../components/layout';
 import StaffCard from './staffCard';
 import Hand from '../../svgs/hands.svg';
 import { StaffBlock } from '../../models/staff';
-import Title from '../../components/title';
+import { Title } from '../../components/title';
 import useIntersect from '../../helpers/useIntersect';
 import { useFontLoader } from '../../context/fontLoader';
 import { toVariant } from '../../helpers/animation';

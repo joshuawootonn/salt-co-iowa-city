@@ -23,18 +23,20 @@ const styles = {
         background-color: ${({ theme }) => theme.colors.backgroundTransparent};
         padding: 20px;
 
-        border: 2px solid ${({ theme }) => theme.colors.blue.lightest};
+        border: 2px solid ${({ theme }) => theme.colors.blue.light};
 
         position: absolute;
-        top: -25px;
-        left: -25px;
+        top: 50%;
+        left: 50%;
 
-        transition: all 300ms ease-in-out;
+        transform: translate(-50%, -50%);
 
-        transform: translateX(0px);
+        transition: all 200ms ease-in-out;
 
         ${isHovered &&
         css`
+            top: -25px;
+            left: -25px;
             transform: translateX(10px);
         `}
     `,
@@ -58,6 +60,7 @@ const AnnouncementLink: FC<AnnouncementLinkProps> = ({ linkAnnouncement }) => {
             <ImageController
                 images={[linkAnnouncement.image]}
                 css={styles.image}
+                onClick={() => {}}
             />
             <div css={styles.textRoot(isHovered)}>
                 <h1 css={styles.text}>{linkAnnouncement.text}</h1>

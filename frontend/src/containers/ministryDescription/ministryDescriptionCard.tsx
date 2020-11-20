@@ -1,10 +1,9 @@
 import React, { FC, useState } from 'react';
 import { css } from 'styled-components/macro';
-import ImageControl from '../../components/imageControl';
 import { MinistryDescription } from '../../models/ministryDescription';
-import Title from '../../components/title';
+import { Title } from '../../components/title';
 import ImageController from '../../components/image/image.controller';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useFontLoader } from '../../context/fontLoader';
 import useIntersect from '../../helpers/useIntersect';
 import { toVariant } from '../../helpers/animation';

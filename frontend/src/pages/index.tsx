@@ -7,7 +7,7 @@ import FooterContainer from '../containers/footer';
 import { useAnnouncementBlock } from '../services/announcement.services';
 import { useWelcomeBlock } from '../services/welcome.services';
 import { useFooterBlock } from '../services/footer.services';
-import { useTitleScoller } from '../components/title';
+import { useTitleScoller } from '../components/title/utils';
 import HeaderContainer from '../containers/header';
 
 const styles = {

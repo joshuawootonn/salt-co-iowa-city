@@ -67,9 +67,7 @@ const ImageController: FC<ImageProps> = (props) => {
     const [curr, setCurr] = useState(0);
     const [isCurrLoaded, setIsCurrLoaded] = useState(false);
     const ref = React.useRef(null);
-    const { isVisible } = useIntersect(ref, {
-        threshold: 0,
-    });
+    const { isVisible } = useIntersect(ref, { threshold: 0.25 });
 
     useEffect(() => {
         isCurrLoaded &&
@@ -78,7 +76,6 @@ const ImageController: FC<ImageProps> = (props) => {
                 transitionLock.current = false;
             });
     }, [isCurrLoaded, isVisible]);
-    console.log(props.images[0]);
 
     const animationId = `image-${props.images[curr].fluid.src}`;
     const animationTarget = `[data-animation="${animationId}"]`;
