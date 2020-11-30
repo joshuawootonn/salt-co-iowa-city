@@ -10,6 +10,7 @@ import { toVariant } from '../../helpers/animation';
 import { Title } from '../../components/title';
 import useIntersect from '../../helpers/useIntersect';
 import layout from '../../components/layout';
+import { queryShit } from '../../components/useScreenType';
 
 const styles = {
     root: css`
@@ -26,9 +27,17 @@ const styles = {
 
         margin-bottom: 300px;
 
-        & > div {
-            width: 91%;
-        }
+        ${queryShit({
+            mobile: css`
+                max-width: calc(100vw - 30px);
+                height: 400px;
+
+                margin-bottom: 300px;
+                & > div {
+                    width: 100%;
+                }
+            `,
+        })}
     `,
     image: css`
         position: absolute;
@@ -37,8 +46,32 @@ const styles = {
         min-width: calc(100% + 100px);
         height: 1000px;
         z-index: -1;
+
+        ${queryShit({
+            mobile: css`
+                left: 0px;
+                min-width: 100%;
+                height: 100%;
+            `,
+        })}
+    `,
+    title: css`
+        ${queryShit({
+            mobile: css`
+                width: 100vw;
+            `,
+        })}
     `,
     one: css`
+        transform: translateY(50px);
+
+        ${queryShit({
+            mobile: css`
+                transform: translateY(-50px);
+            `,
+        })}
+    `,
+    two: css`
         transform: translateY(50px);
     `,
 };
@@ -65,13 +98,15 @@ const Section1: FC<WelcomeBlock> = (welcomeBlock) => {
             css={styles.root}
         >
             <div css={styles.one}>
-                <Title isOrchestrated={true}>{welcomeBlock.title}</Title>
+                <Title css={styles.title} isOrchestrated={true}>
+                    {welcomeBlock.title}
+                </Title>
                 <WelcomeRichText
                     isOrchestrated={true}
                     json={welcomeBlock.text1.json}
                 />
             </div>
-            <div css={styles.one}>
+            <div css={styles.two}>
                 <WelcomeRichText
                     isOrchestrated={true}
                     json={welcomeBlock.text2.json}

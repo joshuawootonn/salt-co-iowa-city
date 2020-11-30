@@ -47,7 +47,7 @@ const Title = (props) => {
     const Component = props.variant === 'small' ? H2 : H1;
 
     return (
-        <Root name={`#${slugify(props.children)}`}>
+        <Root name={`#${slugify(props.children)}`} {...props}>
             <Component
                 {...animationProps}
                 ref={ref}

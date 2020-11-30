@@ -8,10 +8,19 @@ import { toVariant } from '../../helpers/animation';
 import { useFontLoader } from '../../context/fontLoader';
 import useIntersect from '../../helpers/useIntersect';
 import { handleTitleElementClick } from './utils';
+import { queryShit } from '../useScreenType';
 
 const BannerRoot = styled(Element)`
     width: 100vw;
-    height: 100px;
+
+    ${queryShit({
+        mobile: css`
+            height: 70px;
+        `,
+        tablet: css`
+            height: 100px;
+        `,
+    })}
 `;
 
 const H2 = styled(motion.h2)`
@@ -39,7 +48,7 @@ const headerAnimationProps = {
     transition: {
         bounce: 0,
         repeat: Infinity,
-        duration: 20,
+        duration: 30,
         ease: 'linear',
     },
 };

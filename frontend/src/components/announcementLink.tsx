@@ -7,6 +7,8 @@ import { lighten } from 'polished';
 import Image from './image/image';
 import { animateOut } from './image/animations';
 import useIntersect from '../helpers/useIntersect';
+import typography from './typography';
+import { queryShit } from './useScreenType';
 
 interface AnnouncementLinkProps {
     linkAnnouncement: Announcement;
@@ -112,25 +114,54 @@ const styles = {
         background-color: ${({ theme }) => theme.colors.backgroundTransparent};
         padding: 20px;
 
-        border: 2px solid ${({ theme }) => theme.colors.blue.light};
+        border: 2px solid ${({ theme }) => theme.colors.purple.lightest};
 
         position: absolute;
         z-index: 10;
-        bottom: 0;
-        left: 0;
 
+        ${queryShit({
+            tablet: css`
+                bottom: 0;
+                left: 0;
+                transform: translate3d(-20px, 20px, 0);
+            `,
+            mobile: css`
+                top: 0;
+                left: 0;
+                transform: translate3d(-15px, -15px, 0);
+            `,
+        })};
         transform: translate3d(-20px, 20px, 0);
 
         transition: all 200ms ease-in-out;
 
         ${isHovered &&
         css`
-            transform: translate3d(-15px, 15px, 0);
+            ${queryShit({
+                tablet: css`
+                    transform: translate3d(-15px, 15px, 0);
+                `,
+                mobile: css`
+                    transform: translate3d(-10px, -10px, 0);
+                `,
+            })};
         `}
     `,
     text: css`
-        color: ${({ theme }) => theme.colors.blue.light};
-        font-size: 18px;
+        ${typography.card.link};
+
+        text-transform: uppercase;
+
+        text-decoration: none;
+        color: ${({ theme }) => theme.colors.purple.light};
+        ${queryShit({
+            tablet: css`
+                font-size: 18px;
+            `,
+            mobile: css`
+                font-size: 12px;
+            `,
+        })};
         margin: 0;
     `,
 };

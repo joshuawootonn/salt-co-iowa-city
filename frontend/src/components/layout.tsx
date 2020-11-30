@@ -6,13 +6,12 @@ const layout = {
         margin: 0 auto;
         max-width: 1140px;
         position: relative;
-        
+
         ${queryShit({
             mobile: css`
-                max-width: calc(100vw - 50px);
+                max-width: calc(100vw - 40px);
             `,
         })}
-    })
     `,
 };
 

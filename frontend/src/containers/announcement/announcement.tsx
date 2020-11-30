@@ -7,6 +7,7 @@ import { toVariant } from '../../helpers/animation';
 import { useFontLoader } from '../../context/fontLoader';
 import useIntersect from '../../helpers/useIntersect';
 import layout from '../../components/layout';
+import { queryShit } from '../../components/useScreenType';
 
 const Root = styled(motion.div)`
     ${layout.container};
@@ -14,13 +15,16 @@ const Root = styled(motion.div)`
     column-gap: 20px;
     grid-auto-flow: column;
     position: relative;
+
+    ${queryShit({
+        mobile: css`
+            grid-auto-flow: row;
+
+            row-gap: 40px;
+        `,
+    })}
 `;
 
-// ${queryShit({
-//     mobile: css`
-//         grid-auto-flow: row;
-//     `,
-// })}
 const Announcements: FC<AnnouncementBlock> = ({ announcements }) => {
     const isLoaded = useFontLoader();
     const ref = React.useRef(null);

@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components/macro';
 import GatsbyLink from 'gatsby-link';
 import typography from './typography';
 import { motion } from 'framer-motion';
+import { queryShit } from './useScreenType';
 
 const styles = {
     root: ({ size, type, font }: BaseTextLinkProps) => css`
@@ -23,15 +24,37 @@ const styles = {
         ${type === 'primary' &&
         css`
             border: 2px solid ${({ theme }) => theme.colors.blue.lightest};
-            padding: 5px 50px 3px 50px;
+
             text-transform: uppercase;
-            font-size: ${size === 'default' ? 25 : 18}px;
+            ${queryShit({
+                mobile: css`
+                    padding: ${size === 'default'
+                        ? '5px 30px 4px 30px'
+                        : '5px 25px 4px 25px'};
+                    font-size: ${size === 'default' ? 18 : 12}px;
+                `,
+                tablet: css`
+                    padding: ${size === 'default'
+                        ? '5px 50px 3px 50px'
+                        : '5px 35px 3px 35px'};
+                    font-size: ${size === 'default' ? 25 : 18}px;
+                `,
+            })}
         `}
         ${type === 'secondary' &&
         css`
             border: 2px solid ${({ theme }) => theme.colors.transparent};
             padding: 5px 5px 3px 5px;
             font-size: ${size === 'default' ? 25 : 18}px;
+
+            ${queryShit({
+                mobile: css`
+                    font-size: ${size === 'default' ? 22 : 18}px;
+                `,
+                tablet: css`
+                    font-size: ${size === 'default' ? 25 : 18}px;
+                `,
+            })}
         `};
         ${type === 'card' &&
         css`

@@ -8,6 +8,7 @@ import useIntersect from '../../helpers/useIntersect';
 import { useFontLoader } from '../../context/fontLoader';
 import { toVariant } from '../../helpers/animation';
 import layout from '../../components/layout';
+import { queryShit } from '../../components/useScreenType';
 
 const styles = {
     root: css`
@@ -20,28 +21,48 @@ const styles = {
         justify-content: space-between;
         align-items: flex-start;
 
-        margin-bottom: 300px;
-
         & > div {
             width: 91%;
         }
+
+        ${queryShit({
+            mobile: css`
+                max-width: calc(100vw - 30px);
+                height: 400px;
+                & > div {
+                    width: 100%;
+                }
+            `,
+        })}
     `,
 
     image: css`
         position: absolute;
         top: 0;
-        left: 0;
 
         left: -50px;
         min-width: calc(100% + 100px);
         height: 800px;
         z-index: -1;
+
+        ${queryShit({
+            mobile: css`
+                left: 0px;
+                min-width: 100%;
+                height: 100%;
+            `,
+        })}
     `,
     one: css`
         transform: translateY(-50px);
     `,
     two: css`
         transform: translateY(25px);
+        ${queryShit({
+            mobile: css`
+                transform: translateY(10px);
+            `,
+        })}
     `,
 };
 

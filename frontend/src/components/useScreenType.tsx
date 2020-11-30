@@ -52,10 +52,10 @@ export const queryShit = (aaa: any) =>
         @media (min-width: 1921px) {
             ${aaa.xl};
         }
-        @media (min-width: 1201px) and (max-width: 1920px) {
+        @media (min-width: 1201px) {
             ${aaa.desktop};
         }
-        @media (min-width: 801px) and (max-width: 1200px) {
+        @media (min-width: 801px) {
             ${aaa.tablet};
         }
         @media (min-width: 0px) and (max-width: 800px) {

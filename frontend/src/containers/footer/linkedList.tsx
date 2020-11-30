@@ -1,12 +1,22 @@
 import React, { FC } from 'react';
 import { css } from 'styled-components/macro';
 import TextLink from '../../components/textLink';
-import { ExternalLink, InternalLink } from '../../models/footer';
+import { InternalLink } from '../../models/footer';
+import { queryShit } from '../../components/useScreenType';
 
 const styles = {
     root: css`
         display: flex;
         flex-direction: column;
+
+        ${queryShit({
+            mobile: css`
+                margin-bottom: 30px;
+            `,
+        })}
+    `,
+    link: css`
+        padding-left: 0;
     `,
 };
 
@@ -14,11 +24,12 @@ interface LinkedListProps {
     links: InternalLink[];
 }
 
-const LinkedList: FC<LinkedListProps> = ({ links }) => {
+const LinkedList: FC<LinkedListProps> = ({ links, ...props }) => {
     return (
-        <div css={styles.root}>
+        <div css={styles.root} {...props}>
             {links.map((link, i) => (
                 <TextLink
+                    css={styles.link}
                     destinationType={'internal'}
                     type={'secondary'}
                     key={i}

@@ -9,12 +9,24 @@ const typography = {
         font-size: 80px;
         color: ${({ theme }) => theme.colors.purple.lightest};
         white-space: nowrap;
+
+        ${queryShit({
+            mobile: css`
+                font-size: 50px;
+                white-space: normal;
+            `,
+        })}
     `,
     title2: css`
         font-family: 'MonumentExtended', Arial, sans-serif;
         font-size: 65px;
         color: ${({ theme }) => theme.colors.purple.lightest};
         white-space: nowrap;
+        ${queryShit({
+            mobile: css`
+                font-size: 30px;
+            `,
+        })}
     `,
 
     bigText: css`
@@ -29,6 +41,12 @@ const typography = {
             font-size: 40px;
             color: ${({ theme }) => theme.colors.white};
             transform-origin: left;
+
+            ${queryShit({
+                mobile: css`
+                    font-size: 22px;
+                `,
+            })}
         `,
 
         link: css`
@@ -38,6 +56,12 @@ const typography = {
             font-weight: 400;
             text-decoration: underline;
             text-transform: none;
+
+            ${queryShit({
+                mobile: css`
+                    font-size: 22px;
+                `,
+            })}
         `,
     },
     card: {
