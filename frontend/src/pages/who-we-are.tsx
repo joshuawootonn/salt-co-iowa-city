@@ -1,5 +1,5 @@
 import { css } from 'styled-components/macro';
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import ThemeContext, { primaryTheme } from '../context/themeContext';
 import HeaderContainer from '../containers/header';
 import IntroContainer from '../containers/intro';

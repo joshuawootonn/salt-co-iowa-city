@@ -76,7 +76,7 @@ const MarqueTitle = (props) => {
             >
                 <motion.span {...headerAnimationProps}>
                     {new Array(4).fill(props.children).map((c, i) => (
-                        <>{c + ' '}</>
+                        <React.Fragment key={i}>{c + ' '}</React.Fragment>
                     ))}
                 </motion.span>
             </H2>
@@ -92,7 +92,7 @@ const MarqueTitle = (props) => {
                     {...headerAnimationProps}
                 >
                     {new Array(4).fill(props.children).map((c, i) => (
-                        <>{c + ' '}</>
+                        <React.Fragment key={i}>{c + ' '}</React.Fragment>
                     ))}
                 </motion.span>
             </H2>

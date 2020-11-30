@@ -35,7 +35,6 @@ const AnnouncementContainer: FC<AnnouncementBlock> = (props) => (
             <Bullhorn />
             <Bullhorn />
             <Bullhorn />
-            <Bullhorn />
         </div>
         <Announcements {...props} />
     </div>
