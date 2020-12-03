@@ -7,7 +7,7 @@ export const useFontLoader = () => {
 
 export const FontLoadedContext = createContext(false);
 
-const FontLoadedProvider = ({ element }) => {
+const FontLoadedProvider = ({ children }) => {
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
@@ -19,7 +19,7 @@ const FontLoadedProvider = ({ element }) => {
 
     return (
         <FontLoadedContext.Provider value={{ isLoaded }}>
-            {element}
+            {children}
         </FontLoadedContext.Provider>
     );
 };

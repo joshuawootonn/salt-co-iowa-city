@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components/macro';
 import typography from '../typography';
 import slugify from '../../helpers/slugify';
@@ -42,7 +42,14 @@ const Title = (props) => {
     const isLoaded = useFontLoader();
     const ref = React.useRef(null);
     // Note due to the animation and possible absolute positioned elements this is not 1.0 threshold
-    const { isVisible } = useIntersect(ref, { threshold: 0.6 });
+    const { isVisible, intersection } = useIntersect(ref, { threshold: 0.6 });
+
+    useEffect(() => {
+        if (props.log) {
+            console.log('intersection', intersection);
+            console.log('isLoaded', isLoaded);
+        }
+    }, [props.log, intersection, isLoaded]);
 
     const Component = props.variant === 'small' ? H2 : H1;
 

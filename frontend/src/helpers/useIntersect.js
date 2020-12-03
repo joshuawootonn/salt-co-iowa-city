@@ -13,6 +13,7 @@ const useIntersect = (ref, options = { threshold: 0.5 }) => {
 
     return {
         isVisible,
+        intersection,
     };
 };
 

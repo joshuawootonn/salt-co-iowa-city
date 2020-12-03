@@ -98,7 +98,7 @@ const Section1: FC<WelcomeBlock> = (welcomeBlock) => {
             css={styles.root}
         >
             <div css={styles.one}>
-                <Title css={styles.title} isOrchestrated={true}>
+                <Title css={styles.title} log={true} isOrchestrated={true}>
                     {welcomeBlock.title}
                 </Title>
                 <WelcomeRichText

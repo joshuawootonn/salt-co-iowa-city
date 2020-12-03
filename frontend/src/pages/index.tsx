@@ -11,6 +11,7 @@ import { useTitleScoller } from '../components/title/utils';
 import HeaderContainer from '../containers/header';
 import { queryShit } from '../components/useScreenType';
 import Page from '../components/page';
+import FontLoadedProvider from '../context/fontLoader2';
 
 const styles = {
     intro: css`
