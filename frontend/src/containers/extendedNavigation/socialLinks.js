@@ -4,7 +4,7 @@ import SocialLink from '../../components/socialLink';
 
 const styles = {
     root: css`
-        a {
+        a:not(:first-child) {
             margin-left: 20px;
         }
     `,

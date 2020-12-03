@@ -1,19 +1,16 @@
 import React, { FC } from 'react';
 import { css } from 'styled-components/macro';
-import ThemeContext, { primaryTheme } from '../context/themeContext';
-import HeaderContainer from '../containers/header';
 import IntroContainer from '../containers/intro';
 import HowToConnectSvg from '../svgs/howToConnect.svg';
 import UpcomingEventsContainer from '../containers/upcomingEvents';
 import ConnectionGroupContainer from '../containers/connectionGroup';
 import MinistryConnectionContainer from '../containers/ministryConnection';
-import FooterContainer from '../containers/footer';
 import { useHowToConnectBlock } from '../services/howToConnect.services';
 import { useUpcomingEventBlock } from '../services/upcomingEvent.services';
 import { useConnectionGroupBlock } from '../services/connectionGroup.services';
 import { useMinistryConnectionBlock } from '../services/ministryConnection.services';
-import { useFooterBlock } from '../services/footer.services';
 import { useTitleScoller } from '../components/title/utils';
+import Page from '../components/page';
 
 const styles = {
     intro: css`
@@ -35,13 +32,10 @@ const HowToConnect: FC = () => {
     const upcomingEventBlock = useUpcomingEventBlock();
     const connectionGroupBlock = useConnectionGroupBlock();
     const ministryConnectionsBlock = useMinistryConnectionBlock();
-    const footerBlock = useFooterBlock();
-
     useTitleScoller();
 
     return (
-        <ThemeContext theme={primaryTheme}>
-            <HeaderContainer />
+        <Page>
             <IntroContainer {...howToConnectBlock} css={styles.intro}>
                 <HowToConnectSvg />
             </IntroContainer>
@@ -60,8 +54,7 @@ const HowToConnect: FC = () => {
                 }
                 css={styles.ministryConnections}
             />
-            <FooterContainer {...footerBlock} />
-        </ThemeContext>
+        </Page>
     );
 };
 

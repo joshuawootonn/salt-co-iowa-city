@@ -1,25 +1,19 @@
 import React, { FC } from 'react';
-import ThemeContext, { primaryTheme } from '../context/themeContext';
-import HeaderContainer from '../containers/header';
 import ContactContainer from '../containers/contact';
-import FooterContainer from '../containers/footer';
 import { useContactBlock } from '../services/contact.services';
-import { useFooterBlock } from '../services/footer.services';
 import { useTitleScoller } from '../components/title/utils';
 import { useConnectionGroupBlock } from '../services/connectionGroup.services';
+import Page from '../components/page';
 
 const Contact: FC = () => {
     const contactBlock = useContactBlock();
-    const footerBlock = useFooterBlock();
     const connectionGroupBlock = useConnectionGroupBlock();
     useTitleScoller();
 
     return (
-        <ThemeContext theme={primaryTheme}>
-            <HeaderContainer />
+        <Page>
             <ContactContainer {...connectionGroupBlock} {...contactBlock} />
-            <FooterContainer {...footerBlock} />
-        </ThemeContext>
+        </Page>
     );
 };
 export default Contact;

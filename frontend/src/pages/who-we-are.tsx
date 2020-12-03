@@ -1,17 +1,14 @@
 import { css } from 'styled-components/macro';
 import React, { FC } from 'react';
-import ThemeContext, { primaryTheme } from '../context/themeContext';
-import HeaderContainer from '../containers/header';
 import IntroContainer from '../containers/intro';
 import WhoWeAreSvg from '../svgs/whoWeAre.svg';
 import MinistryDescriptionContainer from '../containers/ministryDescription';
-import FooterContainer from '../containers/footer';
 import { useWhoWeAreBlock } from '../services/whoWeAre.services';
 import { useMinistryDescriptionBlock } from '../services/ministryDescription.services';
 import { useStaffBlock } from '../services/staff.services';
 import StaffContainer from '../containers/staff';
-import { useFooterBlock } from '../services/footer.services';
 import { useTitleScoller } from '../components/title/utils';
+import Page from '../components/page';
 
 const styles = {
     intro: css`
@@ -29,13 +26,11 @@ const WhoWeAre: FC = () => {
     const whoWeAreBlock = useWhoWeAreBlock();
     const ministryDescriptionBlock = useMinistryDescriptionBlock();
     const staffBlock = useStaffBlock();
-    const footerBlock = useFooterBlock();
 
     useTitleScoller();
 
     return (
-        <ThemeContext theme={primaryTheme}>
-            <HeaderContainer />
+        <Page>
             <IntroContainer {...whoWeAreBlock} css={styles.intro}>
                 <WhoWeAreSvg />
             </IntroContainer>
@@ -44,8 +39,7 @@ const WhoWeAre: FC = () => {
                 css={styles.ministryDescriptions}
             />
             <StaffContainer {...staffBlock} css={styles.staff} />
-            <FooterContainer {...footerBlock} />
-        </ThemeContext>
+        </Page>
     );
 };
 

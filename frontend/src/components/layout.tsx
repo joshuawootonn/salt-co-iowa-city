@@ -4,14 +4,19 @@ import { queryShit } from './useScreenType';
 const layout = {
     container: css`
         margin: 0 auto;
-        max-width: 1140px;
-        position: relative;
-
         ${queryShit({
             mobile: css`
-                max-width: calc(100vw - 40px);
+                width: calc(100vw - 30px);
             `,
-        })}
+            tablet: css`
+                width: calc(100vw - 80px);
+            `,
+            desktop: css`
+                max-width: 1140px;
+                width: calc(100vw - 140px);
+            `,
+        })};
+        position: relative;
     `,
 };
 

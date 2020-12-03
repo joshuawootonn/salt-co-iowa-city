@@ -22,7 +22,7 @@ import UpcomingEventsContainer from '../containers/upcomingEvents';
 import { getMinistryConnectionsBlock } from './services/ministryConnection.service';
 import { getMinistryDescriptionBlock } from './services/ministryDescription.service';
 import { getUpcomingEventsBlock } from './services/upcomingEvent.service';
-import FooterContainer from '../containers/footer';
+import ExtendedNavigationContainer from '../containers/extendedNavigation';
 import { getFooterBlock } from './services/footer.service';
 
 storiesOf('Block', module)
@@ -42,7 +42,7 @@ storiesOf('Block', module)
         <ServiceStory service={getContactBlock} component={ContactContainer} />
     ))
     .add('Footer', () => (
-        <ServiceStory service={getFooterBlock} component={FooterContainer} />
+        <ServiceStory service={getFooterBlock} component={ExtendedNavigationContainer} />
     ))
     .add('How To Connect', () => (
         <ServiceStory
