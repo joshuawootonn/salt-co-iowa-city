@@ -11,10 +11,14 @@ const FontLoadedProvider = ({ element }) => {
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-        document.fonts.onloadingdone = function (fontFaceSetEvent) {
-            console.log('font event', fontFaceSetEvent);
-            setIsLoaded(true);
-        };
+        document.fonts.ready.then(function () {
+            if (
+                document.fonts.check('1em Montserrat') &&
+                document.fonts.check('1em MonumentExtended')
+            ) {
+                setIsLoaded(true);
+            }
+        });
     }, []);
 
     return (
