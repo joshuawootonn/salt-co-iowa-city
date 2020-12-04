@@ -44,13 +44,6 @@ const Title = (props) => {
     // Note due to the animation and possible absolute positioned elements this is not 1.0 threshold
     const { isVisible, intersection } = useIntersect(ref, { threshold: 0.6 });
 
-    useEffect(() => {
-        if (props.log) {
-            console.log('intersection', intersection);
-            console.log('isLoaded', isLoaded);
-        }
-    }, [props.log, intersection, isLoaded]);
-
     const Component = props.variant === 'small' ? H2 : H1;
 
     return (

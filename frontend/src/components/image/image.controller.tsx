@@ -104,7 +104,11 @@ const ImageController: FC<ImageProps> = (props) => {
             onClick={isButton ? switchImage : undefined}
         >
             <Cover data-animation={animationId} />
-            <Image onLoad={handleLoad} {...props.images[curr]} />
+            <Image
+                isVisible={isVisible}
+                onLoad={handleLoad}
+                {...props.images[curr]}
+            />
         </Root>
     );
 };

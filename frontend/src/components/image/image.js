@@ -13,13 +13,11 @@ const Img = styled.img`
 `;
 
 const Image = (props) => {
-    if (props.isVisible) {
+    if (!props.isVisible) {
         return null;
     }
 
-    const handleLoad = () => {
-        props.onLoad && props.onLoad();
-    };
+    const handleLoad = () => props.onLoad && props.onLoad();
 
     return (
         <picture {...props}>
