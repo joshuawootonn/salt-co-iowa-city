@@ -74,13 +74,12 @@ const AnnouncementLinkImage: FC<ImageProps> = (props) => {
     const [isCurrLoaded, setIsCurrLoaded] = useState(false);
     const ref = React.useRef(null);
     const { isVisible } = useIntersect(ref, { threshold: 0.25 });
-    const isRevealed = useRef(false);
+
     const animationId = `image-${props.image.fluid.src}`;
     const animationTarget = `[data-animation="${animationId}"]`;
 
     useEffect(() => {
-        if (isCurrLoaded && isVisible && !isRevealed.current) {
-            isRevealed.current = true;
+        if (isCurrLoaded && isVisible) {
             animateOut(animationTarget);
         }
     }, [isCurrLoaded, isVisible]);

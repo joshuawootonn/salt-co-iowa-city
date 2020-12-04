@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import styled, { css } from 'styled-components/macro';
 import typography from '../typography';
 import slugify from '../../helpers/slugify';
-import { Element, scroller } from 'react-scroll';
+import { Element } from 'react-scroll';
 import { motion } from 'framer-motion';
 import { toVariant } from '../../helpers/animation';
 import { useFontLoader } from '../../context/fontLoader';
@@ -31,7 +31,6 @@ const H2 = styled(motion.h2)`
     margin: 0 auto;
     white-space: nowrap;
     position: absolute;
-    z-index: 100;
     span {
         ${typography.title2};
         display: inline-block;
@@ -70,41 +69,46 @@ const MarqueTitle = (props) => {
     const isLoaded = useFontLoader();
     const ref = React.useRef(null);
     // Note due to the animation and possible absolute positioned elements this is not 1.0 threshold
-    const { isVisible } = useIntersect(ref, { threshold: 0.6 });
+    const { isVisible, intersection } = useIntersect(ref, { threshold: 0.6 });
+
+    // useEffect(() => {
+    //     console.log('isFontLoaded', isLoaded, isVisible, intersection);
+    // }, [isVisible, isLoaded, intersection]);
 
     return (
         <BannerRoot
             name={`#${slugify(props.children)}`}
             onClick={() => handleTitleElementClick(props.children)}
         >
-            <H2
-                animate={toVariant(isLoaded && isVisible)}
-                {...animationProps}
-                ref={ref}
-                {...props}
-            >
-                <motion.span {...headerAnimationProps}>
-                    {new Array(4).fill(props.children).map((c, i) => (
-                        <React.Fragment key={i}>{c + ' '}</React.Fragment>
-                    ))}
-                </motion.span>
-            </H2>
-            <H2
-                animate={toVariant(isLoaded && isVisible)}
-                {...animationProps}
-                {...props}
-            >
-                <motion.span
-                    css={css`
-                        margin-left: 100%;
-                    `}
-                    {...headerAnimationProps}
+            <div ref={ref}>
+                <H2
+                    animate={toVariant(isLoaded && isVisible)}
+                    {...animationProps}
+                    {...props}
                 >
-                    {new Array(4).fill(props.children).map((c, i) => (
-                        <React.Fragment key={i}>{c + ' '}</React.Fragment>
-                    ))}
-                </motion.span>
-            </H2>
+                    <motion.span {...headerAnimationProps}>
+                        {new Array(4).fill(props.children).map((c, i) => (
+                            <React.Fragment key={i}>{c + ' '}</React.Fragment>
+                        ))}
+                    </motion.span>
+                </H2>
+                <H2
+                    animate={toVariant(isLoaded && isVisible)}
+                    {...animationProps}
+                    {...props}
+                >
+                    <motion.span
+                        css={css`
+                            margin-left: 100%;
+                        `}
+                        {...headerAnimationProps}
+                    >
+                        {new Array(4).fill(props.children).map((c, i) => (
+                            <React.Fragment key={i}>{c + ' '}</React.Fragment>
+                        ))}
+                    </motion.span>
+                </H2>
+            </div>
         </BannerRoot>
     );
 };

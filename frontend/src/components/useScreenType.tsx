@@ -27,20 +27,20 @@ const useScreenType = (): Media => {
 
 export default useScreenType;
 
-export const mobile = (aaa) =>
+export const mobile = (aaa: any) =>
     css`
         @media (min-width: 0px) and (max-width: 670px) {
             ${aaa};
         }
     `;
 
-export const largeMobile = (aaa) =>
+export const largeMobile = (aaa: any) =>
     css`
         @media (min-width: 0px) and (max-width: 1300px) {
             ${aaa};
         }
     `;
-export const desktop = (aaa) =>
+export const desktop = (aaa: any) =>
     css`
         @media (min-width: 670px) {
             ${aaa};
