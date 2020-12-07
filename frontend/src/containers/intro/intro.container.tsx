@@ -1,16 +1,16 @@
 import React, { FC } from 'react';
-
 import { css } from 'styled-components/macro';
 import typography from '../../components/typography';
 import { HowToConnectBlock } from '../../models/howToConnect';
 import { WhoWeAreBlock } from '../../models/whoWeAre';
 import { Title } from '../../components/title';
-import { IntersectionObserver } from '../../components/IntersectionObserver';
 import { useFontLoader } from '../../context/fontLoader';
 import { toVariant } from '../../helpers/animation';
 import { motion } from 'framer-motion';
 import Text from '../../components/text';
 import useIntersect from '../../helpers/useIntersect';
+import WhoWeAreSvg from './whoWeAre';
+import HowToConnectSvg from './howToConnect';
 
 const styles = {
     root: css`
@@ -33,11 +33,12 @@ const styles = {
 
         position: relative;
 
-        justify-content: center;
-        align-items: center;
+        justify-content: flex-start;
+        align-items: flex-start;
     `,
 
     textColumn: css`
+        position: relative;
         width: 950px;
     `,
 
@@ -53,19 +54,25 @@ const styles = {
         padding-bottom: 10px;
     `,
     backgroundContainer: css`
-        position: relative;
-        width: 450px;
-    `,
-    backgroundPositioner: css`
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -40%);
-
         z-index: -1;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
     `,
 };
-const IntroContainer: FC<HowToConnectBlock | WhoWeAreBlock> = (props) => {
+
+interface A extends HowToConnectBlock {
+    type: 'HowToConnect';
+}
+interface B extends WhoWeAreBlock {
+    type: 'WhoWeAre';
+}
+
+type IntroContainerProps = A | B;
+
+const IntroContainer: FC<IntroContainerProps> = (props) => {
     const isLoaded = useFontLoader();
     const ref = React.useRef(null);
     const { isVisible } = useIntersect(ref, {
@@ -73,35 +80,31 @@ const IntroContainer: FC<HowToConnectBlock | WhoWeAreBlock> = (props) => {
     });
 
     return (
-        <IntersectionObserver
-            render={({ isVisible }) => (
-                <motion.div
-                    animate={toVariant(isVisible && isLoaded)}
-                    variants={{
-                        entered: {
-                            transition: {
-                                delayChildren: 0,
-                                staggerChildren: 0.17,
-                            },
-                        },
-                    }}
-                    css={styles.root}
-                    {...props}
-                >
-                    <div css={styles.content}>
-                        <div css={styles.textColumn}>
-                            <Title css={styles.title}>{props.title}</Title>
-                            <Text css={styles.body}>{props.body}</Text>
-                        </div>
-                        <div css={styles.backgroundContainer}>
-                            <div css={styles.backgroundPositioner}>
-                                {props.children}
-                            </div>
-                        </div>
-                    </div>
+        <motion.div
+            ref={ref}
+            animate={toVariant(isVisible && isLoaded)}
+            variants={{
+                entered: {
+                    transition: {
+                        delayChildren: 0.4,
+                        staggerChildren: 0.2,
+                    },
+                },
+            }}
+            css={styles.root}
+            {...props}
+        >
+            <motion.div css={styles.content}>
+                <motion.div css={styles.textColumn}>
+                    <Title isOrchestrated={true} css={styles.title}>
+                        {props.title}
+                    </Title>
+                    <Text css={styles.body}>{props.body}</Text>
+                    {/*{props.type === 'WhoWeAre' && <WhoWeAreSvg />}*/}
+                    {/*{props.type === 'HowToConnect' && <HowToConnectSvg />}*/}
                 </motion.div>
-            )}
-        />
+            </motion.div>
+        </motion.div>
     );
 };
 

@@ -1,7 +1,6 @@
 import { css } from 'styled-components/macro';
 import React, { FC } from 'react';
 import IntroContainer from '../containers/intro';
-import WhoWeAreSvg from '../svgs/whoWeAre.svg';
 import MinistryDescriptionContainer from '../containers/ministryDescription';
 import { useWhoWeAreBlock } from '../services/whoWeAre.services';
 import { useMinistryDescriptionBlock } from '../services/ministryDescription.services';
@@ -31,14 +30,16 @@ const WhoWeAre: FC = () => {
 
     return (
         <Page>
-            <IntroContainer {...whoWeAreBlock} css={styles.intro}>
-                <WhoWeAreSvg />
-            </IntroContainer>
-            <MinistryDescriptionContainer
-                {...ministryDescriptionBlock}
-                css={styles.ministryDescriptions}
+            <IntroContainer
+                {...whoWeAreBlock}
+                type={'WhoWeAre'}
+                css={styles.intro}
             />
-            <StaffContainer {...staffBlock} css={styles.staff} />
+            {/*<MinistryDescriptionContainer*/}
+            {/*    {...ministryDescriptionBlock}*/}
+            {/*    css={styles.ministryDescriptions}*/}
+            {/*/>*/}
+            {/*<StaffContainer {...staffBlock} css={styles.staff} />*/}
         </Page>
     );
 };

@@ -6,7 +6,7 @@ import useIntersect from '../../helpers/useIntersect';
 import Image from './image';
 import { animateIn, animateOut } from './animations';
 
-const Root = styled.button<{ isButton: boolean; isHovered: boolean }>`
+const Root = styled.button<{ isButton: boolean; isHovered?: boolean }>`
     width: 100%;
     height: 100%;
     position: relative;
@@ -59,10 +59,10 @@ const Cover = styled.div`
 `;
 
 interface ImageProps {
-    isHovered: boolean;
+    isHovered?: boolean;
     onLoad?: () => void;
     onClick?: () => void;
-    intersectOption: any;
+    intersectOption?: any;
     images: {
         fluid: FluidObject;
     }[];

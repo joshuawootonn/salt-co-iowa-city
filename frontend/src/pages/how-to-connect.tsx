@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import { css } from 'styled-components/macro';
 import IntroContainer from '../containers/intro';
-import HowToConnectSvg from '../svgs/howToConnect.svg';
 import UpcomingEventsContainer from '../containers/upcomingEvents';
 import ConnectionGroupContainer from '../containers/connectionGroup';
 import MinistryConnectionContainer from '../containers/ministryConnection';
@@ -36,9 +35,11 @@ const HowToConnect: FC = () => {
 
     return (
         <Page>
-            <IntroContainer {...howToConnectBlock} css={styles.intro}>
-                <HowToConnectSvg />
-            </IntroContainer>
+            <IntroContainer
+                type={'HowToConnect'}
+                {...howToConnectBlock}
+                css={styles.intro}
+            />
             <UpcomingEventsContainer
                 {...upcomingEventBlock}
                 css={styles.upcomingEvents}

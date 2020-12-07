@@ -43,11 +43,11 @@ const styles = {
             background-color: lawngreen;
             stop:first-child {
                 stop-color: ${({ theme }) =>
-                    addAlpha(theme.colors.blue.dark, 0.2)};
+                    addAlpha(theme.colors.blue.light, 0.3)};
             }
             stop:last-child {
                 stop-color: ${({ theme }) =>
-                    addAlpha(theme.colors.blue.medium, 0.4)};
+                    addAlpha(theme.colors.blue.medium, 0.3)};
             }
         }
         path {

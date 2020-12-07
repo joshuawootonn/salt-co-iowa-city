@@ -1,15 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import styled, { css } from 'styled-components/macro';
-
-const styles = {
-    phantom: css`
-        opacity: 0;
-    `,
-    normal: css`
-        position: absolute;
-    `,
-};
+import styled from 'styled-components/macro';
 
 const Root = styled.div`
     overflow: hidden;
