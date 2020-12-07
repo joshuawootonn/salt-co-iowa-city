@@ -15,10 +15,14 @@ const BannerRoot = styled(Element)`
 
     ${queryShit({
         mobile: css`
-            height: 70px;
+            height: 40px;
+            margin-bottom: 50px;
         `,
         tablet: css`
             height: 100px;
+        `,
+        desktop: css`
+            height: 120px;
         `,
     })}
 `;
@@ -35,6 +39,12 @@ const H2 = styled(motion.h2)`
         ${typography.title2};
         display: inline-block;
         padding-left: 30px;
+
+        ${queryShit({
+            mobile: css`
+                font-size: 45px;
+            `,
+        })}
     }
 `;
 

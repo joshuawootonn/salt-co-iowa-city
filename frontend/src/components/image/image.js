@@ -2,41 +2,41 @@ import React from 'react';
 import styled from 'styled-components/macro';
 
 const Img = styled.img`
-    position: absolute;
-    top: 0.1%;
-    left: 0.1%;
-    width: 99.8%;
-    height: 99.8%;
+    width: 100%;
+    height: 100%;
 
     object-fit: cover;
     object-position: center;
 `;
 
 const Image = (props) => {
-    if (!props.isVisible) {
-        return null;
-    }
-
-    const handleLoad = () => props.onLoad && props.onLoad();
+    // handle load is only called when the real image is loaded
+    const handleLoad = () => props.onLoad && props.isVisible && props.onLoad();
 
     return (
         <picture {...props}>
-            {props.fluid.srcSetWebp && (
-                <source
-                    type="image/webp"
-                    media={props.fluid.media}
-                    srcSet={props.fluid.srcSetWebp}
-                    sizes={props.fluid.sizes}
-                />
+            {props.isVisible ? (
+                <>
+                    {props.fluid.srcSetWebp && (
+                        <source
+                            type="image/webp"
+                            media={props.fluid.media}
+                            srcSet={props.fluid.srcSetWebp}
+                            sizes={props.fluid.sizes}
+                        />
+                    )}
+                    {props.fluid.srcSet && (
+                        <source
+                            media={props.fluid.media}
+                            srcSet={props.fluid.srcSet}
+                            sizes={props.fluid.sizes}
+                        />
+                    )}
+                    <Img {...props} src={props.fluid.src} onLoad={handleLoad} />
+                </>
+            ) : (
+                <Img {...props} src={props.fluid.base64} />
             )}
-            {props.fluid.srcSet && (
-                <source
-                    media={props.fluid.media}
-                    srcSet={props.fluid.srcSet}
-                    sizes={props.fluid.sizes}
-                />
-            )}
-            <Img {...props} src={props.fluid.src} onLoad={handleLoad} />
         </picture>
     );
 };

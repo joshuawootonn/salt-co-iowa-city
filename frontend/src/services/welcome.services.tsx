@@ -11,12 +11,12 @@ export const useWelcomeBlock = (): WelcomeBlock => {
                 nodes {
                     title
                     primaryImage {
-                        fluid(maxWidth: 1240, quality: 100) {
+                        fluid(maxWidth: 1240, quality: 95) {
                             ...GatsbyContentfulFluid_withWebp_noBase64
                         }
                     }
                     secondaryImage {
-                        fluid(maxWidth: 1240, quality: 100) {
+                        fluid(maxWidth: 1240, quality: 95) {
                             ...GatsbyContentfulFluid_withWebp_noBase64
                         }
                     }

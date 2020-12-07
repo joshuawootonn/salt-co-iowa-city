@@ -3,10 +3,6 @@ import { WelcomeBlock } from '../../models/welcome';
 import { css } from 'styled-components/macro';
 import WelcomeRichText from './components/welcomeRichText';
 import React, { FC } from 'react';
-import { motion } from 'framer-motion';
-import useIntersect from '../../helpers/useIntersect';
-import { useFontLoader } from '../../context/fontLoader';
-import { toVariant } from '../../helpers/animation';
 import layout from '../../components/layout';
 import { queryShit } from '../../components/useScreenType';
 
@@ -15,7 +11,6 @@ const styles = {
         ${layout.container};
         position: relative;
         width: 1240px;
-        height: 800px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -27,11 +22,13 @@ const styles = {
 
         ${queryShit({
             mobile: css`
-                max-width: calc(100vw - 30px);
                 height: 400px;
                 & > div {
                     width: 100%;
                 }
+            `,
+            tablet: css`
+                height: 60vh;
             `,
         })}
     `,
@@ -39,58 +36,70 @@ const styles = {
     image: css`
         position: absolute;
         top: 0;
-
         left: -50px;
-        min-width: calc(100% + 100px);
-        height: 800px;
+        height: 100%;
         z-index: -1;
-
         ${queryShit({
             mobile: css`
                 left: 0px;
                 min-width: 100%;
                 height: 100%;
             `,
-        })}
-    `,
-    one: css`
-        transform: translateY(-50px);
-    `,
-    two: css`
-        transform: translateY(25px);
-        ${queryShit({
-            mobile: css`
-                transform: translateY(10px);
+            tablet: css`
+                width: calc(100% + 60px);
+                left: -30px;
+            `,
+            desktop: css`
+                width: calc(100% + 100px);
+                left: -50px;
             `,
         })}
     `,
+    one: queryShit({
+        mobile: css`
+            transform: translateY(-10px);
+        `,
+        tablet: css`
+            transform: translateY(-18px);
+        `,
+        desktop: css`
+            transform: translateY(-25px);
+        `,
+    }),
+    two: queryShit({
+        mobile: css`
+            transform: translateY(10px);
+        `,
+        tablet: css`
+            transform: translateY(18px);
+        `,
+        desktop: css`
+            transform: translateY(25px);
+        `,
+    }),
 };
 
-const Section2: FC<WelcomeBlock> = (welcomeBlock) => {
-    const isLoaded = useFontLoader();
-    const ref = React.useRef(null);
-    const { isVisible } = useIntersect(ref, {
-        threshold: 0,
-    });
-
-    return (
-        <motion.div
-            ref={ref}
-            animate={toVariant(isLoaded && isVisible)}
-            css={styles.root}
-        >
-            <div css={styles.one}>
-                <WelcomeRichText json={welcomeBlock.text3.json} />
-            </div>
-            <div css={styles.two}>
-                <WelcomeRichText json={welcomeBlock.text4.json} />
-            </div>
-            <ImageController
-                css={styles.image}
-                images={[welcomeBlock.secondaryImage]}
+const Section2: FC<WelcomeBlock> = (welcomeBlock) => (
+    <div css={styles.root}>
+        <div css={styles.one}>
+            <WelcomeRichText
+                log={true}
+                isOrchestrated={false}
+                json={welcomeBlock.text3.json}
             />
-        </motion.div>
-    );
-};
+        </div>
+        <div css={styles.two}>
+            <WelcomeRichText
+                isOrchestrated={false}
+                json={welcomeBlock.text4.json}
+            />
+        </div>
+        <ImageController
+            log={true}
+            css={styles.image}
+            images={[welcomeBlock.secondaryImage]}
+        />
+    </div>
+);
 
 export default Section2;

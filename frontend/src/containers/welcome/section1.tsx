@@ -18,40 +18,43 @@ const styles = {
 
         margin-top: 180px;
         position: relative;
-        width: 1240px;
-        height: 1000px;
+        max-width: 1240px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
 
-        margin-bottom: 300px;
-
         ${queryShit({
             mobile: css`
-                max-width: calc(100vw - 30px);
                 height: 400px;
 
-                margin-bottom: 300px;
                 & > div {
                     width: 100%;
                 }
             `,
+            tablet: css`
+                height: 70vh;
+            `,
+            desktop: css``,
         })}
     `,
     image: css`
         position: absolute;
         top: 0;
-        left: -50px;
-        min-width: calc(100% + 100px);
-        height: 1000px;
         z-index: -1;
-
+        height: 100%;
         ${queryShit({
             mobile: css`
                 left: 0px;
-                min-width: 100%;
-                height: 100%;
+                width: 100%;
+            `,
+            tablet: css`
+                width: calc(100% + 60px);
+                left: -30px;
+            `,
+            desktop: css`
+                width: calc(100% + 100px);
+                left: -50px;
             `,
         })}
     `,
@@ -63,11 +66,15 @@ const styles = {
         })}
     `,
     one: css`
-        transform: translateY(50px);
-
         ${queryShit({
             mobile: css`
                 transform: translateY(-50px);
+            `,
+            tablet: css`
+                transform: translateY(-50px);
+            `,
+            desktop: css`
+                transform: translateY(50px);
             `,
         })}
     `,

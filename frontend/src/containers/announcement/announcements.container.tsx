@@ -11,7 +11,6 @@ import { useMedia } from 'react-use';
 const styles = {
     root: css`
         position: relative;
-        width: 100vw;
         margin: 0 0 500px 0;
     `,
     content: css`

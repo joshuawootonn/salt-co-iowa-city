@@ -10,20 +10,28 @@ import Page from '../components/page';
 
 const styles = {
     intro: css`
-        margin-bottom: 450px;
-
         ${queryShit({
             mobile: css`
                 margin-bottom: 210px;
             `,
+            tablet: css`
+                margin-bottom: 300px;
+            `,
+            desktop: css`
+                margin-bottom: 450px;
+            `,
         })}
     `,
     announcements: css`
-        margin-bottom: 450px;
-
         ${queryShit({
             mobile: css`
                 margin-bottom: 150px;
+            `,
+            tablet: css`
+                margin-bottom: 350px;
+            `,
+            desktop: css`
+                margin-bottom: 450px;
             `,
         })}
     `,
@@ -32,6 +40,8 @@ const styles = {
 const Home: FC = () => {
     const welcomeBlock = useWelcomeBlock();
     const announcementBlock = useAnnouncementBlock();
+
+    console.log(announcementBlock);
 
     useTitleScoller();
 

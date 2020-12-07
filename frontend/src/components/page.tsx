@@ -4,18 +4,8 @@ import ExtendedNavigationContainer from '../containers/extendedNavigation';
 import ThemeContext, { primaryTheme } from '../context/themeContext';
 import HeaderContainer from '../containers/header';
 import styled, { css } from 'styled-components';
-import { queryShit } from './useScreenType';
 
 const Root = styled.div`
-    ${queryShit({
-        mobile: css`
-            margin-top: 120px;
-        `,
-        tablet: css`
-            margin-top: 120px;
-        `,
-    })};
-
     overflow-x: hidden;
 `;
 

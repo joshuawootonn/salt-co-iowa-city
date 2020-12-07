@@ -6,10 +6,10 @@ type Media = 'mobile' | 'tablet' | 'desktop' | 'xl';
 const useScreenType = (): Media => {
     const isMobile = useReactUseMedia('(max-width: 670px)');
     const isTablet = useReactUseMedia(
-        '(min-width: 671px) and (max-width: 1200px)'
+        '(min-width: 671px) and (max-width: 1375px)'
     );
     const isDesktop = useReactUseMedia(
-        '(min-width: 1201px) and (max-width: 1920px)'
+        '(min-width: 1376px) and (max-width: 1920px)'
     );
 
     if (isMobile) {
@@ -36,7 +36,7 @@ export const mobile = (aaa: any) =>
 
 export const largeMobile = (aaa: any) =>
     css`
-        @media (min-width: 0px) and (max-width: 1300px) {
+        @media (min-width: 0px) and (max-width: 1375px) {
             ${aaa};
         }
     `;
@@ -55,7 +55,7 @@ export const queryShit = (aaa: any) =>
         @media (min-width: 671px) {
             ${aaa.tablet};
         }
-        @media (min-width: 1201px) {
+        @media (min-width: 1375px) {
             ${aaa.desktop};
         }
         @media (min-width: 1921px) {

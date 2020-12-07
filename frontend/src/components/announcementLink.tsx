@@ -9,6 +9,7 @@ import { animateOut } from './image/animations';
 import useIntersect from '../helpers/useIntersect';
 import typography from './typography';
 import { queryShit } from './useScreenType';
+import { useFontLoader } from '../context/fontLoader';
 
 interface AnnouncementLinkProps {
     linkAnnouncement: Announcement;
@@ -97,16 +98,25 @@ const AnnouncementLinkImage: FC<ImageProps> = (props) => {
 
 const styles = {
     root: css`
-        height: 225px;
-        width: 100%;
-
+        ${queryShit({
+            mobile: css`
+                width: 100%;
+            `,
+            tablet: css`
+                width: 100%;
+            `,
+            desktop: css`
+                height: 225px;
+                width: 367px;
+            `,
+        })};
         position: relative;
     `,
     image: css`
         height: 100%;
         width: 100%;
     `,
-    textRoot: (isHovered: boolean) => css`
+    textRoot: (isVisible: boolean) => css`
         background-color: ${({ theme }) => theme.colors.backgroundTransparent};
         padding: 20px;
 
@@ -114,34 +124,19 @@ const styles = {
 
         position: absolute;
         z-index: 10;
-
-        ${queryShit({
-            tablet: css`
-                bottom: 0;
-                left: 0;
-                transform: translate3d(-20px, 20px, 0);
-            `,
-            mobile: css`
-                top: 0;
-                left: 0;
-                transform: translate3d(-15px, -15px, 0);
-            `,
-        })};
-        transform: translate3d(-20px, 20px, 0);
-
+        top: 0;
+        left: 0;
         transition: all 200ms ease-in-out;
 
-        ${isHovered &&
-        css`
-            ${queryShit({
-                tablet: css`
-                    transform: translate3d(-15px, 15px, 0);
-                `,
-                mobile: css`
-                    transform: translate3d(-10px, -10px, 0);
-                `,
-            })};
-        `}
+        ${isVisible
+            ? css`
+                  opacity: 1;
+                  transform: translate3d(-10px, -10px, 0);
+              `
+            : css`
+                  opacity: 0;
+                  transform: translate3d(-10px, -10px, 0);
+              `}
     `,
     text: css`
         ${typography.card.link};
@@ -164,6 +159,7 @@ const styles = {
 
 const AnnouncementLink: FC<AnnouncementLinkProps> = ({ linkAnnouncement }) => {
     const [isHovered, setIsHovered] = useState(false);
+    const isVisible = useFontLoader();
 
     return (
         <motion.a
@@ -175,9 +171,10 @@ const AnnouncementLink: FC<AnnouncementLinkProps> = ({ linkAnnouncement }) => {
             <AnnouncementLinkImage
                 isHovered={isHovered}
                 image={linkAnnouncement.image}
-                css={styles.root}
+                css={styles.image}
             />
-            <div css={styles.textRoot(isHovered)}>
+
+            <div css={styles.textRoot(isVisible)}>
                 <h1 css={styles.text}>{linkAnnouncement.text}</h1>
             </div>
         </motion.a>

@@ -10,17 +10,34 @@ import layout from '../../components/layout';
 import { queryShit } from '../../components/useScreenType';
 
 const Root = styled(motion.div)`
-    ${layout.container};
     display: grid;
     column-gap: 20px;
-    grid-auto-flow: column;
+
     position: relative;
 
     ${queryShit({
         mobile: css`
             grid-auto-flow: row;
+            justify-content: center;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-template-rows: repeat(2, minmax(120px, max-content));
 
             row-gap: 40px;
+        `,
+        tablet: css`
+            grid-auto-flow: row;
+            justify-content: center;
+            row-gap: 40px;
+
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-template-rows: repeat(2, minmax(120px, max-content));
+        `,
+        desktop: css`
+            column-gap: 20px;
+            grid-auto-flow: column;
+
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, minmax(0px, max-content));
         `,
     })}
 `;

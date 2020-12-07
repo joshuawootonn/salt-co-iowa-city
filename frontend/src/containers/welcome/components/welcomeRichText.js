@@ -6,7 +6,6 @@ import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import slugify from '../../../helpers/slugify';
 import { motion } from 'framer-motion';
-import { IntersectionObserver } from '../../../components/IntersectionObserver';
 import { toVariant } from '../../../helpers/animation';
 import { useFontLoader } from '../../../context/fontLoader';
 import useIntersect from '../../../helpers/useIntersect';
@@ -62,8 +61,8 @@ const Paragraph = ({ content, data }, children) => (
 const WelcomeRichText = (props) => {
     const isLoaded = useFontLoader();
     const ref = React.useRef(null);
-    const { isVisible } = useIntersect(ref, {
-        threshold: 0,
+    const { isVisible, intersection } = useIntersect(ref, {
+        threshold: 0.9,
     });
 
     return (

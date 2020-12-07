@@ -6,7 +6,10 @@ const useIntersect = (ref, options = { threshold: 0.5 }) => {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
-        if (intersection && intersection.intersectionRatio > 0) {
+        if (
+            intersection &&
+            intersection.intersectionRatio > options.threshold
+        ) {
             setIsVisible(true);
         }
     }, [intersection]);

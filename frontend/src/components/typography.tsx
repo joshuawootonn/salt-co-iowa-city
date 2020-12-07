@@ -1,30 +1,40 @@
 import { css } from 'styled-components/macro';
-import { motion } from 'framer-motion';
 import React from 'react';
 import { queryShit } from './useScreenType';
 
 const typography = {
     title1: css`
         font-family: 'MonumentExtended', Arial, sans-serif;
-        font-size: 80px;
         color: ${({ theme }) => theme.colors.purple.lightest};
-        white-space: nowrap;
 
         ${queryShit({
             mobile: css`
                 font-size: 50px;
                 white-space: normal;
             `,
+            tablet: css`
+                font-size: 65px;
+                white-space: normal;
+            `,
+            desktop: css`
+                font-size: 80px;
+                white-space: nowrap;
+            `,
         })}
     `,
     title2: css`
         font-family: 'MonumentExtended', Arial, sans-serif;
-        font-size: 65px;
         color: ${({ theme }) => theme.colors.purple.lightest};
         white-space: nowrap;
         ${queryShit({
             mobile: css`
                 font-size: 30px;
+            `,
+            tablet: css`
+                font-size: 45px;
+            `,
+            desktop: css`
+                font-size: 65px;
             `,
         })}
     `,
@@ -46,6 +56,9 @@ const typography = {
                 mobile: css`
                     font-size: 22px;
                 `,
+                tablet: css`
+                    font-size: 30px;
+                `,
             })}
         `,
 
@@ -60,6 +73,9 @@ const typography = {
             ${queryShit({
                 mobile: css`
                     font-size: 22px;
+                `,
+                tablet: css`
+                    font-size: 30px;
                 `,
             })}
         `,
