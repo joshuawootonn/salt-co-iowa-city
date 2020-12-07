@@ -6,7 +6,7 @@ import useIntersect from '../../helpers/useIntersect';
 import Image from './image';
 import { animateIn, animateOut } from './animations';
 
-const Root = styled.button<{ isButton: boolean }>`
+const Root = styled.button<{ isButton: boolean; isHovered: boolean }>`
     width: 100%;
     height: 100%;
     position: relative;
@@ -23,23 +23,26 @@ const Root = styled.button<{ isButton: boolean }>`
 
     transition: ease 150ms;
 
-    ${({ isButton, theme }) =>
-        isButton &&
-        css`
+    ${({ isButton, isHovered, theme }) => {
+        if (!isButton) return;
+        const hoverCss = css`
+            transform: scale(1.03);
+            border: 2px solid ${lighten(0.3, theme.colors.background)};
+        `;
+        return css`
             cursor: pointer;
+            ${isHovered && hoverCss}
             &:hover {
-                transform: scale(1.03);
-                border: 2px solid ${lighten(0.3, theme.colors.background)};
+                ${hoverCss}
             }
             &:focus {
-                transform: scale(1.03);
-                border: 2px solid ${lighten(0.3, theme.colors.background)};
+                ${hoverCss}
             }
             &:active {
                 transform: scale(1);
                 border: 2px solid ${lighten(0.4, theme.colors.background)};
-            }
-        `}
+        `;
+    }}
 `;
 
 const Cover = styled.div`
@@ -56,8 +59,10 @@ const Cover = styled.div`
 `;
 
 interface ImageProps {
+    isHovered: boolean;
     onLoad?: () => void;
     onClick?: () => void;
+    intersectOption: any;
     images: {
         fluid: FluidObject;
     }[];
@@ -69,6 +74,7 @@ const ImageController: FC<ImageProps> = (props) => {
     const ref = React.useRef(null);
     const { isVisible } = useIntersect(ref, {
         threshold: 0.25,
+        ...props.intersectOption,
     });
 
     useEffect(() => {
@@ -107,7 +113,6 @@ const ImageController: FC<ImageProps> = (props) => {
         >
             <Cover data-animation={animationId} />
             <Image
-                log={props.log}
                 isVisible={isVisible}
                 onLoad={handleLoad}
                 {...props.images[curr]}

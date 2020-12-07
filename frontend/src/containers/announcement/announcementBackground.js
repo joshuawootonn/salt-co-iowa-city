@@ -2,40 +2,43 @@ import React from 'react';
 import { css } from 'styled-components/macro';
 import { addAlpha } from '../../helpers/color';
 import { queryShit } from '../../components/useScreenType';
-import styled from 'styled-components';
 
-const Root = styled.div`
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    left: -5vw;
-    width: 110vw;
+const getHeight = (height, boundingHeight, extraRows = 2) => {
+    return Math.floor(
+        (Math.floor(boundingHeight / height) + extraRows) * height
+    );
+};
 
-    min-width: 725px;
+const styles = {
+    root: (height, boundingHeight) => css`
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        left: -5vw;
+        width: 110vw;
 
-    transition: opacity 200ms ease;
+        min-width: 725px;
 
-    ${({ height, boundingHeight }) =>
-        queryShit({
+        transition: opacity 200ms ease;
+
+        ${queryShit({
             mobile: css`
-                height: ${(Math.floor(boundingHeight / height) + 2) * height}px;
+                height: ${getHeight(height, boundingHeight)}px;
                 transform: translate3d(0, -${height - 20}px, 0);
             `,
             tablet: css`
-                height: ${(Math.floor(boundingHeight / height) + 3) * height}px;
+                height: ${getHeight(height, boundingHeight, 3)}px;
 
                 transform: translate3d(0, -${height}px, 0);
             `,
             desktop: css`
-                height: ${(Math.floor(boundingHeight / height) + 2) * height}px;
+                height: ${getHeight(height, boundingHeight)}px;
 
                 transform: translate3d(0, -${height - 10}px, 0);
             `,
         })}
-`;
-
-const styles = {
-    root: css`
+    `,
+    svg: css`
         linearGradient {
             background-color: lawngreen;
             stop:first-child {
@@ -72,12 +75,12 @@ const Bullhorn = (props) => {
     const calcHeight = ratio * nativeHeight;
 
     return (
-        <Root {...props} height={calcHeight} boundingHeight={height}>
+        <div {...props} css={styles.root(calcHeight, height)}>
             <svg
                 height="100%"
                 width="100%"
                 xmlns="http://www.w3.org/2000/svg"
-                css={styles.root}
+                css={styles.svg}
             >
                 <defs>
                     <linearGradient
@@ -102,7 +105,7 @@ const Bullhorn = (props) => {
                 </defs>
                 <rect width="100%" height="100%" fill="url(#star)" />
             </svg>
-        </Root>
+        </div>
     );
 };
 

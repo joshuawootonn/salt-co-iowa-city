@@ -12,12 +12,12 @@ export const useWelcomeBlock = (): WelcomeBlock => {
                     title
                     primaryImage {
                         fluid(maxWidth: 1240, quality: 95) {
-                            ...GatsbyContentfulFluid_withWebp_noBase64
+                            ...GatsbyContentfulFluid_withWebp
                         }
                     }
                     secondaryImage {
                         fluid(maxWidth: 1240, quality: 95) {
-                            ...GatsbyContentfulFluid_withWebp_noBase64
+                            ...GatsbyContentfulFluid_withWebp
                         }
                     }
                     text1 {

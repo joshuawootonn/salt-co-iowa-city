@@ -25,20 +25,18 @@ const styles = {
 const AnnouncementContainer: FC<AnnouncementBlock> = (props) => {
     const ref = useRef(null);
     const screenType = useScreenType();
-
-    const isMobile = useMedia('(min-width: 0px) and (max-width: 800px)');
-    const [state, setState] = useState(null);
+    const [boundingBox, setBoundingBox] = useState(null);
 
     useEffect(() => {
         if (ref.current) {
             // @ts-ignore
-            setState(ref.current.getBoundingClientRect());
+            setBoundingBox(ref.current.getBoundingClientRect());
         }
     }, [screenType]);
 
     return (
         <div ref={ref} css={styles.root} {...props}>
-            <Bullhorn boundingBox={state} />
+            <Bullhorn boundingBox={boundingBox} />
             <MarqueTitle css={styles.title}>{props.title}</MarqueTitle>
             <div css={styles.content}>
                 <Announcements {...props} />

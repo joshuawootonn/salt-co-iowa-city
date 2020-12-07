@@ -61,7 +61,7 @@ const Paragraph = ({ content, data }, children) => (
 const WelcomeRichText = (props) => {
     const isLoaded = useFontLoader();
     const ref = React.useRef(null);
-    const { isVisible, intersection } = useIntersect(ref, {
+    const { isVisible } = useIntersect(ref, {
         threshold: 0.9,
     });
 

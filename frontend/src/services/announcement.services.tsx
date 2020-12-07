@@ -14,8 +14,8 @@ export const useAnnouncementBlock = (): AnnouncementBlock => {
                         text
                         link
                         image {
-                            fluid(maxWidth: 400, quality: 95) {
-                                ...GatsbyContentfulFluid_withWebp_noBase64
+                            fluid(maxWidth: 400, quality: 100) {
+                                ...GatsbyContentfulFluid_withWebp
                             }
                         }
                     }
