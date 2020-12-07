@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { css } from 'styled-components/macro';
-import { addAlpha } from '../helpers/color';
+import { addAlpha } from '../../helpers/color';
 
 const styles = {
     root: css`

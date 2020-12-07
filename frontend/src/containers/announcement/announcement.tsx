@@ -3,10 +3,6 @@ import AnnouncementLink from './announcementLink';
 import styled, { css } from 'styled-components/macro';
 import { AnnouncementBlock } from '../../models/announcement';
 import { motion } from 'framer-motion';
-import { toVariant } from '../../helpers/animation';
-import { useFontLoader } from '../../context/fontLoader';
-import useIntersect from '../../helpers/useIntersect';
-import layout from '../../components/layout';
 import { queryShit } from '../../components/useScreenType';
 
 const Root = styled(motion.div)`

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components/macro';
 import typography from '../typography';
 import slugify from '../../helpers/slugify';

@@ -15,8 +15,7 @@ const BannerRoot = styled(Element)`
 
     ${queryShit({
         mobile: css`
-            height: 40px;
-            margin-bottom: 50px;
+            height: 90px;
         `,
         tablet: css`
             height: 100px;

@@ -39,7 +39,7 @@ const WhoWeAre: FC = () => {
             {/*    {...ministryDescriptionBlock}*/}
             {/*    css={styles.ministryDescriptions}*/}
             {/*/>*/}
-            {/*<StaffContainer {...staffBlock} css={styles.staff} />*/}
+            <StaffContainer {...staffBlock} css={styles.staff} />
         </Page>
     );
 };

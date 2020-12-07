@@ -6,7 +6,6 @@ import Bullhorn from './announcementBackground';
 import Announcements from './announcement';
 import MarqueTitle from '../../components/title/marqueTitle';
 import useScreenType from '../../components/useScreenType';
-import { useMedia } from 'react-use';
 
 const styles = {
     root: css`
