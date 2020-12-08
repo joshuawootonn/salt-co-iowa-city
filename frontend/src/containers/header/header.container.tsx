@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { css } from 'styled-components/macro';
 import LogoLink from '../../components/logoLink';
 import useScreenType, { queryShit } from '../../components/useScreenType';
@@ -71,10 +71,15 @@ const HeaderContainer: FC<FooterBlock> = (props) => {
 
     const [isHeaderOpen, setIsHeaderOpen] = useState(false);
 
-    const toggleMobileNavigation = () => {
-        setIsHeaderOpen((prev) => !prev);
-        document.body.classList.toggle('lock-scroll');
-    };
+    const toggleMobileNavigation = () => setIsHeaderOpen((prev) => !prev);
+
+    useEffect(() => {
+        if (isHeaderOpen) {
+            document.body.classList.add('lock-scroll');
+        } else {
+            document.body.classList.remove('lock-scroll');
+        }
+    }, [isHeaderOpen]);
 
     const variants = {
         exited: {
