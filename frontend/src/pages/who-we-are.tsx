@@ -8,16 +8,37 @@ import { useStaffBlock } from '../services/staff.services';
 import StaffContainer from '../containers/staff';
 import { useTitleScoller } from '../components/title/utils';
 import Page from '../components/page';
+import { queryShit } from '../components/useScreenType';
 
 const styles = {
     intro: css`
         margin-bottom: 150px;
     `,
     ministryDescriptions: css`
-        margin-bottom: 450px;
+        ${queryShit({
+            mobile: css`
+                margin-bottom: 50px;
+            `,
+            tablet: css`
+                margin-bottom: 100px;
+            `,
+            desktop: css`
+                margin-bottom: 200px;
+            `,
+        })}
     `,
     staff: css`
-        margin-bottom: 350px;
+        ${queryShit({
+            mobile: css`
+                margin-bottom: 50px;
+            `,
+            tablet: css`
+                margin-bottom: 100px;
+            `,
+            desktop: css`
+                margin-bottom: 200px;
+            `,
+        })}
     `,
 };
 

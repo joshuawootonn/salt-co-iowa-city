@@ -10,7 +10,6 @@ import { useFontLoader } from '../../context/fontLoader';
 import { toVariant } from '../../helpers/animation';
 import { motion } from 'framer-motion';
 import useScreenType, { queryShit } from '../../components/useScreenType';
-import StaffBackground from './staffBackground';
 
 const styles = {
     root: css`
@@ -19,8 +18,12 @@ const styles = {
     content: css`
         max-width: 1420px;
         ${layout.container};
+
+        display: flex;
+        flex-direction: column;
     `,
     title: css`
+        align-self: flex-start;
         ${queryShit({
             mobile: css`
                 margin-bottom: 15px;
@@ -49,7 +52,7 @@ const styles = {
                 justify-content: center;
                 column-gap: 40px;
 
-                grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
                 grid-template-rows: repeat(2, minmax(120px, max-content));
             `,
             desktop: css`

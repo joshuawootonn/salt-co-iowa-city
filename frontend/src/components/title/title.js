@@ -55,7 +55,6 @@ const Title = (props) => {
                     !props.isOrchestrated && toVariant(isLoaded && isVisible)
                 }
                 onClick={() => handleTitleElementClick(props.children)}
-                {...props}
             >
                 {props.children}
             </Component>

@@ -5,13 +5,12 @@ import { Staff } from '../../models/staff';
 import { mapReferenceToLink } from '../../helpers/link';
 import TextLink from '../../components/textLink';
 import { motion } from 'framer-motion';
-import GatsbyImage from 'gatsby-image';
+import ImageController from '../../components/image';
 
 const styles = {
     root: css`
-        max-width: 100%;
-        width: 400px;
-
+        width: 100%;
+        max-width: 450px;
         justify-self: center;
     `,
     image: css`
@@ -59,7 +58,7 @@ const TextCard = styled(motion.div)`
 
 const StaffCard: FC<Staff> = (props) => (
     <div css={styles.root}>
-        <GatsbyImage fluid={props.image.fluid} css={styles.image} />
+        <ImageController images={[props.image]} css={styles.image} />
         <TextCard {...animationProps}>
             <div css={styles.textBlock1}>
                 <h4 css={typography.card.title}>
