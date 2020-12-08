@@ -9,8 +9,10 @@ import { toVariant } from '../../helpers/animation';
 import { motion } from 'framer-motion';
 import Text from '../../components/text';
 import useIntersect from '../../helpers/useIntersect';
-import WhoWeAreSvg from './whoWeAre';
+import WhoWeAre from './whoWeAre';
 import HowToConnectSvg from './howToConnect';
+import { queryShit } from '../../components/useScreenType';
+import layout from '../../components/layout';
 
 const styles = {
     root: css`
@@ -25,6 +27,7 @@ const styles = {
     `,
     // TODO: generalize
     content: css`
+        ${layout.container};
         margin: 0 auto;
         max-width: 1400px;
 
@@ -39,18 +42,24 @@ const styles = {
 
     textColumn: css`
         position: relative;
-        width: 950px;
+        width: 100%;
     `,
 
     title: css`
         ${typography.title1};
         margin-bottom: 2px;
-        white-space: nowrap;
+        ${queryShit({
+            mobile: css`
+                white-space: normal;
+            `,
+            tablet: css`
+                white-space: nowrap;
+            `,
+        })}
     `,
 
     body: css`
         ${typography.bigText};
-
         padding-bottom: 10px;
     `,
     backgroundContainer: css`
@@ -100,7 +109,7 @@ const IntroContainer: FC<IntroContainerProps> = (props) => {
                         {props.title}
                     </Title>
                     <Text css={styles.body}>{props.body}</Text>
-                    {props.type === 'WhoWeAre' && <WhoWeAreSvg />}
+                    {props.type === 'WhoWeAre' && <WhoWeAre />}
                     {/*{props.type === 'HowToConnect' && <HowToConnectSvg />}*/}
                 </motion.div>
             </motion.div>

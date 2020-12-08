@@ -41,8 +41,19 @@ const typography = {
 
     bigText: css`
         font-family: 'Montserrat', Arial, sans-serif;
-        font-size: 30px;
         color: ${({ theme }) => theme.colors.white};
+
+        ${queryShit({
+            mobile: css`
+                font-size: 15px;
+            `,
+            tablet: css`
+                font-size: 22px;
+            `,
+            desktop: css`
+                font-size: 25px;
+            `,
+        })}
     `,
 
     largeText: {

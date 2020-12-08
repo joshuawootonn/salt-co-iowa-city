@@ -47,18 +47,15 @@ const Title = (props) => {
     const Component = props.variant === 'small' ? H2 : H1;
 
     return (
-        <Root name={`#${slugify(props.children)}`} {...props}>
-            <Component
-                {...animationProps}
-                ref={ref}
-                animate={
-                    !props.isOrchestrated && toVariant(isLoaded && isVisible)
-                }
-                onClick={() => handleTitleElementClick(props.children)}
-            >
-                {props.children}
-            </Component>
-        </Root>
+        <Component
+            {...animationProps}
+            ref={ref}
+            animate={!props.isOrchestrated && toVariant(isLoaded && isVisible)}
+            onClick={() => handleTitleElementClick(props.children)}
+            {...props}
+        >
+            <Root name={`#${slugify(props.children)}`}>{props.children}</Root>
+        </Component>
     );
 };
 

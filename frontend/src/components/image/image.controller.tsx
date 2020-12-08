@@ -117,7 +117,12 @@ const ImageController: FC<ImageProps> = (props) => {
             onClick={isButton ? switchImage : undefined}
         >
             <Cover data-animation={animationId} />
-            <GatsbyImage onLoad={handleLoad} {...props.images[curr]} />
+            <GatsbyImage
+                style={{ height: '100%' }}
+                imgStyle={{ objectFit: 'cover', objectPosition: 'center' }}
+                onLoad={handleLoad}
+                {...props.images[curr]}
+            />
         </Root>
     );
 };
