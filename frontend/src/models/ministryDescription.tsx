@@ -6,6 +6,10 @@ export interface MinistryDescription {
     title: string;
     description: string;
     images: Image[];
+    location?: {
+        text: string;
+        url: string;
+    };
     link: {
         reference: Staff | ConnectionGroupBlock;
         text: string;

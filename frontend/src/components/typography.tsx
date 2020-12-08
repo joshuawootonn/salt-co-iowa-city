@@ -94,8 +94,19 @@ const typography = {
         `,
         text: css`
             font-family: 'Montserrat', Arial, sans-serif;
-            font-size: 20px;
+
             color: ${({ theme }) => theme.colors.blue.lightest};
+            ${queryShit({
+                mobile: css`
+                    font-size: 15px;
+                `,
+                tablet: css`
+                    font-size: 17px;
+                `,
+                desktop: css`
+                    font-size: 18px;
+                `,
+            })}
         `,
         smallText: css`
             font-family: 'Montserrat', Arial, sans-serif;
@@ -105,12 +116,15 @@ const typography = {
         link: css`
             font-family: 'MonumentExtended', Arial, sans-serif;
             color: ${({ theme }) => theme.colors.blue.light};
-            font-size: 15px;
+
             text-transform: none;
             text-decoration: underline;
             ${queryShit({
                 mobile: css`
                     font-size: 12px;
+                `,
+                tablet: css`
+                    font-size: 15px;
                 `,
             })}
         `,

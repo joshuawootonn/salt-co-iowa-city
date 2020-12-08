@@ -15,6 +15,10 @@ export const useMinistryDescriptionBlock = (): MinistryDescriptionBlock => {
                         description {
                             description
                         }
+                        location {
+                            text
+                            url
+                        }
                         link {
                             reference {
                                 __typename
@@ -34,7 +38,7 @@ export const useMinistryDescriptionBlock = (): MinistryDescriptionBlock => {
                         }
                         images {
                             fluid(maxWidth: 1200, quality: 100) {
-                                ...GatsbyContentfulFluid_withWebp_noBase64
+                                ...GatsbyContentfulFluid_withWebp
                             }
                         }
                     }

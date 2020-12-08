@@ -35,10 +35,10 @@ const WhoWeAre: FC = () => {
                 type={'WhoWeAre'}
                 css={styles.intro}
             />
-            {/*<MinistryDescriptionContainer*/}
-            {/*    {...ministryDescriptionBlock}*/}
-            {/*    css={styles.ministryDescriptions}*/}
-            {/*/>*/}
+            <MinistryDescriptionContainer
+                {...ministryDescriptionBlock}
+                css={styles.ministryDescriptions}
+            />
             <StaffContainer {...staffBlock} css={styles.staff} />
         </Page>
     );

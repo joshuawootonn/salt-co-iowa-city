@@ -40,6 +40,7 @@
     "gatsby-source-contentful": "^2.3.51",
     "gatsby-transformer-sharp": "^2.5.17",
     "graphql": "^15.3.0",
+    "lodash.merge": "^4.6.2",
     "polished": "^3.6.7",
     "query-string": "^6.13.6",
     "react": "^16.12.0",

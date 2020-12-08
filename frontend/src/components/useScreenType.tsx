@@ -6,10 +6,10 @@ type Media = 'mobile' | 'tablet' | 'desktop' | 'xl';
 const useScreenType = (): Media => {
     const isMobile = useReactUseMedia('(max-width: 670px)');
     const isTablet = useReactUseMedia(
-        '(min-width: 671px) and (max-width: 1375px)'
+        '(min-width: 660px) and (max-width: 1375px)'
     );
     const isDesktop = useReactUseMedia(
-        '(min-width: 1376px) and (max-width: 1920px)'
+        '(min-width: 1370px) and (max-width: 1920px)'
     );
 
     if (isMobile) {

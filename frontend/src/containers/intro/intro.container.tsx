@@ -100,7 +100,7 @@ const IntroContainer: FC<IntroContainerProps> = (props) => {
                         {props.title}
                     </Title>
                     <Text css={styles.body}>{props.body}</Text>
-                    {/*{props.type === 'WhoWeAre' && <WhoWeAreSvg />}*/}
+                    {props.type === 'WhoWeAre' && <WhoWeAreSvg />}
                     {/*{props.type === 'HowToConnect' && <HowToConnectSvg />}*/}
                 </motion.div>
             </motion.div>

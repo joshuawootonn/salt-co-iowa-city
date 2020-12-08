@@ -47,8 +47,9 @@ const styles = {
             tablet: css`
                 grid-auto-flow: row;
                 justify-content: center;
+                column-gap: 40px;
 
-                grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
                 grid-template-rows: repeat(2, minmax(120px, max-content));
             `,
             desktop: css`

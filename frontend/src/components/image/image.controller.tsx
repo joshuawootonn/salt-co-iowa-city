@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
-import { FluidObject } from 'gatsby-image';
+import GatsbyImage, { FluidObject } from 'gatsby-image';
 import styled, { css } from 'styled-components/macro';
 import { lighten } from 'polished';
 import useIntersect from '../../helpers/useIntersect';
@@ -18,6 +18,7 @@ const Root = styled.button<{ isButton: boolean; isHovered?: boolean }>`
     border-radius: 0;
 
     perspective: 1000px;
+    padding: 0;
 
     outline: none;
 
@@ -29,18 +30,22 @@ const Root = styled.button<{ isButton: boolean; isHovered?: boolean }>`
             transform: scale(1.03);
             border: 2px solid ${lighten(0.3, theme.colors.background)};
         `;
+        console.log(isHovered && hoverCss);
         return css`
             cursor: pointer;
             ${isHovered && hoverCss}
+
+            &:focus-visible {
+                ${hoverCss}
+            }
             &:hover {
                 ${hoverCss}
             }
-            &:focus {
-                ${hoverCss}
-            }
-            &:active {
+            &:active,
+            &:active:focus-visible {
                 transform: scale(1);
                 border: 2px solid ${lighten(0.4, theme.colors.background)};
+            }
         `;
     }}
 `;
@@ -112,11 +117,7 @@ const ImageController: FC<ImageProps> = (props) => {
             onClick={isButton ? switchImage : undefined}
         >
             <Cover data-animation={animationId} />
-            <Image
-                isVisible={isVisible}
-                onLoad={handleLoad}
-                {...props.images[curr]}
-            />
+            <GatsbyImage onLoad={handleLoad} {...props.images[curr]} />
         </Root>
     );
 };

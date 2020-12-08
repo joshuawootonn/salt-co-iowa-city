@@ -1,45 +1,62 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import { css } from 'styled-components/macro';
 import { MinistryDescription } from '../../models/ministryDescription';
 import { Title } from '../../components/title';
 import ImageController from '../../components/image/image.controller';
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 import { useFontLoader } from '../../context/fontLoader';
 import useIntersect from '../../helpers/useIntersect';
-import { toVariant } from '../../helpers/animation';
-import TextCard from './TextCard';
+import MinistryDescriptionTextCard from './ministryDescriptionTextCard';
+import useScreenType from '../../components/useScreenType';
 
 const styles = {
     root: css`
         justify-self: center;
         position: relative;
+        display: flex;
+        flex-direction: column;
     `,
     image: css`
-        width: 1100px;
-        height: 761px;
+        width: 100%;
+        max-height: 80vh;
     `,
-    title: css`
+    titleContainer: css`
         position: absolute;
-        height: 50px;
-        top: -50px;
+        top: 0;
         left: 0;
         z-index: 10;
+        transform: translateY(-60%);
+    `,
+    title: css`
+        white-space: normal;
     `,
     imageControl: css`
         position: absolute;
         bottom: -50px;
         right: -130px;
-        z-index: 10;
+        z-index: 5;
     `,
 };
 
-const MinistryDescriptionCard: FC<MinistryDescription> = (props) => {
-    const [currentImage, setCurrentImage] = useState(0);
+export interface MinistryDescriptionCardProps extends MinistryDescription {
+    index: number;
+}
+
+const MinistryDescriptionCard: FC<MinistryDescriptionCardProps> = (props) => {
+    const screenType = useScreenType();
     const isLoaded = useFontLoader();
     const ref = React.useRef(null);
     const { isVisible } = useIntersect(ref, {
         threshold: 0,
     });
+
+    const controls = useAnimation();
+
+    useEffect(() => {
+        if (isVisible && isLoaded) {
+            controls.start('entered');
+        }
+    }, [screenType, isVisible, isLoaded]);
 
     return (
         <motion.div
@@ -52,21 +69,16 @@ const MinistryDescriptionCard: FC<MinistryDescription> = (props) => {
                     },
                 },
             }}
-            animate={toVariant(isLoaded && isVisible)}
+            animate={controls}
             css={styles.root}
         >
-            <Title variant="small" css={styles.title}>
-                {props.title}
-            </Title>
-
+            <div css={styles.titleContainer}>
+                <Title isOrchestrated={true} variant="small" css={styles.title}>
+                    {props.title}
+                </Title>
+            </div>
             <ImageController css={styles.image} images={props.images} />
-            {/*<ImageControl*/}
-            {/*    current={currentImage}*/}
-            {/*    images={props.images}*/}
-            {/*    handleChange={setCurrentImage}*/}
-            {/*    css={styles.imageControl}*/}
-            {/*/>*/}
-            <TextCard {...props} />
+            <MinistryDescriptionTextCard {...props} index={props.index} />
         </motion.div>
     );
 };
