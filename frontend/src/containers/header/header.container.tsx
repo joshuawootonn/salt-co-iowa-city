@@ -10,6 +10,7 @@ import { toVariant } from '../../helpers/animation';
 import ExtendedNavigationContainer from '../extendedNavigation';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import ReactFocusLock from 'react-focus-lock';
 
 const styles = {
     root: css`
@@ -94,17 +95,24 @@ const HeaderContainer: FC<FooterBlock> = (props) => {
                     <NonBoiger />
                 )}
             </div>
-            <Root
-                transition={{
-                    ease: [0.26, 0.49, 0.18, 0.88],
-                    duration: 0.5,
-                }}
-                initial={'exited'}
-                animate={toVariant(isHeaderOpen)}
-                variants={variants}
-            >
-                <ExtendedNavigationContainer {...props} type={'mobileNav'} />
-            </Root>
+            {isBoiger && (
+                <ReactFocusLock group={'main'} disabled={!isHeaderOpen}>
+                    <Root
+                        transition={{
+                            ease: [0.26, 0.49, 0.18, 0.88],
+                            duration: 0.5,
+                        }}
+                        initial={'exited'}
+                        animate={toVariant(isHeaderOpen)}
+                        variants={variants}
+                    >
+                        <ExtendedNavigationContainer
+                            {...props}
+                            type={'mobileNav'}
+                        />
+                    </Root>
+                </ReactFocusLock>
+            )}
         </>
     );
 };
