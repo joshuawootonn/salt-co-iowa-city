@@ -10,7 +10,7 @@ const Root = styled.svg`
         mobile: css`
             left: 50%;
             top: 50%;
-            height: 80vh;
+            height: 70vh;
             transform: translate3d(-45%, -45%, 0);
 
             path {

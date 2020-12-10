@@ -53,13 +53,25 @@ const styles = {
                 white-space: normal;
             `,
             tablet: css`
-                white-space: nowrap;
+                white-space: normal;
             `,
         })}
     `,
 
-    body: css`
+    body: (type: IntroContainerProps['type']) => css`
         ${typography.bigText};
+
+        ${queryShit({
+            mobile: css`
+                width: 100%;
+            `,
+            tablet: css`
+                width: 100%;
+            `,
+            desktop: css`
+                width: ${type === 'HowToConnect' ? '70%' : '100%'};
+            `,
+        })}
         padding-bottom: 10px;
     `,
     backgroundContainer: css`
@@ -108,9 +120,9 @@ const IntroContainer: FC<IntroContainerProps> = (props) => {
                     <Title isOrchestrated={true} css={styles.title}>
                         {props.title}
                     </Title>
-                    <Text css={styles.body}>{props.body}</Text>
+                    <Text css={styles.body(props.type)}>{props.body}</Text>
                     {props.type === 'WhoWeAre' && <WhoWeAre />}
-                    {/*{props.type === 'HowToConnect' && <HowToConnectSvg />}*/}
+                    {props.type === 'HowToConnect' && <HowToConnectSvg />}
                 </motion.div>
             </motion.div>
         </motion.div>

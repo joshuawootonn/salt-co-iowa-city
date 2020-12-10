@@ -3,7 +3,6 @@ import GatsbyImage, { FluidObject } from 'gatsby-image';
 import styled, { css } from 'styled-components/macro';
 import { lighten } from 'polished';
 import useIntersect from '../../helpers/useIntersect';
-import Image from './image';
 import { animateIn, animateOut } from './animations';
 
 const Root = styled.button<{ isButton: boolean; isHovered?: boolean }>`
@@ -30,7 +29,6 @@ const Root = styled.button<{ isButton: boolean; isHovered?: boolean }>`
             transform: scale(1.03);
             border: 2px solid ${lighten(0.3, theme.colors.background)};
         `;
-        console.log(isHovered && hoverCss);
         return css`
             cursor: pointer;
             ${isHovered && hoverCss}
