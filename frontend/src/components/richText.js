@@ -1,14 +1,14 @@
 import React from 'react';
-import TextLink from '../../../components/textLink';
+import TextLink from './textLink';
 import { css } from 'styled-components/macro';
-import typography from '../../../components/typography';
+import typography from './typography';
 import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import slugify from '../../../helpers/slugify';
+import slugify, { slugStaff } from '../helpers/slugify';
 import { motion } from 'framer-motion';
-import { toVariant } from '../../../helpers/animation';
-import { useFontLoader } from '../../../context/fontLoader';
-import useIntersect from '../../../helpers/useIntersect';
+import { toVariant } from '../helpers/animation';
+import { useFontLoader } from '../context/fontLoader';
+import useIntersect from '../helpers/useIntersect';
 
 const ParagraphLink = (props) => (
     <TextLink css={typography.largeText.link} type={'largeText'} {...props}>
@@ -40,6 +40,17 @@ const EntryHyperLink = ({ content, data }) => {
                 {content[0].value}
             </ParagraphLink>
         );
+    } else if (data.target.sys.contentType.sys.id === 'staff') {
+        return (
+            <ParagraphLink
+                destinationType={'internal'}
+                to={`/contact?name=${slugify(
+                    `${data.target.fields.firstName['en-US']}-${data.target.fields.lastName['en-US']}`
+                )}`}
+            >
+                {content[0].value}
+            </ParagraphLink>
+        );
     }
 };
 
@@ -58,7 +69,7 @@ const Paragraph = ({ content, data }, children) => (
     </motion.p>
 );
 
-const WelcomeRichText = (props) => {
+const RichText = (props) => {
     const isLoaded = useFontLoader();
     const ref = React.useRef(null);
     const { isVisible } = useIntersect(ref, {
@@ -84,4 +95,4 @@ const WelcomeRichText = (props) => {
     );
 };
 
-export default WelcomeRichText;
+export default RichText;

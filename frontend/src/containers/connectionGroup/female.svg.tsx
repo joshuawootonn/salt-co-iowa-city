@@ -4,10 +4,10 @@ import { css } from 'styled-components/macro';
 const styles = {
     root: css`
         & > path {
-            fill: ${({ theme }) => theme.colors.pink.medium};
+            fill: ${({ theme }) => theme.colors.purple.light};
         }
         g {
-            stroke: ${({ theme }) => theme.colors.pink.medium};
+            stroke: ${({ theme }) => theme.colors.purple.light};
             stroke-width: 3px;
             stroke-linecap: round;
             stroke-linejoin: round;

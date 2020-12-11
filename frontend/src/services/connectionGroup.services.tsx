@@ -26,6 +26,13 @@ export const useConnectionGroupBlock = (): ConnectionGroupBlock => {
                         id
                     }
                     __typename
+
+                    emptyTitle {
+                        json
+                    }
+                    emptyText {
+                        emptyText
+                    }
                 }
             }
         }

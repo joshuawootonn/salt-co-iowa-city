@@ -10,15 +10,12 @@ import TextLink from '../../components/textLink';
 
 const boxBase = css`
     background-color: ${({ theme }) => theme.colors.backgroundTransparent};
-    border: 2px solid ${({ theme }) => theme.colors.purple.light};
+    border: 2px solid ${({ theme }) => theme.colors.blue.lightest};
     padding: 20px;
 `;
 
 const styles = {
-    root: css`
-        width: 357px;
-        margin-right: 20px;
-    `,
+    root: css``,
     box1: css`
         ${boxBase};
 
@@ -56,7 +53,7 @@ const styles = {
     `,
     box3: css`
         ${boxBase};
-        transform: translateY(-2px);
+        transform: translateY(-4px);
 
         display: flex;
         flex-direction: row;
@@ -88,6 +85,7 @@ const ConnectionGroupCard: FC<ConnectionGroup> = (props) => {
                 <TextLink
                     destinationType="internal"
                     to={mapReferenceToLink(props)}
+                    type={'card'}
                 >
                     {props.connectionLinkText}
                 </TextLink>

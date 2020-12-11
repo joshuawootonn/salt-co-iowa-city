@@ -1,7 +1,7 @@
 import ImageController from '../../components/image/image.controller';
 import { WelcomeBlock } from '../../models/welcome';
 import { css } from 'styled-components/macro';
-import WelcomeRichText from './components/welcomeRichText';
+import RichText from '../../components/richText';
 import React, { FC } from 'react';
 import layout from '../../components/layout';
 import { queryShit } from '../../components/useScreenType';
@@ -82,14 +82,14 @@ const styles = {
 const Section2: FC<WelcomeBlock> = (welcomeBlock) => (
     <div css={styles.root}>
         <div css={styles.one}>
-            <WelcomeRichText
+            <RichText
                 log={true}
                 isOrchestrated={false}
                 json={welcomeBlock.text3.json}
             />
         </div>
         <div css={styles.two}>
-            <WelcomeRichText
+            <RichText
                 isOrchestrated={false}
                 json={welcomeBlock.text4.json}
             />

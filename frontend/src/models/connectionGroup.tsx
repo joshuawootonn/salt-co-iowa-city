@@ -1,3 +1,5 @@
+import { RichText } from './welcome';
+
 export interface ConnectionGroup {
     leaders: string;
     description: string;
@@ -13,5 +15,9 @@ export interface ConnectionGroupBlock {
     title: string;
     description: string;
     groups: ConnectionGroup[];
+    emptyTitle: RichText;
+    emptyText: {
+        emptyText: string;
+    };
     __typename: 'ContentfulBlockConnectionGroups';
 }

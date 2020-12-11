@@ -1,7 +1,7 @@
 import ImageController from '../../components/image/image.controller';
 import { WelcomeBlock } from '../../models/welcome';
 import { css } from 'styled-components/macro';
-import WelcomeRichText from './components/welcomeRichText';
+import RichText from '../../components/richText';
 import React, { FC } from 'react';
 
 import { motion } from 'framer-motion';
@@ -108,13 +108,13 @@ const Section1: FC<WelcomeBlock> = (welcomeBlock) => {
                 <Title css={styles.title} isOrchestrated={true}>
                     {welcomeBlock.title}
                 </Title>
-                <WelcomeRichText
+                <RichText
                     isOrchestrated={true}
                     json={welcomeBlock.text1.json}
                 />
             </div>
             <div css={styles.two}>
-                <WelcomeRichText
+                <RichText
                     isOrchestrated={true}
                     json={welcomeBlock.text2.json}
                 />
