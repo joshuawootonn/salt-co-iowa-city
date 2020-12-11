@@ -36,6 +36,9 @@ const styles = {
     titleContainer: css`
         margin-bottom: 40px;
     `,
+    title: css`
+        white-space: normal;
+    `,
     body: css`
         ${typography.bigText};
     `,
@@ -109,7 +112,7 @@ const ConnectionGroupContainer: FC<ConnectionGroupBlock> = ({
             {...props}
         >
             <div css={styles.titleContainer}>
-                <Title isOrchestrated={true} variant="small">
+                <Title css={styles.title} isOrchestrated={true} variant="small">
                     {title}
                 </Title>
                 <Text css={styles.body}>{description}</Text>
