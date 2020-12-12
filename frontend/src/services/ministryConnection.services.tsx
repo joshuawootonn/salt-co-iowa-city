@@ -35,6 +35,20 @@ export const useMinistryConnectionBlock = (): MinistryConnectionBlock => {
                             }
                             contact {
                                 text
+                                reference {
+                                    __typename
+                                    ... on ContentfulBlockConnectionGroups {
+                                        id
+                                        title
+                                    }
+                                    ... on ContentfulStaff {
+                                        firstName
+                                        lastName
+                                        email
+                                        position
+                                        id
+                                    }
+                                }
                             }
                             description {
                                 description

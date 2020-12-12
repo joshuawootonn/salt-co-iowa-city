@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import styled from 'styled-components/macro';
 
-const Root = styled.div`
+const Root = styled(motion.div)`
     overflow: hidden;
     position: relative;
 `;
@@ -21,11 +21,12 @@ const Span = styled(motion.span)`
 `;
 
 const animationProps = {
-    initial: { opacity: 0, y: 20 },
+    initial: 'exited',
     variants: {
         entered: { y: 0, opacity: 1 },
         exited: { y: 20, opacity: 0 },
     },
+    animate: 'entered',
     transition: { type: 'spring', duration: 1, bounce: 0 },
 };
 

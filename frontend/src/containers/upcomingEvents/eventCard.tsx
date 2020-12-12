@@ -6,6 +6,7 @@ import dayjs, { Dayjs } from 'dayjs';
 import { UpcomingEvent } from '../../models/upcomingEvent';
 import { mapReferenceToLink } from '../../helpers/link';
 import TextLink from '../../components/textLink';
+import { motion } from 'framer-motion';
 
 const boxBase = css`
     background-color: ${({ theme }) => theme.colors.backgroundTransparent};
@@ -16,6 +17,7 @@ const boxBase = css`
 const styles = {
     root: css`
         width: 500px;
+        max-width: 100%;
     `,
 
     box1: css`
@@ -84,9 +86,10 @@ const EventCard: FC<UpcomingEvent> = ({
     description,
     location,
     contact,
+    ...props
 }) => {
     return (
-        <div css={styles.root}>
+        <motion.div css={styles.root} {...props}>
             <div css={styles.box1}>
                 <h4 css={typography.card.title}>{title}</h4>
                 <span css={typography.card.text}>
@@ -113,7 +116,7 @@ const EventCard: FC<UpcomingEvent> = ({
                     {contact.text}
                 </TextLink>
             </div>
-        </div>
+        </motion.div>
     );
 };
 

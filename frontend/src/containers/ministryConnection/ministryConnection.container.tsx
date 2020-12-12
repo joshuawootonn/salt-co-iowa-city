@@ -1,20 +1,32 @@
 import React, { FC } from 'react';
-import MinistryConnectionCard from './ministryConnection';
-
+import DescriptionSection from './descriptionSection';
 import { css } from 'styled-components/macro';
 import { MinistryConnectionBlock } from '../../models/ministryConnection';
+import EventSection from './eventSection';
+import { queryShit } from '../../components/useScreenType';
 
 const styles = {
-    root: css`
-        & > div {
-            margin-bottom: 200px;
-        }
+    lastElement: css`
+        ${queryShit({
+            mobile: css`
+                margin-bottom: 400px;
+            `,
+            tablet: css`
+                margin-bottom: 450px;
+            `,
+            desktop: css`
+                margin-bottom: 500px;
+            `,
+        })}
     `,
 };
 const MinistryConnectionContainer: FC<MinistryConnectionBlock> = (props) => (
-    <div css={styles.root} {...props}>
+    <div {...props}>
         {props.ministryConnections.map((connection, i) => (
-            <MinistryConnectionCard {...connection} key={i} />
+            <div css={styles.lastElement} key={i}>
+                <DescriptionSection {...connection} />
+                {connection.nextEvent && <EventSection {...connection} />}
+            </div>
         ))}
     </div>
 );

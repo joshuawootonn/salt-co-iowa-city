@@ -1,15 +1,12 @@
 import { useMedia as useReactUseMedia } from 'react-use';
 import { css } from 'styled-components/macro';
 
-type Media = 'mobile' | 'tablet' | 'desktop' | 'xl';
+export type Media = 'mobile' | 'tablet' | 'desktop';
 
 const useScreenType = (): Media => {
     const isMobile = useReactUseMedia('(max-width: 670px)');
     const isTablet = useReactUseMedia(
         '(min-width: 660px) and (max-width: 1145px)'
-    );
-    const isDesktop = useReactUseMedia(
-        '(min-width: 1140px) and (max-width: 1920px)'
     );
 
     if (isMobile) {
@@ -18,11 +15,8 @@ const useScreenType = (): Media => {
     if (isTablet) {
         return 'tablet';
     }
-    if (isDesktop) {
-        return 'desktop';
-    }
 
-    return 'xl';
+    return 'desktop';
 };
 
 export default useScreenType;
@@ -57,8 +51,5 @@ export const queryShit = (aaa: any) =>
         }
         @media (min-width: 1141px) {
             ${aaa.desktop};
-        }
-        @media (min-width: 1921px) {
-            ${aaa.xl};
         }
     `;

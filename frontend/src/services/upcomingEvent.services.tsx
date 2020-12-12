@@ -31,7 +31,6 @@ export const useUpcomingEventBlock = (): UpcomingEventBlock => {
                             text
                             reference {
                                 __typename
-                                __typename
                                 ... on ContentfulBlockConnectionGroups {
                                     id
                                     title

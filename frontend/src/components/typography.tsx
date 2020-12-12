@@ -39,6 +39,22 @@ const typography = {
         })}
     `,
 
+    title3: css`
+        font-family: 'MonumentExtended', Arial, sans-serif;
+        color: ${({ theme }) => theme.colors.purple.lightest};
+        ${queryShit({
+            mobile: css`
+                font-size: 20px;
+            `,
+            tablet: css`
+                font-size: 28px;
+            `,
+            desktop: css`
+                font-size: 35px;
+            `,
+        })}
+    `,
+
     bigText: css`
         font-family: 'Montserrat', Arial, sans-serif;
         color: ${({ theme }) => theme.colors.white};

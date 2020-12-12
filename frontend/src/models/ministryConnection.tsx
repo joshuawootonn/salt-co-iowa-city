@@ -7,7 +7,7 @@ export interface MinistryConnection {
     acronym?: string;
     description: string;
     images: Image[];
-    backgroundImage: 'World' | 'Flag';
+    backgroundImage: 'World' | 'Leaf';
     link: {
         reference: Staff;
         text: string;
