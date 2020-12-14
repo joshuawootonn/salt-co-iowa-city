@@ -22,7 +22,6 @@ const variants = {
     },
     default: {
         rotate: [0, 20, 0],
-
         transition: {
             repeat: Infinity,
             repeatDelay: 3,

@@ -8,6 +8,7 @@ import { motion } from 'framer-motion';
 import { useFontLoader } from '../../context/fontLoader';
 import useIntersect from '../../helpers/useIntersect';
 import Items from './items';
+import BlockArrow from '../../svgs/blockArrow.svg';
 
 const styles = {
     root: css`
@@ -19,10 +20,6 @@ const styles = {
     title: css`
         white-space: normal;
         margin-bottom: 50px;
-    `,
-    main: css`
-        width: 100vw;
-        max-width: 100vw;
     `,
 };
 
@@ -54,9 +51,7 @@ const UpcomingEventsContainer: FC<UpcomingEventBlock> = (props) => {
                 </Title>
             </div>
 
-            <div css={styles.main}>
-                <Items {...props} events={[...props.events, ...props.events]} />
-            </div>
+            <Items {...props} events={[...props.events, ...props.events]} />
         </motion.div>
     );
 };

@@ -16,7 +16,7 @@ const styles = {
         margin-bottom: 150px;
     `,
     upcomingEvents: css`
-        margin-bottom: 300px;
+        margin-bottom: 0;
     `,
     connectionGroup: css`
         margin-bottom: 250px;
