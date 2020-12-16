@@ -47,7 +47,7 @@ const Home: FC = () => {
     return (
         <Page>
             <SeoComponent
-                title={'Welcome to Salt Co.'}
+                title={welcomeBlock.title}
                 isTitleTemplated={false}
                 description={
                     'We are a college ministry composed of students who are defined by Christ. Join us for worship!'

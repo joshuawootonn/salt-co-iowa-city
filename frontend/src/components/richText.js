@@ -4,7 +4,7 @@ import { css } from 'styled-components/macro';
 import typography from './typography';
 import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import slugify, { slugStaff } from '../helpers/slugify';
+import slugify from '../helpers/slugify';
 import { motion } from 'framer-motion';
 import { toVariant } from '../helpers/animation';
 import { useFontLoader } from '../context/fontLoader';
