@@ -10,8 +10,8 @@ import { ConnectionGroupOption, StaffOption } from './contact.container';
 
 const styles = {
     root: css`
+        min-height: 70vh;
         margin-bottom: 0;
-        height: 100vh;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -28,7 +28,7 @@ const Contact: FC<
     }
 > = (props) => {
     return (
-        <div css={styles.root}>
+        <div css={styles.root} {...props}>
             {props.values.formUIPhase === 'initial' && (
                 <InitialForm {...props} />
             )}

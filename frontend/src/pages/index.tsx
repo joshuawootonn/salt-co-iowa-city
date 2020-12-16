@@ -41,8 +41,6 @@ const Home: FC = () => {
     const welcomeBlock = useWelcomeBlock();
     const announcementBlock = useAnnouncementBlock();
 
-    console.log(announcementBlock);
-
     useTitleScoller();
 
     return (

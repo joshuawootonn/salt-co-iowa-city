@@ -33,8 +33,9 @@ export const getContactBlock = async (): Promise<ContactBlock> => {
     const rawBlock = rawResult.blockContactCollection.items[0];
 
     return {
-        root: rawBlock.title,
-
+        title: rawBlock.title,
+        confirmationTitle: rawBlock.confirmationTitle,
+        errorTitle: rawBlock.errorTitle,
         contacts: rawBlock.contactsCollection.items,
     };
 };

@@ -119,8 +119,9 @@ export default {
         }
     `,
     button: css`
-        background: ${({ theme }) => theme.colors.backgroundTransparent};
+        background: ${({ theme }) => theme.colors.transparent};
         border: none;
+        width: 100px;
 
         transition: ease 150ms;
         outline: none;
@@ -128,7 +129,7 @@ export default {
 
         &:hover,
         &:focus {
-            transform: scale(1.2);
+            transform: scale(1.1);
         }
         &:active,
         &:focus:active {

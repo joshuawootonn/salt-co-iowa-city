@@ -1,5 +1,6 @@
 import { Staff } from '../../models/staff';
 import { ConnectionGroup } from '../../models/connectionGroup';
+import { defaultStaff } from '../../defaultValues';
 
 export type FormUIPhase = 'initial' | 'loading' | 'error' | 'success';
 
@@ -9,7 +10,7 @@ export type InitialContactForm = {
     subject: string;
     message: string;
     to: Staff | null | undefined | ConnectionGroup;
-    formUIPhase: 'initial';
+    formUIPhase: any;
 };
 
 export type FinalContactForm = {
@@ -36,6 +37,6 @@ export const initialContactForm: InitialContactForm = {
     email: '',
     subject: '',
     message: '',
-    to: null,
-    formUIPhase: 'initial',
+    to: defaultStaff,
+    formUIPhase: 'error',
 };

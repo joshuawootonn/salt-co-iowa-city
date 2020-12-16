@@ -13,11 +13,8 @@ import Title from '../formElements/title';
 import compositionStyles from './compositionStyles';
 import layout from '../../../components/layout';
 import Dove from '../formElements/dove.svg';
-import {
-    ConnectionGroup,
-    ConnectionGroupBlock,
-} from '../../../models/connectionGroup';
 import { ContactOption } from '../contact';
+import { queryShit } from '../../../components/useScreenType';
 
 const doveBase = css`
     position: absolute;
@@ -29,6 +26,7 @@ const doveBase = css`
 const styles = {
     content: css`
         ${layout.container};
+
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -36,7 +34,21 @@ const styles = {
         width: 100%;
     `,
     formColumn: css`
-        width: 50%;
+        ${queryShit({
+            mobile: css`
+                width: 100%;
+                max-width: 500px;
+            `,
+            tablet: css`
+                transform: translateY(-50px);
+                width: 80%;
+                max-width: 500px;
+            `,
+            desktop: css`
+                width: 50%;
+                max-width: 500px;
+            `,
+        })}
 
         display: flex;
         flex-direction: column;
@@ -51,26 +63,6 @@ const styles = {
         height: 100%;
         margin-bottom: 100px;
     `,
-    doves: [
-        css`
-            ${doveBase};
-            right: -50px;
-            top: 0;
-            height: 170px;
-        `,
-        css`
-            ${doveBase};
-            top: 35%;
-            left: -100px;
-            transform: scale(-1, 1);
-        `,
-        css`
-            ${doveBase};
-            top: 70%;
-            right: 50px;
-            height: 230px;
-        `,
-    ],
 };
 
 const InitialForm: FC<{ title: string; contactOptions: ContactOption[] }> = ({
@@ -81,13 +73,6 @@ const InitialForm: FC<{ title: string; contactOptions: ContactOption[] }> = ({
         <div css={compositionStyles.root}>
             <Title>{title}</Title>
             <div css={styles.content}>
-                <div css={styles.subTitleContainer}>
-                    {styles.doves.map((doveStyle, i) => (
-                        <Dove css={doveStyle} key={i} />
-                    ))}
-                    <SubTitle>How can we help?</SubTitle>
-                </div>
-
                 <Form css={styles.formColumn}>
                     <Field
                         component={SelectTo}
@@ -110,6 +95,9 @@ const InitialForm: FC<{ title: string; contactOptions: ContactOption[] }> = ({
                     />
 
                     <SubmitButton />
+                    {compositionStyles.doves.initial.map((doveStyle, i) => (
+                        <Dove css={doveStyle} key={i} />
+                    ))}
                 </Form>
             </div>
         </div>

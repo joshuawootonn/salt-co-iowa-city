@@ -10,7 +10,8 @@ import { Formik, FormikProps } from 'formik';
 import { select } from '@storybook/addon-knobs';
 import { ContactForm, FinalContactForm, initialContactForm } from './types';
 import { contactValidationSchema } from './validation';
-import { defaultStaff } from '../../defaultValues';
+import { defaultStaff, defaultStaffs } from '../../defaultValues';
+import { mapStaffToOption } from './contact.container';
 
 storiesOf('Contact', module)
     .add('With Transitions', () => (
@@ -34,7 +35,11 @@ storiesOf('Contact', module)
                         isInitialValid={false}
                     >
                         {(formikProps: FormikProps<ContactForm>) => (
-                            <Contact {...props} values={formikProps.values} />
+                            <Contact
+                                {...props}
+                                values={formikProps.values}
+                                contactOptions={mapStaffToOption(defaultStaffs)}
+                            />
                         )}
                     </Formik>
                 );
@@ -65,6 +70,8 @@ storiesOf('Contact', module)
                             name: 'Joshua Wootonn',
                             to: defaultStaff,
                         }}
+
+                        contactOptions={mapStaffToOption(defaultStaffs)}
                     />
                 </Formik>
             )}

@@ -63,7 +63,7 @@ export interface StaffOption extends Staff {
     value: string;
     label: string;
 }
-const mapStaffToOption = (staff: Staff[]): StaffOption[] =>
+export const mapStaffToOption = (staff: Staff[]): StaffOption[] =>
     staff.map((s: Staff) => ({
         ...s,
         value: s.id,

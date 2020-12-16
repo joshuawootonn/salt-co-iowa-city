@@ -7,6 +7,9 @@ import Dove from '../formElements/dove.svg';
 import { ContactOption } from '../contact';
 
 const styles = {
+    title: css`
+        text-align: left;
+    `,
     subTitle: css`
         font-size: 80px;
         width: 1100px;
@@ -20,8 +23,8 @@ export interface SuccessProps {
 const Success: FC<SuccessProps> = ({ to }) => {
     return (
         <div css={compositionStyles.root}>
-            <Title>Hang on!</Title>
-            {compositionStyles.doves.map((doveStyle, i) => (
+            <Title css={styles.title}>Hang on!</Title>
+            {compositionStyles.doves.success.map((doveStyle, i) => (
                 <Dove css={doveStyle} key={i} />
             ))}
             <SubTitle css={styles.subTitle}>

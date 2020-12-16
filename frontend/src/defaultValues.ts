@@ -17,4 +17,19 @@ export const defaultStaff: Staff = {
     },
     about:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
+    __typename: 'ContentfulStaff',
 };
+
+export const defaultStaffs: Staff[] = [
+    defaultStaff,
+    {
+        ...defaultStaff,
+        firstName: 'Joshua',
+        lastName: 'Wootonn',
+    },
+    {
+        ...defaultStaff,
+        firstName: 'Mitch',
+        lastName: 'Volk',
+    },
+];
