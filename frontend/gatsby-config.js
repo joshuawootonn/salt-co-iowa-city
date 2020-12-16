@@ -5,8 +5,10 @@ const previewHost = 'preview.contentful.com';
 const cdnHost = 'cdn.contentful.com';
 const isPreview = process.env.CONTENTFUL_HOST === previewHost;
 
-const { VERCEL_URL = 'https://www.saltiowacity.com', VERCEL_ENV } = process.env;
+const { VERCEL_URL, VERCEL_ENV } = process.env;
 const siteUrl = VERCEL_URL;
+
+console.log(VERCEL_URL);
 
 module.exports = {
     siteMetadata: {
