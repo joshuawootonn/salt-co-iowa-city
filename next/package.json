@@ -21,7 +21,7 @@
     "imagemin-mozjpeg": "^9.0.0",
     "imagemin-optipng": "^8.0.0",
     "lqip-loader": "^2.2.1",
-    "next": "9.5.3",
+    "next": "9.5.4",
     "next-compose-plugins": "^2.2.0",
     "next-optimized-images": "^2.6.2",
     "next-with-apollo": "^5.1.0",
