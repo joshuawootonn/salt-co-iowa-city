@@ -20,12 +20,16 @@ const SeoComponent = ({ description, title, image, isTitleTemplated }) => {
 
     const { siteUrl, twitterUsername } = site.siteMetadata;
 
+    console.log(site);
+
     const seo = {
         title: isTitleTemplated ? `${title} - Salt Company` : title,
         description,
         image: `${siteUrl}${image}`,
         url: `${siteUrl}${pathname}`,
     };
+
+    console.log(seo);
 
     return (
         <Helmet title={seo.title}>
