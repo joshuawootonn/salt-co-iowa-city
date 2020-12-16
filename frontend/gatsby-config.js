@@ -6,7 +6,7 @@ const cdnHost = 'cdn.contentful.com';
 const isPreview = process.env.CONTENTFUL_HOST === previewHost;
 
 const { VERCEL_URL, VERCEL_ENV } = process.env;
-const siteUrl = VERCEL_URL;
+const siteUrl = VERCEL_URL || 'https://www.saltiowacity.com';
 
 console.log(VERCEL_URL);
 
