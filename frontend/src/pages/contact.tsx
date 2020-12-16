@@ -6,6 +6,7 @@ import { useConnectionGroupBlock } from '../services/connectionGroup.services';
 import Page from '../components/page';
 import { css } from 'styled-components/macro';
 import { queryShit } from '../components/useScreenType';
+import SeoComponent from '../components/seo';
 
 const styles = {
     contact: css`
@@ -33,6 +34,14 @@ const Contact: FC = () => {
 
     return (
         <Page>
+            <SeoComponent
+                title={contactBlock.title}
+                isTitleTemplated={true}
+                description={
+                    'Get connected with someone from staff or one of our student leaders. We seek to be his hands and feet.'
+                }
+                image={'/contact.png'}
+            />
             <ContactContainer
                 {...connectionGroupBlock}
                 {...contactBlock}

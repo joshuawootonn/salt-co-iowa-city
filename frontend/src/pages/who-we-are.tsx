@@ -9,6 +9,7 @@ import StaffContainer from '../containers/staff';
 import { useTitleScoller } from '../components/title/utils';
 import Page from '../components/page';
 import { queryShit } from '../components/useScreenType';
+import SeoComponent from '../components/seo';
 
 const styles = {
     intro: css`
@@ -51,6 +52,12 @@ const WhoWeAre: FC = () => {
 
     return (
         <Page>
+            <SeoComponent
+                title={whoWeAreBlock.title}
+                isTitleTemplated={true}
+                description={whoWeAreBlock.body}
+                image={'/whoWeAre.png'}
+            />
             <IntroContainer
                 {...whoWeAreBlock}
                 type={'WhoWeAre'}

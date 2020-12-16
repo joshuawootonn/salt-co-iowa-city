@@ -7,6 +7,7 @@ import { useWelcomeBlock } from '../services/welcome.services';
 import { useTitleScoller } from '../components/title/utils';
 import { queryShit } from '../components/useScreenType';
 import Page from '../components/page';
+import SeoComponent from '../components/seo';
 
 const styles = {
     intro: css`
@@ -45,6 +46,14 @@ const Home: FC = () => {
 
     return (
         <Page>
+            <SeoComponent
+                title={'Welcome to Salt Co.'}
+                isTitleTemplated={false}
+                description={
+                    'We are a college ministry composed of students who are defined by Christ. Join us for worship!'
+                }
+                image={'/index.png'}
+            />
             <WelcomeContainer css={styles.intro} {...welcomeBlock} />
             <AnnouncementContainer
                 css={styles.announcements}

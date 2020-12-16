@@ -10,6 +10,7 @@ import { useConnectionGroupBlock } from '../services/connectionGroup.services';
 import { useMinistryConnectionBlock } from '../services/ministryConnection.services';
 import { useTitleScoller } from '../components/title/utils';
 import Page from '../components/page';
+import SeoComponent from '../components/seo';
 
 const styles = {
     intro: css`
@@ -35,6 +36,12 @@ const HowToConnect: FC = () => {
 
     return (
         <Page>
+            <SeoComponent
+                title={howToConnectBlock.title}
+                isTitleTemplated={true}
+                description={howToConnectBlock.body}
+                image={'/howToConnect.png'}
+            />
             <IntroContainer
                 type={'HowToConnect'}
                 {...howToConnectBlock}

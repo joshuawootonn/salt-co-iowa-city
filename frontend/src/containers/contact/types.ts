@@ -37,6 +37,6 @@ export const initialContactForm: InitialContactForm = {
     email: '',
     subject: '',
     message: '',
-    to: defaultStaff,
-    formUIPhase: 'error',
+    to: null,
+    formUIPhase: 'initial',
 };
