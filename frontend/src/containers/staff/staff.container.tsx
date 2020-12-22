@@ -10,6 +10,7 @@ import { useFontLoader } from '../../context/fontLoader';
 import { toVariant } from '../../helpers/animation';
 import { motion } from 'framer-motion';
 import useScreenType, { queryShit } from '../../components/useScreenType';
+import Staff from './staff';
 
 const styles = {
     root: css`
@@ -36,34 +37,7 @@ const styles = {
             `,
         })}
     `,
-    staffContainer: css`
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
 
-        ${queryShit({
-            mobile: css`
-                grid-auto-flow: row;
-                justify-content: center;
-                grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
-                grid-template-rows: repeat(2, minmax(120px, max-content));
-            `,
-            tablet: css`
-                grid-auto-flow: row;
-                justify-content: center;
-                column-gap: 40px;
-
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-                grid-template-rows: repeat(2, minmax(120px, max-content));
-            `,
-            desktop: css`
-                column-gap: 40px;
-                grid-auto-flow: column;
-
-                grid-template-columns: repeat(3, 1fr);
-                grid-template-rows: repeat(2, minmax(0px, max-content));
-            `,
-        })}
-    `,
     background: css`
         position: absolute;
         width: 100vw;
@@ -98,7 +72,7 @@ const StaffContainer: FC<StaffBlock> = (props) => {
                 entered: {
                     transition: {
                         delayChildren: 0.4,
-                        staggerChildren: 0.05,
+                        staggerChildren: 0.08,
                     },
                 },
             }}
@@ -107,14 +81,10 @@ const StaffContainer: FC<StaffBlock> = (props) => {
             {...props}
         >
             <div css={styles.content}>
-                <Title isOrchestrated={true} variant="small" css={styles.title}>
+                <Title variant="small" css={styles.title}>
                     {props.title}
                 </Title>
-                <div css={styles.staffContainer}>
-                    {props.staff.map((s, i) => (
-                        <StaffCard key={i} {...s} />
-                    ))}
-                </div>
+                <Staff {...props} />
             </div>
         </motion.div>
     );

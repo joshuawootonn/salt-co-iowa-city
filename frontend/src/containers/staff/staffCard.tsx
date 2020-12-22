@@ -58,7 +58,11 @@ const TextCard = styled(motion.div)`
 
 const StaffCard: FC<Staff> = (props) => (
     <div css={styles.root}>
-        <ImageController images={[props.image]} css={styles.image} />
+        <ImageController
+            isOrchestrated={true}
+            images={[props.image]}
+            css={styles.image}
+        />
         <TextCard {...animationProps}>
             <div css={styles.textBlock1}>
                 <h4 css={typography.card.title}>

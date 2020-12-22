@@ -13,6 +13,7 @@ import WhoWeAre from './whoWeAre';
 import HowToConnectSvg from './howToConnect';
 import { queryShit } from '../../components/useScreenType';
 import layout from '../../components/layout';
+import useOrchestration from '../../components/useOrchestration';
 
 const styles = {
     root: css`
@@ -100,15 +101,18 @@ const IntroContainer: FC<IntroContainerProps> = (props) => {
         threshold: 0,
     });
 
+    const animate = isLoaded && isVisible;
+    const isOrchestrated = useOrchestration(animate, 2000);
+
     return (
         <motion.div
             ref={ref}
-            animate={toVariant(isVisible && isLoaded)}
+            animate={toVariant(animate)}
             variants={{
                 entered: {
                     transition: {
-                        delayChildren: 0.4,
-                        staggerChildren: 0.2,
+                        delayChildren: 0.2,
+                        staggerChildren: 0.14,
                     },
                 },
             }}
@@ -117,10 +121,15 @@ const IntroContainer: FC<IntroContainerProps> = (props) => {
         >
             <motion.div css={styles.content}>
                 <motion.div css={styles.textColumn}>
-                    <Title isOrchestrated={true} css={styles.title}>
+                    <Title isOrchestrated={isOrchestrated} css={styles.title}>
                         {props.title}
                     </Title>
-                    <Text css={styles.body(props.type)}>{props.body}</Text>
+                    <Text
+                        isOrchestrated={isOrchestrated}
+                        css={styles.body(props.type)}
+                    >
+                        {props.body}
+                    </Text>
                     {props.type === 'WhoWeAre' && <WhoWeAre />}
                     {props.type === 'HowToConnect' && <HowToConnectSvg />}
                 </motion.div>

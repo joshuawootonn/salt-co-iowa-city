@@ -42,21 +42,18 @@ const Root = styled(motion.div)`
 const Announcements: FC<AnnouncementBlock> = ({ announcements }) => {
     const type = useScreenType();
 
-    if (type === 'mobile') {
-        return chunk(announcements, 1).map((subAnnouncements, i) => (
-            <Row key={i} announcements={subAnnouncements} />
-        ));
-    }
+    const announcementsPerRow =
+        type === 'mobile' ? 1 : type === 'tablet' ? 2 : 3;
 
-    if (type === 'tablet') {
-        return chunk(announcements, 2).map((subAnnouncements, i) => (
-            <Row key={i} announcements={subAnnouncements} />
-        ));
-    }
-
-    return chunk(announcements, 3).map((subAnnouncements, i) => (
-        <Row key={i} announcements={subAnnouncements} />
-    ));
+    return (
+        <>
+            {chunk(announcements, announcementsPerRow).map(
+                (subAnnouncements, i) => (
+                    <Row key={i} announcements={subAnnouncements} />
+                )
+            )}
+        </>
+    );
 };
 
 const Row: FC<{ announcements: Announcement[] }> = ({ announcements }) => {

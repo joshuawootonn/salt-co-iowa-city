@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { css } from 'styled-components/macro';
 import { MinistryDescription } from '../../models/ministryDescription';
 import { Title } from '../../components/title';
@@ -8,6 +8,8 @@ import { useFontLoader } from '../../context/fontLoader';
 import useIntersect from '../../helpers/useIntersect';
 import MinistryDescriptionTextCard from './ministryDescriptionTextCard';
 import useScreenType from '../../components/useScreenType';
+import useOrchestration from '../../components/useOrchestration';
+import { toVariant } from '../../helpers/animation';
 
 const styles = {
     root: css`
@@ -47,16 +49,10 @@ const MinistryDescriptionCard: FC<MinistryDescriptionCardProps> = (props) => {
     const isLoaded = useFontLoader();
     const ref = React.useRef(null);
     const { isVisible } = useIntersect(ref, {
-        threshold: 0,
+        threshold: 0.5,
     });
-
-    const controls = useAnimation();
-
-    useEffect(() => {
-        if (isVisible && isLoaded) {
-            controls.start('entered');
-        }
-    }, [screenType, isVisible, isLoaded]);
+    const animate = isLoaded && isVisible;
+    const isOrchestrated = useOrchestration(animate, 2000);
 
     return (
         <motion.div
@@ -64,20 +60,29 @@ const MinistryDescriptionCard: FC<MinistryDescriptionCardProps> = (props) => {
             variants={{
                 entered: {
                     transition: {
-                        delayChildren: 0,
-                        staggerChildren: 0.17,
+                        delayChildren: 0.2,
+                        staggerChildren: 0.14,
                     },
                 },
             }}
-            animate={controls}
+            animate={toVariant(animate)}
             css={styles.root}
         >
             <div css={styles.titleContainer}>
-                <Title isOrchestrated={true} variant="small" css={styles.title}>
+                <Title
+                    isOrchestrated={isOrchestrated}
+                    variant="small"
+                    css={styles.title}
+                >
                     {props.title}
                 </Title>
             </div>
-            <ImageController css={styles.image} images={props.images} />
+            <ImageController
+                log={true}
+                isOrchestrated={isOrchestrated}
+                css={styles.image}
+                images={props.images}
+            />
             <MinistryDescriptionTextCard {...props} index={props.index} />
         </motion.div>
     );
