@@ -5,6 +5,11 @@ import RichText from '../../components/richText';
 import React, { FC } from 'react';
 import layout from '../../components/layout';
 import { queryShit } from '../../components/useScreenType';
+import useIntersect from '../../helpers/useIntersect';
+import useOrchestration from '../../components/useOrchestration';
+import { motion } from 'framer-motion';
+import { toVariant } from '../../helpers/animation';
+import { useFontLoader } from '../../context/fontLoader';
 
 const styles = {
     root: css`
@@ -15,10 +20,6 @@ const styles = {
         flex-direction: column;
         justify-content: space-between;
         align-items: flex-start;
-
-        & > div {
-            width: 91%;
-        }
 
         ${queryShit({
             mobile: css`
@@ -79,27 +80,49 @@ const styles = {
     }),
 };
 
-const Section2: FC<WelcomeBlock> = (welcomeBlock) => (
-    <div css={styles.root}>
-        <div css={styles.one}>
-            <RichText
-                log={true}
-                isOrchestrated={false}
-                json={welcomeBlock.text3.json}
+const Section2: FC<WelcomeBlock> = (welcomeBlock) => {
+    const isLoaded = useFontLoader();
+    const ref = React.useRef(null);
+    const { isVisible } = useIntersect(ref, {
+        threshold: 0.5,
+    });
+
+    const animate = isLoaded && isVisible;
+    const isOrchestrated = useOrchestration(animate, 2000);
+
+    return (
+        <motion.div
+            ref={ref}
+            animate={toVariant(animate)}
+            variants={{
+                entered: {
+                    transition: {
+                        delayChildren: 0.2,
+                        staggerChildren: 0.25,
+                    },
+                },
+            }}
+            css={styles.root}
+        >
+            <div css={styles.one}>
+                <RichText
+                    isOrchestrated={isOrchestrated}
+                    json={welcomeBlock.text3.json}
+                />
+            </div>
+            <div css={styles.two}>
+                <RichText
+                    isOrchestrated={isOrchestrated}
+                    json={welcomeBlock.text4.json}
+                />
+            </div>
+            <ImageController
+                isOrchestrated={isOrchestrated}
+                css={styles.image}
+                images={[welcomeBlock.secondaryImage]}
             />
-        </div>
-        <div css={styles.two}>
-            <RichText
-                isOrchestrated={false}
-                json={welcomeBlock.text4.json}
-            />
-        </div>
-        <ImageController
-            log={true}
-            css={styles.image}
-            images={[welcomeBlock.secondaryImage]}
-        />
-    </div>
-);
+        </motion.div>
+    );
+};
 
 export default Section2;

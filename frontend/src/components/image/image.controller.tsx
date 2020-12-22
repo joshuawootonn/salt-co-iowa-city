@@ -3,60 +3,24 @@ import GatsbyImage, { FluidObject } from 'gatsby-image';
 import styled, { css } from 'styled-components/macro';
 import { lighten } from 'polished';
 import useIntersect from '../../helpers/useIntersect';
-import { animateIn, animateOut } from './animations';
+import { toVariant } from '../../helpers/animation';
+import { motion } from 'framer-motion';
+import Root from './root';
 
-const Root = styled.button<{ isButton: boolean; isHovered?: boolean }>`
+const Content = styled.div`
     width: 100%;
     height: 100%;
-    position: relative;
-
     overflow: hidden;
-    background-color: transparent;
-
-    border: 2px solid transparent;
-    border-radius: 0;
-
-    perspective: 1000px;
-    padding: 0;
-
-    outline: none;
-
-    transition: ease 150ms;
-
-    ${({ isButton, isHovered, theme }) => {
-        if (!isButton) return;
-        const hoverCss = css`
-            transform: scale(1.03);
-            border: 2px solid ${lighten(0.3, theme.colors.background)};
-        `;
-        return css`
-            cursor: pointer;
-            ${isHovered && hoverCss}
-
-            &:focus-visible {
-                ${hoverCss}
-            }
-            &:hover {
-                ${hoverCss}
-            }
-            &:active,
-            &:active:focus-visible {
-                transform: scale(1);
-                border: 2px solid ${lighten(0.4, theme.colors.background)};
-            }
-        `;
-    }}
+    position: relative;
 `;
 
-const Cover = styled.div`
+const Cover = styled(motion.div)`
     position: absolute;
     z-index: 1;
-    top: 0;
+    top: -10%;
     left: 0;
     width: 110%;
-    height: 110%;
-
-    transform: translateY(-5%);
+    height: 120%;
 
     background-color: ${({ theme }) => lighten(0.02, theme.colors.background)};
 `;
@@ -65,62 +29,95 @@ interface ImageProps {
     isHovered?: boolean;
     onLoad?: () => void;
     onClick?: () => void;
+    href?: string;
     intersectOption?: any;
     images: {
         fluid: FluidObject;
     }[];
+    isOrchestrated?: boolean;
+    log?: boolean;
 }
+
+const getRootType = (props: ImageProps) => {
+    if (props.images.length > 1 || props.onClick) {
+        return 'button';
+    }
+    if (props.href) {
+        return 'link';
+    }
+    return 'default';
+};
 
 const ImageController: FC<ImageProps> = (props) => {
     const [curr, setCurr] = useState(0);
-    const [isCurrLoaded, setIsCurrLoaded] = useState(false);
+    const transitionLock = useRef(false);
+    const [isCovered, setIsCovered] = useState(false);
+
     const ref = React.useRef(null);
     const { isVisible } = useIntersect(ref, {
-        threshold: 0.25,
+        threshold: 0.0,
         ...props.intersectOption,
     });
 
-    useEffect(() => {
-        isCurrLoaded &&
-            isVisible &&
-            animateOut(animationTarget).finally(() => {
-                transitionLock.current = false;
-            });
-    }, [isCurrLoaded, isVisible]);
+    const width = ref.current && ref.current.getBoundingClientRect().width;
 
-    const animationId = `image-${props.images[curr].fluid.src}`;
-    const animationTarget = `[data-animation="${animationId}"]`;
+    const maxDuration = width ? Math.floor(width * 0.667) : 800;
 
-    const handleLoad = async () => setIsCurrLoaded(true);
-
-    const transitionLock = useRef(false);
-
-    const isButton = !!(props.onClick || props.images.length > 1);
+    const transitionOut = () => {
+        setIsCovered(false);
+        setTimeout(() => {
+            transitionLock.current = false;
+        }, maxDuration);
+    };
 
     const switchImage = async () => {
-        props.onClick && props.onClick();
         if (transitionLock.current) return;
         transitionLock.current = true;
-
-        await animateIn(animationTarget);
-        setIsCurrLoaded(false);
-        curr === props.images.length - 1 ? setCurr(0) : setCurr(curr + 1);
+        setIsCovered(true);
+        setTimeout(() => {
+            curr === props.images.length - 1 ? setCurr(0) : setCurr(curr + 1);
+        }, maxDuration);
     };
 
     return (
         <Root
-            ref={ref}
             {...props}
-            isButton={isButton}
-            onClick={isButton ? switchImage : undefined}
+            type={getRootType(props)}
+            onClick={props.images.length > 1 ? switchImage : props.onClick}
         >
-            <Cover data-animation={animationId} />
-            <GatsbyImage
-                style={{ height: '100%' }}
-                imgStyle={{ objectFit: 'cover', objectPosition: 'center' }}
-                onLoad={handleLoad}
-                {...props.images[curr]}
-            />
+            <Content ref={ref}>
+                <Cover
+                    animate={
+                        props.isOrchestrated
+                            ? undefined
+                            : toVariant(!isCovered && isVisible)
+                    }
+                    initial={toVariant(false)}
+                    variants={{
+                        exited: {
+                            x: '0%',
+                            transition: {
+                                duration: maxDuration / 1000,
+                            },
+                        },
+                        entered: {
+                            x: '100%',
+                            transition: {
+                                duration: maxDuration / 1000,
+                            },
+                        },
+                    }}
+                    transition={{ type: 'spring', bounce: 0 }}
+                />
+                <GatsbyImage
+                    style={{ height: '100%' }}
+                    imgStyle={{ objectFit: 'cover', objectPosition: 'center' }}
+                    onLoad={() => transitionOut()}
+                    {...props.images[curr]}
+                />
+            </Content>
+
+            {props.children}
         </Root>
     );
 };
