@@ -6,6 +6,8 @@ import useIntersect from '../../helpers/useIntersect';
 import { toVariant } from '../../helpers/animation';
 import { motion } from 'framer-motion';
 import Root from './root';
+import useScreenType from '../useScreenType';
+import { useWindowSize } from 'react-use';
 
 const Content = styled.div`
     width: 100%;
@@ -48,6 +50,17 @@ const getRootType = (props: ImageProps) => {
     return 'default';
 };
 
+const getAnimationDuration = (width: any) => {
+    const { width: viewportWidth } = useWindowSize();
+    const type = useScreenType();
+
+    if (type === 'mobile') {
+        return Math.floor((width / viewportWidth) * 600);
+    }
+
+    return Math.floor((width / viewportWidth) * 1000);
+};
+
 const ImageController: FC<ImageProps> = (props) => {
     const [curr, setCurr] = useState(0);
     const transitionLock = useRef(false);
@@ -59,9 +72,10 @@ const ImageController: FC<ImageProps> = (props) => {
         ...props.intersectOption,
     });
 
-    const width = ref.current && ref.current.getBoundingClientRect().width;
-
-    const maxDuration = width ? Math.floor(width * 0.667) : 800;
+    const maxDuration = getAnimationDuration(
+        ref.current && ref.current.getBoundingClientRect().width
+    );
+    console.log(maxDuration);
 
     const transitionOut = () => {
         setIsCovered(false);

@@ -6,9 +6,11 @@ import typography from '../../components/typography';
 import { queryShit } from '../../components/useScreenType';
 import { useFontLoader } from '../../context/fontLoader';
 import ImageController from '../../components/image';
+import { useAnimationProp } from '../../helpers/animation';
 
 interface AnnouncementLinkProps {
     linkAnnouncement: Announcement;
+    isOrchestrated?: boolean;
 }
 
 const styles = {
@@ -26,8 +28,9 @@ const styles = {
             `,
         })};
         position: relative;
+        cursor: pointer;
     `,
-    textRoot: (isVisible: boolean) => css`
+    textRoot: css`
         background-color: ${({ theme }) => theme.colors.backgroundTransparent};
         padding: 20px;
 
@@ -37,17 +40,6 @@ const styles = {
         z-index: 10;
         top: 0;
         left: 0;
-        transition: all 200ms ease-in-out;
-
-        ${isVisible
-            ? css`
-                  opacity: 1;
-                  transform: translate3d(-10px, -10px, 0);
-              `
-            : css`
-                  opacity: 0;
-                  transform: translate3d(-10px, -10px, 0);
-              `}
     `,
     text: css`
         ${typography.card.link};
@@ -68,27 +60,66 @@ const styles = {
     `,
 };
 
-const AnnouncementLink: FC<AnnouncementLinkProps> = ({ linkAnnouncement }) => {
-    const [isHovered, setIsHovered] = useState(false);
-    const isVisible = useFontLoader();
+const AnnouncementLink: FC<AnnouncementLinkProps> = ({
+    linkAnnouncement,
+    isOrchestrated,
+}) => {
+    const mobileAnimation = {
+        initial: {
+            x: -20,
+            y: -10,
+        },
+        variants: {
+            entered: {
+                x: -10,
+                y: -10,
+            },
+        },
+    };
+    const desktopAnimation = {
+        initial: {
+            x: -40,
+            y: -20,
+        },
+        variants: {
+            entered: {
+                x: -20,
+                y: -20,
+            },
+        },
+    };
+
+    const animationProps = useAnimationProp(
+        {
+            initial: {
+                opacity: 0,
+            },
+            variants: {
+                entered: {
+                    opacity: 1,
+                },
+            },
+            transition: { type: 'spring', duration: 1, bounce: 0 },
+        },
+        {
+            mobile: mobileAnimation,
+            tablet: mobileAnimation,
+            desktop: desktopAnimation,
+        }
+    );
 
     return (
-        <motion.a
-            href={linkAnnouncement.link}
+        <ImageController
             css={styles.root}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
+            href={linkAnnouncement.link}
+            images={[linkAnnouncement.image]}
+            isOrchestrated={isOrchestrated}
+            intersectOption={{ threshold: 0 }}
         >
-            <ImageController
-                isHovered={isHovered}
-                images={[linkAnnouncement.image]}
-                intersectOption={{ threshold: 0 }}
-            />
-
-            <div css={styles.textRoot(isVisible)}>
+            <motion.div {...animationProps} css={styles.textRoot}>
                 <h1 css={styles.text}>{linkAnnouncement.text}</h1>
-            </div>
-        </motion.a>
+            </motion.div>
+        </ImageController>
     );
 };
 
