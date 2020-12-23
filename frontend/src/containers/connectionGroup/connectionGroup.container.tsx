@@ -1,19 +1,17 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { css } from 'styled-components/macro';
 import layout from '../../components/layout';
 import typography from '../../components/typography';
-import ConnectionGroupCard from './connectionGroupCard';
-import Masonry from 'react-masonry-css';
 import { ConnectionGroupBlock } from '../../models/connectionGroup';
 import { Title } from '../../components/title';
 import Text from '../../components/text';
-import { motion } from 'framer-motion';
-import { toVariant } from '../../helpers/animation';
+import { AnimatePresence, motion, useAnimation } from 'framer-motion';
 import { useFontLoader } from '../../context/fontLoader';
 import useIntersect from '../../helpers/useIntersect';
 import { DayInput, dayOptions, GenderInput, genderOptions } from './inputs';
 import dayjs from 'dayjs';
 import RichText from '../../components/richText';
+import ConnectionGroup from './connectionGroup';
 
 const styles = {
     root: css`
@@ -81,6 +79,8 @@ const ConnectionGroupContainer: FC<ConnectionGroupBlock> = ({
         threshold: 0,
     });
 
+    const controls = useAnimation();
+
     const [genderOption, setGenderOption] = useState(genderOptions[0]);
     const [dayOption, setDayOption] = useState(dayOptions[0]);
 
@@ -96,15 +96,22 @@ const ConnectionGroupContainer: FC<ConnectionGroupBlock> = ({
                 : dayOption.value === dayjs(group.dateTime).format('dddd')
         );
 
+    useEffect(() => {
+        if (isVisible && isLoaded) {
+            controls.start('entered');
+        } else {
+            controls.start('exited');
+        }
+    }, [isVisible, isLoaded, JSON.stringify(filteredGroups)]);
+
     return (
         <motion.div
             ref={ref}
-            animate={toVariant(isVisible && isLoaded)}
+            animate={controls}
             variants={{
                 entered: {
                     transition: {
-                        delayChildren: 0.4,
-                        staggerChildren: 0.2,
+                        staggerChildren: 0.08,
                     },
                 },
             }}
@@ -115,7 +122,9 @@ const ConnectionGroupContainer: FC<ConnectionGroupBlock> = ({
                 <Title css={styles.title} isOrchestrated={true} variant="small">
                     {title}
                 </Title>
-                <Text css={styles.body}>{description}</Text>
+                <Text isOrchestrated={true} css={styles.body}>
+                    {description}
+                </Text>
             </div>
             <div css={styles.formContainer}>
                 <GenderInput value={genderOption} onChange={setGenderOption} />
@@ -129,19 +138,7 @@ const ConnectionGroupContainer: FC<ConnectionGroupBlock> = ({
                     </Text>
                 </div>
             ) : (
-                <Masonry
-                    breakpointCols={{
-                        default: 3,
-                        1140: 2,
-                        675: 1,
-                    }}
-                    className="masonry-grid"
-                    columnClassName="masonry-column"
-                >
-                    {filteredGroups.map((group, i) => (
-                        <ConnectionGroupCard {...group} key={i} />
-                    ))}
-                </Masonry>
+                <ConnectionGroup groups={filteredGroups} />
             )}
         </motion.div>
     );

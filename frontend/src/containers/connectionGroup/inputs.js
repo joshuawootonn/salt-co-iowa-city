@@ -2,6 +2,7 @@ import React from 'react';
 import { css } from 'styled-components/macro';
 import typography from '../../components/typography';
 import ReactSelect from 'react-select';
+import { motion } from 'framer-motion';
 
 const styles = {
     select: (baseClassName) => css`
@@ -60,17 +61,26 @@ const styles = {
     `,
 };
 
+const animationProps = {
+    initial: 'exited',
+    variants: {
+        entered: { y: 0, opacity: 1 },
+        exited: { y: 20, opacity: 0 },
+    },
+    transition: { type: 'spring', duration: 1, bounce: 0 },
+};
+
 export const genderOptions = [
     { value: 'All', label: 'All' },
-    { value: 'Male', label: 'Male' },
-    { value: 'Female', label: 'Female' },
+    { value: 'Male', label: 'Men' },
+    { value: 'Female', label: 'Women' },
 ];
 
 export const GenderInput = (props) => {
     const className = 'gender-select';
 
     return (
-        <div css={styles.select(className)}>
+        <motion.div {...animationProps} css={styles.select(className)}>
             <ReactSelect
                 className={className}
                 classNamePrefix={className}
@@ -80,7 +90,7 @@ export const GenderInput = (props) => {
                 value={props.value}
                 onChange={props.onChange}
             />
-        </div>
+        </motion.div>
     );
 };
 
@@ -98,7 +108,7 @@ export const dayOptions = [
 export const DayInput = (props) => {
     const className = 'gender-select';
     return (
-        <div css={styles.select(className)}>
+        <motion.div {...animationProps} css={styles.select(className)}>
             <ReactSelect
                 className={className}
                 classNamePrefix={className}
@@ -109,6 +119,6 @@ export const DayInput = (props) => {
                 value={props.value}
                 onChange={props.onChange}
             />
-        </div>
+        </motion.div>
     );
 };

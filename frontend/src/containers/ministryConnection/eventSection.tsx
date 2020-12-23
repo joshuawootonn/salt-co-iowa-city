@@ -14,6 +14,7 @@ import Text from '../../components/text';
 import EventBackground from './assets/eventBackground';
 import McEventCard from './mcEventCard';
 import BlockArrow from '../../svgs/blockArrow.svg';
+import useOrchestration from '../../components/useOrchestration';
 
 const styles = {
     root: css`
@@ -127,10 +128,11 @@ const EventSection: FC<MinistryConnection> = (props) => {
     const isLoaded = useFontLoader();
     const ref = React.useRef(null);
     const { isVisible } = useIntersect(ref, {
-        threshold: 0,
+        threshold: 0.3,
     });
 
     const controls = useAnimation();
+    const isOrchestrated = useOrchestration(isVisible && isLoaded, 2000);
 
     useEffect(() => {
         if (isVisible && isLoaded) {
@@ -144,7 +146,7 @@ const EventSection: FC<MinistryConnection> = (props) => {
             variants={{
                 entered: {
                     transition: {
-                        delayChildren: 0,
+                        delayChildren: 0.2,
                         staggerChildren: 0.17,
                     },
                 },
@@ -155,7 +157,7 @@ const EventSection: FC<MinistryConnection> = (props) => {
         >
             <EventBackground {...props} />
             <div css={styles.alertContainer}>
-                <Text css={styles.text}>
+                <Text isOrchestrated={isOrchestrated} css={styles.text}>
                     Next {props.acronym || props.title} Event
                 </Text>
                 <motion.div

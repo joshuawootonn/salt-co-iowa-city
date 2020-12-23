@@ -11,6 +11,7 @@ import useScreenType from '../../components/useScreenType';
 import { useFontLoader } from '../../context/fontLoader';
 import useIntersect from '../../helpers/useIntersect';
 import DescriptionBackground from './assets/descriptionBackground';
+import useOrchestration from '../../components/useOrchestration';
 
 const styles = {
     root: css`
@@ -39,8 +40,9 @@ const DescriptionSection: FC<MinistryConnection> = (props) => {
     const isLoaded = useFontLoader();
     const ref = React.useRef(null);
     const { isVisible } = useIntersect(ref, {
-        threshold: 0,
+        threshold: 0.3,
     });
+    const isOrchestrated = useOrchestration(isVisible && isLoaded, 2000);
 
     const controls = useAnimation();
 
@@ -48,7 +50,7 @@ const DescriptionSection: FC<MinistryConnection> = (props) => {
         if (isVisible && isLoaded) {
             controls.start('entered');
         }
-    }, [screenType, isVisible, isLoaded]);
+    }, [screenType, isLoaded, isVisible]);
 
     return (
         <motion.div
@@ -56,7 +58,7 @@ const DescriptionSection: FC<MinistryConnection> = (props) => {
             variants={{
                 entered: {
                     transition: {
-                        delayChildren: 0,
+                        delayChildren: 0.2,
                         staggerChildren: 0.17,
                     },
                 },
@@ -66,11 +68,18 @@ const DescriptionSection: FC<MinistryConnection> = (props) => {
         >
             <DescriptionBackground {...props} />
             <div css={styles.titleContainer}>
-                <Title variant="small" css={styles.title}>
+                <Title
+                    isOrchestrated={isOrchestrated}
+                    variant="small"
+                    css={styles.title}
+                >
                     {props.acronym || props.title}
                 </Title>
             </div>
-            <ImageController images={props.images} />
+            <ImageController
+                isOrchestrated={isOrchestrated}
+                images={props.images}
+            />
             <McDescriptionCard {...props} />
         </motion.div>
     );

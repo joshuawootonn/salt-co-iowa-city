@@ -73,9 +73,10 @@ const ImageController: FC<ImageProps> = (props) => {
     });
 
     const maxDuration = getAnimationDuration(
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         ref.current && ref.current.getBoundingClientRect().width
     );
-    console.log(maxDuration);
 
     const transitionOut = () => {
         setIsCovered(false);

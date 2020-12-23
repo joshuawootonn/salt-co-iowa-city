@@ -7,6 +7,7 @@ import Female from './female.svg';
 import { ConnectionGroup } from '../../models/connectionGroup';
 import { mapReferenceToLink } from '../../helpers/link';
 import TextLink from '../../components/textLink';
+import { motion } from 'framer-motion';
 
 const boxBase = css`
     background-color: ${({ theme }) => theme.colors.backgroundTransparent};
@@ -66,10 +67,20 @@ const styles = {
     `,
 };
 
+const animationProps = {
+    initial: 'exited',
+    exit: 'exited',
+    variants: {
+        entered: { y: 0, opacity: 1 },
+        exited: { y: 20, opacity: 0 },
+    },
+    transition: { type: 'spring', duration: 1, bounce: 0 },
+};
+
 const ConnectionGroupCard: FC<ConnectionGroup> = (props) => {
     const dateObject = dayjs(props.dateTime);
     return (
-        <div css={styles.root}>
+        <motion.div {...animationProps} css={styles.root} {...props}>
             <div css={styles.box1}>
                 <span>{`${dateObject.format('dddd')} at ${dateObject.format(
                     'h:mm a'
@@ -90,7 +101,7 @@ const ConnectionGroupCard: FC<ConnectionGroup> = (props) => {
                     {props.connectionLinkText}
                 </TextLink>
             </div>
-        </div>
+        </motion.div>
     );
 };
 
