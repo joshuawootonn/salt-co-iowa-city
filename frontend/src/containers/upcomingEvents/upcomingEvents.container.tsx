@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 import { useFontLoader } from '../../context/fontLoader';
 import useIntersect from '../../helpers/useIntersect';
 import Items from './items';
-import BlockArrow from '../../svgs/blockArrow.svg';
+import { queryShit } from '../../components/useScreenType';
 
 const styles = {
     root: css`
@@ -16,10 +16,20 @@ const styles = {
     `,
     titleContainer: css`
         ${layout.container};
+        ${queryShit({
+            mobile: css`
+                margin-bottom: 10px;
+            `,
+            tablet: css`
+                margin-bottom: 20px;
+            `,
+            desktop: css`
+                margin-bottom: 40px;
+            `,
+        })}
     `,
     title: css`
         white-space: normal;
-        margin-bottom: 50px;
     `,
 };
 
@@ -51,7 +61,7 @@ const UpcomingEventsContainer: FC<UpcomingEventBlock> = (props) => {
                 </Title>
             </div>
 
-            <Items {...props} events={[...props.events, ...props.events]} />
+            <Items {...props} />
         </motion.div>
     );
 };

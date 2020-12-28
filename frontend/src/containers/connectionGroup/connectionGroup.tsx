@@ -41,10 +41,7 @@ const ConnectionGroupComponent: FC<{ groups: ConnectionGroup[] }> = ({
     groups,
 }) => {
     const type = useScreenType();
-
     const staffPerRow = type === 'mobile' ? 1 : type === 'tablet' ? 2 : 3;
-
-    console.log(staffPerRow);
 
     return (
         <>

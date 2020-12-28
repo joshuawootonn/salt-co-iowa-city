@@ -7,6 +7,7 @@ import { UpcomingEvent } from '../../models/upcomingEvent';
 import { mapReferenceToLink } from '../../helpers/link';
 import TextLink from '../../components/textLink';
 import { motion } from 'framer-motion';
+import { queryShit } from '../../components/useScreenType';
 
 const boxBase = css`
     background-color: ${({ theme }) => theme.colors.backgroundTransparent};
@@ -37,8 +38,6 @@ const styles = {
 
         position: relative;
 
-        height: 150px;
-
         display: flex;
         justify-content: center;
         align-items: center;
@@ -49,6 +48,15 @@ const styles = {
             top: 10px;
             left: 10px;
         }
+
+        ${queryShit({
+            mobile: css`
+                height: 120px;
+            `,
+            tablet: css`
+                height: 150px;
+            `,
+        })}
     `,
     box3: css`
         transform: translateY(-4px);

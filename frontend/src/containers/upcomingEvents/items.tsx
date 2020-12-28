@@ -1,44 +1,95 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import ImageController from '../../components/image';
 import { css } from 'styled-components/macro';
-import { UpcomingEventBlock } from '../../models/upcomingEvent';
-import Control from './control';
-import { animateScroll } from 'react-scroll';
+import { UpcomingEvent, UpcomingEventBlock } from '../../models/upcomingEvent';
+import { LeftArrow, RightArrow } from './control';
 import { queryShit } from '../../components/useScreenType';
-import { useScroll } from 'react-use';
-import layout from '../../components/layout';
 import UpcomingEventCard from './upcomingEventCard';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Slider from 'react-slick';
+import useIntersect from '../../helpers/useIntersect';
+import { useFontLoader } from '../../context/fontLoader';
+import { motion, useAnimation } from 'framer-motion';
+import { toVariant } from '../../helpers/animation';
 
 const styles = {
     main: css`
         width: 100vw;
+        position: relative;
     `,
 
-    itemsContainer: css`
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        overflow-x: scroll;
+    slickContainer: css`
+        .slick-list {
+            overflow: visible;
 
-        ${queryShit({
-            mobile: css`
-                padding-left: 5px;
-            `,
-            tablet: css`
-                padding-left: 40px;
-            `,
-            desktop: css`
-                padding-left: calc((100vw - 1140px) / 2 - 4px);
-            `,
-        })}
-
-        ::-webkit-scrollbar {
-            width: 0;
-            background: transparent; /* make scrollbar transparent */
-            // background: ${({ theme }) => theme.colors.purple.darkest};
+            ${queryShit({
+                mobile: css`
+                    padding-left: 0px;
+                `,
+                tablet: css`
+                    padding-left: 0px;
+                `,
+                desktop: css`
+                    padding-left: calc((100vw - 1460px) / 2 - 4px);
+                `,
+            })}
         }
+
+        .slick-slide {
+            ${queryShit({
+                mobile: css`
+                    padding-left: 5vw;
+                `,
+                tablet: css`
+                    padding-left: 5vw;
+                `,
+                desktop: css`
+                    padding-left: 160px;
+                `,
+            })}
+            transition: all ease 300ms;
+            outline: none;
+        }
+
+        .slick-next,
+        .slick-prev {
+            ${queryShit({
+                mobile: css`
+                    display: none !important;
+                `,
+                tablet: css`
+                    display: none !important;
+                `,
+                desktop: css`
+                    display: block !important;
+                `,
+            })}
+        }
+        .slick-next {
+            position: absolute !important;
+            bottom: 100px;
+
+            right: calc((100vw - 1140px) / 2);
+            left: unset;
+            top: unset;
+        }
+
+        .slick-prev {
+            position: absolute !important;
+            bottom: 100px;
+            right: calc((100vw - 1140px) / 2 + 120px);
+            left: unset;
+            top: unset;
+        }
+
+        .slick-active {
+            outline: none;
+        }
+
+        cursor: grab;
     `,
+
     itemRoot: css`
         position: relative;
         display: flex;
@@ -47,20 +98,18 @@ const styles = {
 
         ${queryShit({
             mobile: css`
-                ${layout.container};
-                margin-right: 200px;
+                width: 80vw;
             `,
             tablet: css`
-                ${layout.container};
-
-                margin-right: 200px;
+                width: 80vw;
             `,
             desktop: css`
-                margin-right: 200px;
+                width: auto;
             `,
         })}
     `,
     image: css`
+        z-index: -1;
         position: relative;
 
         ${queryShit({
@@ -84,86 +133,61 @@ const styles = {
     `,
 };
 
-const Items: FC<UpcomingEventBlock> = (props) => {
-    const container = React.useRef(null);
-    const firstElement = React.useRef<any>(null);
-    const scrollLock = React.useRef(false);
-    const { x } = useScroll(container);
-    const [boundingBox, setBoundingBox] = useState<{ width: number } | null>(
-        null
+const Item: FC<{ event: UpcomingEvent; log?: boolean }> = ({ event, log }) => {
+    const isLoaded = useFontLoader();
+    const ref = React.useRef(null);
+    const { isVisible } = useIntersect(
+        ref,
+        {
+            threshold: 0.2,
+        },
+        true
     );
 
-    useEffect(() => {
-        if (firstElement.current) {
-            setBoundingBox(firstElement.current.getBoundingClientRect());
-        }
-    }, [firstElement.current]);
+    return (
+        <motion.div
+            animate={toVariant(isLoaded && isVisible)}
+            variants={{
+                entered: {
+                    transition: {
+                        delayChildren: 0.2,
+                        staggerChildren: 0.05,
+                    },
+                },
+            }}
+            ref={ref}
+            css={styles.itemRoot}
+        >
+            <ImageController
+                isOrchestrated={true}
+                images={[event.image]}
+                css={styles.image}
+            />
+            <UpcomingEventCard {...event} />
+        </motion.div>
+    );
+};
 
-    const containerId = 'upcoming-events-container';
-
-    const scrollToEvent = (newPosition: number) => {
-        if (!boundingBox || scrollLock.current) return;
-        scrollLock.current = true;
-        console.log('PING PONG');
-        animateScroll.scrollTo(newPosition, {
-            duration: 300,
-            smooth: 'easeOutCirc',
-            horizontal: true,
-            containerId: containerId,
-        });
-        setTimeout(() => {
-            scrollLock.current = false;
-        }, 300);
-    };
-
-    const handlePrev = () => {
-        if (!boundingBox || scrollLock.current) return;
-
-        const width = boundingBox.width + 200;
-        scrollToEvent(x % width < 10 ? x - width : x - (x % width));
-    };
-
-    const handleNext = () => {
-        if (!boundingBox || scrollLock.current) return;
-
-        const width = boundingBox.width + 200;
-
-        const prop = x - (x % width) + width;
-        const maxWidth = props.events.length * width;
-        scrollToEvent(prop < maxWidth ? prop : maxWidth);
+const Items: FC<UpcomingEventBlock> = (props) => {
+    const settings = {
+        dots: false,
+        infinite: false,
+        variableWidth: true,
+        easing: 'ease',
+        slidesToScroll: 1,
+        arrows: true,
+        nextArrow: <RightArrow />,
+        prevArrow: <LeftArrow />,
     };
 
     return (
-        <>
-            <div css={styles.main}>
-                <Control onNext={handleNext} onPrev={handlePrev} />
-                <div
-                    id={containerId}
-                    ref={container}
-                    css={styles.itemsContainer}
-                >
-                    {props.events.map((event, i) => (
-                        <div
-                            ref={i === 0 ? firstElement : null}
-                            key={i}
-                            css={styles.itemRoot}
-                        >
-                            <ImageController
-                                images={[event.image]}
-                                css={styles.image}
-                            />
-                            <UpcomingEventCard {...event} />
-                        </div>
-                    ))}
-                    <div
-                        style={{
-                            width: `400px`,
-                            flexShrink: 0,
-                        }}
-                    />
-                </div>
-            </div>
-        </>
+        <div css={styles.main}>
+            <Slider css={styles.slickContainer} {...settings}>
+                {props.events.map((event) => (
+                    <Item event={event} key={event.image.fluid.src} />
+                ))}
+            </Slider>
+        </div>
     );
 };
 

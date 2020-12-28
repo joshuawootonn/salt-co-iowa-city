@@ -28,14 +28,15 @@ const styles = {
         transition: ease 150ms;
         outline: none;
         cursor: pointer;
+        transform-origin: center;
 
         &:hover,
         &:focus {
-            transform: scale(1.1);
+            transform: scale(1.1) translateY(-50%);
         }
         &:active,
         &:focus:active {
-            transform: scale(1);
+            transform: scale(1) translateY(-50%);
         }
     `,
 };
@@ -43,30 +44,37 @@ const styles = {
 const Left = styled(motion.button)`
     ${styles.button};
     svg {
-        transform: rotate(180deg);
+        transform: scaleX(-1);
     }
+
+    ::before {
+        display: none;
+    }
+    z-index: 100;
 `;
 
 const Right = styled(motion.button)`
     ${styles.button};
+
+    ::before {
+        display: none;
+    }
+
+    z-index: 100;
 `;
 
-interface ControlProps {
-    onNext: () => void;
-    onPrev: () => void;
-}
-
-const Control: FC<ControlProps> = ({ onNext, onPrev }) => {
+export const RightArrow: FC = (props) => {
     return (
-        <div css={styles.arrowContainer}>
-            <Left onClick={onPrev}>
-                <BlockArrow />
-            </Left>
-            <Right onClick={onNext}>
-                <BlockArrow />
-            </Right>
-        </div>
+        <Right {...props}>
+            <BlockArrow />
+        </Right>
     );
 };
 
-export default Control;
+export const LeftArrow: FC = (props) => {
+    return (
+        <Left {...props}>
+            <BlockArrow />
+        </Left>
+    );
+};
