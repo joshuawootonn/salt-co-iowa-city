@@ -1,12 +1,19 @@
 import { graphql, useStaticQuery } from 'gatsby';
-import { ExternalLink, FooterBlock } from '../models/footer';
-import slugify from '../helpers/slugify';
+import { ExternalLink, FooterBlock, SocialMediaLink } from '../models/footer';
 
 export const externalLinksRawTransform = (link: {
     text: string;
     url: string;
 }): ExternalLink => ({
     label: link.text,
+    href: link.url,
+});
+
+export const socialMediaLinksRawTransform = (link: {
+    type: string;
+    url: string;
+}): SocialMediaLink => ({
+    type: link.type,
     href: link.url,
 });
 
@@ -76,6 +83,10 @@ export const useFooterBlock = (): FooterBlock => {
                         text
                         url
                     }
+                    socialMediaLinks {
+                        url
+                        type
+                    }
                 }
             }
         }
@@ -97,6 +108,9 @@ export const useFooterBlock = (): FooterBlock => {
         ],
         externalLinks: raw.allContentfulBlockFooter.nodes[0].externalLinks.map(
             externalLinksRawTransform
+        ),
+        socialMediaLinks: raw.allContentfulBlockFooter.nodes[0].socialMediaLinks.map(
+            socialMediaLinksRawTransform
         ),
     };
 };

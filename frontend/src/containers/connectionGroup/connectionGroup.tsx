@@ -32,7 +32,8 @@ const Root = styled(motion.div)`
             grid-auto-flow: column;
 
             grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(1, minmax(0px, max-content));
+            grid-template-rows: repeat(1, minmax(
+                  css={styles.icon} max-content));
         `,
     })}
 `;

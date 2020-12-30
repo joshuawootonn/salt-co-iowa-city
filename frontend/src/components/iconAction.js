@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components/macro';
 
-const Button = styled(motion.button)`
+const baseStyles = css`
     padding: 10px;
     cursor: pointer;
 
@@ -13,15 +13,24 @@ const Button = styled(motion.button)`
 
     transition: ease 150ms;
 
+    transform-origin: center;
     &:hover {
-        transform: scale(1.1);
+        transform: scale(1.15);
     }
     &:focus {
-        transform: scale(1.1);
+        transform: scale(1.15);
     }
     &:active {
-        transform: scale(1.05);
+        transform: scale(1.075);
     }
+`;
+
+const Button = styled(motion.button)`
+    ${baseStyles}
+`;
+
+const Link = styled(motion.a)`
+    ${baseStyles}
 `;
 
 const IconAction = (props) => {
@@ -29,7 +38,7 @@ const IconAction = (props) => {
         return <Button {...props}>{props.children}</Button>;
     }
 
-    return <motion.a {...props}>{props.children}</motion.a>;
+    return <Link {...props}>{props.children}</Link>;
 };
 
 export default IconAction;

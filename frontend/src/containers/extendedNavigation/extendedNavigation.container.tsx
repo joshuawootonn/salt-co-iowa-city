@@ -6,6 +6,9 @@ import SocialLinks from './socialLinks';
 import { FooterBlock } from '../../models/footer';
 import slugify from '../../helpers/slugify';
 import styles from './styles';
+import PersonalBranding from '../../svgs/personalBranding';
+import typography from '../../components/typography';
+import IconAction from '../../components/iconAction';
 
 interface ExtendedNavigationContainerProps extends FooterBlock {
     type: 'footer' | 'mobileNav';
@@ -15,6 +18,7 @@ const ExtendedNavigationContainer: FC<ExtendedNavigationContainerProps> = ({
     externalLinks,
     howToConnectLinks,
     whoWeAreLinks,
+    socialMediaLinks,
     type,
 }) => (
     <div css={styles.root}>
@@ -47,7 +51,18 @@ const ExtendedNavigationContainer: FC<ExtendedNavigationContainerProps> = ({
             ]}
         />
 
-        <SocialLinks css={styles.social(type)} />
+        <SocialLinks
+            socialMediaLinks={socialMediaLinks}
+            css={styles.social(type)}
+        />
+        {type === 'footer' && (
+            <div css={styles.personalBrandingContainer}>
+                <span>Made by</span>{' '}
+                <IconAction href={'https://www.joshuawootonn.com/'}>
+                    <PersonalBranding css={styles.personalBranding} />
+                </IconAction>
+            </div>
+        )}
     </div>
 );
 

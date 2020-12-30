@@ -1,5 +1,6 @@
 import { css } from 'styled-components/macro';
 import { queryShit } from '../../components/useScreenType';
+import typography from '../../components/typography';
 
 const styles = {
     root: css`
@@ -22,8 +23,8 @@ const styles = {
             `,
             desktop: css`
                 grid-template-columns: repeat(3, minmax(0, 1fr));
-                grid-template-rows: repeat(2, minmax(120px, max-content));
-                row-gap: 0;
+                grid-template-rows: repeat(3, minmax(120px, max-content));
+                row-gap: 20px;
 
                 max-width: 1140px;
                 padding: 40px;
@@ -69,7 +70,7 @@ const styles = {
         position: relative;
         ${queryShit({
             mobile: css`
-                grid-row: 5;
+                grid-row: 6;
                 grid-column: 1;
 
                 justify-self: flex-start;
@@ -88,6 +89,63 @@ const styles = {
                 height: 100%;
             `,
         })}
+    `,
+    personalBranding: css`
+        ${queryShit({
+            mobile: css`
+                height: 60px;
+                margin-left: 10px;
+            `,
+            tablet: css`
+                height: 65px;
+                margin-left: 10px;
+            `,
+            desktop: css`
+                height: 50px;
+            `,
+        })};
+    `,
+    personalBrandingContainer: css`
+        position: relative;
+        display: flex;
+        ${queryShit({
+            mobile: css`
+                grid-row: 5;
+                grid-column: 1;
+                margin-bottom: 20px;
+                justify-content: flex-start;
+                align-items: center;
+                justify-self: flex-start;
+                align-self: center;
+            `,
+            tablet: css`
+                grid-row: 2;
+                grid-column: 2;
+                justify-content: flex-start;
+                align-items: center;
+                align-self: flex-start;
+            `,
+            desktop: css`
+                grid-row: 2;
+                grid-column: 3;
+                align-self: flex-end;
+            `,
+        })}
+
+        span {
+            ${typography.card.title}
+            ${queryShit({
+                mobile: css`
+                    font-size: 15px;
+                `,
+                tablet: css`
+                    font-size: 17px;
+                `,
+                desktop: css`
+                    font-size: 18px;
+                `,
+            })}
+        }
     `,
 
     listOne: (type) =>
@@ -129,6 +187,7 @@ const styles = {
     social: (type) =>
         queryShit({
             mobile: css`
+                transform: translateX(-10px);
                 grid-column: 1;
                 grid-row: 4;
 
@@ -138,21 +197,24 @@ const styles = {
             tablet:
                 type === 'footer'
                     ? css`
+                          transform: translateX(-10px);
                           grid-column: 1;
                           grid-row: 2;
 
                           justify-self: flex-start;
-                          align-self: flex-start;
+                          align-self: center;
                       `
                     : css`
+                          transform: translateX(-10px);
                           grid-column: 2;
                           grid-row: 2;
                       `,
             desktop: css`
+                transform: translateX(-10px);
                 grid-row: 2;
                 grid-column: 3;
-                justify-self: flex-end;
-                align-self: flex-end;
+                justify-self: flex-start;
+                align-self: flex-start;
             `,
         }),
     bigLinks: (type) => css`
