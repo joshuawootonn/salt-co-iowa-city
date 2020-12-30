@@ -8,9 +8,9 @@ import { useHowToConnectBlock } from '../services/howToConnect.services';
 import { useUpcomingEventBlock } from '../services/upcomingEvent.services';
 import { useConnectionGroupBlock } from '../services/connectionGroup.services';
 import { useMinistryConnectionBlock } from '../services/ministryConnection.services';
-import { useTitleScoller } from '../components/title/utils';
 import Page from '../components/page';
 import SeoComponent from '../components/seo';
+import { useTitleScoller } from "../helpers/scroll"
 
 const styles = {
     intro: css`

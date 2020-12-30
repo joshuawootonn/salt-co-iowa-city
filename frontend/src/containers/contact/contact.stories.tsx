@@ -70,7 +70,6 @@ storiesOf('Contact', module)
                             name: 'Joshua Wootonn',
                             to: defaultStaff,
                         }}
-
                         contactOptions={mapStaffToOption(defaultStaffs)}
                     />
                 </Formik>

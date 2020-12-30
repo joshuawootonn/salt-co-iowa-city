@@ -1,10 +1,11 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { css } from 'styled-components/macro';
 import typography from '../../../components/typography';
 import { queryShit } from '../../../components/useScreenType';
+import { Title } from '../../../components/title';
 
 const styles = {
-    root: css`
+    title: css`
         ${typography.title1};
         color: ${({ theme }) => theme.colors.blue.medium};
         opacity: 40%;
@@ -13,14 +14,13 @@ const styles = {
         ${queryShit({
             mobile: css`
                 width: 100%;
-                font-size: 60px;
+                font-size: 50px;
                 white-space: normal;
                 text-align: center;
-                margin-bottom: 20px;
             `,
             tablet: css`
                 width: 100%;
-                font-size: 130px;
+                font-size: 100px;
                 white-space: normal;
                 text-align: center;
             `,
@@ -34,8 +34,21 @@ const styles = {
     `,
 };
 
-const Title: FC = (props) => {
-    return <h1 css={styles.root} {...props} />;
+const animationProps = {
+    variants: {
+        entered: { y: 0, opacity: 0.4, rotate: '0deg' },
+        exited: { y: 40, opacity: 0, rotate: '3deg' },
+    },
 };
 
-export default Title;
+const BigTitle = (props) => (
+    <Title
+        isClickable={false}
+        {...animationProps}
+        isOrchestrated={true}
+        css={styles.title}
+        {...props}
+    />
+);
+
+export default BigTitle;

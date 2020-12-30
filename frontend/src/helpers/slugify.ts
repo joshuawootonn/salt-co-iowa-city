@@ -1,7 +1,11 @@
 import { Staff } from '../models/staff';
 import { ConnectionGroup } from '../models/connectionGroup';
 
-function slugify(str: string): string {
+function slugify(str: string | string[]): string {
+    if (str instanceof Array) {
+        str = str.join('');
+    }
+
     str = str.replace(/^\s+|\s+$/g, ''); // trim
     str = str.toLowerCase();
 

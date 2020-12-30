@@ -6,10 +6,11 @@ import { useWhoWeAreBlock } from '../services/whoWeAre.services';
 import { useMinistryDescriptionBlock } from '../services/ministryDescription.services';
 import { useStaffBlock } from '../services/staff.services';
 import StaffContainer from '../containers/staff';
-import { useTitleScoller } from '../components/title/utils';
+
 import Page from '../components/page';
 import { queryShit } from '../components/useScreenType';
 import SeoComponent from '../components/seo';
+import { useTitleScoller } from "../helpers/scroll"
 
 const styles = {
     intro: css`

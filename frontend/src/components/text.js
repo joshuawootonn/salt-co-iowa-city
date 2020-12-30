@@ -39,7 +39,7 @@ const Text = (props) => {
     const { isVisible } = useIntersect(ref, { threshold: 0.6 });
     const Component = props.elementType === 'paragraph' ? P : Span;
     return (
-        <Root>
+        <Root {...props}>
             <Component
                 animate={
                     !props.isOrchestrated && toVariant(isLoaded && isVisible)

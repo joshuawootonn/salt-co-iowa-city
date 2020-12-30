@@ -7,6 +7,7 @@ import { contactValidationSchema } from './validation';
 import {
     ContactForm,
     ContactRequest,
+    filledInContactForm,
     FinalContactForm,
     initialContactForm,
 } from './types';
@@ -17,13 +18,14 @@ import {
     ConnectionGroupBlock,
 } from '../../models/connectionGroup';
 import { Staff } from '../../models/staff';
+import { scrollToTop } from '../../helpers/scroll';
 
 const isProd = process.env.NODE_ENV === 'production';
 
 const getEndpoint = () =>
     isProd
         ? (process.env.EMAIL_API_ENDPOINT as string)
-        : 'http://localhost:3000/';
+        : 'http://localhost:3000/api/contact';
 
 const mapValidStateToRequest = (values: FinalContactForm): ContactRequest => ({
     name: values.name,
@@ -88,9 +90,9 @@ const ContactContainer: FC<ContactBlock & ConnectionGroupBlock> = (props) => {
         values: FinalContactForm,
         { setFieldValue }: FormikProps<ContactForm>
     ) => {
-        setFieldValue('formUIPhase', 'loading');
+        scrollToTop();
 
-        console.log(mapValidStateToRequest(values));
+        setFieldValue('formUIPhase', 'loading');
 
         return axios
             .post(getEndpoint(), mapValidStateToRequest(values))

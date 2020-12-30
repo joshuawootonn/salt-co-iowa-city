@@ -1,18 +1,26 @@
-import { scroller } from 'react-scroll';
+import { animateScroll, scroller } from 'react-scroll';
 import { useEffect } from 'react';
-import slugify from '../../helpers/slugify';
-import useScreenType from '../useScreenType';
+import useScreenType from '../components/useScreenType';
+import slugify from './slugify';
+
+const defaultOptions = {
+    duration: 1000,
+    delay: 0,
+    smooth: 'easeInOutQuart',
+    offset: -200,
+};
 
 export const forceScrollToTitle = (options) => {
     if (typeof window !== `undefined` && document.location.hash !== '') {
         scroller.scrollTo(document.location.hash, {
-            duration: 1000,
-            delay: 0,
-            smooth: 'easeInOutQuart',
-            offset: -200,
+            ...defaultOptions,
             ...options,
         });
     }
+};
+
+export const scrollToTop = (options) => {
+    animateScroll.scrollToTop({ ...defaultOptions, ...options });
 };
 
 export const useTitleScoller = () => {

@@ -1,12 +1,19 @@
 import React from 'react';
-import compositionStyles from './compositionStyles';
 import SubTitle from '../formElements/subTitle';
+import { css } from 'styled-components/macro';
+import Root from './root';
 
 const Loading = () => {
     return (
-        <div css={compositionStyles.root}>
-            <SubTitle>Loading...</SubTitle>
-        </div>
+        <Root formUIPhase={'loading'} delay={1}>
+            <SubTitle
+                css={css`
+                    width: auto;
+                `}
+            >
+                Loading...
+            </SubTitle>
+        </Root>
     );
 };
 

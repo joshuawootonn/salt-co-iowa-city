@@ -7,8 +7,8 @@ import { motion } from 'framer-motion';
 import { toVariant } from '../../helpers/animation';
 import { useFontLoader } from '../../context/fontLoader';
 import useIntersect from '../../helpers/useIntersect';
-import { handleTitleElementClick } from './utils';
 import { queryShit } from '../useScreenType';
+import { handleTitleElementClick } from '../../helpers/scroll';
 
 const BannerRoot = styled(Element)`
     width: 100vw;
@@ -79,10 +79,6 @@ const MarqueTitle = (props) => {
     const ref = React.useRef(null);
     // Note due to the animation and possible absolute positioned elements this is not 1.0 threshold
     const { isVisible, intersection } = useIntersect(ref, { threshold: 0.6 });
-
-    // useEffect(() => {
-    //     console.log('isFontLoaded', isLoaded, isVisible, intersection);
-    // }, [isVisible, isLoaded, intersection]);
 
     return (
         <BannerRoot

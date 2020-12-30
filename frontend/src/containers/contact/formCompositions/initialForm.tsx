@@ -2,26 +2,14 @@ import React, { FC } from 'react';
 import { Field, Form } from 'formik';
 import Input from '../formElements/input';
 import SelectTo from '../formElements/selectTo';
-import { Staff } from '../../../models/staff';
 import TextArea from '../formElements/textArea';
 import SubmitButton from '../formElements/submitButton';
-
 import { css } from 'styled-components/macro';
-import { ContactBlock } from '../../../models/contact';
-import SubTitle from '../formElements/subTitle';
-import Title from '../formElements/title';
-import compositionStyles from './compositionStyles';
+import BigTitle from '../formElements/bigTitle';
 import layout from '../../../components/layout';
-import Dove from '../formElements/dove.svg';
 import { ContactOption } from '../contact';
 import { queryShit } from '../../../components/useScreenType';
-
-const doveBase = css`
-    position: absolute;
-    height: 200px;
-    width: auto;
-    z-index: -2;
-`;
+import Root from './root';
 
 const styles = {
     content: css`
@@ -37,14 +25,16 @@ const styles = {
         ${queryShit({
             mobile: css`
                 width: 100%;
-                max-width: 500px;
+                max-width: 400px;
+                transform: translateY(20px);
             `,
             tablet: css`
-                transform: translateY(-50px);
+                transform: translateY(-20px);
                 width: 80%;
                 max-width: 500px;
             `,
             desktop: css`
+                transform: translateY(-40px);
                 width: 50%;
                 max-width: 500px;
             `,
@@ -70,8 +60,8 @@ const InitialForm: FC<{ title: string; contactOptions: ContactOption[] }> = ({
     contactOptions,
 }) => {
     return (
-        <div css={compositionStyles.root}>
-            <Title>{title}</Title>
+        <Root formUIPhase={'initial'}>
+            <BigTitle isOrchestrated={true}>{title}</BigTitle>
             <div css={styles.content}>
                 <Form css={styles.formColumn}>
                     <Field
@@ -95,12 +85,9 @@ const InitialForm: FC<{ title: string; contactOptions: ContactOption[] }> = ({
                     />
 
                     <SubmitButton />
-                    {compositionStyles.doves.initial.map((doveStyle, i) => (
-                        <Dove css={doveStyle} key={i} />
-                    ))}
                 </Form>
             </div>
-        </div>
+        </Root>
     );
 };
 

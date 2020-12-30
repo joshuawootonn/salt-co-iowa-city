@@ -1,28 +1,38 @@
+import { motion } from 'framer-motion';
 import React, { FC } from 'react';
-import { css } from 'styled-components/macro';
+import styled from 'styled-components';
+import Title from '../../../components/title/title';
 
-const styles = {
-    root: css`
-        g:first-child {
-            opacity: 0.3;
-            stroke: ${({ theme }) => theme.colors.blue.medium};
-            stroke-width: 5px;
-            stroke-linejoin: round;
-            stroke-linecap: round;
-        }
-        g:last-child {
-            opacity: 0.3;
-            fill: ${({ theme }) => theme.colors.blue.medium};
-        }
-    `,
-};
+const Svg = styled(motion.svg)`
+    g:first-child {
+        opacity: 0.3;
+        stroke: ${({ theme }) => theme.colors.blue.medium};
+        stroke-width: 5px;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+    }
+    g:last-child {
+        opacity: 0.3;
+        fill: ${({ theme }) => theme.colors.blue.medium};
+    }
+`;
 
-const Dove: FC = (props) => (
-    <svg
+interface DoveProps {
+    isOrchestrated?: boolean;
+}
+
+const Dove: FC<DoveProps> = (props) => (
+    <Svg
+        variants={{
+            entered: { opacity: 1 },
+            exited: { opacity: 0 },
+        }}
+        initial={'exited'}
+        animate={!props.isOrchestrated && 'entered'}
+        exit={'exited'}
         viewBox="0 0 584 700"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        css={styles.root}
         {...props}
     >
         <g opacity="0.1">
@@ -33,7 +43,11 @@ const Dove: FC = (props) => (
         <g opacity="0.1">
             <path d="M503.777 269.444C509.911 269.444 514.884 264.47 514.884 258.333C514.884 252.197 509.911 247.222 503.777 247.222C497.643 247.222 492.67 252.197 492.67 258.333C492.67 264.47 497.643 269.444 503.777 269.444Z" />
         </g>
-    </svg>
+    </Svg>
 );
+
+Dove.defaultProps = {
+    isOrchestrated: false,
+};
 
 export default Dove;

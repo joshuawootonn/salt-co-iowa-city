@@ -1,5 +1,9 @@
 import { css } from 'styled-components/macro';
 import typography from '../../../components/typography';
+import { queryShit } from '../../../components/useScreenType';
+import { addAlpha } from '../../../helpers/color';
+
+export const inputBackgroundTransparency = 0.5;
 
 export default {
     elementRoot: css`
@@ -7,8 +11,19 @@ export default {
         & > span {
             color: ${({ theme }) => theme.colors.yellow.medium};
             display: inline-block;
-            min-height: 40px;
-            padding: 10px;
+
+            ${queryShit({
+                mobile: css`
+                    min-height: 30px;
+                    font-size: 14px;
+
+                    padding: 5px;
+                `,
+                tablet: css`
+                    min-height: 40px;
+                    font-size: 16px;
+                `,
+            })}
         }
         display: flex;
         flex-direction: column;
@@ -19,7 +34,8 @@ export default {
         padding: 8.5px;
         height: 50px;
         width: 100%;
-        background: ${({ theme }) => theme.colors.backgroundTransparent};
+        background: ${({ theme }) =>
+            addAlpha(theme.colors.background, inputBackgroundTransparency)};
         border: 2px solid ${({ theme }) => theme.colors.blue.lightest};
         color: ${({ theme }) => theme.colors.blue.light};
 
@@ -49,7 +65,10 @@ export default {
                 ${typography.select};
                 height: 50px;
                 background: ${({ theme }) =>
-                    theme.colors.backgroundTransparent};
+                    addAlpha(
+                        theme.colors.background,
+                        inputBackgroundTransparency
+                    )};
                 border: 2px solid ${({ theme }) => theme.colors.blue.lightest};
                 border-radius: 0;
                 color: ${({ theme }) => theme.colors.blue.light};
@@ -69,7 +88,7 @@ export default {
 
             .${baseClassName}__menu {
                 background: ${({ theme }) =>
-                    theme.colors.backgroundTransparent};
+                    addAlpha(theme.colors.background, 1)};
                 border: 2px solid ${({ theme }) => theme.colors.blue.lightest};
                 z-index: 10000 !important;
                 border-radius: 0;
@@ -83,8 +102,11 @@ export default {
                     .${baseClassName}__option {
                         cursor: pointer;
                         ${typography.select};
-                        background-color: ${({ theme }) =>
-                            theme.colors.backgroundTransparent};
+                        background: ${({ theme }) =>
+                            addAlpha(
+                                theme.colors.background,
+                                inputBackgroundTransparency
+                            )};
 
                         color: ${({ theme }) => theme.colors.blue.light};
                     }
@@ -102,7 +124,8 @@ export default {
         padding: 8.5px;
 
         resize: none;
-        background: ${({ theme }) => theme.colors.backgroundTransparent};
+        background: ${({ theme }) =>
+            addAlpha(theme.colors.background, inputBackgroundTransparency)};
         border: 2px solid ${({ theme }) => theme.colors.blue.lightest};
         &::placeholder {
             color: ${({ theme }) => theme.colors.blue.light};
@@ -119,7 +142,7 @@ export default {
         }
     `,
     button: css`
-        background: ${({ theme }) => theme.colors.transparent};
+        background: none;
         border: none;
         width: 100px;
 

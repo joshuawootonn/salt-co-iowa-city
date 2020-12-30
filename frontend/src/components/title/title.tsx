@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components/macro';
 import typography from '../typography';
 import slugify from '../../helpers/slugify';
@@ -7,21 +7,34 @@ import { motion } from 'framer-motion';
 import { toVariant } from '../../helpers/animation';
 import { useFontLoader } from '../../context/fontLoader';
 import useIntersect from '../../helpers/useIntersect';
-import { handleTitleElementClick } from './utils';
+import { handleTitleElementClick } from '../../helpers/scroll';
+import { css } from 'styled-components/macro';
 
 const Root = styled(Element)`
     overflow: hidden;
 `;
 
-const H1 = styled(motion.h1)`
+interface HeaderProps {
+    isClickable: boolean;
+}
+
+const H1 = styled(motion.h1)<HeaderProps>`
     ${typography.title1};
-    cursor: pointer;
+    ${({ isClickable }) =>
+        isClickable &&
+        css`
+            cursor: pointer;
+        `}
     transform-origin: left;
 `;
 
-const H2 = styled(motion.h2)`
+const H2 = styled(motion.h2)<HeaderProps>`
     ${typography.title2};
-    cursor: pointer;
+    ${({ isClickable }) =>
+        isClickable &&
+        css`
+            cursor: pointer;
+        `}
     transform-origin: left;
 `;
 
@@ -38,7 +51,13 @@ const animationProps = {
     },
 };
 
-const Title = (props) => {
+interface TitleProps {
+    isClickable: boolean;
+    variant?: 'small' | 'default';
+    isOrchestrated?: boolean;
+}
+
+const Title: FC<TitleProps> = (props) => {
     const isLoaded = useFontLoader();
     const ref = React.useRef(null);
     // Note due to the animation and possible absolute positioned elements this is not 1.0 threshold
@@ -46,17 +65,28 @@ const Title = (props) => {
 
     const Component = props.variant === 'small' ? H2 : H1;
 
+    const handleClick = () =>
+        props.isClickable && handleTitleElementClick(props.children);
+
     return (
         <Component
             {...animationProps}
             ref={ref}
             animate={!props.isOrchestrated && toVariant(isLoaded && isVisible)}
-            onClick={() => handleTitleElementClick(props.children)}
+            onClick={handleClick}
             {...props}
         >
-            <Root name={`#${slugify(props.children)}`}>{props.children}</Root>
+            <Root name={`#${slugify(props.children as any)}`}>
+                {props.children}
+            </Root>
         </Component>
     );
+};
+
+Title.defaultProps = {
+    isClickable: true,
+    isOrchestrated: false,
+    variant: 'default',
 };
 
 export default Title;

@@ -3,6 +3,7 @@ import styles from './styles';
 import { FieldProps } from 'formik';
 import { css } from 'styled-components/macro';
 import ValidationWrapper from './validationWrapper';
+import AnimationWrapper from './animationWrapper';
 
 interface InputProps {
     placeholder: string;
@@ -10,12 +11,14 @@ interface InputProps {
 
 const Input: FC<FieldProps<InputProps>> = ({ ...props }) => (
     <ValidationWrapper {...props}>
-        <input
-            css={styles.input}
-            {...(props.field as any)}
-            {...props}
-            autoComplete="off"
-        />
+        <AnimationWrapper>
+            <input
+                css={styles.input}
+                {...(props.field as any)}
+                {...props}
+                autoComplete="off"
+            />
+        </AnimationWrapper>
     </ValidationWrapper>
 );
 

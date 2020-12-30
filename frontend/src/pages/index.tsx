@@ -4,10 +4,10 @@ import { css } from 'styled-components/macro';
 import AnnouncementContainer from '../containers/announcement';
 import { useAnnouncementBlock } from '../services/announcement.services';
 import { useWelcomeBlock } from '../services/welcome.services';
-import { useTitleScoller } from '../components/title/utils';
 import { queryShit } from '../components/useScreenType';
 import Page from '../components/page';
 import SeoComponent from '../components/seo';
+import { useTitleScoller } from '../helpers/scroll';
 
 const styles = {
     intro: css`

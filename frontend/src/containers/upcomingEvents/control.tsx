@@ -22,7 +22,7 @@ const styles = {
 
     button: css`
         width: 100px;
-        background: ${({ theme }) => theme.colors.backgroundTransparent};
+        background: none;
         border: none;
 
         transition: ease 150ms;

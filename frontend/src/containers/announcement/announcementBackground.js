@@ -54,7 +54,7 @@ const styles = {
             stroke-width: 2;
             stroke-linecap: round;
             stroke-linejoin: round;
-            //stroke: ${({ theme }) => addAlpha(theme.colors.blue.dark, 0.3)};
+            stroke: ${({ theme }) => addAlpha(theme.colors.blue.dark, 0.3)};
             fill: none;
         }
     `,

@@ -40,3 +40,11 @@ export const initialContactForm: InitialContactForm = {
     to: null,
     formUIPhase: 'initial',
 };
+export const filledInContactForm: InitialContactForm = {
+    name: 'First Last name',
+    email: 'firstLast@gmail.com',
+    subject: 'some Really IMportantn Subject',
+    message: 'Compelling message with a nice plot arc',
+    to: defaultStaff,
+    formUIPhase: 'initial',
+};
