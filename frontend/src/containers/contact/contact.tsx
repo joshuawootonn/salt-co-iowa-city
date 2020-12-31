@@ -38,12 +38,14 @@ const Contact: FC<{
                 )}
                 {values.formUIPhase === 'error' && (
                     <Error
+                        contactBlock={contactBlock}
                         key={values.formUIPhase}
                         to={values.to as ContactOption}
                     />
                 )}
                 {values.formUIPhase === 'success' && (
                     <Success
+                        contactBlock={contactBlock}
                         key={values.formUIPhase}
                         to={values.to as ContactOption}
                     />

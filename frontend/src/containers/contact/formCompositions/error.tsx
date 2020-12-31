@@ -4,6 +4,7 @@ import BigTitle from '../formElements/bigTitle';
 import SubTitle from '../formElements/subTitle';
 import { ContactOption } from '../contact';
 import Root from './root';
+import { ContactBlock } from '../../../models/contact';
 
 const styles = {
     title: css`
@@ -12,12 +13,13 @@ const styles = {
 };
 export interface ErrorProps {
     to: ContactOption;
+    contactBlock: ContactBlock;
 }
 
-const Error: FC<ErrorProps> = ({ to }) => {
+const Error: FC<ErrorProps> = ({ to, contactBlock: { errorTitle } }) => {
     return (
         <Root formUIPhase={'error'}>
-            <BigTitle css={styles.title}>Uh oh.</BigTitle>
+            <BigTitle css={styles.title}>{errorTitle}</BigTitle>
             <SubTitle>
                 Something went wrong. Reach{' '}
                 {to.__typename === 'ContentfulStaff'
