@@ -59,20 +59,9 @@ const styles = {
         })}
     `,
 
-    body: (type: IntroContainerProps['type']) => css`
+    body: css`
         ${typography.bigText};
-
-        ${queryShit({
-            mobile: css`
-                width: 100%;
-            `,
-            tablet: css`
-                width: 100%;
-            `,
-            desktop: css`
-                width: ${type === 'HowToConnect' ? '70%' : '100%'};
-            `,
-        })}
+        width: 100%;
         padding-bottom: 10px;
     `,
     backgroundContainer: css`
@@ -121,13 +110,13 @@ const IntroContainer: FC<IntroContainerProps> = (props) => {
         >
             <motion.div css={styles.content}>
                 <motion.div css={styles.textColumn}>
-                    <Title isOrchestrated={isOrchestrated} css={styles.title}>
+                    <Title
+                        isOrchestrated={isOrchestrated}
+                        css={styles.title as any}
+                    >
                         {props.title}
                     </Title>
-                    <Text
-                        isOrchestrated={isOrchestrated}
-                        css={styles.body(props.type)}
-                    >
+                    <Text isOrchestrated={isOrchestrated} css={styles.body}>
                         {props.body}
                     </Text>
                     {props.type === 'WhoWeAre' && <WhoWeAre />}

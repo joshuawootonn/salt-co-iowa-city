@@ -21,6 +21,17 @@ const styles = {
 
         text-wrap: none;
 
+        transition: ease 500ms;
+        &:hover {
+            color: ${({ theme }) => theme.colors.blue.lightest};
+        }
+        &:focus {
+            color: ${({ theme }) => theme.colors.blue.lightest};
+        }
+        &:active {
+            color: ${({ theme }) => theme.colors.blue.lightest};
+        }
+
         ${type === 'primary' &&
         css`
             border: 2px solid ${({ theme }) => theme.colors.blue.lightest};

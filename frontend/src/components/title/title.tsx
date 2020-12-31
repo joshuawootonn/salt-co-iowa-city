@@ -15,7 +15,7 @@ const Root = styled(Element)`
 `;
 
 interface HeaderProps {
-    isClickable: boolean;
+    isClickable?: boolean;
 }
 
 const H1 = styled(motion.h1)<HeaderProps>`
@@ -52,7 +52,7 @@ const animationProps = {
 };
 
 interface TitleProps {
-    isClickable: boolean;
+    isClickable?: boolean;
     variant?: 'small' | 'default';
     isOrchestrated?: boolean;
 }

@@ -8,7 +8,7 @@ const styles = {
     root: css`
         display: flex;
         flex-direction: column;
-
+        align-items: flex-start;
         ${queryShit({
             mobile: css`
                 margin-bottom: 30px;

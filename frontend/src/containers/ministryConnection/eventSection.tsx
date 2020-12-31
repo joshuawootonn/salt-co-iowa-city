@@ -123,7 +123,7 @@ const getJiggleAnimation = (media: Media) => {
     };
 };
 
-const EventSection: FC<MinistryConnection> = (props) => {
+const EventSection: FC<MinistryConnection> = ({ title, acronym, ...props }) => {
     const screenType = useScreenType();
     const isLoaded = useFontLoader();
     const ref = React.useRef(null);
@@ -152,13 +152,13 @@ const EventSection: FC<MinistryConnection> = (props) => {
                 },
             }}
             animate={controls}
-            css={styles.root}
+            css={[styles.root]}
             {...props}
         >
-            <EventBackground {...props} />
+            <EventBackground title={title} {...props} />
             <div css={styles.alertContainer}>
                 <Text isOrchestrated={isOrchestrated} css={styles.text}>
-                    Next {props.acronym || props.title} Event
+                    Next {acronym || title} Event
                 </Text>
                 <motion.div
                     animate={{
@@ -178,7 +178,7 @@ const EventSection: FC<MinistryConnection> = (props) => {
                     <BlockArrow />
                 </motion.div>
             </div>
-            <McEventCard {...props} />
+            <McEventCard title={title} {...props} />
         </motion.div>
     );
 };
