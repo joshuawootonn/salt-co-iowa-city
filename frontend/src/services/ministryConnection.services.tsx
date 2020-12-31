@@ -85,12 +85,10 @@ export const useMinistryConnectionBlock = (): MinistryConnectionBlock => {
     const block = raw.allContentfulBlockMinistryConnections.nodes[0];
 
     return {
-        ministryConnections: block.items.map((i: any) => {
-            return {
-                ...i,
-                description: i.description.description,
-                nextEvent: upcomingEventGatsbyTransform(i.nextEvent),
-            };
-        }),
+        ministryConnections: block.items.map((i: any) => ({
+            ...i,
+            description: i.description.description,
+            nextEvent: i.nextEvent && upcomingEventGatsbyTransform(i.nextEvent),
+        })),
     };
 };
