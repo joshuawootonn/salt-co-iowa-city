@@ -67,7 +67,7 @@ const AnnouncementLink: FC<AnnouncementLinkProps> = ({
     const mobileAnimation = {
         initial: {
             x: -20,
-            y: -10,
+            y: 0,
         },
         variants: {
             entered: {
@@ -79,7 +79,7 @@ const AnnouncementLink: FC<AnnouncementLinkProps> = ({
     const desktopAnimation = {
         initial: {
             x: -40,
-            y: -20,
+            y: 0,
         },
         variants: {
             entered: {

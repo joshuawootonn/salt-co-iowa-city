@@ -43,10 +43,10 @@ const styles = {
 };
 
 const animationProps = {
-    initial: { opacity: 0, x: -10, y: -77 },
+    initial: 'exited',
     variants: {
         entered: { x: 10, opacity: 1, y: -77 },
-        exited: { x: -10, opacity: 0, y: -77 },
+        exited: { x: -10, opacity: 0, y: -57 },
     },
     transition: { type: 'spring', duration: 1, bounce: 0 },
 };

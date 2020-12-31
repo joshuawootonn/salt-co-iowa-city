@@ -84,7 +84,7 @@ const MinistryDescriptionTextCard: FC<MinistryDescriptionCardProps> = ({
             mobile: {
                 initial: {
                     x: -40,
-                    y: -20,
+                    y: -40,
                 },
                 variants: {
                     entered: {
@@ -96,7 +96,7 @@ const MinistryDescriptionTextCard: FC<MinistryDescriptionCardProps> = ({
             tablet: {
                 initial: {
                     x: isPositionedLeft ? 0 : -60,
-                    y: `calc(-1 * calc(${location ? '60' : '100'}% - 30px))`,
+                    y: `calc(-1 * calc(${location ? '60' : '100'}% - 50px))`,
                 },
                 variants: {
                     entered: {
@@ -110,7 +110,7 @@ const MinistryDescriptionTextCard: FC<MinistryDescriptionCardProps> = ({
             desktop: {
                 initial: {
                     x: isPositionedLeft ? -80 : -40,
-                    y: `calc(-1 * calc(${location ? '70' : '100'}% - 40px))`,
+                    y: `calc(-1 * calc(${location ? '70' : '100'}% - 60px))`,
                 },
                 variants: {
                     entered: {

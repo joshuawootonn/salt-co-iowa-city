@@ -26,7 +26,7 @@ const UpcomingEventCard: FC<UpcomingEvent> = (event) => {
                     },
                     exited: {
                         x: -40,
-                        y: -20,
+                        y: 0,
                     },
                 },
             },
@@ -38,7 +38,7 @@ const UpcomingEventCard: FC<UpcomingEvent> = (event) => {
                     },
                     exited: {
                         x: -60,
-                        y: -60,
+                        y: -40,
                     },
                 },
             },
@@ -50,7 +50,7 @@ const UpcomingEventCard: FC<UpcomingEvent> = (event) => {
                     },
                     exited: {
                         x: 0,
-                        y: -200,
+                        y: -180,
                     },
                 },
             },

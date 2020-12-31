@@ -71,7 +71,7 @@ const McDescriptionCard: FC<MinistryConnection> = (props) => {
             mobile: {
                 initial: {
                     x: -40,
-                    y: -20,
+                    y: -40,
                 },
                 variants: {
                     entered: {
@@ -83,7 +83,7 @@ const McDescriptionCard: FC<MinistryConnection> = (props) => {
             tablet: {
                 initial: {
                     x: 0,
-                    y: `calc(-1 * calc(100% - 30px))`,
+                    y: `calc(-1 * calc(100% - 50px))`,
                 },
                 variants: {
                     entered: {
@@ -95,7 +95,7 @@ const McDescriptionCard: FC<MinistryConnection> = (props) => {
             desktop: {
                 initial: {
                     x: -80,
-                    y: `calc(-1 * calc(100% - 40px))`,
+                    y: `calc(-1 * calc(100% - 60px))`,
                 },
                 variants: {
                     entered: {

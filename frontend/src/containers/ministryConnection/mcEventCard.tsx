@@ -8,10 +8,12 @@ const McEventCard: FC<MinistryConnection> = (props) => {
         {
             initial: {
                 opacity: 0,
+                y: 20,
             },
             variants: {
                 entered: {
                     opacity: 1,
+                    y: 0,
                 },
             },
             transition: { type: 'spring', duration: 1, bounce: 0 },
