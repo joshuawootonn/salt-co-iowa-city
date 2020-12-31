@@ -7,7 +7,6 @@ import { contactValidationSchema } from './validation';
 import {
     ContactForm,
     ContactRequest,
-    filledInContactForm,
     FinalContactForm,
     initialContactForm,
 } from './types';
@@ -32,9 +31,8 @@ const mapValidStateToRequest = (values: FinalContactForm): ContactRequest => ({
     email: values.email,
     message: values.message,
     subject: values.subject,
-    // TODO:PROD
-    // to: values.to.email,
-    to: 'joshuawootonn@gmail.com',
+    to: values.to.email,
+    // to: 'joshuawootonn@gmail.com',
 });
 
 const getDefaultPersonFromQueryString = (

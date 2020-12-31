@@ -23,7 +23,7 @@ const styles = {
             `,
             desktop: css`
                 grid-template-columns: repeat(3, minmax(0, 1fr));
-                grid-template-rows: repeat(3, minmax(120px, max-content));
+                grid-template-rows: repeat(2, minmax(120px, max-content));
                 row-gap: 20px;
 
                 max-width: 1140px;

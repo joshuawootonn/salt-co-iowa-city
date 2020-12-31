@@ -7,7 +7,6 @@ import { FooterBlock } from '../../models/footer';
 import slugify from '../../helpers/slugify';
 import styles from './styles';
 import PersonalBranding from '../../svgs/personalBranding';
-import typography from '../../components/typography';
 import IconAction from '../../components/iconAction';
 
 interface ExtendedNavigationContainerProps extends FooterBlock {

@@ -44,8 +44,6 @@ const StaffComponent: FC<StaffBlock> = ({ staff }) => {
 
     const staffPerRow = type === 'mobile' ? 1 : type === 'tablet' ? 2 : 3;
 
-    console.log(staffPerRow);
-
     return (
         <>
             {chunk(staff, staffPerRow).map((subStaff, i) => (
