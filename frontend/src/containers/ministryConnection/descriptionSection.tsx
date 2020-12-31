@@ -24,14 +24,13 @@ const styles = {
     title: css`
         ${typography.title2};
         white-space: normal;
+        margin: 0;
     `,
 
     titleContainer: css`
-        position: absolute;
-        top: 0;
-        left: 0;
+        align-self: flex-start;
         z-index: 10;
-        transform: translateY(-50%);
+        transform: translateY(50%);
     `,
 };
 

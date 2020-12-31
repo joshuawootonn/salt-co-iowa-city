@@ -33,7 +33,9 @@ const styles = {
     `,
 };
 
-const UpcomingEventsContainer: FC<UpcomingEventBlock> = (props) => {
+const UpcomingEventsContainer: FC<{
+    upcomingEventBlock: UpcomingEventBlock;
+}> = ({ upcomingEventBlock, ...props }) => {
     const isLoaded = useFontLoader();
     const ref = React.useRef(null);
     const { isVisible } = useIntersect(ref, {
@@ -57,11 +59,11 @@ const UpcomingEventsContainer: FC<UpcomingEventBlock> = (props) => {
         >
             <div css={styles.titleContainer}>
                 <Title variant="small" css={styles.title}>
-                    {props.title}
+                    {upcomingEventBlock.title}
                 </Title>
             </div>
 
-            <Items {...props} />
+            <Items {...upcomingEventBlock} />
         </motion.div>
     );
 };

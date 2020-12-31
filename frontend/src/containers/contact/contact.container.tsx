@@ -79,9 +79,15 @@ const mapConnectionGroupToOption = (
         label: `${cg.leaders} - Connection Group Leader(s)`,
     }));
 
-const ContactContainer: FC<ContactBlock & ConnectionGroupBlock> = (props) => {
+const ContactContainer: FC<{
+    contactBlock: ContactBlock;
+    connectionGroupBlock: ConnectionGroupBlock;
+}> = ({ contactBlock, connectionGroupBlock, ...props }) => {
     const initialTo = useRef(
-        getDefaultPersonFromQueryString(props.contacts, props.groups)
+        getDefaultPersonFromQueryString(
+            contactBlock.contacts,
+            connectionGroupBlock.groups
+        )
     );
 
     const handleSubmit = (
@@ -99,26 +105,30 @@ const ContactContainer: FC<ContactBlock & ConnectionGroupBlock> = (props) => {
     };
 
     return (
-        <Formik<ContactForm>
-            initialValues={{
-                ...initialContactForm,
-                to: initialTo.current,
-            }}
-            onSubmit={handleSubmit as any}
-            validationSchema={contactValidationSchema}
-            validateOnMount={true}
-        >
-            {(formikProps: FormikProps<ContactForm>) => (
-                <Contact
-                    {...props}
-                    contactOptions={[
-                        ...mapStaffToOption(props.contacts),
-                        ...mapConnectionGroupToOption(props.groups),
-                    ]}
-                    values={formikProps.values}
-                />
-            )}
-        </Formik>
+        <div {...props}>
+            <Formik<ContactForm>
+                initialValues={{
+                    ...initialContactForm,
+                    to: initialTo.current,
+                }}
+                onSubmit={handleSubmit as any}
+                validationSchema={contactValidationSchema}
+                validateOnMount={true}
+            >
+                {(formikProps: FormikProps<ContactForm>) => (
+                    <Contact
+                        contactBlock={contactBlock}
+                        contactOptions={[
+                            ...mapStaffToOption(contactBlock.contacts),
+                            ...mapConnectionGroupToOption(
+                                connectionGroupBlock.groups
+                            ),
+                        ]}
+                        values={formikProps.values}
+                    />
+                )}
+            </Formik>
+        </div>
     );
 };
 

@@ -70,8 +70,8 @@ const Title: FC<TitleProps> = (props) => {
 
     return (
         <Component
-            {...animationProps}
             ref={ref}
+            {...animationProps}
             animate={!props.isOrchestrated && toVariant(isLoaded && isVisible)}
             onClick={handleClick}
             {...props}

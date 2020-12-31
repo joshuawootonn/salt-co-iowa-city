@@ -6,11 +6,10 @@ import { useWhoWeAreBlock } from '../services/whoWeAre.services';
 import { useMinistryDescriptionBlock } from '../services/ministryDescription.services';
 import { useStaffBlock } from '../services/staff.services';
 import StaffContainer from '../containers/staff';
-
 import Page from '../components/page';
 import { queryShit } from '../components/useScreenType';
 import SeoComponent from '../components/seo';
-import { useTitleScoller } from "../helpers/scroll"
+import { useTitleScoller } from '../helpers/scroll';
 
 const styles = {
     intro: css`
@@ -60,15 +59,15 @@ const WhoWeAre: FC = () => {
                 image={'/whoWeAre.png'}
             />
             <IntroContainer
-                {...whoWeAreBlock}
+                introBlock={whoWeAreBlock}
                 type={'WhoWeAre'}
                 css={styles.intro}
             />
             <MinistryDescriptionContainer
-                {...ministryDescriptionBlock}
+                ministryDescriptionBlock={ministryDescriptionBlock}
                 css={styles.ministryDescriptions}
             />
-            <StaffContainer {...staffBlock} css={styles.staff} />
+            <StaffContainer staffBlock={staffBlock} css={styles.staff} />
         </Page>
     );
 };

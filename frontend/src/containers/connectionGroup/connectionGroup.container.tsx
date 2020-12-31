@@ -65,12 +65,10 @@ const styles = {
     `,
 };
 
-const ConnectionGroupContainer: FC<ConnectionGroupBlock> = ({
-    title,
-    description,
-    groups,
-    emptyText,
-    emptyTitle,
+const ConnectionGroupContainer: FC<{
+    connectionGroupBlock: ConnectionGroupBlock;
+}> = ({
+    connectionGroupBlock: { title, description, groups, emptyText, emptyTitle },
     ...props
 }) => {
     const isLoaded = useFontLoader();

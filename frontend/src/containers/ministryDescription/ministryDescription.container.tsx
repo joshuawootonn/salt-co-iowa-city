@@ -27,10 +27,12 @@ const styles = {
     `,
 };
 
-const MinistryDescriptionContainer: FC<MinistryDescriptionBlock> = (props) => {
+const MinistryDescriptionContainer: FC<{
+    ministryDescriptionBlock: MinistryDescriptionBlock;
+}> = ({ ministryDescriptionBlock, ...props }) => {
     return (
         <div css={styles.root} {...props}>
-            {props.ministryDescriptions.map((s, i) => (
+            {ministryDescriptionBlock.ministryDescriptions.map((s, i) => (
                 <div key={i} css={styles.cardContainer}>
                     <MinistryDescriptionCard {...s} index={i} />
                 </div>

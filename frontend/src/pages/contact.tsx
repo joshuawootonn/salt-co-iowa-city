@@ -43,8 +43,8 @@ const Contact: FC = () => {
                 image={'/contact.png'}
             />
             <ContactContainer
-                {...connectionGroupBlock}
-                {...contactBlock}
+                connectionGroupBlock={connectionGroupBlock}
+                contactBlock={contactBlock}
                 css={styles.contact}
             />
         </Page>

@@ -10,7 +10,7 @@ import { useConnectionGroupBlock } from '../services/connectionGroup.services';
 import { useMinistryConnectionBlock } from '../services/ministryConnection.services';
 import Page from '../components/page';
 import SeoComponent from '../components/seo';
-import { useTitleScoller } from "../helpers/scroll"
+import { useTitleScoller } from '../helpers/scroll';
 
 const styles = {
     intro: css`
@@ -44,22 +44,20 @@ const HowToConnect: FC = () => {
             />
             <IntroContainer
                 type={'HowToConnect'}
-                {...howToConnectBlock}
+                introBlock={howToConnectBlock}
                 css={styles.intro}
             />
             <UpcomingEventsContainer
-                {...upcomingEventBlock}
+                upcomingEventBlock={upcomingEventBlock}
                 css={styles.upcomingEvents}
             />
-
             <ConnectionGroupContainer
-                {...connectionGroupBlock}
+                connectionGroupBlock={connectionGroupBlock}
                 css={styles.connectionGroup}
             />
+
             <MinistryConnectionContainer
-                ministryConnections={
-                    ministryConnectionsBlock.ministryConnections
-                }
+                ministryConnectionBlock={ministryConnectionsBlock}
                 css={styles.ministryConnections}
             />
         </Page>

@@ -82,6 +82,7 @@ export const GenderInput = (props) => {
     return (
         <motion.div {...animationProps} css={styles.select(className)}>
             <ReactSelect
+                isSearchable={false}
                 className={className}
                 classNamePrefix={className}
                 {...props}
@@ -110,6 +111,7 @@ export const DayInput = (props) => {
     return (
         <motion.div {...animationProps} css={styles.select(className)}>
             <ReactSelect
+                isSearchable={false}
                 className={className}
                 classNamePrefix={className}
                 {...props}

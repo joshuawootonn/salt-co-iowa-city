@@ -48,7 +48,10 @@ const styles = {
     `,
 };
 
-const StaffContainer: FC<StaffBlock> = (props) => {
+const StaffContainer: FC<{ staffBlock: StaffBlock }> = ({
+    staffBlock,
+    ...props
+}) => {
     const isLoaded = useFontLoader();
     const ref = React.useRef(null);
     const screenType = useScreenType();
@@ -82,9 +85,9 @@ const StaffContainer: FC<StaffBlock> = (props) => {
         >
             <div css={styles.content}>
                 <Title variant="small" css={styles.title}>
-                    {props.title}
+                    {staffBlock.title}
                 </Title>
-                <Staff {...props} />
+                <Staff {...staffBlock} />
             </div>
         </motion.div>
     );

@@ -21,7 +21,10 @@ const styles = {
     `,
 };
 
-const AnnouncementContainer: FC<AnnouncementBlock> = (props) => {
+const AnnouncementContainer: FC<{ announcementBlock: AnnouncementBlock }> = ({
+    announcementBlock,
+    ...props
+}) => {
     const ref = useRef(null);
     const screenType = useScreenType();
     const [boundingBox, setBoundingBox] = useState(null);
@@ -36,9 +39,11 @@ const AnnouncementContainer: FC<AnnouncementBlock> = (props) => {
     return (
         <div ref={ref} css={styles.root} {...props}>
             <Bullhorn boundingBox={boundingBox} />
-            <MarqueTitle css={styles.title}>{props.title}</MarqueTitle>
+            <MarqueTitle css={styles.title}>
+                {announcementBlock.title}
+            </MarqueTitle>
             <div css={styles.content}>
-                <Announcements {...props} />
+                <Announcements {...announcementBlock} />
             </div>
         </div>
     );

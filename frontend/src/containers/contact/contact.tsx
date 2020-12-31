@@ -19,34 +19,37 @@ const styles = {
 
 export type ContactOption = ConnectionGroupOption | StaffOption;
 
-const Contact: FC<
-    ContactBlock & {
-        values: ContactForm;
-        contactOptions: ContactOption[];
-    }
-> = (props) => {
+const Contact: FC<{
+    contactBlock: ContactBlock;
+    values: ContactForm;
+    contactOptions: ContactOption[];
+}> = ({ contactBlock, contactOptions, values, ...props }) => {
     const isLoaded = useFontLoader();
 
     return (
         <div css={styles.root} {...props}>
             <AnimatePresence exitBeforeEnter={true}>
-                {props.values.formUIPhase === 'initial' && isLoaded && (
-                    <InitialForm key={props.values.formUIPhase} {...props} />
+                {values.formUIPhase === 'initial' && isLoaded && (
+                    <InitialForm
+                        contactOptions={contactOptions}
+                        key={values.formUIPhase}
+                        contactBlock={contactBlock}
+                    />
                 )}
-                {props.values.formUIPhase === 'error' && (
+                {values.formUIPhase === 'error' && (
                     <Error
-                        key={props.values.formUIPhase}
-                        to={props.values.to as ContactOption}
+                        key={values.formUIPhase}
+                        to={values.to as ContactOption}
                     />
                 )}
-                {props.values.formUIPhase === 'success' && (
+                {values.formUIPhase === 'success' && (
                     <Success
-                        key={props.values.formUIPhase}
-                        to={props.values.to as ContactOption}
+                        key={values.formUIPhase}
+                        to={values.to as ContactOption}
                     />
                 )}
-                {props.values.formUIPhase === 'loading' && (
-                    <Loading key={props.values.formUIPhase} />
+                {values.formUIPhase === 'loading' && (
+                    <Loading key={values.formUIPhase} />
                 )}
             </AnimatePresence>
         </div>

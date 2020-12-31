@@ -32,8 +32,10 @@ const Root = styled(motion.div)`
             grid-auto-flow: column;
 
             grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(1, minmax(
-                  css={styles.icon} max-content));
+            grid-template-rows: repeat(
+                1,
+                minmax(css={styles.icon} max-content)
+            );
         `,
     })}
 `;
@@ -55,7 +57,7 @@ const ConnectionGroupComponent: FC<{ groups: ConnectionGroup[] }> = ({
 
 const Row: FC<{ groups: ConnectionGroup[] }> = ({ groups }) => {
     return (
-        <AnimatePresence>
+        <AnimatePresence exitBeforeEnter={true}>
             <Root>
                 {groups.map((group) => (
                     <ConnectionGroupCard {...group} key={group.id} />

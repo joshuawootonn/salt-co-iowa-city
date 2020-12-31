@@ -20,9 +20,11 @@ const styles = {
         })}
     `,
 };
-const MinistryConnectionContainer: FC<MinistryConnectionBlock> = (props) => (
+const MinistryConnectionContainer: FC<{
+    ministryConnectionBlock: MinistryConnectionBlock;
+}> = ({ ministryConnectionBlock, ...props }) => (
     <div {...props}>
-        {props.ministryConnections.map((connection, i) => (
+        {ministryConnectionBlock.ministryConnections.map((connection, i) => (
             <div css={styles.lastElement} key={i}>
                 <DescriptionSection {...connection} />
                 {connection.nextEvent && <EventSection {...connection} />}

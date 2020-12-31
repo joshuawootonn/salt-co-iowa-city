@@ -54,10 +54,10 @@ const Home: FC = () => {
                 }
                 image={'/index.png'}
             />
-            <WelcomeContainer css={styles.intro} {...welcomeBlock} />
+            <WelcomeContainer css={styles.intro} welcomeBlock={welcomeBlock} />
             <AnnouncementContainer
                 css={styles.announcements}
-                {...announcementBlock}
+                announcementBlock={announcementBlock}
             />
         </Page>
     );

@@ -27,8 +27,11 @@ const styles = {
     `,
 };
 
-const WelcomeContainer: FC<WelcomeBlock> = (welcomeBlock) => (
-    <div css={styles.root} {...welcomeBlock}>
+const WelcomeContainer: FC<{ welcomeBlock: WelcomeBlock }> = ({
+    welcomeBlock,
+    ...props
+}) => (
+    <div css={styles.root} {...props}>
         <Section1 {...welcomeBlock} />
         <Section2 {...welcomeBlock} />
     </div>

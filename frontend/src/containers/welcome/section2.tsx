@@ -29,6 +29,7 @@ const styles = {
                 }
             `,
             tablet: css`
+                max-height: 600px;
                 height: 60vh;
             `,
         })}

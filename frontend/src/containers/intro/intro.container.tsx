@@ -74,16 +74,18 @@ const styles = {
     `,
 };
 
-interface A extends HowToConnectBlock {
+interface A {
     type: 'HowToConnect';
+    introBlock: HowToConnectBlock;
 }
-interface B extends WhoWeAreBlock {
+interface B {
     type: 'WhoWeAre';
+    introBlock: WhoWeAreBlock;
 }
 
 type IntroContainerProps = A | B;
 
-const IntroContainer: FC<IntroContainerProps> = (props) => {
+const IntroContainer: FC<IntroContainerProps> = ({ introBlock, ...props }) => {
     const isLoaded = useFontLoader();
     const ref = React.useRef(null);
     const { isVisible } = useIntersect(ref, {
@@ -111,13 +113,14 @@ const IntroContainer: FC<IntroContainerProps> = (props) => {
             <motion.div css={styles.content}>
                 <motion.div css={styles.textColumn}>
                     <Title
+                        isClickable={false}
                         isOrchestrated={isOrchestrated}
                         css={styles.title as any}
                     >
-                        {props.title}
+                        {introBlock.title}
                     </Title>
                     <Text isOrchestrated={isOrchestrated} css={styles.body}>
-                        {props.body}
+                        {introBlock.body}
                     </Text>
                     {props.type === 'WhoWeAre' && <WhoWeAre />}
                     {props.type === 'HowToConnect' && <HowToConnectSvg />}

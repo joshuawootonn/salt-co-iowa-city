@@ -2,7 +2,7 @@ import ImageController from '../../components/image/image.controller';
 import { WelcomeBlock } from '../../models/welcome';
 import { css } from 'styled-components/macro';
 import RichText from '../../components/richText';
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 
 import { motion } from 'framer-motion';
 import { useFontLoader } from '../../context/fontLoader';
@@ -17,7 +17,6 @@ const styles = {
     root: css`
         ${layout.container};
 
-        margin-top: 180px;
         position: relative;
         max-width: 1240px;
         display: flex;
@@ -28,15 +27,21 @@ const styles = {
         ${queryShit({
             mobile: css`
                 height: 400px;
+                margin-top: 180px;
 
                 & > div {
                     width: 100%;
                 }
             `,
             tablet: css`
+                margin-top: 15vh;
                 height: 70vh;
+                max-height: 600px;
             `,
-            desktop: css``,
+            desktop: css`
+                height: 70vh;
+                max-height: 900px;
+            `,
         })}
     `,
     image: css`
@@ -108,7 +113,11 @@ const Section1: FC<WelcomeBlock> = (welcomeBlock) => {
             css={styles.root}
         >
             <div css={styles.one}>
-                <Title css={styles.title} isOrchestrated={isOrchestrated}>
+                <Title
+                    isClickable={false}
+                    css={styles.title}
+                    isOrchestrated={isOrchestrated}
+                >
                     {welcomeBlock.title}
                 </Title>
                 <RichText

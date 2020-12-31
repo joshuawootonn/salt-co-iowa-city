@@ -10,6 +10,7 @@ import layout from '../../../components/layout';
 import { ContactOption } from '../contact';
 import { queryShit } from '../../../components/useScreenType';
 import Root from './root';
+import { ContactBlock } from '../../../models/contact';
 
 const styles = {
     content: css`
@@ -55,13 +56,13 @@ const styles = {
     `,
 };
 
-const InitialForm: FC<{ title: string; contactOptions: ContactOption[] }> = ({
-    title,
-    contactOptions,
-}) => {
+const InitialForm: FC<{
+    contactBlock: ContactBlock;
+    contactOptions: ContactOption[];
+}> = ({ contactBlock, contactOptions }) => {
     return (
         <Root formUIPhase={'initial'}>
-            <BigTitle isOrchestrated={true}>{title}</BigTitle>
+            <BigTitle isOrchestrated={true}>{contactBlock.title}</BigTitle>
             <div css={styles.content}>
                 <Form css={styles.formColumn}>
                     <Field
