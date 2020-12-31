@@ -18,11 +18,12 @@ const NonBoiger = () => {
     return (
         <motion.div
             animate={toVariant(isFontLoaded)}
-            initial={isFontLoaded ? { opacity: 1 } : { opacity: 0 }}
+            initial={'exited'}
             variants={{
                 entered: { opacity: 1 },
                 exited: { opacity: 0 },
             }}
+            transition={{ type: 'spring', duration: 1, bounce: 0 }}
         >
             <TextLink
                 type="secondary"

@@ -4,6 +4,8 @@ import IconAction from '../../components/iconAction';
 import styled from 'styled-components';
 import { motion, useAnimation } from 'framer-motion';
 import { useInterval } from 'react-use';
+import { useFontLoader } from '../../context/fontLoader';
+import { toVariant } from '../../helpers/animation';
 
 const Icon = styled(motion.svg)``;
 
@@ -36,6 +38,7 @@ const variants = {
 
 const BoigerButton = (props) => {
     const controls = useAnimation();
+    const isFontLoaded = useFontLoader();
     const [isActive, setIsActive] = useState(false);
 
     useInterval(() => {
@@ -57,6 +60,13 @@ const BoigerButton = (props) => {
                     setIsActive(false);
                 }
             }}
+            animate={toVariant(isFontLoaded)}
+            initial={'exited'}
+            variants={{
+                entered: { opacity: 1 },
+                exited: { opacity: 0 },
+            }}
+            transition={{ type: 'spring', duration: 1, bounce: 0 }}
         >
             <Icon
                 animate={controls}
