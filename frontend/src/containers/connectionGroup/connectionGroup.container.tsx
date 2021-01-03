@@ -5,14 +5,13 @@ import typography from '../../components/typography';
 import { ConnectionGroupBlock } from '../../models/connectionGroup';
 import { Title } from '../../components/title';
 import Text from '../../components/text';
-import { AnimatePresence, motion, useAnimation } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 import { useFontLoader } from '../../context/fontLoader';
 import useIntersect from '../../helpers/useIntersect';
 import { DayInput, dayOptions, GenderInput, genderOptions } from './inputs';
 import dayjs from 'dayjs';
 import RichText from '../../components/richText';
 import ConnectionGroup from './connectionGroup';
-
 const styles = {
     root: css`
         ${layout.container};
@@ -79,19 +78,31 @@ const ConnectionGroupContainer: FC<{
 
     const controls = useAnimation();
 
-    const [genderOption, setGenderOption] = useState(genderOptions[0]);
-    const [dayOption, setDayOption] = useState(dayOptions[0]);
+    const [genderOption, setGenderOption] = useState(null);
+    const [dayOption, setDayOption] = useState(null);
 
+    // I don't have energy for this shitty shit
     const filteredGroups = groups
         .filter((group) =>
-            genderOption.value === 'All'
+            !genderOption
                 ? true
-                : genderOption.value === group.gender
+                : // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                genderOption.value === genderOptions[0].value
+                ? true // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                : // @ts-ignore
+                  genderOption.value === group.gender
         )
         .filter((group) =>
-            dayOption.value === 'All'
+            !dayOption
                 ? true
-                : dayOption.value === dayjs(group.dateTime).format('dddd')
+                : // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                dayOption.value === dayOptions[0].value
+                ? true
+                : // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                  // @ts-ignore
+                  dayOption.value === dayjs(group.dateTime).format('dddd')
         );
 
     useEffect(() => {

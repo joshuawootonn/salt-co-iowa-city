@@ -92,7 +92,7 @@ const HeaderContainer: FC<FooterBlock> = (props) => {
     return (
         <>
             <div css={styles.root}>
-                <LogoLink to={'/'} />
+                <LogoLink onClick={() => setIsHeaderOpen(false)} to={'/'} />
                 <div css={styles.grow} />
                 {isBoiger ? (
                     <BoigerButton onClick={toggleMobileNavigation} />
@@ -113,6 +113,7 @@ const HeaderContainer: FC<FooterBlock> = (props) => {
                     >
                         <ExtendedNavigationContainer
                             {...props}
+                            onClick={() => setIsHeaderOpen(false)}
                             type={'mobileNav'}
                         />
                     </Root>

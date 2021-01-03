@@ -32,8 +32,8 @@ export const useTitleScoller = () => {
                 screenType === 'desktop'
                     ? -200
                     : screenType === 'tablet'
-                    ? -130
-                    : -120,
+                    ? -150
+                    : -150,
         });
     }, [typeof window !== `undefined` && document.location.href, screenType]);
 };

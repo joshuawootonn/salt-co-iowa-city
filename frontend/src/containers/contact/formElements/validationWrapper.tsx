@@ -13,7 +13,9 @@ const ValidationWrapper: FC<FieldProps<any>> = ({
         <div css={styles.elementRoot} {...props}>
             {children}
             {form.errors[field.name] && form.touched[field.name] ? (
-                <span>{form.errors[field.name]}</span>
+                <span css={styles.validationText}>
+                    {form.errors[field.name]}
+                </span>
             ) : (
                 <span>{''}</span>
             )}

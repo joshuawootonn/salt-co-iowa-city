@@ -11,6 +11,7 @@ const styles = {
 
 export interface TextLinkProps {
     to: string;
+    onClick?: any;
 }
 
 const Link = styled((props) => <GatsbyLink {...props} />)`

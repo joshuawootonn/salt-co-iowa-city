@@ -22,9 +22,10 @@ const styles = {
 
 interface LinkedListProps {
     links: InternalLink[];
+    onClick?: any;
 }
 
-const LinkedList: FC<LinkedListProps> = ({ links, ...props }) => {
+const LinkedList: FC<LinkedListProps> = ({ links, onClick, ...props }) => {
     return (
         <div css={styles.root} {...props}>
             {links.map((link, i) => (
@@ -36,6 +37,7 @@ const LinkedList: FC<LinkedListProps> = ({ links, ...props }) => {
                     size={i !== 0 ? 'small' : 'default'}
                     font={i !== 0 ? 'secondary' : 'primary'}
                     to={link.to}
+                    onClick={onClick}
                 >
                     {link.label}
                 </TextLink>

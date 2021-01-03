@@ -86,7 +86,7 @@ export const GenderInput = (props) => {
                 className={className}
                 classNamePrefix={className}
                 {...props}
-                placeholder={'Specify your sex'}
+                placeholder={'Gender'}
                 options={genderOptions}
                 value={props.value}
                 onChange={props.onChange}
@@ -116,8 +116,7 @@ export const DayInput = (props) => {
                 classNamePrefix={className}
                 {...props}
                 options={dayOptions}
-                defaultValue={dayOptions[0]}
-                placeholder={'Specify a day'}
+                placeholder={'Day of Week'}
                 value={props.value}
                 onChange={props.onChange}
             />

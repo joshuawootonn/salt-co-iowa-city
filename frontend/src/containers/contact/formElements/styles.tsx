@@ -141,6 +141,11 @@ export default {
             border: 2px solid ${({ theme }) => theme.colors.blue.medium};
         }
     `,
+    validationText: css`
+        display: flex !important;
+        align-items: center;
+        justify-content: flex-start;
+    `,
     button: css`
         background: none;
         border: none;

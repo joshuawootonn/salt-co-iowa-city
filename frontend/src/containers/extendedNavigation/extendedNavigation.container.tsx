@@ -8,9 +8,11 @@ import slugify from '../../helpers/slugify';
 import styles from './styles';
 import PersonalBranding from '../../svgs/personalBranding';
 import IconAction from '../../components/iconAction';
+import LogoLink from '../../components/logoLink';
 
 interface ExtendedNavigationContainerProps extends FooterBlock {
     type: 'footer' | 'mobileNav';
+    onClick?: any;
 }
 
 const ExtendedNavigationContainer: FC<ExtendedNavigationContainerProps> = ({
@@ -18,12 +20,13 @@ const ExtendedNavigationContainer: FC<ExtendedNavigationContainerProps> = ({
     howToConnectLinks,
     whoWeAreLinks,
     socialMediaLinks,
+    onClick,
     type,
 }) => (
     <div css={styles.root}>
         {type === 'footer' && (
             <div css={styles.logoContainer}>
-                <Salt css={styles.logo} />
+                <LogoLink onClick={onClick} to={'/'} css={styles.logo} />
             </div>
         )}
 
@@ -36,6 +39,7 @@ const ExtendedNavigationContainer: FC<ExtendedNavigationContainerProps> = ({
                     to: `/who-we-are/#${slugify(link)}`,
                 })),
             ]}
+            onClick={onClick}
         />
         <BigLinks links={externalLinks} css={styles.bigLinks(type)} />
 
@@ -48,6 +52,7 @@ const ExtendedNavigationContainer: FC<ExtendedNavigationContainerProps> = ({
                     to: `/how-to-connect/#${slugify(link)}`,
                 })),
             ]}
+            onClick={onClick}
         />
 
         <SocialLinks

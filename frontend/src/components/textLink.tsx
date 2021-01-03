@@ -84,6 +84,7 @@ interface BaseTextLinkProps {
     type?: 'primary' | 'secondary' | 'card' | 'largeText';
     font?: 'primary' | 'secondary';
     size?: 'default' | 'small';
+    onClick?: any;
 }
 
 export interface ExternalTextLinkProps extends BaseTextLinkProps {
