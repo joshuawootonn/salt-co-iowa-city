@@ -45,7 +45,6 @@ export interface MinistryDescriptionCardProps extends MinistryDescription {
 }
 
 const MinistryDescriptionCard: FC<MinistryDescriptionCardProps> = (props) => {
-    const screenType = useScreenType();
     const isLoaded = useFontLoader();
     const ref = React.useRef(null);
     const { isVisible } = useIntersect(ref, {

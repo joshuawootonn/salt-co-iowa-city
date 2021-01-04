@@ -62,6 +62,7 @@ const DescriptionSection: FC<MinistryConnection> = (props) => {
                     },
                 },
             }}
+            initial={'exited'}
             animate={controls}
             css={styles.root}
         >
@@ -70,7 +71,7 @@ const DescriptionSection: FC<MinistryConnection> = (props) => {
                 <Title
                     isOrchestrated={isOrchestrated}
                     variant="small"
-                    css={styles.title}
+                    css={styles.title as any}
                 >
                     {props.acronym || props.title}
                 </Title>

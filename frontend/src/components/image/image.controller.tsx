@@ -50,17 +50,6 @@ const getRootType = (props: ImageProps) => {
     return 'default';
 };
 
-const getAnimationDuration = (width: any) => {
-    const { width: viewportWidth } = useWindowSize();
-    const type = useScreenType();
-
-    if (type === 'mobile') {
-        return Math.floor((width / viewportWidth) * 600);
-    }
-
-    return Math.floor((width / viewportWidth) * 1000);
-};
-
 const ImageController: FC<ImageProps> = (props) => {
     const [curr, setCurr] = useState(0);
     const [isCurrLoaded, setIsCurrLoaded] = useState(false);
@@ -73,11 +62,7 @@ const ImageController: FC<ImageProps> = (props) => {
         ...props.intersectOption,
     });
 
-    const maxDuration = getAnimationDuration(
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        ref.current && ref.current.getBoundingClientRect().width
-    );
+    const maxDuration = 800;
 
     const transitionOut = () => {
         setIsCovered(false);
@@ -106,26 +91,28 @@ const ImageController: FC<ImageProps> = (props) => {
             <Content ref={ref}>
                 <Cover
                     animate={
-                        props.isOrchestrated && isCurrLoaded
-                            ? undefined
-                            : toVariant(!isCovered && isVisible && isCurrLoaded)
+                        isCurrLoaded
+                            ? props.isOrchestrated
+                                ? undefined
+                                : toVariant(
+                                      !isCovered && isVisible && isCurrLoaded
+                                  )
+                            : toVariant(false)
                     }
                     initial={toVariant(false)}
                     variants={{
                         exited: {
                             x: '0%',
-                            transition: {
-                                duration: maxDuration / 1000,
-                            },
                         },
                         entered: {
                             x: '100%',
-                            transition: {
-                                duration: maxDuration / 1000,
-                            },
                         },
                     }}
-                    transition={{ type: 'spring', bounce: 0 }}
+                    transition={{
+                        type: 'spring',
+                        bounce: 0,
+                        duration: maxDuration / 1000,
+                    }}
                 />
                 <GatsbyImage
                     style={{ height: '100%' }}

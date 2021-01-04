@@ -2,17 +2,12 @@ import React, { FC } from 'react';
 import styled from 'styled-components/macro';
 import typography from '../typography';
 import slugify from '../../helpers/slugify';
-import { Element } from 'react-scroll';
 import { motion } from 'framer-motion';
 import { toVariant } from '../../helpers/animation';
 import { useFontLoader } from '../../context/fontLoader';
 import useIntersect from '../../helpers/useIntersect';
 import { handleTitleElementClick } from '../../helpers/scroll';
 import { css } from 'styled-components/macro';
-
-const Root = styled(Element)`
-    overflow: hidden;
-`;
 
 interface HeaderProps {
     isClickable?: boolean;
@@ -74,11 +69,10 @@ const Title: FC<TitleProps> = (props) => {
             {...animationProps}
             animate={!props.isOrchestrated && toVariant(isLoaded && isVisible)}
             onClick={handleClick}
+            id={`#${slugify(props.children as any)}`}
             {...props}
         >
-            <Root name={`#${slugify(props.children as any)}`}>
-                {props.children}
-            </Root>
+            {props.children}
         </Component>
     );
 };

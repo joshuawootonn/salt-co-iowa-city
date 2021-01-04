@@ -12,6 +12,7 @@ import { DayInput, dayOptions, GenderInput, genderOptions } from './inputs';
 import dayjs from 'dayjs';
 import RichText from '../../components/richText';
 import ConnectionGroup from './connectionGroup';
+import { queryShit } from '../../components/useScreenType';
 const styles = {
     root: css`
         ${layout.container};
@@ -45,17 +46,30 @@ const styles = {
         align-items: flex-end;
         justify-content: flex-end;
 
-        & > div {
-            margin-left: 20px;
-        }
+        ${queryShit({
+            mobile: css`
+                flex-direction: column;
+                & > div {
+                    width: 100%;
+                }
+                & > div:first-child {
+                    margin-bottom: 20px;
+                }
+            `,
+            tablet: css`
+                flex-direction: row;
+                & > div {
+                    margin-left: 20px;
+                }
+                & > div:first-child {
+                    width: 200px;
+                }
 
-        & > div:first-child {
-            width: 200px;
-        }
-
-        & > div:last-child {
-            width: 200px;
-        }
+                & > div:last-child {
+                    width: 200px;
+                }
+            `,
+        })}
 
         margin-bottom: 40px;
     `,

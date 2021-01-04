@@ -11,21 +11,6 @@ import Items from './items';
 import { queryShit } from '../../components/useScreenType';
 
 const styles = {
-    root: css`
-        overflow-x: visible;
-        ${queryShit({
-            mobile: css`
-                max-height: 750px;
-            `,
-            tablet: css`
-                max-height: 1050px;
-            `,
-            desktop: css`
-                max-height: 1100px;
-            `,
-        })}
-        overflow-y: hidden;
-    `,
     titleContainer: css`
         ${layout.container};
         ${queryShit({
@@ -54,12 +39,6 @@ const UpcomingEventsContainer: FC<{
         threshold: 0,
     });
 
-    useEffect(() => {
-        // @ts-ignore
-        console.log(ref.current.getBoundingClientRect());
-        // @ts-ignore
-    }, [ref && ref.current]);
-
     return (
         <motion.div
             animate={toVariant(isLoaded && isVisible)}
@@ -72,7 +51,6 @@ const UpcomingEventsContainer: FC<{
                 },
             }}
             ref={ref}
-            css={styles.root}
             {...props}
         >
             <div css={styles.titleContainer}>

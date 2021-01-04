@@ -23,6 +23,7 @@ const styles = {
 
 interface BigLinksProps {
     links: ExternalLink[];
+    onClick?: any;
 }
 
 const BigLinks: FC<BigLinksProps> = (props) => (
@@ -45,6 +46,7 @@ const BigLinks: FC<BigLinksProps> = (props) => (
                     href={link.href}
                     css={styles.link}
                     size={'small'}
+                    onClick={props.onClick}
                 >
                     {link.label}
                 </TextLink>

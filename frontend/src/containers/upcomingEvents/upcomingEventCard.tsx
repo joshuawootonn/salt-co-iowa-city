@@ -14,7 +14,7 @@ const UpcomingEventCard: FC<UpcomingEvent> = (event) => {
                     opacity: 0,
                 },
             },
-
+            initial: 'exited',
             transition: { type: 'spring', duration: 1, bounce: 0 },
         },
         {

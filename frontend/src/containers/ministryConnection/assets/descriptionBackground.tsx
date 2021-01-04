@@ -16,15 +16,15 @@ const LeafBackground = () => (
                 ${queryShit({
                     mobile: css`
                         width: 200px;
-                        transform: translate3d(5%, -90%, 0) rotate(30deg);
+                        transform: translate3d(5%, -70%, 0) rotate(30deg);
                     `,
                     tablet: css`
                         width: 250px;
-                        transform: translate3d(5%, -90%, 0) rotate(30deg);
+                        transform: translate3d(5%, -70%, 0) rotate(30deg);
                     `,
                     desktop: css`
                         width: 300px;
-                        transform: translate3d(20%, -90%, 0) rotate(30deg);
+                        transform: translate3d(20%, -70%, 0) rotate(30deg);
                     `,
                 })}
             `}
@@ -40,7 +40,7 @@ const LeafBackground = () => (
                     `,
                     tablet: css`
                         width: 155px;
-                        transform: translate3d(530px, 10%, 0) rotate(119deg);
+                        transform: translate3d(530px, 0%, 0) rotate(119deg);
                     `,
                     desktop: css`
                         width: 300px;
@@ -63,15 +63,15 @@ const WorldBackground = () => (
                 ${queryShit({
                     mobile: css`
                         width: 250px;
-                        transform: translate3d(10%, -70%, 0) rotate(-30deg);
+                        transform: translate3d(10%, -60%, 0) rotate(-30deg);
                     `,
                     tablet: css`
                         width: 250px;
-                        transform: translate3d(10%, -70%, 0) rotate(-30deg);
+                        transform: translate3d(10%, -60%, 0) rotate(-30deg);
                     `,
                     desktop: css`
                         width: 350px;
-                        transform: translate3d(10%, -70%, 0) rotate(-30deg);
+                        transform: translate3d(10%, -60%, 0) rotate(-30deg);
                     `,
                 })}
             `}

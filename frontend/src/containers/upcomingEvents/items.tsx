@@ -10,13 +10,23 @@ import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 import useIntersect from '../../helpers/useIntersect';
 import { useFontLoader } from '../../context/fontLoader';
-import { motion, useAnimation } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { toVariant } from '../../helpers/animation';
 
 const styles = {
     main: css`
         width: 100vw;
         position: relative;
+
+        ${queryShit({
+            mobile: css`
+                max-height: 660px;
+            `,
+            tablet: css`
+                height: 1000px;
+            `,
+        })}
+        overflow: hidden;
     `,
 
     slickContainer: css`
@@ -133,7 +143,7 @@ const styles = {
     `,
 };
 
-const Item: FC<{ event: UpcomingEvent; log?: boolean }> = ({ event, log }) => {
+const Item: FC<{ event: UpcomingEvent }> = ({ event }) => {
     const isLoaded = useFontLoader();
     const ref = React.useRef(null);
     const { isVisible } = useIntersect(

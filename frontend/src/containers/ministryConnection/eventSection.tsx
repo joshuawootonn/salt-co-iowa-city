@@ -151,6 +151,7 @@ const EventSection: FC<MinistryConnection> = ({ title, acronym, ...props }) => {
                     },
                 },
             }}
+            initial={'exited'}
             animate={controls}
             css={[styles.root]}
             {...props}

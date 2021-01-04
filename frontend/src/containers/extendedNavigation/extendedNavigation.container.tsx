@@ -41,7 +41,11 @@ const ExtendedNavigationContainer: FC<ExtendedNavigationContainerProps> = ({
             ]}
             onClick={onClick}
         />
-        <BigLinks links={externalLinks} css={styles.bigLinks(type)} />
+        <BigLinks
+            onClick={onClick}
+            links={externalLinks}
+            css={styles.bigLinks(type)}
+        />
 
         <LinkedList
             css={styles.listTwo(type)}

@@ -9,7 +9,7 @@ const styles = {
     lastElement: css`
         ${queryShit({
             mobile: css`
-                margin-bottom: 400px;
+                margin-bottom: 300px;
             `,
             tablet: css`
                 margin-bottom: 450px;
