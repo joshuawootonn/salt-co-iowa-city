@@ -18,7 +18,7 @@ export const useUpcomingEventBlock = (): UpcomingEventBlock => {
                     items {
                         title
                         image {
-                            fluid(maxWidth: 800, quality: 100) {
+                            fluid(maxWidth: 900, quality: 95) {
                                 ...GatsbyContentfulFluid_withWebp_noBase64
                             }
                         }

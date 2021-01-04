@@ -77,7 +77,6 @@ const MinistryDescriptionCard: FC<MinistryDescriptionCardProps> = (props) => {
                 </Title>
             </div>
             <ImageController
-                log={true}
                 isOrchestrated={isOrchestrated}
                 css={styles.image}
                 images={props.images}

@@ -3,6 +3,7 @@ import { css } from 'styled-components/macro';
 import typography from '../../components/typography';
 import ReactSelect from 'react-select';
 import { motion } from 'framer-motion';
+import { lighten } from 'polished';
 
 const styles = {
     select: (baseClassName) => css`
@@ -18,23 +19,41 @@ const styles = {
                 border-radius: 0;
                 color: ${({ theme }) => theme.colors.blue.light};
                 cursor: pointer;
+                box-shadow: none;
+
+                .${baseClassName}__indicator {
+                    svg {
+                        path {
+                            fill: ${({ theme }) => theme.colors.blue.lightest};
+                        }
+                    }
+                }
+            }
+            .${baseClassName}__control--is-focused {
+                border: 2px solid ${({ theme }) => theme.colors.blue.medium};
+
+                .${baseClassName}__indicator {
+                    svg {
+                        path {
+                            fill: ${({ theme }) => theme.colors.blue.medium};
+                        }
+                    }
+                }
             }
             .${baseClassName}__placeholder {
                 ${typography.select};
                 color: ${({ theme }) => theme.colors.blue.light};
             }
-
             .${baseClassName}__value-container {
                 * {
                     ${typography.select};
                     color: ${({ theme }) => theme.colors.blue.light} !important;
                 }
             }
-
             .${baseClassName}__menu {
                 background: ${({ theme }) =>
                     theme.colors.backgroundTransparent};
-                border: 2px solid ${({ theme }) => theme.colors.blue.lightest};
+                border: 2px solid ${({ theme }) => theme.colors.blue.medium};
                 z-index: 10000 !important;
                 border-radius: 0;
 
@@ -54,6 +73,13 @@ const styles = {
                     }
                     .${baseClassName}__option:hover {
                         color: ${({ theme }) => theme.colors.blue.medium};
+                        background-color: ${({ theme }) =>
+                            lighten(0.1, theme.colors.backgroundTransparent)};
+                    }
+                    .${baseClassName}__option--is-focused {
+                        color: ${({ theme }) => theme.colors.blue.medium};
+                        background-color: ${({ theme }) =>
+                            lighten(0.1, theme.colors.backgroundTransparent)};
                     }
                 }
             }

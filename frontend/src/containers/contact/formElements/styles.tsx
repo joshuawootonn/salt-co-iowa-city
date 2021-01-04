@@ -2,6 +2,7 @@ import { css } from 'styled-components/macro';
 import typography from '../../../components/typography';
 import { queryShit } from '../../../components/useScreenType';
 import { addAlpha } from '../../../helpers/color';
+import { lighten } from 'polished';
 
 export const inputBackgroundTransparency = 0.5;
 
@@ -73,12 +74,31 @@ export default {
                 border-radius: 0;
                 color: ${({ theme }) => theme.colors.blue.light};
                 cursor: pointer;
+                box-shadow: none;
+
+                .${baseClassName}__indicator {
+                    svg {
+                        path {
+                            fill: ${({ theme }) => theme.colors.blue.lightest};
+                        }
+                    }
+                }
+            }
+            .${baseClassName}__control--is-focused {
+                border: 2px solid ${({ theme }) => theme.colors.blue.medium};
+
+                .${baseClassName}__indicator {
+                    svg {
+                        path {
+                            fill: ${({ theme }) => theme.colors.blue.medium};
+                        }
+                    }
+                }
             }
             .${baseClassName}__placeholder {
                 ${typography.select};
                 color: ${({ theme }) => theme.colors.blue.light};
             }
-
             .${baseClassName}__value-container {
                 * {
                     ${typography.select};
@@ -89,7 +109,7 @@ export default {
             .${baseClassName}__menu {
                 background: ${({ theme }) =>
                     addAlpha(theme.colors.background, 1)};
-                border: 2px solid ${({ theme }) => theme.colors.blue.lightest};
+                border: 2px solid ${({ theme }) => theme.colors.blue.medium};
                 z-index: 10000 !important;
                 border-radius: 0;
 
@@ -112,6 +132,13 @@ export default {
                     }
                     .${baseClassName}__option:hover {
                         color: ${({ theme }) => theme.colors.blue.medium};
+                        background-color: ${({ theme }) =>
+                            lighten(0.1, theme.colors.backgroundTransparent)};
+                    }
+                    .${baseClassName}__option--is-focused {
+                        color: ${({ theme }) => theme.colors.blue.medium};
+                        background-color: ${({ theme }) =>
+                            lighten(0.1, theme.colors.backgroundTransparent)};
                     }
                 }
             }

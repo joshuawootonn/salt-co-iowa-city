@@ -83,6 +83,7 @@ const RichText = (props) => {
             css={css`
                 overflow: hidden;
             `}
+            {...props}
         >
             {documentToReactComponents(props.json, {
                 renderNode: {

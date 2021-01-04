@@ -30,9 +30,6 @@ export const useConnectionGroupBlock = (): ConnectionGroupBlock => {
                     emptyTitle {
                         json
                     }
-                    emptyText {
-                        emptyText
-                    }
                 }
             }
         }

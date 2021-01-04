@@ -6,9 +6,6 @@ import useIntersect from '../../helpers/useIntersect';
 import { toVariant } from '../../helpers/animation';
 import { motion } from 'framer-motion';
 import Root from './root';
-import useScreenType from '../useScreenType';
-import { useWindowSize } from 'react-use';
-
 const Content = styled.div`
     width: 100%;
     height: 100%;
@@ -82,22 +79,24 @@ const ImageController: FC<ImageProps> = (props) => {
         }, maxDuration);
     };
 
+    const handleClick = (e: any) => {
+        e.preventDefault();
+        e.stopPropagation();
+        props.images.length > 1
+            ? switchImage()
+            : props.onClick && props.onClick();
+    };
+
     return (
-        <Root
-            {...props}
-            type={getRootType(props)}
-            onClick={props.images.length > 1 ? switchImage : props.onClick}
-        >
+        <Root {...props} type={getRootType(props)} onClick={handleClick}>
             <Content ref={ref}>
                 <Cover
                     animate={
-                        isCurrLoaded
-                            ? props.isOrchestrated
+                        props.isOrchestrated
+                            ? isCurrLoaded
                                 ? undefined
-                                : toVariant(
-                                      !isCovered && isVisible && isCurrLoaded
-                                  )
-                            : toVariant(false)
+                                : toVariant(false)
+                            : toVariant(!isCovered && isVisible && isCurrLoaded)
                     }
                     initial={toVariant(false)}
                     variants={{

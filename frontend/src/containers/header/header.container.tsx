@@ -9,7 +9,7 @@ import { FooterBlock } from '../../models/footer';
 import { toVariant } from '../../helpers/animation';
 import ExtendedNavigationContainer from '../extendedNavigation';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import ReactFocusLock from 'react-focus-lock';
 
 const styles = {
@@ -100,8 +100,8 @@ const HeaderContainer: FC<FooterBlock> = (props) => {
                     <NonBoiger />
                 )}
             </div>
-            {isBoiger && (
-                <ReactFocusLock group={'main'} disabled={!isHeaderOpen}>
+            <AnimatePresence exitBeforeEnter={true}>
+                {isBoiger && isHeaderOpen && (
                     <Root
                         transition={{
                             ease: [0.26, 0.49, 0.18, 0.88],
@@ -109,6 +109,7 @@ const HeaderContainer: FC<FooterBlock> = (props) => {
                         }}
                         initial={'exited'}
                         animate={toVariant(isHeaderOpen)}
+                        exit={'exited'}
                         variants={variants}
                     >
                         <ExtendedNavigationContainer
@@ -117,8 +118,8 @@ const HeaderContainer: FC<FooterBlock> = (props) => {
                             type={'mobileNav'}
                         />
                     </Root>
-                </ReactFocusLock>
-            )}
+                )}
+            </AnimatePresence>
         </>
     );
 };

@@ -40,3 +40,7 @@ a {
 .lock-scroll {
     overflow-y: hidden;
 }
+
+*::selection {
+    background-color: #AFBCE9;
+}

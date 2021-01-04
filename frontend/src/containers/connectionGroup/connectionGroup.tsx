@@ -9,7 +9,6 @@ import chunk from 'lodash/chunk';
 
 const Root = styled(motion.div)`
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
     margin-bottom: 40px;
 
     ${queryShit({
@@ -24,7 +23,7 @@ const Root = styled(motion.div)`
             justify-content: center;
             column-gap: 40px;
 
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(2, minmax(300px, 1fr));
             grid-template-rows: repeat(1, minmax(120px, max-content));
         `,
         desktop: css`

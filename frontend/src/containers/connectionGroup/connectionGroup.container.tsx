@@ -37,6 +37,10 @@ const styles = {
     title: css`
         white-space: normal;
     `,
+    emptyTitle: css`
+        width: calc(100% - 40px);
+    `,
+
     body: css`
         ${typography.bigText};
     `,
@@ -74,6 +78,10 @@ const styles = {
         margin-bottom: 40px;
     `,
     emptyContainer: css`
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
         min-height: 400px;
     `,
 };
@@ -155,10 +163,7 @@ const ConnectionGroupContainer: FC<{
             </div>
             {filteredGroups.length === 0 ? (
                 <div css={styles.emptyContainer}>
-                    <RichText json={emptyTitle.json} />
-                    <Text css={styles.body} elementType={'paragraph'}>
-                        {emptyText.emptyText}
-                    </Text>
+                    <RichText css={styles.emptyTitle} json={emptyTitle.json} />
                 </div>
             ) : (
                 <ConnectionGroup groups={filteredGroups} />

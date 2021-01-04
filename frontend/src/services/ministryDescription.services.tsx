@@ -37,7 +37,7 @@ export const useMinistryDescriptionBlock = (): MinistryDescriptionBlock => {
                             text
                         }
                         images {
-                            fluid(maxWidth: 1200, quality: 100) {
+                            fluid(maxWidth: 1140, quality: 95) {
                                 ...GatsbyContentfulFluid_withWebp
                             }
                         }
