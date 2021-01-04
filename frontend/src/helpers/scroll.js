@@ -11,7 +11,7 @@ const defaultOptions = {
 };
 
 export const forceScrollToTitle = (options) => {
-    console.log('asdf');
+    // console.log('asdf');
     if (typeof window !== `undefined` && document.location.hash !== '') {
         scroller.scrollTo(document.location.hash, {
             ...defaultOptions,

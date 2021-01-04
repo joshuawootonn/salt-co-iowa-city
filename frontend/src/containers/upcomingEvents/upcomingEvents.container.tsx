@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { css } from 'styled-components/macro';
 import layout from '../../components/layout';
 import { UpcomingEventBlock } from '../../models/upcomingEvent';
@@ -13,6 +13,18 @@ import { queryShit } from '../../components/useScreenType';
 const styles = {
     root: css`
         overflow-x: visible;
+        ${queryShit({
+            mobile: css`
+                max-height: 750px;
+            `,
+            tablet: css`
+                max-height: 1050px;
+            `,
+            desktop: css`
+                max-height: 1100px;
+            `,
+        })}
+        overflow-y: hidden;
     `,
     titleContainer: css`
         ${layout.container};
@@ -41,6 +53,12 @@ const UpcomingEventsContainer: FC<{
     const { isVisible } = useIntersect(ref, {
         threshold: 0,
     });
+
+    useEffect(() => {
+        // @ts-ignore
+        console.log(ref.current.getBoundingClientRect());
+        // @ts-ignore
+    }, [ref && ref.current]);
 
     return (
         <motion.div

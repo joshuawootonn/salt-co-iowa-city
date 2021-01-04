@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, useRef, useState } from 'react';
 import GatsbyImage, { FluidObject } from 'gatsby-image';
 import styled, { css } from 'styled-components/macro';
 import { lighten } from 'polished';
@@ -63,6 +63,7 @@ const getAnimationDuration = (width: any) => {
 
 const ImageController: FC<ImageProps> = (props) => {
     const [curr, setCurr] = useState(0);
+    const [isCurrLoaded, setIsCurrLoaded] = useState(false);
     const transitionLock = useRef(false);
     const [isCovered, setIsCovered] = useState(false);
 
@@ -80,6 +81,7 @@ const ImageController: FC<ImageProps> = (props) => {
 
     const transitionOut = () => {
         setIsCovered(false);
+        setIsCurrLoaded(true);
         setTimeout(() => {
             transitionLock.current = false;
         }, maxDuration);
@@ -88,6 +90,7 @@ const ImageController: FC<ImageProps> = (props) => {
     const switchImage = async () => {
         if (transitionLock.current) return;
         transitionLock.current = true;
+        setIsCurrLoaded(false);
         setIsCovered(true);
         setTimeout(() => {
             curr === props.images.length - 1 ? setCurr(0) : setCurr(curr + 1);
@@ -103,9 +106,9 @@ const ImageController: FC<ImageProps> = (props) => {
             <Content ref={ref}>
                 <Cover
                     animate={
-                        props.isOrchestrated
+                        props.isOrchestrated && isCurrLoaded
                             ? undefined
-                            : toVariant(!isCovered && isVisible)
+                            : toVariant(!isCovered && isVisible && isCurrLoaded)
                     }
                     initial={toVariant(false)}
                     variants={{

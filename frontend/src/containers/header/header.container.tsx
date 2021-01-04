@@ -28,7 +28,7 @@ const styles = {
         ${queryShit({
             mobile: css`
                 margin-top: 25px;
-                padding: 0 25px;
+                padding: 0 15px;
             `,
             tablet: css`
                 margin-top: 25px;
