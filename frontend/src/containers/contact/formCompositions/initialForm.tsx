@@ -68,7 +68,7 @@ const InitialForm: FC<{
                     <Field
                         component={SelectTo}
                         name="to"
-                        placeholder="Who you want to contact"
+                        placeholder="Who do you want to contact?"
                         options={contactOptions}
                     />
                     <Field name="name" component={Input} placeholder="Name" />

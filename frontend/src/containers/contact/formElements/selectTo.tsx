@@ -18,6 +18,7 @@ const SelectTo: FC<FieldProps<any> & SelectProps> = (props) => {
         <ValidationWrapper {...props} css={styles.select(className) as any}>
             <AnimationWrapper>
                 <ReactSelect
+                    isSearchable={false}
                     className={className}
                     classNamePrefix={className}
                     {...props}
