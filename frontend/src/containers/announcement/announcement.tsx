@@ -1,12 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import AnnouncementLink from './announcementLink';
 import styled, { css } from 'styled-components/macro';
 import { Announcement, AnnouncementBlock } from '../../models/announcement';
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 import useScreenType, { queryShit } from '../../components/useScreenType';
 import useIntersect from '../../helpers/useIntersect';
 import { useFontLoader } from '../../context/fontLoader';
-import { toVariant } from '../../helpers/animation';
 import chunk from 'lodash/chunk';
 
 const Root = styled(motion.div)`
@@ -62,12 +61,21 @@ const Row: FC<{ announcements: Announcement[] }> = ({ announcements }) => {
     const { isVisible } = useIntersect(ref, {
         threshold: 0.3,
     });
-    const animate = isLoaded && isVisible;
+    const screenType = useScreenType();
+
+    const controls = useAnimation();
+
+    useEffect(() => {
+        if (isVisible && isLoaded) {
+            controls.start('entered');
+        }
+    }, [isVisible, isLoaded, screenType]);
 
     return (
         <Root
             ref={ref}
-            animate={toVariant(animate)}
+            animate={controls}
+            initial={'exited'}
             variants={{
                 entered: {
                     transition: {

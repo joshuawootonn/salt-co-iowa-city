@@ -55,7 +55,7 @@ const ImageController: FC<ImageProps> = (props) => {
 
     const ref = React.useRef(null);
     const { isVisible } = useIntersect(ref, {
-        threshold: 0.0,
+        threshold: 0.4,
         ...props.intersectOption,
     });
 
@@ -91,13 +91,7 @@ const ImageController: FC<ImageProps> = (props) => {
         <Root {...props} type={getRootType(props)} onClick={handleClick}>
             <Content ref={ref}>
                 <Cover
-                    animate={
-                        props.isOrchestrated
-                            ? isCurrLoaded
-                                ? undefined
-                                : toVariant(false)
-                            : toVariant(!isCovered && isVisible && isCurrLoaded)
-                    }
+                    animate={toVariant(!isCovered && isVisible && isCurrLoaded)}
                     initial={toVariant(false)}
                     variants={{
                         exited: {

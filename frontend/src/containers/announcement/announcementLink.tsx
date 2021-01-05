@@ -66,12 +66,12 @@ const AnnouncementLink: FC<AnnouncementLinkProps> = ({
 }) => {
     const mobileAnimation = {
         initial: {
-            x: -20,
+            x: 0,
             y: 0,
         },
         variants: {
             entered: {
-                x: -10,
+                x: 10,
                 y: -10,
             },
         },
@@ -83,8 +83,8 @@ const AnnouncementLink: FC<AnnouncementLinkProps> = ({
         },
         variants: {
             entered: {
-                x: -20,
-                y: -20,
+                x: -15,
+                y: -15,
             },
         },
     };

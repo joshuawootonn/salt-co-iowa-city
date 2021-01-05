@@ -1,11 +1,10 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { Staff, StaffBlock } from '../../models/staff';
 import useScreenType, { queryShit } from '../../components/useScreenType';
 import chunk from 'lodash/chunk';
 import { useFontLoader } from '../../context/fontLoader';
 import useIntersect from '../../helpers/useIntersect';
-import { toVariant } from '../../helpers/animation';
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 import styled from 'styled-components';
 import { css } from 'styled-components/macro';
 import StaffCard from './staffCard';
@@ -59,12 +58,19 @@ const Row: FC<{ staff: Staff[] }> = ({ staff }) => {
     const { isVisible } = useIntersect(ref, {
         threshold: 0.2,
     });
-    const animate = isLoaded && isVisible;
+    const controls = useAnimation();
+    const screenType = useScreenType();
+
+    useEffect(() => {
+        if (isVisible && isLoaded) {
+            controls.start('entered');
+        }
+    }, [isVisible, isLoaded, screenType]);
 
     return (
         <Root
             ref={ref}
-            animate={toVariant(animate)}
+            animate={controls}
             variants={{
                 entered: {
                     transition: {

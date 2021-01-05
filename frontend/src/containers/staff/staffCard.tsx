@@ -6,6 +6,7 @@ import { mapReferenceToLink } from '../../helpers/link';
 import TextLink from '../../components/textLink';
 import { motion } from 'framer-motion';
 import ImageController from '../../components/image';
+import { useAnimationProp } from '../../helpers/animation';
 
 const styles = {
     root: css`
@@ -42,47 +43,69 @@ const styles = {
     `,
 };
 
-const animationProps = {
-    initial: 'exited',
-    variants: {
-        entered: { x: 10, opacity: 1, y: -77 },
-        exited: { x: -10, opacity: 0, y: -57 },
-    },
-    transition: { type: 'spring', duration: 1, bounce: 0 },
-};
-
 const TextCard = styled(motion.div)`
     background-color: ${({ theme }) => theme.colors.backgroundTransparent};
     transform: translate(20px, -77px);
+    z-index: 10;
 `;
 
-const StaffCard: FC<Staff> = (props) => (
-    <div css={styles.root}>
-        <ImageController
-            isOrchestrated={true}
-            images={[props.image]}
-            css={styles.image}
-        />
-        <TextCard {...animationProps}>
-            <div css={styles.textBlock1}>
-                <h4 css={typography.card.title}>
-                    {props.firstName} {props.lastName}
-                </h4>
-                <p css={typography.card.text}>{props.about}</p>
-            </div>
-            <div css={styles.textBlock2}>
-                <span css={typography.card.smallText}>{props.position}</span>
-                <TextLink
-                    destinationType="internal"
-                    to={mapReferenceToLink(props)}
-                    type={'card'}
-                >
-                    {props.connectionLinkText}
-                </TextLink>
-            </div>
-        </TextCard>
-    </div>
-);
+const StaffCard: FC<Staff> = (props) => {
+    const tabletAnimation = {
+        variants: {
+            entered: { x: 10, opacity: 1, y: -77 },
+            exited: { x: -10, opacity: 0, y: -57 },
+        },
+    };
+
+    const mobileAnimation = {
+        variants: {
+            entered: { x: 0, opacity: 1, y: -77 },
+            exited: { x: -20, opacity: 0, y: -57 },
+        },
+    };
+
+    const animationProps = useAnimationProp(
+        {
+            initial: 'exited',
+            transition: { type: 'spring', duration: 1, bounce: 0 },
+        },
+        {
+            mobile: mobileAnimation,
+            tablet: tabletAnimation,
+            desktop: tabletAnimation,
+        }
+    );
+
+    return (
+        <div css={styles.root}>
+            <ImageController
+                isOrchestrated={true}
+                images={[props.image]}
+                css={styles.image}
+            />
+            <TextCard {...animationProps}>
+                <div css={styles.textBlock1}>
+                    <h4 css={typography.card.title}>
+                        {props.firstName} {props.lastName}
+                    </h4>
+                    <p css={typography.card.text}>{props.about}</p>
+                </div>
+                <div css={styles.textBlock2}>
+                    <span css={typography.card.smallText}>
+                        {props.position}
+                    </span>
+                    <TextLink
+                        destinationType="internal"
+                        to={mapReferenceToLink(props)}
+                        type={'card'}
+                    >
+                        {props.connectionLinkText}
+                    </TextLink>
+                </div>
+            </TextCard>
+        </div>
+    );
+};
 
 export default StaffCard;
 
