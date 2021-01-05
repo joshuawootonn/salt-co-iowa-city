@@ -8,25 +8,25 @@ const styles = {
     title: css`
         ${typography.title1};
         color: ${({ theme }) => theme.colors.blue.medium};
-        opacity: 40%;
+        opacity: 50%;
         width: 100%;
 
         ${queryShit({
             mobile: css`
                 width: 100%;
-                font-size: 50px;
+                font-size: 40px;
                 white-space: normal;
                 text-align: center;
             `,
             tablet: css`
                 width: 100%;
-                font-size: 100px;
+                font-size: 80px;
                 white-space: normal;
                 text-align: center;
             `,
             desktop: css`
                 width: 100%;
-                font-size: 158px;
+                font-size: 130px;
                 white-space: normal;
                 text-align: center;
             `,
