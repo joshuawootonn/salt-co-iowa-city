@@ -16,6 +16,7 @@ export const contactBlockQuery = gql`
                         email
                         position
                         __typename
+                        about
                     }
                 }
             }

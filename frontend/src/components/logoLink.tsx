@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styled, { css } from 'styled-components/macro';
 import Salt from '../svgs/salt.svg';
-import { Link as GatsbyLink } from 'gatsby';
+import GatsbyLink from 'gatsby-link';
 
 const styles = {
     logo: css`
@@ -23,7 +23,7 @@ const Link = styled((props) => <GatsbyLink {...props} />)`
     text-wrap: none;
 `;
 
-const LogoLink: FC<TextLinkProps> = ({ children, ...props }) => (
+const LogoLink: FC<TextLinkProps> = (props) => (
     <Link {...props}>
         <Salt css={styles.logo} />
     </Link>

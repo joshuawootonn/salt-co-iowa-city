@@ -28,4 +28,25 @@ const FontLoadedProvider = ({ element }) => {
     );
 };
 
+export const FontLoadedProviderComponent = ({ children }) => {
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    useEffect(() => {
+        document.fonts.ready.then(function () {
+            if (
+                document.fonts.check('1em Montserrat') &&
+                document.fonts.check('1em MonumentExtended')
+            ) {
+                setIsLoaded(true);
+            }
+        });
+    }, []);
+
+    return (
+        <FontLoadedContext.Provider value={{ isLoaded }}>
+            {children}
+        </FontLoadedContext.Provider>
+    );
+};
+
 export default FontLoadedProvider;

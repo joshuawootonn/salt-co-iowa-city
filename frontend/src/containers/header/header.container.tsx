@@ -4,13 +4,11 @@ import LogoLink from '../../components/logoLink';
 import useScreenType, { queryShit } from '../../components/useScreenType';
 import BoigerButton from './boigerButton';
 import NonBoiger from './nonboiger';
-import IconAction from '../../components/iconAction';
 import { FooterBlock } from '../../models/footer';
 import { toVariant } from '../../helpers/animation';
 import ExtendedNavigationContainer from '../extendedNavigation';
 import styled from 'styled-components';
 import { AnimatePresence, motion } from 'framer-motion';
-import ReactFocusLock from 'react-focus-lock';
 
 const styles = {
     root: css`

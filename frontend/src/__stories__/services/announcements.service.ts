@@ -5,10 +5,10 @@ import { getApolloClient } from './client';
 
 export const announcementBlockQuery = gql`
     query blockAnnouncement {
-        blockAnnouncementsCollection(limit: 1) {
+        blockAnnouncementsCollection(limit: 1, preview: true) {
             items {
                 title
-                linksCollection(limit: 3) {
+                linksCollection {
                     items {
                         image {
                             url
@@ -30,7 +30,7 @@ export const announcementRawTransform = (raw: any): Announcement => ({
 export const announcementBlockRawTransform = (raw: any): AnnouncementBlock => {
     const block = raw.blockAnnouncementsCollection.items[0];
     return {
-        root: block.title,
+        title: block.title,
         announcements: block.linksCollection.items.map(
             announcementRawTransform
         ),

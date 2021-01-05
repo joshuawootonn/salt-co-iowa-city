@@ -16,6 +16,10 @@ export const connectionGroupBlockQuery = gql`
                         dateTime
                     }
                 }
+                __typename
+                emptyTitle {
+                    json
+                }
             }
         }
     }
@@ -33,8 +37,10 @@ export const getConnectionGroupBlock = async (): Promise<
     const rawBlock = rawQueryResult.blockConnectionGroupsCollection.items[0];
 
     return {
-        root: rawBlock.title,
+        title: rawBlock.title,
         description: rawBlock.description,
         groups: rawBlock.itemsCollection.items,
+        __typename: rawBlock.__typename,
+        emptyTitle: rawBlock.emptyTitle,
     };
 };

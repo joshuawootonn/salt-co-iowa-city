@@ -78,7 +78,7 @@ const MarqueTitle = (props) => {
     const isLoaded = useFontLoader();
     const ref = React.useRef(null);
     // Note due to the animation and possible absolute positioned elements this is not 1.0 threshold
-    const { isVisible, intersection } = useIntersect(ref, { threshold: 0.6 });
+    const { isVisible } = useIntersect(ref, { threshold: 0.6 });
 
     return (
         <BannerRoot

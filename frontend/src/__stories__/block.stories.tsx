@@ -26,62 +26,84 @@ import { getFooterBlock } from './services/footer.service';
 storiesOf('Block', module)
     .add('Announcements', () => (
         <ServiceStory
-            service={getAnnouncementBlock}
+            services={[
+                {
+                    propName: 'announcementBlock',
+                    service: getAnnouncementBlock,
+                },
+            ]}
             component={AnnouncementContainer}
         />
     ))
     .add('Connection Groups', () => (
         <ServiceStory
-            service={getConnectionGroupBlock}
+            services={[
+                {
+                    propName: 'connectionGroupBlock',
+                    service: getConnectionGroupBlock,
+                },
+            ]}
             component={ConnectionGroupContainer}
         />
-    ))
-    .add('Contact', () => (
-        <ServiceStory service={getContactBlock} component={ContactContainer} />
-    ))
-    .add('Footer', () => (
-        <ServiceStory
-            service={getFooterBlock}
-            component={ExtendedNavigationContainer}
-        />
-    ))
-    .add('How To Connect', () => (
-        <ServiceStory
-            service={getHowToConnectBlock}
-            component={(props: any) => (
-                <IntroContainer {...props} type={'HowToConnect'} />
-            )}
-        />
-    ))
-    .add('Ministry Connections', () => (
-        <ServiceStory
-            service={getMinistryConnectionsBlock}
-            component={MinistryConnectionContainer}
-        />
-    ))
-    .add('Ministry Descriptions', () => (
-        <ServiceStory
-            service={getMinistryDescriptionBlock}
-            component={MinistryDescriptionContainer}
-        />
-    ))
-    .add('Staff', () => (
-        <ServiceStory service={getStaffBlock} component={StaffContainer} />
-    ))
-    .add('Upcoming Events', () => (
-        <ServiceStory
-            service={getUpcomingEventsBlock}
-            component={UpcomingEventsContainer}
-        />
-    ))
-    .add('Welcome', () => (
-        <ServiceStory service={getWelcomeBlock} component={WelcomeContainer} />
-    ))
-    .add('Who We Are', () => (
-        <ServiceStory
-            service={getWhoWeAreBlock}
-            component={(props: any) => (
-                <IntroContainer {...props} type={'WhoWeAre'} />
-            )}
-        />
     ));
+// .add('Contact', () => (
+//     <ServiceStory
+//         services={[
+//             {
+//                 propName: 'contactBlock',
+//                 service: getContactBlock,
+//             },
+//             {
+//                 propName: 'connectionGroupBlock',
+//                 service: getConnectionGroupBlock,
+//             },
+//         ]}
+//         component={ContactContainer}
+//     />
+// ));
+// .add('Footer', () => (
+//     <ServiceStory
+//         service={getFooterBlock}
+//         component={ExtendedNavigationContainer}
+//     />
+// ))
+// .add('How To Connect', () => (
+//     <ServiceStory
+//         service={getHowToConnectBlock}
+//         component={(props: any) => (
+//             <IntroContainer {...props} type={'HowToConnect'} />
+//         )}
+//     />
+// ))
+// .add('Ministry Connections', () => (
+//     <ServiceStory
+//         service={getMinistryConnectionsBlock}
+//         component={MinistryConnectionContainer}
+//     />
+// ))
+// .add('Ministry Descriptions', () => (
+//     <ServiceStory
+//         service={getMinistryDescriptionBlock}
+//         component={MinistryDescriptionContainer}
+//     />
+// ))
+// .add('Staff', () => (
+//     <ServiceStory service={getStaffBlock} component={StaffContainer} />
+// ))
+// .add('Upcoming Events', () => (
+//     <ServiceStory
+//         service={getUpcomingEventsBlock}
+//         component={UpcomingEventsContainer}
+//     />
+// ))
+// .add('Welcome', () => (
+//     <ServiceStory service={getWelcomeBlock} component={WelcomeContainer} />
+// ))
+// .add('Who We Are', () => (
+//     <ServiceStory
+//         service={getWhoWeAreBlock}
+//         component={(props: any) => (
+//             <IntroContainer {...props} type={'WhoWeAre'} />
+//         )}
+//     />
+// ));

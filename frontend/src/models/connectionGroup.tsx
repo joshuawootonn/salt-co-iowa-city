@@ -16,8 +16,5 @@ export interface ConnectionGroupBlock {
     description: string;
     groups: ConnectionGroup[];
     emptyTitle: RichText;
-    emptyText: {
-        emptyText: string;
-    };
     __typename: 'ContentfulBlockConnectionGroups';
 }
