@@ -9,3 +9,14 @@ exports.onCreateWebpackConfig = ({ stage, actions }) => {
         });
     }
 };
+
+exports.createSchemaCustomization = ({ actions }) => {
+    const { createTypes } = actions;
+    const typeDefs = `
+    type ContentfulMinistryConnection implements Node
+    @childOf(types: ["ContentfulMinistryConnectionConnection"]) {
+        nextEvent: ContentfulEvent
+    }
+    `;
+    createTypes(typeDefs);
+};
