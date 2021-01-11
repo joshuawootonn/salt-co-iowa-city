@@ -39,6 +39,10 @@ const UpcomingEventsContainer: FC<{
         threshold: 0,
     });
 
+    if (upcomingEventBlock.events.length === 0) {
+        return null;
+    }
+
     return (
         <motion.div
             animate={toVariant(isLoaded && isVisible)}

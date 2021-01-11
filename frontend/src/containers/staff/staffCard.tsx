@@ -41,6 +41,14 @@ const styles = {
         align-items: center;
         padding: 15px;
     `,
+    titleMarginModifier: (isMargin: boolean) =>
+        isMargin
+            ? css`
+                  margin-bottom: auto;
+              `
+            : css`
+                  margin-bottom: 0 !important;
+              `,
 };
 
 const TextCard = styled(motion.div)`
@@ -76,6 +84,8 @@ const StaffCard: FC<Staff> = (props) => {
         }
     );
 
+    const isAboutEmpty = !props.about.replace(/\s/g, '').length;
+
     return (
         <div css={styles.root}>
             <ImageController
@@ -85,10 +95,17 @@ const StaffCard: FC<Staff> = (props) => {
             />
             <TextCard {...animationProps}>
                 <div css={styles.textBlock1}>
-                    <h4 css={typography.card.title}>
+                    <h4
+                        css={[
+                            typography.card.title,
+                            styles.titleMarginModifier(!isAboutEmpty),
+                        ]}
+                    >
                         {props.firstName} {props.lastName}
                     </h4>
-                    <p css={typography.card.text}>{props.about}</p>
+                    {!isAboutEmpty && (
+                        <p css={typography.card.text}>{props.about}</p>
+                    )}
                 </div>
                 <div css={styles.textBlock2}>
                     <span css={typography.card.smallText}>

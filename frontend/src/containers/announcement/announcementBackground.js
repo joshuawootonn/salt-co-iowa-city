@@ -5,7 +5,7 @@ import { queryShit } from '../../components/useScreenType';
 
 const getHeight = (height, boundingHeight, extraRows = 2) => {
     return Math.floor(
-        (Math.floor(boundingHeight / height) + extraRows) * height
+        (Math.ceil(boundingHeight / height) + extraRows) * height
     );
 };
 
@@ -27,7 +27,7 @@ const styles = {
                 transform: translate3d(0, -${height - 20}px, 0);
             `,
             tablet: css`
-                height: ${getHeight(height, boundingHeight, 3)}px;
+                height: ${getHeight(height, boundingHeight)}px;
 
                 transform: translate3d(0, -${height}px, 0);
             `,

@@ -3,7 +3,7 @@ import { Staff, StaffBlock } from '../models/staff';
 
 export const staffGatsbyTransform = (i: any): Staff => ({
     ...i,
-    about: i.about.about,
+    about: i.about && i.about.about,
 });
 
 export const useStaffBlock = (): StaffBlock => {

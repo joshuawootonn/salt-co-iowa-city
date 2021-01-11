@@ -11,18 +11,37 @@ import { useMinistryConnectionBlock } from '../services/ministryConnection.servi
 import Page from '../components/page';
 import SeoComponent from '../components/seo';
 import { useTitleScoller } from '../helpers/scroll';
+import { queryShit } from '../components/useScreenType';
 
 const styles = {
     intro: css`
         margin-bottom: 150px;
     `,
     upcomingEvents: css`
-        margin-bottom: 0;
+        ${queryShit({
+            mobile: css`
+                margin-bottom: 100px;
+            `,
+            tablet: css`
+                margin-bottom: 100px;
+            `,
+            desktop: css`
+                margin-bottom: 150px;
+            `,
+        })}
     `,
     connectionGroup: css`
-        margin-bottom: 250px;
-    `,
-    ministryConnections: css`
+        ${queryShit({
+            mobile: css`
+                margin-bottom: 150px;
+            `,
+            tablet: css`
+                margin-bottom: 175px;
+            `,
+            desktop: css`
+                margin-bottom: 250px;
+            `,
+        })}
         margin-bottom: 250px;
     `,
 };
@@ -58,7 +77,6 @@ const HowToConnect: FC = () => {
 
             <MinistryConnectionContainer
                 ministryConnectionBlock={ministryConnectionsBlock}
-                css={styles.ministryConnections}
             />
         </Page>
     );

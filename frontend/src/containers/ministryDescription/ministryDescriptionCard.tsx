@@ -50,8 +50,16 @@ const MinistryDescriptionCard: FC<MinistryDescriptionCardProps> = (props) => {
     const { isVisible } = useIntersect(ref, {
         threshold: 0.5,
     });
+    const screenType = useScreenType();
+    const controls = useAnimation();
     const animate = isLoaded && isVisible;
     const isOrchestrated = useOrchestration(animate, 2000);
+
+    useEffect(() => {
+        if (animate) {
+            controls.start('entered');
+        }
+    }, [screenType, animate]);
 
     return (
         <motion.div
@@ -64,7 +72,7 @@ const MinistryDescriptionCard: FC<MinistryDescriptionCardProps> = (props) => {
                     },
                 },
             }}
-            animate={toVariant(animate)}
+            animate={controls}
             css={styles.root}
         >
             <div css={styles.titleContainer}>

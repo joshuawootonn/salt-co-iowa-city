@@ -8,7 +8,7 @@ import { Title } from '../../components/title';
 import useIntersect from '../../helpers/useIntersect';
 import { useFontLoader } from '../../context/fontLoader';
 import { toVariant } from '../../helpers/animation';
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 import useScreenType, { queryShit } from '../../components/useScreenType';
 import Staff from './staff';
 
@@ -68,9 +68,16 @@ const StaffContainer: FC<{ staffBlock: StaffBlock }> = ({
         }
     }, [screenType]);
 
+    const controls = useAnimation();
+    useEffect(() => {
+        if (isVisible && isLoaded) {
+            controls.start('entered');
+        }
+    }, [screenType, isLoaded, isVisible]);
+
     return (
         <motion.div
-            animate={toVariant(isLoaded && isVisible)}
+            animate={controls}
             variants={{
                 entered: {
                     transition: {

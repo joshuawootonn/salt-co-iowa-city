@@ -52,17 +52,22 @@ const styles = {
     logo: css`
         ${queryShit({
             mobile: css`
-                height: 32px;
+                svg {
+                    height: 32px;
+                }
             `,
             tablet: css`
-                height: 85px;
+                svg {
+                    height: 85px;
+                }
             `,
             desktop: css`
-                height: 130px;
                 position: absolute;
                 top: 50%;
-                left: 40%;
-                transform: translate(-50%, -50%) rotate(-90deg);
+                left: 50%;
+                transform-origin: center;
+                transform: translate(calc(-1 * (50% + 20px)), -50%)
+                    rotate(-90deg);
             `,
         })};
     `,

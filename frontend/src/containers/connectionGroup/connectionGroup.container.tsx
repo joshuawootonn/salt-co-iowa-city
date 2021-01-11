@@ -12,7 +12,7 @@ import { DayInput, dayOptions, GenderInput, genderOptions } from './inputs';
 import dayjs from 'dayjs';
 import RichText from '../../components/richText';
 import ConnectionGroup from './connectionGroup';
-import { queryShit } from '../../components/useScreenType';
+import useScreenType, { queryShit } from '../../components/useScreenType';
 const styles = {
     root: css`
         ${layout.container};
@@ -97,6 +97,7 @@ const ConnectionGroupContainer: FC<{
     const { isVisible } = useIntersect(ref, {
         threshold: 0,
     });
+    const screenType = useScreenType();
 
     const controls = useAnimation();
 
@@ -133,7 +134,7 @@ const ConnectionGroupContainer: FC<{
         } else {
             controls.start('exited');
         }
-    }, [isVisible, isLoaded, JSON.stringify(filteredGroups)]);
+    }, [isVisible, isLoaded, screenType, JSON.stringify(filteredGroups)]);
 
     return (
         <motion.div

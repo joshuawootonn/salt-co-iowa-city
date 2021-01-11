@@ -9,13 +9,13 @@ const styles = {
     lastElement: css`
         ${queryShit({
             mobile: css`
-                margin-bottom: 300px;
+                margin-bottom: 150px;
             `,
             tablet: css`
-                margin-bottom: 450px;
+                margin-bottom: 150px;
             `,
             desktop: css`
-                margin-bottom: 500px;
+                margin-bottom: 300px;
             `,
         })}
     `,
