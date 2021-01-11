@@ -102,7 +102,7 @@ const IntroContainer: FC<IntroContainerProps> = ({ introBlock, ...props }) => {
             variants={{
                 entered: {
                     transition: {
-                        delayChildren: 0.2,
+                        delayChildren: 0,
                         staggerChildren: 0.14,
                     },
                 },

@@ -105,7 +105,7 @@ const Section1: FC<WelcomeBlock> = (welcomeBlock) => {
             variants={{
                 entered: {
                     transition: {
-                        delayChildren: 0.2,
+                        delayChildren: 0,
                         staggerChildren: 0.14,
                     },
                 },
