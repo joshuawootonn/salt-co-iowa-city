@@ -22,5 +22,6 @@ export interface UpcomingEvent {
 
 export interface UpcomingEventBlock {
     title: string;
+    visible: boolean;
     events: UpcomingEvent[];
 }

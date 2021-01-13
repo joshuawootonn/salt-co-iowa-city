@@ -15,6 +15,7 @@ export const useUpcomingEventBlock = (): UpcomingEventBlock => {
             ) {
                 nodes {
                     title
+                    visible
                     items {
                         title
                         image {

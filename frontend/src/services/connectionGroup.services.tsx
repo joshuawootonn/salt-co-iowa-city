@@ -10,6 +10,7 @@ export const useConnectionGroupBlock = (): ConnectionGroupBlock => {
             ) {
                 nodes {
                     title
+                    visible
                     description {
                         description
                     }

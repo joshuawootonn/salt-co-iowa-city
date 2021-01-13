@@ -66,15 +66,20 @@ const HowToConnect: FC = () => {
                 introBlock={howToConnectBlock}
                 css={styles.intro}
             />
-            <UpcomingEventsContainer
-                upcomingEventBlock={upcomingEventBlock}
-                css={styles.upcomingEvents}
-            />
-            <ConnectionGroupContainer
-                connectionGroupBlock={connectionGroupBlock}
-                css={styles.connectionGroup}
-            />
-
+            {upcomingEventBlock.visible &&
+                upcomingEventBlock.events.length > 0 && (
+                    <UpcomingEventsContainer
+                        upcomingEventBlock={upcomingEventBlock}
+                        css={styles.upcomingEvents}
+                    />
+                )}
+            {connectionGroupBlock.visible &&
+                connectionGroupBlock.groups.length > 0 && (
+                    <ConnectionGroupContainer
+                        connectionGroupBlock={connectionGroupBlock}
+                        css={styles.connectionGroup}
+                    />
+                )}
             <MinistryConnectionContainer
                 ministryConnectionBlock={ministryConnectionsBlock}
             />

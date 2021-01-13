@@ -53,6 +53,7 @@ export const useFooterBlock = (): FooterBlock => {
             ) {
                 nodes {
                     title
+                    visible
                 }
             }
             allContentfulBlockConnectionGroups(
@@ -61,6 +62,7 @@ export const useFooterBlock = (): FooterBlock => {
             ) {
                 nodes {
                     title
+                    visible
                 }
             }
             allContentfulBlockMinistryConnections(
@@ -92,6 +94,20 @@ export const useFooterBlock = (): FooterBlock => {
         }
     `);
 
+    const conditionalLinks = [];
+    const upcomingEventBlock = raw.allContentfulBlockUpcomingEvents.nodes[0];
+    upcomingEventBlock &&
+        upcomingEventBlock.visible &&
+        upcomingEventBlock.events.length > 0 &&
+        conditionalLinks.push(upcomingEventBlock.title);
+
+    const connectionGroupBlock =
+        raw.allContentfulBlockConnectionGroups.nodes[0];
+    connectionGroupBlock &&
+        connectionGroupBlock.visible &&
+        connectionGroupBlock.groups.length > 0 &&
+        conditionalLinks.push(connectionGroupBlock.title);
+
     return {
         whoWeAreLinks: [
             ...raw.allContentfulBlockMinistryDescriptions.nodes[0].items.map(
@@ -100,8 +116,7 @@ export const useFooterBlock = (): FooterBlock => {
             raw.allContentfulBlockStaff.nodes[0].title,
         ],
         howToConnectLinks: [
-            raw.allContentfulBlockUpcomingEvents.nodes[0].title,
-            raw.allContentfulBlockConnectionGroups.nodes[0].title,
+            ...conditionalLinks,
             ...raw.allContentfulBlockMinistryConnections.nodes[0].items.map(
                 (i: any) => (i.acronym ? i.acronym : i.title)
             ),

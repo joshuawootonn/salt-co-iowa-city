@@ -8,9 +8,9 @@ const isPreview = process.env.CONTENTFUL_HOST === previewHost;
 const { VERCEL_URL, VERCEL_ENV, NODE_ENV } = process.env;
 const siteUrl = VERCEL_URL || 'https://www.saltiowacity.com';
 
-console.log('vercel url', VERCEL_URL);
-console.log('vercel env', VERCEL_ENV);
-console.log('node env', NODE_ENV);
+console.log('vercel url: ', VERCEL_URL);
+console.log('vercel env: ', VERCEL_ENV);
+console.log('node env:   ', NODE_ENV);
 
 module.exports = {
     siteMetadata: {

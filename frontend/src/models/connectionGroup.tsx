@@ -13,6 +13,7 @@ export interface ConnectionGroup {
 
 export interface ConnectionGroupBlock {
     title: string;
+    visible: boolean;
     description: string;
     groups: ConnectionGroup[];
     emptyTitle: RichText;
