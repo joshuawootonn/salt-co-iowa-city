@@ -54,6 +54,9 @@ export const useFooterBlock = (): FooterBlock => {
                 nodes {
                     title
                     visible
+                    items {
+                        id
+                    }
                 }
             }
             allContentfulBlockConnectionGroups(
@@ -63,6 +66,9 @@ export const useFooterBlock = (): FooterBlock => {
                 nodes {
                     title
                     visible
+                    items {
+                        id
+                    }
                 }
             }
             allContentfulBlockMinistryConnections(
@@ -98,14 +104,14 @@ export const useFooterBlock = (): FooterBlock => {
     const upcomingEventBlock = raw.allContentfulBlockUpcomingEvents.nodes[0];
     upcomingEventBlock &&
         upcomingEventBlock.visible &&
-        upcomingEventBlock.events.length > 0 &&
+        upcomingEventBlock.items.length > 0 &&
         conditionalLinks.push(upcomingEventBlock.title);
 
     const connectionGroupBlock =
         raw.allContentfulBlockConnectionGroups.nodes[0];
     connectionGroupBlock &&
         connectionGroupBlock.visible &&
-        connectionGroupBlock.groups.length > 0 &&
+        connectionGroupBlock.items.length > 0 &&
         conditionalLinks.push(connectionGroupBlock.title);
 
     return {
