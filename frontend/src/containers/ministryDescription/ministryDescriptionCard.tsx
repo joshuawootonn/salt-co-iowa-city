@@ -32,12 +32,6 @@ const styles = {
     title: css`
         white-space: normal;
     `,
-    imageControl: css`
-        position: absolute;
-        bottom: -50px;
-        right: -130px;
-        z-index: 5;
-    `,
 };
 
 export interface MinistryDescriptionCardProps extends MinistryDescription {

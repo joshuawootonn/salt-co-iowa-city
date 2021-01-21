@@ -60,6 +60,7 @@ export default {
 
     select: (baseClassName: string) => css`
         width: 100%;
+        z-index: 10000 !important;
         .${baseClassName} {
             height: 50px;
             .${baseClassName}__control {

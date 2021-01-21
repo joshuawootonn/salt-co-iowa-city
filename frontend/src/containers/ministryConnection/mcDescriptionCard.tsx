@@ -15,6 +15,7 @@ const Root = styled(motion.div)`
     width: 500px;
     max-width: 100%;
     align-self: flex-start;
+    z-index: 10;
 `;
 
 const styles = {
