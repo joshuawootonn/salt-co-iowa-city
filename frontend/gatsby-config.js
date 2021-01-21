@@ -18,6 +18,14 @@ module.exports = {
         twitterUsername: `JoshWootonn`,
     },
     plugins: [
+        {
+            resolve: 'gatsby-plugin-google-tagmanager',
+            options: {
+                id: process.env.GOOGLE_TAG_MANAGER_ID,
+                includeInDevelopment: false,
+                defaultDataLayer: { platform: 'gatsby' },
+            },
+        },
         `gatsby-plugin-styled-components`,
         {
             resolve: `gatsby-source-contentful`,
