@@ -58,7 +58,12 @@ const Root = (props) => {
 
     if (props.type === 'link') {
         return (
-            <motion.a css={[styles.root, styles.interactivity]} {...props}>
+            <motion.a
+                css={[styles.root, styles.interactivity]}
+                target="_blank"
+                rel="noopener noreferrer"
+                {...props}
+            >
                 {props.children}
             </motion.a>
         );

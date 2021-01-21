@@ -84,7 +84,7 @@ const StaffCard: FC<Staff> = (props) => {
         }
     );
 
-    const isAboutEmpty = !props.about.replace(/\s/g, '').length;
+    const isAboutEmpty = !props.about || !props.about.replace(/\s/g, '').length;
 
     return (
         <div css={styles.root}>

@@ -79,13 +79,10 @@ const ImageController: FC<ImageProps> = (props) => {
         }, maxDuration);
     };
 
-    const handleClick = (e: any) => {
-        e.preventDefault();
-        e.stopPropagation();
+    const handleClick = (e: any) =>
         props.images.length > 1
             ? switchImage()
             : props.onClick && props.onClick();
-    };
 
     return (
         <Root {...props} type={getRootType(props)} onClick={handleClick}>

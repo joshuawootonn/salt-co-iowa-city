@@ -5,7 +5,7 @@ export interface Staff {
     lastName: string;
     position: string;
     email: string;
-    about: string;
+    about?: string;
     id: string;
     connectionLinkText: string;
     image: Image;

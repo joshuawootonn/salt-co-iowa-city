@@ -22,16 +22,18 @@ export const useMinistryDescriptionBlock = (): MinistryDescriptionBlock => {
                         link {
                             reference {
                                 __typename
-                                ... on ContentfulBlockConnectionGroups {
-                                    id
-                                    title
-                                }
-                                ... on ContentfulStaff {
-                                    firstName
-                                    lastName
-                                    email
-                                    position
-                                    id
+                                ... on Node {
+                                    ... on ContentfulBlockConnectionGroups {
+                                        id
+                                        title
+                                    }
+                                    ... on ContentfulStaff {
+                                        firstName
+                                        lastName
+                                        email
+                                        position
+                                        id
+                                    }
                                 }
                             }
                             text

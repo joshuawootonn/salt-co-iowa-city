@@ -32,6 +32,10 @@ const styles = {
                 max-height: 600px;
                 height: 60vh;
             `,
+            desktop: css`
+                height: 70vh;
+                max-height: 750px;
+            `,
         })}
     `,
 

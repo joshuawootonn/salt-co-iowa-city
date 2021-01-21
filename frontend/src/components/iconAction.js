@@ -38,7 +38,7 @@ const IconAction = (props) => {
         return <Button {...props}>{props.children}</Button>;
     }
 
-    return <Link {...props}>{props.children}</Link>;
+    return <Link target="_blank" rel="noopener noreferrer" {...props}>{props.children}</Link>;
 };
 
 export default IconAction;

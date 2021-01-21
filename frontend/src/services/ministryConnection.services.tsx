@@ -37,16 +37,18 @@ export const useMinistryConnectionBlock = (): MinistryConnectionBlock => {
                                 text
                                 reference {
                                     __typename
-                                    ... on ContentfulBlockConnectionGroups {
-                                        id
-                                        title
-                                    }
-                                    ... on ContentfulStaff {
-                                        firstName
-                                        lastName
-                                        email
-                                        position
-                                        id
+                                    ... on Node {
+                                        ... on ContentfulBlockConnectionGroups {
+                                            id
+                                            title
+                                        }
+                                        ... on ContentfulStaff {
+                                            firstName
+                                            lastName
+                                            email
+                                            position
+                                            id
+                                        }
                                     }
                                 }
                             }
@@ -59,16 +61,18 @@ export const useMinistryConnectionBlock = (): MinistryConnectionBlock => {
                         link {
                             reference {
                                 __typename
-                                ... on ContentfulBlockConnectionGroups {
-                                    id
-                                    title
-                                }
-                                ... on ContentfulStaff {
-                                    firstName
-                                    lastName
-                                    email
-                                    position
-                                    id
+                                ... on Node {
+                                    ... on ContentfulBlockConnectionGroups {
+                                        id
+                                        title
+                                    }
+                                    ... on ContentfulStaff {
+                                        firstName
+                                        lastName
+                                        email
+                                        position
+                                        id
+                                    }
                                 }
                             }
                             text
