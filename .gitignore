@@ -6,3 +6,5 @@ frontend/storybook-static/
 .idea/inspectionProfiles/
 
 .idea/
+
+.vercel
