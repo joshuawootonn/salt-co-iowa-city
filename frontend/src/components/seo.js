@@ -59,6 +59,8 @@ const SeoComponent = ({ description, title, image, isTitleTemplated }) => {
                 <meta name="twitter:description" content={seo.description} />
             )}
             {seo.image && <meta name="twitter:image" content={seo.image} />}
+
+            <script async src="https://cdn.splitbee.io/sb.js" />
         </Helmet>
     );
 };
