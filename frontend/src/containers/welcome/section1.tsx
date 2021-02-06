@@ -93,7 +93,7 @@ const Section1: FC<WelcomeBlock> = (welcomeBlock) => {
     const isLoaded = useFontLoader();
     const ref = React.useRef(null);
     const { isVisible } = useIntersect(ref, {
-        threshold: 0.3,
+        threshold: 0,
     });
     const animate = isLoaded && isVisible;
     const isOrchestrated = useOrchestration(animate, 2000);
