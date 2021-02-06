@@ -1,13 +1,13 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, {createContext, useContext, useEffect, useState} from 'react';
 
 export const useFontLoader = () => {
-    const { isLoaded } = useContext(FontLoadedContext);
+    const {isLoaded} = useContext(FontLoadedContext);
     return isLoaded;
 };
 
 export const FontLoadedContext = createContext(false);
 
-const FontLoadedProvider = ({ element }) => {
+const FontLoadedProvider = ({element}) => {
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
@@ -22,13 +22,13 @@ const FontLoadedProvider = ({ element }) => {
     }, []);
 
     return (
-        <FontLoadedContext.Provider value={{ isLoaded }}>
+        <FontLoadedContext.Provider value={{isLoaded}}>
             {element}
         </FontLoadedContext.Provider>
     );
 };
 
-export const FontLoadedProviderComponent = ({ children }) => {
+export const FontLoadedProviderComponent = ({children}) => {
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
@@ -43,7 +43,7 @@ export const FontLoadedProviderComponent = ({ children }) => {
     }, []);
 
     return (
-        <FontLoadedContext.Provider value={{ isLoaded }}>
+        <FontLoadedContext.Provider value={{isLoaded}}>
             {children}
         </FontLoadedContext.Provider>
     );
