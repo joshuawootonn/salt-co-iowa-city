@@ -2,8 +2,8 @@ const mailer = require("@sendgrid/mail");
 require("dotenv").config();
 mailer.setApiKey(process.env.SENDGRID_API_KEY);
 
-const createMessage = ({ to, subject, name, message, email }) => ({
-  from: "jose56wonton@gmail.com", // Change to your verified sender
+const createMessage = ({to, subject, name, message, email}) => ({
+  from: process.env.FROM_EMAIL,
   subject,
   personalizations: [
     {
@@ -36,12 +36,12 @@ const handler = (request, response) => {
     const sendGridRequestBody = createMessage(request.body);
     console.info("SendGrid Request Body: ", sendGridRequestBody);
     mailer
-      .send(sendGridRequestBody)
-      .then(() => response.status(200).json({ success: true }))
-      .catch((error) => {
-        console.error(error);
-        return response.status(500).send(error);
-      });
+        .send(sendGridRequestBody)
+        .then(() => response.status(200).json({success: true}))
+        .catch((error) => {
+          console.error(error);
+          return response.status(500).send(error);
+        });
   }
 };
 
