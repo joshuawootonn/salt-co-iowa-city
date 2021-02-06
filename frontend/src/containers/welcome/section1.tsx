@@ -22,7 +22,7 @@ const styles = {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        align-items: center;
+        align-items: flex-start;
 
         ${queryShit({
             mobile: css`
