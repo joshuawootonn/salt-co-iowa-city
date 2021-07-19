@@ -37,8 +37,16 @@ module.exports = {
                 host: isPreview ? previewHost : cdnHost,
             },
         },
+
         `gatsby-transformer-sharp`,
-        `gatsby-plugin-sharp`,
+        {
+            resolve: `gatsby-plugin-sharp`,
+            options: {
+                defaults: {
+                    formats: [`jpeg`, `webp`],
+                },
+            },
+        },
         {
             resolve: `gatsby-plugin-env-variables`,
             options: {
