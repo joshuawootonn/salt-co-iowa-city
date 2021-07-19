@@ -17,7 +17,7 @@ export const useMinistryConnectionBlock = (): MinistryConnectionBlock => {
                             description
                         }
                         images {
-                            fluid(maxWidth: 800, quality: 100) {
+                            fluid(maxWidth: 800, quality: 50) {
                                 ...GatsbyContentfulFluid_withWebp_noBase64
                             }
                         }
@@ -25,7 +25,7 @@ export const useMinistryConnectionBlock = (): MinistryConnectionBlock => {
                         nextEvent {
                             title
                             image {
-                                fluid(maxWidth: 800, quality: 100) {
+                                fluid(maxWidth: 800, quality: 50) {
                                     ...GatsbyContentfulFluid_withWebp_noBase64
                                 }
                             }
