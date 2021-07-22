@@ -29,6 +29,7 @@
     "cors": "^2.8.5",
     "dayjs": "^1.9.1",
     "dotenv": "^8.2.0",
+    "fontfaceobserver": "^2.1.0",
     "formik": "^2.2.1",
     "framer-motion": "^2.9.4",
     "gatsby": "^2.25.0",
