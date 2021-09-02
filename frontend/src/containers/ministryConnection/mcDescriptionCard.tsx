@@ -108,19 +108,31 @@ const McDescriptionCard: FC<MinistryConnection> = (props) => {
         }
     );
 
+    const isExternal = typeof props.link.url !== 'undefined';
+
     return (
         <Root {...animationProps}>
             <div css={styles.textBlock1}>
                 <p css={typography.card.text}>{props.description}</p>
             </div>
             <div css={styles.textBlock2}>
-                <TextLink
-                    type={'card'}
-                    destinationType="internal"
-                    to={mapReferenceToLink(props.link.reference)}
-                >
-                    {props.link.text}
-                </TextLink>
+                {isExternal ? (
+                    <TextLink
+                        type={'card'}
+                        destinationType="external"
+                        href={props.link.url}
+                    >
+                        {props.link.text}
+                    </TextLink>
+                ) : (
+                    <TextLink
+                        type={'card'}
+                        destinationType="internal"
+                        to={mapReferenceToLink(props.link.reference)}
+                    >
+                        {props.link.text}
+                    </TextLink>
+                )}
             </div>
         </Root>
     );

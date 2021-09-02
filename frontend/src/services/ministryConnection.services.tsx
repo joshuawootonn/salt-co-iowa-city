@@ -59,25 +59,35 @@ export const useMinistryConnectionBlock = (): MinistryConnectionBlock => {
                             endDateTime
                         }
                         link {
-                            reference {
-                                __typename
-                                ... on Node {
-                                    ... on ContentfulBlockConnectionGroups {
-                                        id
-                                        title
-                                    }
-                                    ... on ContentfulStaff {
-                                        firstName
-                                        lastName
-                                        email
-                                        position
-                                        id
+                            __typename
+                            ... on ContentfulLinkInternal {
+                                reference {
+                                    __typename
+                                    ... on Node {
+                                        ... on ContentfulBlockConnectionGroups {
+                                            id
+                                            title
+                                        }
+                                        ... on ContentfulStaff {
+                                            firstName
+                                            lastName
+                                            email
+                                            position
+                                            id
+                                        }
                                     }
                                 }
+                                text
+                                event {
+                                    title
+                                }
                             }
-                            text
-                            event {
-                                title
+                            ... on ContentfulLinkExternal {
+                                text
+                                url
+                                event {
+                                    title
+                                }
                             }
                         }
                     }

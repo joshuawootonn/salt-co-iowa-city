@@ -8,10 +8,12 @@ export interface MinistryConnection {
     description: string;
     images: Image[];
     backgroundImage: 'World' | 'Leaf';
-    link: {
-        reference: Staff;
-        text: string;
-    };
+    link:
+        | {
+              reference: Staff;
+              text: string;
+          }
+        | any;
     nextEvent: UpcomingEvent;
 }
 

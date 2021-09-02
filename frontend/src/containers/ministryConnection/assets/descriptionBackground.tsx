@@ -100,11 +100,12 @@ const WorldBackground = () => (
 );
 
 const DescriptionBackground: FC<MinistryConnection> = ({ backgroundImage }) => {
-    return backgroundImage === 'Leaf' ? (
-        <LeafBackground />
-    ) : (
-        <WorldBackground />
-    );
+    if (backgroundImage === 'Leaf') {
+        return <LeafBackground />;
+    } else if (backgroundImage === 'World') {
+        return <WorldBackground />;
+    }
+    return null;
 };
 
 export default DescriptionBackground;
