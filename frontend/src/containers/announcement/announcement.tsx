@@ -42,7 +42,7 @@ const Announcements: FC<AnnouncementBlock> = ({ announcements }) => {
     const type = useScreenType();
 
     const announcementsPerRow =
-        type === 'mobile' ? 2 : type === 'tablet' ? 2 : 3;
+        type === 'mobile' ? 1 : type === 'tablet' ? 2 : 3;
 
     return (
         <>
@@ -85,9 +85,9 @@ const Row: FC<{ announcements: Announcement[] }> = ({ announcements }) => {
                 },
             }}
         >
-            {announcements.map((link, i: number) => (
+            {announcements.map((link: any, i: number) => (
                 <AnnouncementLink
-                    key={link.link + link.text}
+                    key={i}
                     linkAnnouncement={link}
                     isOrchestrated={true}
                 />

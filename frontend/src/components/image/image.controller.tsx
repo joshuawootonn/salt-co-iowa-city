@@ -84,7 +84,6 @@ const ImageController: FC<ImageProps> = (props) => {
             ? switchImage()
             : props.onClick && props.onClick();
 
-    
     return (
         <Root {...props} type={getRootType(props)} onClick={handleClick}>
             <Content ref={ref}>
