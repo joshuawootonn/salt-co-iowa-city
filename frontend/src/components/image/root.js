@@ -57,6 +57,7 @@ const Root = (props) => {
     }
 
     if (props.type === 'link') {
+        console.log({ Root: props });
         return (
             <motion.a
                 css={[styles.root, styles.interactivity]}
